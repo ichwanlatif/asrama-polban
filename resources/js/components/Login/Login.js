@@ -70,49 +70,77 @@ class Login extends Component{
             return <Redirect to="/map"/>
         }
         return (
-            <div className="container mt-3">
-                <div className="row justify-content-center">
-                        <div className="col-md-6">
-                        <h2>Asrama - Mahasiswa</h2>
-                            <form>
-                                <div className="form-group">
-                                    <label>Email </label>
-                                    <input
-                                    type="email"
-                                    name="email"
-                                    className="form-control"
-                                    placeholder="Masukan email anda"
-                                    value={this.state.email}
-                                    onChange={this.handleFieldChange}
-                                    required/>
-                                    <span className="text-danger">{this.state.msg}</span>
-                                    <span className="text-danger">{this.state.errMsgEmail}</span>
+            <div style={{ 
+                    backgroundColor: 'RoyalBlue',
+                    backgroundPosition: 'center',
+                    backgroundSize: 'cover',
+                    backgroundRepeat: 'no-repeat'
+                }}>
+                <div className="container-fluid">
+                    <div className="row justify-content-center">
+                        <div className="col-sm-12 col-md-8 col-lg-8 mx-auto">
+                            <div className="card rounded text-center my-5 shadow-lg">
+                                <div className="card-body">
+                                    <div className="row">
+                                        {/* Logo */}
+                                        <div className="col-sm-12 col-md-12 col-lg-6">
+                                            <div className="d-none d-lg-block">
+                                                <div className="px-5 py-5">
+                                                    <img src="/images/web/logo_dormitory.jpg" className="card-img img-fluid" alt="logo" />
+                                                </div>
+                                            </div>
+                                            <div className="d-lg-none">
+                                                <div className="px-5">
+                                                    <img src="/images/web/logo_dormitory.jpg" className="card-img img-fluid" alt="logo" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {/* Form */}
+                                        <div className="col-sm-12 col-md-12 col-lg-6 py-5">
+                                            <h3 className="card-title my-2">ASRAMA POLBAN</h3>
+                                            <hr></hr>
+                                            <form>
+                                                <div className="form-group">
+                                                    <input
+                                                    type="email"
+                                                    name="email"
+                                                    className="form-control rounded-pill my-2"
+                                                    placeholder="Email"
+                                                    value={this.state.email}
+                                                    onChange={this.handleFieldChange}
+                                                    required/>
+                                                    <span className="text-danger">{this.state.msg}</span>
+                                                    <span className="text-danger">{this.state.errMsgEmail}</span>
+                                                </div>
+                                                <div className="form-group">
+                                                    <input 
+                                                    type="password"
+                                                    name="password"
+                                                    className="form-control rounded-pill my-2" 
+                                                    placeholder="Password"
+                                                    value={this.state.password}
+                                                    onChange={this.handleFieldChange} />
+                                                    <span className="text-danger">{this.state.errMsgPwd}</span>
+                                                </div>
+                                                <p className="text-danger">{this.state.errMsg}</p>
+                                                <button className="btn btn-primary btn-lg btn-block rounded-pill my-4" onClick={this.handleSubmit}>
+                                                    Login
+                                                    {this.state.isLoading ? (
+                                                        <span
+                                                        className="spinner-border spinner-border-sm ml-5"
+                                                        role="status"
+                                                        aria-hidden="true"
+                                                        ></span>
+                                                    ) : (<span></span>
+                                                    )}
+                                                </button>   
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="form-group">
-                                    <label>Password</label>
-                                    <input 
-                                    type="password"
-                                    name="password"
-                                    className="form-control" 
-                                    placeholder="Password"
-                                    value={this.state.password}
-                                    onChange={this.handleFieldChange} />
-                                    <span className="text-danger">{this.state.errMsgPwd}</span>
-                                </div>
-                                <p className="text-danger">{this.state.errMsg}</p>
-                                <button className="btn btn-primary btn-lg btn-block" onClick={this.handleSubmit}>
-                                    Login
-                                    {this.state.isLoading ? (
-                                        <span
-                                        className="spinner-border spinner-border-sm ml-5"
-                                        role="status"
-                                        aria-hidden="true"
-                                        ></span>
-                                    ) : (<span></span>
-                                    )}
-                                </button>   
-                            </form>
+                            </div>
                         </div>
+                    </div>
                 </div>
             </div>
         );
