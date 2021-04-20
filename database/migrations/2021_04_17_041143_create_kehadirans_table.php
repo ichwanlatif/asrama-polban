@@ -16,10 +16,11 @@ class CreateKehadiransTable extends Migration
         Schema::create('kehadirans', function (Blueprint $table) {
             $table->id();
             $table->dateTime('kehadiran_at')->nullable();
-            $table->string('kehadirian_status');
+            $table->string('kehadiran_status');
             $table->string('latitude');
             $table->string('longitude');
-            // $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
 
             // $table->foreign('user_id')->references('id')->on('user');

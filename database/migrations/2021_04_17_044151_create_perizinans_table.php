@@ -22,6 +22,8 @@ class CreatePerizinansTable extends Migration
             $table->string('keterangan');
             $table->string('file');
             $table->longText('catatan');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
