@@ -71,11 +71,11 @@ class Login extends Component{
         }
         return (
             <div style={{ 
-                    backgroundColor: 'RoyalBlue',
-                    backgroundPosition: 'center',
-                    backgroundSize: 'cover',
-                    backgroundRepeat: 'no-repeat'
-                }}>
+                backgroundColor: 'RoyalBlue',
+                backgroundPosition: 'center',
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat'
+            }}>
                 <div className="container-fluid">
                     <div className="row justify-content-center">
                         <div className="col-sm-12 col-md-8 col-lg-8 mx-auto">
@@ -97,6 +97,9 @@ class Login extends Component{
                                         </div>
                                         {/* Form */}
                                         <div className="col-sm-12 col-md-12 col-lg-6 py-5">
+                                            <div className="d-none d-lg-block">
+                                                <div className="py-4"></div>
+                                            </div>
                                             <h3 className="card-title my-2">ASRAMA POLBAN</h3>
                                             <hr></hr>
                                             <form>
