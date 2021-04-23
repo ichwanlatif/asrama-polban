@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ReactDOM from 'react-dom';
 import {HashRouter, Route } from "react-router-dom";
 import Main from "../Router";
+import "../css/app.min.css";
 
 class App extends Component {
   constructor(){
