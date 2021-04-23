@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PerizinanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,8 @@ Route::view('/', 'welcome');
 Route::view('/import', 'home');
 
 Route::post('/import-file', [UserController::class, 'importUser']);
+Route::view('/perizinan/create', 'insertPerizinan');
+Route::post('perizinan/store', [PerizinanController::class, 'store']);
 // Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

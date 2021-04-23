@@ -19,9 +19,9 @@ class CreatePerizinansTable extends Migration
             $table->boolean('perizinan_status');
             $table->dateTime('perizinan_start_at');
             $table->dateTime('perizinan_end_at');
-            $table->string('keterangan');
-            $table->string('file');
-            $table->longText('catatan');
+            $table->string('keterangan')->nullable();
+            $table->string('file')->nullable();
+            $table->longText('catatan')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

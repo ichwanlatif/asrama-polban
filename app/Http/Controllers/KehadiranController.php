@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kehadiran;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class KehadiranController extends Controller
 {
@@ -66,7 +67,7 @@ class KehadiranController extends Controller
 
     public function getKehadiranByWeek(){
         $kehadiran = Kehadiran::where([
-            ['created_at', '>', DB::raw('NOW() - INTERVAL 1 WEEK')]
+            ['created_at', '>=', DB::raw('DATE_SUB(NOW(), INTERVAL 7 DAY)')]
             ])
             ->orderByDesc('created_at')
             ->get();
@@ -74,7 +75,28 @@ class KehadiranController extends Controller
         if($kehadiran){
             return response()->json([
                 'status' => 'success',
-                'data' => $insert
+                'data' => $kehadiran
+            ], 201);
+        }
+        else{
+            return response()->json([
+                'status' => 'error',
+            ], 500);
+        }
+    }
+
+    public function getKehadiranByUser($id){
+        $kehadiran = Kehadiran::where([
+            ['user_id', '=', $id],
+            ['created_at', '>=', DB::raw('DATE_SUB(NOW(), INTERVAL 7 DAY)')]
+            ])
+            ->orderByDesc('kehadiran_at')
+            ->get();
+
+        if($kehadiran){
+            return response()->json([
+                'status' => 'success',
+                'data' => $kehadiran
             ], 201);
         }
         else{
@@ -87,7 +109,7 @@ class KehadiranController extends Controller
     public function getKehadiranById($id){
         $kehadiran = Kehadiran::where([
             ['id', '=', $id],
-            ['created_at', '>', DB::raw('NOW() - INTERVAL 1 WEEK')]
+            ['created_at', '>=', DB::raw('DATE_SUB(NOW(), INTERVAL 7 DAY)')]
             ])
             ->orderByDesc('kehadiran_at')
             ->get();
@@ -95,7 +117,7 @@ class KehadiranController extends Controller
         if($kehadiran){
             return response()->json([
                 'status' => 'success',
-                'data' => $insert
+                'data' => $kehadiran
             ], 201);
         }
         else{

@@ -13,6 +13,7 @@ class Kehadiran extends Model
         'kehadiran_at',
         'kehadiran_status',
         'latitude',
-        'longitude'
+        'longitude',
+        'user_id'
     ];
 }

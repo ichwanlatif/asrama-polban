@@ -39,3 +39,6 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
 });
 
 Route::post('/kehadiran/create', [KehadiranController::class, 'store']);
+Route::get('/kehadiran/{id}', [KehadiranController::class, 'getKehadiranById']);
+Route::get('/kehadiran/user/{id}', [KehadiranController::class, 'getKehadiranByUser']);
+Route::get('/kehadiran/week', [KehadiranController::class, 'getKehadiranByWeek']);
