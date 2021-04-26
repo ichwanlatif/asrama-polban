@@ -6,30 +6,13 @@ class Map extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      lat: 0,
-      long: 0
+      lat: props.latitude,
+      long: props.longitude
     };
-    this.getLocation = this.getLocation.bind(this);
-  }
-
-  getLocation() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        this.setState({
-          lat: position.coords.latitude,
-          long: position.coords.longitude
-        });
-      });
-    }
-    else {
-      alert('Sorry, Your browser not support');
-    }
   }
 
   render() {
-    this.getLocation();
     const { lat, long } = this.state;
-    console.log(lat, long)
     return (
       <div>
         <MapContainer center={[lat, long]} zoom={13} id="mapid">

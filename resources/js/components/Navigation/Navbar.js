@@ -1,10 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { logoutAuth } from '../../service/auth'
  
-const Navbar = () => (
-    <nav className='navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow'>
-            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                    <span class="navbar-toggler-icon"></span>
+const Navbar = () => {
+    const signOut = e => {
+        e.preventDefault()
+        logoutAuth();
+    }
+
+    return (
+        <nav className='navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow'>
+            <button id="sidebarToggleTop" className="btn btn-link d-md-none rounded-circle mr-3">
+                    <span className="navbar-toggler-icon"></span>
             </button>
             <ul className="navbar-nav ml-auto">
                 <div className="topbar-divider d-none d-sm-block"></div>
@@ -25,13 +32,15 @@ const Navbar = () => (
                             Notifikasi
                         </Link>
                         <div className="dropdown-divider"></div>
-                        <Link className="dropdown-item" to="/" data-toggle="modal" data-target="#logoutModal">
+                        <button className="dropdown-item" onClick={signOut} data-toggle="modal" data-target="#logoutModal">
                             Keluar
-                        </Link>
+                        </button>
                     </div>
                 </li>
             </ul>
-    </nav>
-);
+        </nav>
+    )
+    
+}
     
 export default Navbar;

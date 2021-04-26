@@ -1,5 +1,5 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
  
 const Sidebar = () => (
     <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
@@ -15,20 +15,20 @@ const Sidebar = () => (
             PRESENSI
         </div>
         <li className="nav-item">
-            <Link className="nav-link collapsed" to="#" data-toggle="collapse" data-target="#collapsePresensi"
+            <Link className="nav-link collapsed" data-toggle="collapse" data-target="#collapsePresensi"
                 aria-expanded="true" aria-controls="collapsePresensi">
                 <span>Form Presensi</span>
             </Link>
-            <div id="collapsePresensi" class="collapse" aria-labelledby="headingPresensi" data-parent="#accordionSidebar">
+            <div id="collapsePresensi" className="collapse" aria-labelledby="headingPresensi" data-parent="#accordionSidebar">
                 <div className="bg-white py-2 collapse-inner rounded">
                     <h6 className="collapse-header">Jenis Presensi:</h6>
-                    <Link className="collapse-item" to="/dashboard">Presensi Asrama</Link>
-                    <Link className="collapse-item" to="/dashboard">Presensi Kajian</Link>
+                    <Link className="collapse-item" to="/formpresensi">Presensi Asrama</Link>
+                    <Link className="collapse-item" to="/formpresensi">Presensi Kajian</Link>
                 </div>
             </div>
         </li>
         <li className="nav-item">
-                <Link class="nav-link" to="/dashboard">
+                <Link className="nav-link" to="/dashboard">
                 <span>Riwayat Presensi</span></Link>
         </li>
         <hr className="sidebar-divider"></hr>
@@ -42,7 +42,7 @@ const Sidebar = () => (
                 aria-expanded="true" aria-controls="collapsePerizinan">
                 <span>Buat Perizinan</span>
             </Link>
-            <div id="collapsePerizinan" class="collapse" aria-labelledby="headingPerizinan" data-parent="#accordionSidebar">
+            <div id="collapsePerizinan" className="collapse" aria-labelledby="headingPerizinan" data-parent="#accordionSidebar">
                 <div className="bg-white py-2 collapse-inner rounded">
                     <h6 className="collapse-header">Jenis Perizinan:</h6>
                     <Link className="collapse-item" to="/dashboard">Izin Pergi</Link>
@@ -54,10 +54,10 @@ const Sidebar = () => (
             <Link className="nav-link" to="/dashboard">
                 <span>Riwayat perizinan</span></Link>
         </li>
-        <hr class="sidebar-divider d-none d-md-block"></hr>
+        <hr className="sidebar-divider d-none d-md-block"></hr>
 
-        <div class="text-center d-none d-md-inline">
-            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        <div className="text-center d-none d-md-inline">
+            <button className="rounded-circle border-0" id="sidebarToggle"></button>
         </div>
     </ul>
 );

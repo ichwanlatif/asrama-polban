@@ -18,11 +18,11 @@ class AuthController extends Controller
         if($validate->fails()) {
             return response()->json(["status" => "failed", "validation_error" => $validate->errors()]);
         } else {
-            $credentials = request(['email', 'password']);
-            // $credentials = Arr::add($credentials, 'status_aktif', 1);
-            if (!Auth::attempt($credentials)) {
-                return response()->json(["status" => "error", "msg" => "Unathorized"], 401);
-            }
+            // $credentials = request(['email', 'password']);
+            // // $credentials = Arr::add($credentials, 'status_aktif', 1);
+            // if (!Auth::attempt($credentials)) {
+            //     return response()->json(["status" => "error", "msg" => "Unathorized"], 401);
+            // }
 
             $user = User::where('email', $request->email)->first();
             if (! \Hash::check($request->password, $user->password, [])) {

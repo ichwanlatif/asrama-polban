@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import {HashRouter, Route } from "react-router-dom";
 import Main from "../Router";
 import "../css/app.min.css";
+import Sidebar from "./Navigation/Sidebar";
+import Navbar from "./Navigation/Navbar";
 
 class App extends Component {
   constructor(){
@@ -20,8 +22,7 @@ class App extends Component {
     return (
       <div>
         <HashRouter>
-          {/* <Header /> */}
-          <Route default component={Main}/>
+          <Route component={Main}/>
         </HashRouter>
       </div>
     );
