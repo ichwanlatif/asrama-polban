@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { createPresensi } from '../../service/presensi';
-import Map from '../Map';
+import Map from '../../components/Map';
 
 
 class FormPresensi extends Component {

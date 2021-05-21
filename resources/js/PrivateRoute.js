@@ -1,7 +1,7 @@
 import {Redirect, Route} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import Sidebar from './components/Navigation/Sidebar'
-import Navbar from './components/Navigation/Navbar'
+import Topbar from './components/Navigation/Topbar'
 
 export const PrivateRoute = ({
     component:Component, ...rest})=>(
@@ -14,7 +14,7 @@ export const PrivateRoute = ({
                         <Sidebar />
                         <div id="content-wrapper" className="d-flex flex-column">
                         <div id="content">
-                            <Navbar />
+                            <Topbar />
                             <div className="container-fluid">
                             <Component {...props}/> 
                             </div>
