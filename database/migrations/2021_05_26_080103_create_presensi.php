@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateKehadiransTable extends Migration
+class CreatePresensi extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,13 @@ class CreateKehadiransTable extends Migration
      */
     public function up()
     {
-        Schema::create('kehadirans', function (Blueprint $table) {
+        Schema::create('presensi', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('kehadiran_at')->nullable();
-            $table->string('kehadiran_status');
+            $table->unsignedBigInteger('id_mhs')->references('id')->on('mahasiswa');
+            $table->tinyInteger('status');
             $table->string('latitude');
             $table->string('longitude');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
-
-            // $table->foreign('user_id')->references('id')->on('user');
         });
     }
 
@@ -34,6 +30,6 @@ class CreateKehadiransTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kehadirans');
+        Schema::dropIfExists('presensi');
     }
 }
