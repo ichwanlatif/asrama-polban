@@ -28,7 +28,7 @@ class AuthController extends Controller
             if (! \Hash::check($request->password, $user->password, [])) {
                 throw new \Exception('Error in Login');
             }
-
+//Test
             $tokenResult = $user->createToken('token-auth')->plainTextToken;
             // $respon = [
             //     'status' => 'success',
