@@ -12,10 +12,12 @@ class FormPresensi extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            role:"1",
             lat: 0,
             long: 0,
             currentDateTime: new Date().toLocaleString(),
-            status_location: "Belum mendapatkan lokasi"
+            status_location: "Belum mendapatkan lokasi",
+            text_color : "text-warning"
         };
         this.onClickGetLocation = this.onClickGetLocation.bind(this);
         this.submitPresensi = this.submitPresensi.bind(this);
@@ -35,7 +37,8 @@ class FormPresensi extends Component {
                 this.setState({
                     lat: position.coords.latitude,
                     long: position.coords.longitude,
-                    status_location: "Sudah mendapatkan lokasi"
+                    status_location: "Sudah mendapatkan lokasi",
+                    text_color : "text-success"
                 })
             }))
         }
@@ -59,7 +62,7 @@ class FormPresensi extends Component {
             <div>
                 <div id="wrapper">
                 {/* <!-- Sidebar --> */}
-                <Sidebar />
+                <Sidebar role= {this.state.role} />
                 {/* <!-- End of Sidebar --> */}
                     <div id="content-wrapper" className="d-flex flex-column">
                         <div id="content">
@@ -71,25 +74,26 @@ class FormPresensi extends Component {
                             <div className="col-lg-12 col-md-12">
                                 <div className="card my-5">
                                     <div className="card-body">
-                                        <h1 className="card-title text-center">Form presensi</h1>
+                                        <h4 className="text-primary text-center">Formulir presensi</h4>
                                         <h6 className="text-center text-muted">Isi data formulir presensi dibawah ini</h6>
                                         <hr></hr>
 
                                         {/* Form presensi*/}
                                         <form>
                                             <div className="form-group row">
-                                                <label for="name" className="col-md-4 col-form-label text-md-right">Waktu presensi</label>
-                                                <div className="col-md-6">
-                                                    <p>
-                                                        {this.state.currentDateTime}
-                                                    </p>
+                                                <label for="time" className="col-md-3 col-form-label text-md-right">Waktu presensi</label>
+                                                <div className="col-md-8">
+                                                    <input 
+                                                        type="text" 
+                                                        className="form-control-plaintext"
+                                                        value={this.state.currentDateTime}
+                                                    />
                                                 </div>
                                             </div>
                                             <div className="form-group row">
-                                                <label for="name" className="col-md-4 col-form-label text-md-right">Koordinat presensi</label>
-                                                <div className="col-md-6">
+                                                <label for="coordinat" className="col-md-3 col-form-label text-md-right">Koordinat presensi</label>
+                                                <div className="col-md-8">
                                                     <input
-                                                        id="coordinat"
                                                         type="text"
                                                         className="form-control"
                                                         name="coordinat"
@@ -98,21 +102,21 @@ class FormPresensi extends Component {
                                                     />
                                                     {/* Conditional statement */}
                                                     <small className="text-muted">Status: </small>
-                                                    <small className="text-warning">{this.state.status_location}</small>
+                                                    <small className={this.state.text_color}>{this.state.status_location}</small>
                                                 </div>
                                                 {/* <div className="form-group row">
                                                     <Map latitude={this.state.lat} longitude={this.state.long} />
                                                 </div> */}
                                             </div>
-                                            <div className="form-group row mb-0">
-                                                <div className="col-md-6 offset-md-4">
-                                                    <button className="btn btn-primary" type="button" onClick={this.onClickGetLocation}>Get location</button>
+                                            <div className="form-group row">
+                                                <div className="col-md-8 offset-md-3 mb-4">
+                                                    <button className="btn btn-primary" type="button" onClick={this.onClickGetLocation}>Ambil lokasi</button>
                                                 </div>
                                             </div>
-                                            <div className="form-group row mb-0">
-                                                <div className="col-md-6 offset-md-4 mt-5">
+                                            <div className="form-group row">
+                                                <div className="col-md-8 offset-md-3 mb-2">
                                                     <button onClick={this.submitPresensi} type="submit" className="btn btn-success">
-                                                        Presensi
+                                                        Submit
                                                     </button>
                                                 </div>
                                             </div>

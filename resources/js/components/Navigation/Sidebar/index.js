@@ -4,8 +4,28 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { clickMenuOpen } from '../../../redux/actions';
+
+//Role
+import SidebarMahasiswa from './Mahasiswa';
+import SidebarPengurusKoordinator from './PengurusKoordinator';
+import SidebarPengurusKomdis from './PengurusKomdis';
+import SidebarManajemen from './Manajemen';
  
 class Sidebar extends Component {
+
+    sidebarSwitch(role) {
+        switch(role) {
+            case "1":
+                return <SidebarMahasiswa/>;
+            case "2":
+                return <SidebarPengurusKoordinator/>;
+            case "3":
+                return <SidebarPengurusKomdis/>;
+            case "4":
+                return <SidebarManajemen/>;
+        }
+    }
+      
     render() {
         const { clickMenuOpen, toggled } = this.props;
         return (
@@ -14,7 +34,7 @@ class Sidebar extends Component {
                 {/* Role */}
                 <Link className="sidebar-brand d-flex align-items-center justify-content-center" to="/dashboard">
                     <i class="fas fa-users"></i>
-                    <div className="sidebar-brand-text mx-3">MAHASISWA</div>
+                    <div className="sidebar-brand-text mx-3">Asrama</div>
                 </Link>
 
                 {/* <!-- Divider --> */}
@@ -31,66 +51,8 @@ class Sidebar extends Component {
                 {/* <!-- Divider --> */}
                 <hr className="sidebar-divider" />
 
-                {/* Presensi */}
-                <div className="sidebar-heading">
-                    PRESENSI
-                </div>
-
-                {/* Form Presensi */}
-                <li className="nav-item">
-                    <Link className="nav-link collapsed" data-toggle="collapse" data-target="#collapsePresensi" aria-expanded="true" aria-controls="collapsePresensi">
-                        <i class="fas fa-calendar-check"></i>
-                        <span>Form Presensi</span>
-                    </Link>
-                    <div id="collapsePresensi" className="collapse" aria-labelledby="headingPresensi" data-parent="#accordionSidebar">
-                        <div className="bg-white py-2 collapse-inner rounded">
-                            <h6 className="collapse-header">Jenis Presensi:</h6>
-                            <Link className="collapse-item" to="/formpresensi">Presensi Asrama</Link>
-                        </div>
-                    </div>
-                </li>
-
-                {/* Riwayat Presensi */}
-                <li className="nav-item">
-                    <Link className="nav-link" to="#">
-                        <i class="fas fa-clipboard-list"></i>
-                        <span>Riwayat Presensi</span>
-                    </Link>
-                </li>
-                
-                {/* <!-- Divider --> */}
-                <hr className="sidebar-divider" />
-
-                {/* Perizinan */}
-                <div className="sidebar-heading">
-                        PERIZINAN
-                </div>
-
-                {/* Forn Perizinan */}
-                <li className="nav-item">
-                    <Link className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePerizinan" aria-expanded="true" aria-controls="collapsePerizinan">
-                        <i class="fas fa-portrait"></i>
-                        <span>Buat Perizinan</span>
-                    </Link>
-                    <div id="collapsePerizinan" className="collapse" aria-labelledby="headingPerizinan" data-parent="#accordionSidebar">
-                        <div className="bg-white py-2 collapse-inner rounded">
-                            <h6 className="collapse-header">Jenis Perizinan:</h6>
-                            <Link className="collapse-item" to="#">Izin Pergi</Link>
-                            <Link className="collapse-item" to="#">Resign</Link>
-                        </div>
-                    </div>
-                </li>
-
-                {/* Riwayat Perizinan */}
-                <li className="nav-item">
-                    <Link className="nav-link" to="#">
-                        <i class="fas fa-clipboard-list"></i>
-                        <span>Riwayat perizinan</span>
-                    </Link>
-                </li>
-
-                {/* <!-- Divider --> */}
-                <hr className="sidebar-divider" />
+                {/* Dynamic role item */}
+                {this.sidebarSwitch(this.props.role)}
 
                 {/* Kelola Akun */}
                 <div className="sidebar-heading">
@@ -106,7 +68,7 @@ class Sidebar extends Component {
                     <div id="collapsePassword" className="collapse" aria-labelledby="headingPresensi" data-parent="#accordionSidebar">
                         <div className="bg-white py-2 collapse-inner rounded">
                             <h6 className="collapse-header">Atur Password:</h6>
-                            <Link className="collapse-item" to="#">Ganti Password</Link>
+                            <Link className="collapse-item" to="/gantipassword">Ganti Password</Link>
                         </div>
                     </div>
                 </li>
