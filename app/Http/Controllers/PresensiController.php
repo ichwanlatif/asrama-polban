@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Kehadiran;
+use App\Models\Presensi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class KehadiranController extends Controller
+class PresensiController extends Controller
 {
 
     public function store(Request $request)
@@ -14,7 +14,7 @@ class KehadiranController extends Controller
         $validasi = \Validator::make($request->all(), [
             'latitude' => 'required',
             'longitude' => 'required',
-            'user_id' => 'required'
+            'id_mhs' => 'required'
         ]);
 
         if($validasi->fails()){
@@ -41,32 +41,52 @@ class KehadiranController extends Controller
             else{
                 $status = "Hadir";
             }
-            $insert = Kehadiran::create([
-                'kehadiran_at' => now(),
-                'kehadiran_status' => $status,
+            $insert = Presensi::create([
+                'status' => $status,
                 'latitude' => $request->latitude,
                 'longitude' => $request->longitude,
-                'user_id' => $request->user_id
+                'id_mhs' => $request->user_id
             ]);
             
             if($insert){
                 return response()->json([
                     'status' => 'success',
-                    'msg' => 'Kehadiran berhasil diinput',
+                    'msg' => 'Presensi berhasil diinput',
                     'data' => $insert
                 ], 201);
             }
             else{
                 return response()->json([
                     'status' => 'error',
-                    'msg' => 'Kehadiran gagal diinput',
+                    'msg' => 'Presensi gagal diinput',
                 ], 500);
             }
         }
     }
 
-    public function getKehadiranByWeek(){
-        $kehadiran = Kehadiran::where([
+    // public function getKehadiranByWeek(){
+    //     $kehadiran = Kehadiran::where([
+    //         ['created_at', '>=', DB::raw('DATE_SUB(NOW(), INTERVAL 7 DAY)')]
+    //         ])
+    //         ->orderByDesc('created_at')
+    //         ->get();
+
+    //     if($kehadiran){
+    //         return response()->json([
+    //             'status' => 'success',
+    //             'data' => $kehadiran
+    //         ], 201);
+    //     }
+    //     else{
+    //         return response()->json([
+    //             'status' => 'error',
+    //         ], 500);
+    //     }
+    // }
+
+    public function getKehadiranByUser($id){
+        $kehadiran = Presensi::where([
+            ['user_id', '=', $id],
             ['created_at', '>=', DB::raw('DATE_SUB(NOW(), INTERVAL 7 DAY)')]
             ])
             ->orderByDesc('created_at')
@@ -85,33 +105,12 @@ class KehadiranController extends Controller
         }
     }
 
-    public function getKehadiranByUser($id){
-        $kehadiran = Kehadiran::where([
-            ['user_id', '=', $id],
-            ['created_at', '>=', DB::raw('DATE_SUB(NOW(), INTERVAL 7 DAY)')]
-            ])
-            ->orderByDesc('kehadiran_at')
-            ->get();
-
-        if($kehadiran){
-            return response()->json([
-                'status' => 'success',
-                'data' => $kehadiran
-            ], 201);
-        }
-        else{
-            return response()->json([
-                'status' => 'error',
-            ], 500);
-        }
-    }
-
     public function getKehadiranById($id){
-        $kehadiran = Kehadiran::where([
+        $kehadiran = Presensi::where([
             ['id', '=', $id],
             ['created_at', '>=', DB::raw('DATE_SUB(NOW(), INTERVAL 7 DAY)')]
             ])
-            ->orderByDesc('kehadiran_at')
+            ->orderByDesc('created_at')
             ->get();
 
         if($kehadiran){
