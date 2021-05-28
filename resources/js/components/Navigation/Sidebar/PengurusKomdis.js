@@ -29,7 +29,7 @@ class SidebarPengurusKomdis extends Component {
                 {/* Form Approval */}
                 <li className="nav-item">
                     <Link className="nav-link collapsed" data-toggle="collapse" data-target="#collapsePresensi" aria-expanded="true" aria-controls="collapsePresensi">
-                        <i class="fas fa-calendar-check"></i>
+                        <i class="fas fa-clipboard-check"></i>
                         <span>Form Approval</span>
                     </Link>
                     <div id="collapsePresensi" className="collapse" aria-labelledby="headingPresensi" data-parent="#accordionSidebar">

@@ -29,7 +29,7 @@ class SidebarPengurusKoordinator extends Component {
                 {/* Form Approval */}
                 <li className="nav-item">
                     <Link className="nav-link collapsed" data-toggle="collapse" data-target="#collapsePresensi" aria-expanded="true" aria-controls="collapsePresensi">
-                        <i class="fas fa-calendar-check"></i>
+                        <i class="fas fa-clipboard-check"></i>
                         <span>Form Approval</span>
                     </Link>
                     <div id="collapsePresensi" className="collapse" aria-labelledby="headingPresensi" data-parent="#accordionSidebar">
@@ -60,7 +60,7 @@ class SidebarPengurusKoordinator extends Component {
                 {/* Data Mahasiswa */}
                 <li className="nav-item">
                     <Link className="nav-link collapsed" data-toggle="collapse" data-target="#collapseDataMahasiswa" aria-expanded="true" aria-controls="collapseDataMahasiswa">
-                        <i class="fas fa-calendar-check"></i>
+                        <i class="fas fa-id-card"></i>
                         <span>Data Mahasiswa</span>
                     </Link>
                     <div id="collapseDataMahasiswa" className="collapse" aria-labelledby="headingDataMahasiswa" data-parent="#accordionSidebar">

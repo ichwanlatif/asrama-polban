@@ -5,15 +5,29 @@ import Sidebar from '../../components/Navigation/Sidebar';
 import Topbar from '../../components/Navigation/Topbar';
 import Footer from '../../components/Navigation/Footer';
 
-import CardInfo from '../../components/Cards/Info';
-import PageHeading from '../../components/PageHeading';
+import DashboardMahasiswa from './Mahasiswa';
+import DashboardPengurus from './Pengurus';
+import DashboardManajemen from './Manajemen';
 
 class Dashboard extends Component {
     constructor(){
         super();
         this.state = {
-            role: "1"
+            role: "2"
         };
+    }
+    
+    dashboardSwitch(role) {
+        switch(role) {
+            case "1":
+                return <DashboardMahasiswa />;
+            case "2":
+                return <DashboardPengurus/>;
+            case "3":
+                return <DashboardPengurus/>;
+            case "4":
+                return <DashboardManajemen/>;
+        }
     }
     
     render() {
@@ -28,30 +42,8 @@ class Dashboard extends Component {
                             {/* <!-- Topbar --> */}
                             <Topbar />
                             {/* <!-- End of Topbar --> */}
-                            <div className="container-fluid">
-                                <PageHeading title="Dashboard" />
-                                <div className="row">
-                                    <CardInfo title="Gedung Asrama"
-                                        icon="house-user"
-                                        color="primary"
-                                        value="A" />
-
-                                    <CardInfo title="Jumlah Hadir"
-                                        icon="calendar-check"
-                                        color="success"
-                                        value="60" />
-
-                                    <CardInfo title="Jumlah Alfa"
-                                        icon="calendar-times"
-                                        color="danger"
-                                        value="5" />
-
-                                    <CardInfo title="Jumlah Izin"
-                                        icon="address-book"
-                                        color="info"
-                                        value="2" />
-                                </div>
-                            </div>
+                            {/* Dynamic role item */}
+                            {this.dashboardSwitch(this.state.role)}
                         </div>
                         {/* <!-- Footer --> */}
                         <Footer />
