@@ -3,37 +3,45 @@
 namespace App\Imports;
 
 use App\Models\User;
+use App\Models\Mahasiswa;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
-use Maatwebsite\Excel\Concerns\ToModel;
+use Illuminate\Support\Collection;
+use Maatwebsite\Excel\Concerns\ToCollection;
 
-class UserImport implements ToModel
+class UserImport implements ToCollection
 {
     /**
     * @param array $row
     *
     * @return \Illuminate\Database\Eloquent\Model|null
     */
-    public function model(array $row)
+    public function collection(Collection $rows)
     {
-        return new User([
-            'nim' => $row[0],
-            'nama' => $row[1],
-            'alamat' => $row[2],
-            'tgl_lahir' => $row[3],
-            'prodi' => $row[4],
-            'jurusan' => $row[5],
-            'status_aktif' => 1,
-            'status_bidikmisi' => $row[6],
-            'ukt' => $row[7],
-            'nomor_telepon' => $row[8],
-            'pengurus_verified_at' => null,
-            'pengurus_jabatan' => $row[9],
-            'email' => $row[10],
-            'email_verified_at' => null,
-            'password' => \Hash::make($row[11]),
-            'asrama_id' => $row[12],
-            'deleted' => 0
-        ]);
+        // dd($rows);
+        foreach($rows as $row){
+            $user = User::create([
+                'email' => $row[0],
+                'password' => \Hash::make($row[1]),
+                'role' => 1
+            ]);
+            
+            $mahasiswa = Mahasiswa::create([
+                'id_users' => $user->id,
+                'id_prodi' => $row[2],
+                'id_kamar' => $row[3],
+                'nama_mhs' => $row[4],
+                'nim_mhs' => $row[5],
+                'jenis_kelamin' => $row[6],
+                'tempat_tgl_lahir' => $row[7],
+                'agama' => $row[8],
+                'alamat_mhs' => $row[9],
+                'no_hp_mhs' => $row[10],
+                'nama_ortu' => $row[11],
+                'no_hp_ortu' => $row[12],
+                'status_keaktifan' => $row[13],
+                'golongan_ukt' => $row[14]
+            ]);
+        }
     }
 }

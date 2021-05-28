@@ -3,17 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Perizinan;
-
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class PerizinanController extends Controller
 {
     public function store(Request $request){
         $validasi = \Validator::make($request->all(), [
-            'perizinan_type' => 'required',
-            'perizinan_start_at' => 'required',
-            'perizinan_end_at' => 'required',
-            'user_id' => 'required',
+            'tanggal_pergi' => 'required',
+            'tanggal_pulang' => 'required',
+            'deskripsi' => 'required',
+            'id_mhs' => 'required',
         ]);
 
         if($validasi->fails()){
@@ -22,18 +22,17 @@ class PerizinanController extends Controller
         else{
             if($request->hasFile('file')){
 
-                $fileName = time().'.'. $request->file->extension();
+                $fileName = time().Str::random(10). $request->file->extension();
                 $request->file->move(public_path('file_perizinan'), $fileName);
             }
             $insert = Perizinan::create([
-                'perizinan_type' => $request->perizinan_type,
-                'perizinan_status' => 0,
-                'perizinan_start_at' => $request->perizinan_start_at,
-                'perizinan_end_at' => $request->perizinan_end_at,
-                'keterangan' => $request->keterangan,
-                'file' => $fileName,
-                'catatan' => "",
-                'user_id' => $request->user_id
+                'id_mhs' => $request->user_id,
+                'tanggal_pergi' => $request->perizinan_start_at,
+                'tanggal_pulang' => $request->perizinan_end_at,
+                'deskripsi' => $request->keterangan,
+                'file_pendukung' => $fileName,
+                'status_approval' => 0,
+                'catatan_pengurus' => " ",
             ]);
 
             // if($insert){
