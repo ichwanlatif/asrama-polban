@@ -4,7 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\KehadiranController;
+use App\Http\Controllers\PresensiController;
+use App\Http\Controllers\MahasiswaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,17 +29,16 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     // manggil controller dengan mengubah namespace di RouteServiceProvider.php biar bisa kayak versi2 sebelumnya
     Route::post('logoutall', [AuthController::class, 'logoutall']);
 
-    Route::prefix('user')->group(function () {
-        Route::get('/', [UserController::class, 'index']);
-        Route::post('/create', [UserController::class, 'create']);
-        Route::put('/update', [UserController::class, 'update']);
-        Route::post('/delete', [UserController::class, 'delete']);
-    });
-
-    //Test git
+    // Route::prefix('user')->group(function () {
+    //     Route::get('/', [UserController::class, 'index']);
+    //     Route::post('/create', [UserController::class, 'create']);
+    //     Route::put('/update', [UserController::class, 'update']);
+    //     Route::post('/delete', [UserController::class, 'delete']);
+    // });
 });
 
-Route::post('/kehadiran/create', [KehadiranController::class, 'store']);
-Route::get('/kehadiran/{id}', [KehadiranController::class, 'getKehadiranById']);
-Route::get('/kehadiran/user/{id}', [KehadiranController::class, 'getKehadiranByUser']);
-Route::get('/kehadiran/week', [KehadiranController::class, 'getKehadiranByWeek']);
+Route::get('/mahasiswaByUser/{id}', [MahasiswaController::class, 'getMahasiswaByUserId']);
+Route::post('/presensi/create', [PresensiController::class, 'store']);
+// Route::get('/kehadiran/{id}', [KehadiranController::class, 'getKehadiranById']);
+Route::get('/presensi/user/{id}', [PresensiController::class, 'getKehadiranByUser']);
+// Route::get('/kehadiran/week', [KehadiranController::class, 'getKehadiranByWeek']);

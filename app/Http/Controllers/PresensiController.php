@@ -36,16 +36,16 @@ class PresensiController extends Controller
             $jarak = $earth_radius * $c;
             
             if($jarak > 1){
-                $status = "Alfa";
+                $status = 0;
             }
             else{
-                $status = "Hadir";
+                $status = 1;
             }
             $insert = Presensi::create([
                 'status' => $status,
                 'latitude' => $request->latitude,
                 'longitude' => $request->longitude,
-                'id_mhs' => $request->user_id
+                'id_mhs' => $request->id_mhs
             ]);
             
             if($insert){
@@ -86,21 +86,21 @@ class PresensiController extends Controller
 
     public function getKehadiranByUser($id){
         $kehadiran = Presensi::where([
-            ['user_id', '=', $id],
-            ['created_at', '>=', DB::raw('DATE_SUB(NOW(), INTERVAL 7 DAY)')]
+            ['id_mhs', '=', $id],
+            // ['created_at', '>=', DB::raw('DATE_SUB(NOW(), INTERVAL 7 DAY)')]
             ])
             ->orderByDesc('created_at')
             ->get();
 
         if($kehadiran){
             return response()->json([
-                'status' => 'success',
+                'status' => 201,
                 'data' => $kehadiran
             ], 201);
         }
         else{
             return response()->json([
-                'status' => 'error',
+                'status' => 500,
             ], 500);
         }
     }

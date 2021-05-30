@@ -24,7 +24,7 @@ class Application extends Component {
         return (
         <div>
             <HashRouter>
-                <Route component={Main}/>
+                <Route default component={Main}/>
             </HashRouter>
         </div>
         );

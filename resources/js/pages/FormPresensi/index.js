@@ -53,7 +53,7 @@ class FormPresensi extends Component {
         createPresensi({
             latitude: this.state.lat,
             longitude: this.state.long,
-            user_id: localStorage.getItem('user_id')
+            id_mhs: localStorage.getItem('user_id')
         })
     }
 

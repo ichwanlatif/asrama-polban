@@ -1,5 +1,7 @@
+import Cookies from 'js-cookie';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { loginAuth } from '../../service/auth';
 
 class SignIn extends Component {
     constructor (props){
@@ -7,12 +9,6 @@ class SignIn extends Component {
         this.state = {
             email: '',
             password: '',
-            msg: '',
-            isLoading: false,
-            redirect: false,
-            errMsgEmail: "",
-            errMsgPwd: "",
-            errMsg: "",
         }
         this.handleFieldChange = this.handleFieldChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -28,40 +24,18 @@ class SignIn extends Component {
     }
 
 
-    handleSubmit(){
-        console.log(this.state.email, this.state.password);
-        this.setState({ isLoading: true });
-        axios.post("/api/login", {
+    handleSubmit(e){
+        e.preventDefault()
+        loginAuth({
             email: this.state.email,
-            password: this.state.password,
-        })
-        .then(response => {
-            this.setState({ isLoading: false });
-            if(response.status === 200){
-                localStorage.setItem("isLoggedIn", true);
-                localStorage.setItem("userData", JSON.stringify(response.data));
-                this.setState({
-                    msg: response.data.message,
-                    redirect: true,
-                });
-                console.log(this.state.redirect);
-            }
-            if(response.data.status === 'failed' && response.data.success === undefined){
-                this.setState({
-                    errMsg: response.data.message,
-                });
-                setTimeout(() => {
-                    this.setState({ errMsg: "" });
-                }, 2000);
-            }
-        })
-        .catch((error) => {
-            console.log(error);
+            password: this.state.password
         })
     }
 
     render() {
-        
+        if(Cookies.get('cake')){
+            window.location.assign("/#/Dashboard")
+        }
 
         return (
             <div className="container">
@@ -89,7 +63,6 @@ class SignIn extends Component {
                                                     onChange={this.handleFieldChange}
                                                     required
                                                 />
-                                                <span className="text-danger">{this.state.errMsgEmail}</span>
                                             </div>
                                             <div className="form-group">
                                                 <input 
@@ -101,7 +74,6 @@ class SignIn extends Component {
                                                     onChange={this.handleFieldChange}
                                                     required
                                                 />
-                                                <span className="text-danger">{this.state.errMsgPwd}</span>
                                             </div>
                                             <div className="form-group">
                                             <div className="custom-control custom-checkbox small">
@@ -111,17 +83,8 @@ class SignIn extends Component {
                                             </div>
                                             <button  onClick={this.handleSubmit} className="btn btn-primary btn-user btn-block">
                                                 Login
-                                                {this.state.isLoading ? (
-                                                    <span
-                                                        className="spinner-border spinner-border-sm ml-5"
-                                                        role="status"
-                                                        aria-hidden="true"
-                                                    ></span>
-                                                ) : (<span></span>
-                                                )}
                                             </button>
                                         </form>
-                                        <h6 className="text-success text-center mt-2">{this.state.msg}</h6>
                                         <hr/>
                                         <div className="text-center">
                                             <Link className="small" tol="#">Lupa Password?</Link>

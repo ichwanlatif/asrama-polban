@@ -13,7 +13,7 @@ class Dashboard extends Component {
     constructor(){
         super();
         this.state = {
-            role: "2"
+            role: ""
         };
     }
     
@@ -28,6 +28,12 @@ class Dashboard extends Component {
             case "4":
                 return <DashboardManajemen/>;
         }
+    }
+
+    componentDidMount(){
+        this.setState({
+            role: localStorage.getItem("user_role")
+        });
     }
     
     render() {

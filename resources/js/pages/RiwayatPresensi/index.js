@@ -6,16 +6,34 @@ import Topbar from '../../components/Navigation/Topbar';
 import Footer from '../../components/Navigation/Footer';
 
 import PageHeading from '../../components/PageHeading';
+import api from '../../service/api';
+// import { getRiwayatPresensi } from '../../service/presensi';
 
 class RiwayatPresensi extends Component {
     constructor(){
         super();
         this.state = {
-            role: "1"
+            role: localStorage.getItem('user_role'),
+            datas: [],
         };
     }
 
+    componentDidMount(){
+        api().get('api/presensi/user/' + localStorage.getItem('user_id')).then(response =>{
+            if(response.data.status === 201){
+                this.setState({
+                    datas: response.data.data
+                })
+                console.log(this.state.datas)
+            }
+            else{
+                alert('Gagal load data');
+            }
+        })
+    }
+
     render() {
+        const data = this.state.datas
         return (
             <div>
                 <div id="wrapper">
@@ -47,13 +65,24 @@ class RiwayatPresensi extends Component {
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>23 Mei 2021</td>
-                                                        <td>15:00</td>
-                                                        <td>Harian</td>
-                                                        <td>-6.871956, 107.571107</td>
-                                                        <td><span class="badge badge-pill badge-success">Hadir</span></td>
-                                                    </tr>
+                                                    {data.map(presensi => {
+                                                        const {
+                                                            id,
+                                                            status,
+                                                            latitude,
+                                                            longitude,
+                                                            created_at,
+                                                        } = presensi;
+                                                        return (
+                                                            <tr>
+                                                                <td>{new Date(presensi.created_at).toDateString()}</td>
+                                                                <td>{new Date(presensi.created_at).toTimeString()}</td>
+                                                                <td>Harian</td>
+                                                                <td>{presensi.latitude + ', ' + presensi.longitude}</td>
+                                                                <td><span class="badge badge-pill badge-success">{presensi.status ? "Hadir" : "Alfa"}</span></td>
+                                                            </tr>
+                                                        )
+                                                    })}
                                                 </tbody>
                                             </table>
                                         </div>

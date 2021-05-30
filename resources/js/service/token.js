@@ -17,6 +17,7 @@ export const logIn = (props) => {
 export const logOut = () => {
     if(typeof window !== 'undefined'){
         Cookies.remove('cake', {expires:86400, sameSite: 'lax'})
+        localStorage.clear();
         // return <Redirect to='/' />
     }
 
