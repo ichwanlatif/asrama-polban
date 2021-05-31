@@ -73,7 +73,7 @@ class ChangePassword extends Component {
                                                 <div className="col-md-8">
                                                     <input 
                                                         id="password-confirm" 
-                                                        type="password-confirm" 
+                                                        type="password" 
                                                         className="form-control" 
                                                         name="password-confirm"
                                                         placeholder="Masukan kembali password baru"

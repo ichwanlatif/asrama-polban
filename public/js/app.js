@@ -3292,7 +3292,7 @@ var Sidebar = /*#__PURE__*/function (_Component) {
           className: "sidebar-brand d-flex align-items-center justify-content-center",
           to: "/dashboard",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("i", {
-            "class": "fas fa-users"
+            className: "fas fa-users"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
             className: "sidebar-brand-text mx-3",
             children: "Asrama"
@@ -3305,7 +3305,7 @@ var Sidebar = /*#__PURE__*/function (_Component) {
             className: "nav-link",
             to: "/dashboard",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("i", {
-              "class": "fas fa-home"
+              className: "fas fa-home"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
               children: "Dashboard"
             })]
@@ -3324,7 +3324,7 @@ var Sidebar = /*#__PURE__*/function (_Component) {
             "aria-expanded": "true",
             "aria-controls": "collapsePassword",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("i", {
-              "class": "fas fa-key"
+              className: "fas fa-key"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
               children: "Password"
             })]
@@ -3737,7 +3737,7 @@ var ChangePassword = /*#__PURE__*/function (_Component) {
                             className: "col-md-8",
                             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
                               id: "password-confirm",
-                              type: "password-confirm",
+                              type: "password",
                               className: "form-control",
                               name: "password-confirm",
                               placeholder: "Masukan kembali password baru"
@@ -5227,7 +5227,7 @@ var FormApprovalResign = /*#__PURE__*/function (_Component) {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_Navigation_Topbar__WEBPACK_IMPORTED_MODULE_2__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
                 className: "container-fluid",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_PageHeading__WEBPACK_IMPORTED_MODULE_4__.default, {
-                  title: "Approval Perizinan Asrama"
+                  title: "Approval Resign Asrama"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
                   className: "col-lg-12 col-md-12",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
@@ -6451,12 +6451,19 @@ var RiwayatPerizinan = /*#__PURE__*/function (_Component) {
 
     _this = _super.call(this);
     _this.state = {
-      role: "1"
+      role: ""
     };
     return _this;
   }
 
   _createClass(RiwayatPerizinan, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.setState({
+        role: localStorage.getItem("user_role")
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
@@ -6613,7 +6620,7 @@ var RiwayatPresensi = /*#__PURE__*/function (_Component) {
 
     _this = _super.call(this);
     _this.state = {
-      role: localStorage.getItem('user_role'),
+      role: '',
       datas: []
     };
     return _this;
@@ -6624,6 +6631,9 @@ var RiwayatPresensi = /*#__PURE__*/function (_Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
+      this.setState({
+        role: localStorage.getItem("user_role")
+      });
       (0,_service_api__WEBPACK_IMPORTED_MODULE_5__.default)().get('api/presensi/user/' + localStorage.getItem('user_id')).then(function (response) {
         if (response.data.status === 201) {
           _this2.setState({
@@ -6680,9 +6690,6 @@ var RiwayatPresensi = /*#__PURE__*/function (_Component) {
                                 children: "Waktu presensi"
                               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("th", {
                                 scope: "col",
-                                children: "Jenis"
-                              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("th", {
-                                scope: "col",
                                 children: "Koordinat"
                               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("th", {
                                 scope: "col",
@@ -6702,12 +6709,10 @@ var RiwayatPresensi = /*#__PURE__*/function (_Component) {
                                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("td", {
                                   children: new Date(presensi.created_at).toTimeString()
                                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("td", {
-                                  children: "Harian"
-                                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("td", {
                                   children: presensi.latitude + ', ' + presensi.longitude
                                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("td", {
                                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
-                                    "class": "badge badge-pill badge-success",
+                                    className: presensi.status ? "badge badge-pill badge-success" : "badge badge-pill badge-danger",
                                     children: presensi.status ? "Hadir" : "Alfa"
                                   })
                                 })]

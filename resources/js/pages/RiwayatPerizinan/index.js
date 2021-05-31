@@ -12,8 +12,14 @@ class RiwayatPerizinan extends Component {
     constructor(){
         super();
         this.state = {
-            role: "1"
+            role: ""
         };
+    }
+
+    componentDidMount(){
+        this.setState({
+            role: localStorage.getItem("user_role")
+        });
     }
 
     render() {

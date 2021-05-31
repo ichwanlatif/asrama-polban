@@ -35,7 +35,7 @@ class FormApprovalResign extends Component {
                         <Topbar />
                         {/* <!-- End of Topbar --> */}
                         <div className="container-fluid">
-                            <PageHeading title="Approval Perizinan Asrama" />
+                            <PageHeading title="Approval Resign Asrama" />
                             <div className="col-lg-12 col-md-12">
                                 <div className="card my-5">
                                     <div className="card-body">
