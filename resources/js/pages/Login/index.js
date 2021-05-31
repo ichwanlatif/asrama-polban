@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { loginAuth } from '../../service/auth';
 
-class SignIn extends Component {
+class Login extends Component {
     constructor (props){
         super(props);
         this.state = {
@@ -82,7 +82,7 @@ class SignIn extends Component {
                                             </div>
                                             </div>
                                             <button  onClick={this.handleSubmit} className="btn btn-primary btn-user btn-block">
-                                                Login
+                                                Masuk
                                             </button>
                                         </form>
                                         <hr/>
@@ -101,4 +101,4 @@ class SignIn extends Component {
     }
 }
 
-export default SignIn;
+export default Login;

@@ -26,7 +26,8 @@ class FormPresensi extends Component {
     componentDidMount() {
         setInterval(() => {
             this.setState({
-                currentDateTime: new Date().toLocaleString()
+                currentDateTime: new Date().toLocaleString(),
+                role: localStorage.getItem("user_role")
             })
         }, 1000)
     }

@@ -8,12 +8,18 @@ import Footer from '../../components/Navigation/Footer';
 
 import PageHeading from '../../components/PageHeading';
 
-class RiwayatPerizinan extends Component {
+class DataMahasiswa extends Component {
     constructor(){
         super();
         this.state = {
-            role: "1"
+            role: ""
         };
+    }
+
+    componentDidMount(){
+        this.setState({
+            role: localStorage.getItem("user_role")
+        });
     }
 
     render() {
@@ -29,31 +35,40 @@ class RiwayatPerizinan extends Component {
                         <Topbar />
                         {/* <!-- End of Topbar --> */}
                         <div className="container-fluid">
-                            <PageHeading title="Riwayat Perizinan" />
+                            <PageHeading title="Data Izin Pergi Asrama" />
                             <div className="col-lg-12 col-md-12">
                                 <div className="card my-5">
                                     <div className="card-header">
-                                        <h6 className="text-primary">Riwayat Perizinan</h6>
+                                        <h6 className="text-primary">Data Mahasiswa</h6>
                                     </div>
                                     <div className="card-body">
                                         <div className="table-responsive">
                                             <table className="table table-hover">
                                                 <thead>
                                                     <tr>
-                                                    <th scope="col">Mulai</th>
-                                                    <th scope="col">Berakhir</th>
-                                                    <th scope="col">Jenis</th>
+                                                    <th scope="col">Nama</th>
+                                                    <th scope="col">Email</th>
+                                                    <th scope="col">Password</th>
+                                                    <th scope="col">Kamar</th>
                                                     <th scope="col">Status</th>
-                                                    <th scope="col">Konfirmasi kepulangan</th>
+                                                    <th scope="col"></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <td>23 Mei 2021</td>
-                                                        <td>26 Mei 2021</td>
-                                                        <td>Pergi</td>
-                                                        <td><span class="badge badge-pill badge-success">Diterima Komdis</span></td>
-                                                        <td><Link to="#" className="btn btn-outline-primary btn-sm">Kembali</Link></td>
+                                                        <td>Rizqa Nabila</td>
+                                                        <td>rizqa.fauziyyah.tif18@polban.ac.id</td>
+                                                        <td>******</td>
+                                                        <td>2</td>
+                                                        <td>Aktif</td>
+                                                        <td>
+                                                            <Link to="#" className="text-success mx-1">
+                                                                <i className="fas fa-edit"></i>
+                                                            </Link>
+                                                            <Link to="#" className="text-primary mx-1">
+                                                                <i className="fas fa-info-circle"></i>
+                                                            </Link>
+                                                        </td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -73,4 +88,4 @@ class RiwayatPerizinan extends Component {
     }
 }
 
-export default RiwayatPerizinan;
+export default DataMahasiswa;

@@ -7,12 +7,18 @@ import Footer from '../../components/Navigation/Footer';
 
 import PageHeading from '../../components/PageHeading';
 
-class UpdatePassword extends Component {
+class ChangePassword extends Component {
     constructor(){
         super();
         this.state = {
-            role: "1"
+            role: ""
         };
+    }
+
+    componentDidMount(){
+        this.setState({
+            role: localStorage.getItem("user_role")
+        });
     }
 
     render() {
@@ -98,4 +104,4 @@ class UpdatePassword extends Component {
     }
 }
 
-export default UpdatePassword;
+export default ChangePassword;

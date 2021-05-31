@@ -12,8 +12,14 @@ class FormApprovalPerizinan extends Component {
     constructor(){
         super();
         this.state = {
-            role: "2"
+            role: ""
         };
+    }
+
+    componentDidMount(){
+        this.setState({
+            role: localStorage.getItem("user_role")
+        });
     }
 
     render() {

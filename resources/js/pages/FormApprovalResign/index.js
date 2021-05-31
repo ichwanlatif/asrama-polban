@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 //Navigation
 import Sidebar from '../../components/Navigation/Sidebar';
@@ -7,7 +8,7 @@ import Footer from '../../components/Navigation/Footer';
 
 import PageHeading from '../../components/PageHeading';
 
-class FormResign extends Component {
+class FormApprovalResign extends Component {
     constructor(){
         super();
         this.state = {
@@ -34,22 +35,32 @@ class FormResign extends Component {
                         <Topbar />
                         {/* <!-- End of Topbar --> */}
                         <div className="container-fluid">
-                            <PageHeading title="Resign Asrama" />
+                            <PageHeading title="Approval Perizinan Asrama" />
                             <div className="col-lg-12 col-md-12">
                                 <div className="card my-5">
                                     <div className="card-body">
-                                        <h4 className="text-primary text-center">Formulir resign asrama</h4>
-                                        <h6 className="text-center text-muted">Isi data formulir resign dibawah ini</h6>
+                                        <h4 className="text-primary text-center">Formulir approval resign asrama</h4>
+                                        <h6 className="text-center text-muted">Isi data formulir approval resign dibawah ini</h6>
                                         <hr></hr>
 
-                                        {/* Form resign*/}
+                                        {/* Form presensi*/}
                                         <form>
+                                            <div className="form-group row">
+                                                <label for="name" className="col-md-3 col-form-label text-md-right">Nama</label>
+                                                <div className="col-md-8">
+                                                    <input 
+                                                        type="text" 
+                                                        className="form-control-plaintext"
+                                                        value="Ichwan Latif"
+                                                    />
+                                                </div>
+                                            </div>
                                             <div className="form-group row">
                                                 <label for="description" className="col-md-3 col-form-label text-md-right">Keterangan</label>
                                                 <div className="col-md-8">
                                                     <textarea 
-                                                        className="form-control"
-                                                        placeholder="Beri penjelasan mengenai alasan ingin resign dari asrama"
+                                                        class="form-control-plaintext"
+                                                        value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
                                                         rows="3">
                                                     </textarea>
                                                 </div>
@@ -57,13 +68,27 @@ class FormResign extends Component {
                                             <div className="form-group row">
                                                 <label for="startdate" className="col-md-3 col-form-label text-md-right">Mulai resign</label>
                                                 <div className="col-md-8">
-                                                    <div className="dropdown">
-                                                        <button className="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                            Sample tanggal
-                                                        </button>
-                                                        <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                            <a className="dropdown-item" href="#">Action</a>
-                                                        </div>
+                                                    <input 
+                                                        type="text" 
+                                                        className="form-control-plaintext" 
+                                                        value="25 Mei 2021"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className="form-group row">
+                                                <label for="statusApproval" className="col-md-3 col-form-label text-md-right">Status</label>
+                                                <div className="col-md-8">
+                                                    <div className="form-check form-check-inline">
+                                                        <input className="form-check-input" type="radio" name="status" id="setuju" value="1"/>
+                                                        <label className="form-check-label" for="setuju">
+                                                            Setuju
+                                                        </label>
+                                                    </div>
+                                                    <div className="form-check form-check-inline">
+                                                        <input className="form-check-input" type="radio" name="status" id="tolak" value="0"/>
+                                                        <label className="form-check-label" for="tolak">
+                                                            Tolak
+                                                        </label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -75,6 +100,7 @@ class FormResign extends Component {
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
                                 </div>
                             </div>
@@ -90,4 +116,4 @@ class FormResign extends Component {
     }
 }
 
-export default FormResign;
+export default FormApprovalResign;
