@@ -50,21 +50,20 @@ class FormResign extends Component {
                                                     <textarea 
                                                         className="form-control"
                                                         placeholder="Beri penjelasan mengenai alasan ingin resign dari asrama"
-                                                        rows="3">
+                                                        rows="3"
+                                                        required>
                                                     </textarea>
                                                 </div>
                                             </div>
                                             <div className="form-group row">
                                                 <label for="startdate" className="col-md-3 col-form-label text-md-right">Mulai resign</label>
                                                 <div className="col-md-8">
-                                                    <div className="dropdown">
-                                                        <button className="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                            Sample tanggal
-                                                        </button>
-                                                        <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                            <a className="dropdown-item" href="#">Action</a>
-                                                        </div>
-                                                    </div>
+                                                    <input 
+                                                        type="date" 
+                                                        className="form-control"
+                                                        name="startDate"
+                                                        required
+                                                    />
                                                 </div>
                                             </div>
                                             <div className="form-group row">

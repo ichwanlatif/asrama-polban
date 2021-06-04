@@ -3708,7 +3708,8 @@ var ChangePassword = /*#__PURE__*/function (_Component) {
                               type: "password",
                               className: "form-control",
                               name: "current_password",
-                              placeholder: "Masukan password saat ini"
+                              placeholder: "Masukan password saat ini",
+                              required: true
                             })
                           })]
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
@@ -3724,7 +3725,8 @@ var ChangePassword = /*#__PURE__*/function (_Component) {
                               type: "password",
                               className: "form-control",
                               name: "password",
-                              placeholder: "Masukan password baru"
+                              placeholder: "Masukan password baru",
+                              required: true
                             })
                           })]
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
@@ -3740,7 +3742,8 @@ var ChangePassword = /*#__PURE__*/function (_Component) {
                               type: "password",
                               className: "form-control",
                               name: "password-confirm",
-                              placeholder: "Masukan kembali password baru"
+                              placeholder: "Masukan kembali password baru",
+                              required: true
                             })
                           })]
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
@@ -5462,7 +5465,8 @@ var FormPerizinan = /*#__PURE__*/function (_Component) {
                             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("textarea", {
                               className: "form-control",
                               placeholder: "Beri penjelasan mengenai alasan diharuskan pergi dari asrama",
-                              rows: "3"
+                              rows: "3",
+                              required: true
                             })
                           })]
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
@@ -5473,25 +5477,11 @@ var FormPerizinan = /*#__PURE__*/function (_Component) {
                             children: "Mulai izin"
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
                             className: "col-md-8",
-                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-                              className: "dropdown",
-                              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
-                                className: "btn btn-info dropdown-toggle",
-                                type: "button",
-                                id: "dropdownMenuButton",
-                                "data-toggle": "dropdown",
-                                "aria-haspopup": "true",
-                                "aria-expanded": "false",
-                                children: "Sample tanggal"
-                              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-                                className: "dropdown-menu",
-                                "aria-labelledby": "dropdownMenuButton",
-                                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
-                                  className: "dropdown-item",
-                                  href: "#",
-                                  children: "Action"
-                                })
-                              })]
+                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
+                              type: "date",
+                              className: "form-control",
+                              name: "startDate",
+                              required: true
                             })
                           })]
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
@@ -5502,25 +5492,11 @@ var FormPerizinan = /*#__PURE__*/function (_Component) {
                             children: "Berakhir pada"
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
                             className: "col-md-8",
-                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-                              className: "dropdown",
-                              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
-                                className: "btn btn-info dropdown-toggle",
-                                type: "button",
-                                id: "dropdownMenuButton",
-                                "data-toggle": "dropdown",
-                                "aria-haspopup": "true",
-                                "aria-expanded": "false",
-                                children: "Sample tanggal"
-                              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-                                className: "dropdown-menu",
-                                "aria-labelledby": "dropdownMenuButton",
-                                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
-                                  className: "dropdown-item",
-                                  href: "#",
-                                  children: "Action"
-                                })
-                              })]
+                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
+                              type: "date",
+                              className: "form-control",
+                              name: "endDate",
+                              required: true
                             })
                           })]
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
@@ -5741,7 +5717,8 @@ var FormPresensi = /*#__PURE__*/function (_Component) {
                               className: "form-control",
                               name: "coordinat",
                               value: this.state.lat + ", " + this.state["long"],
-                              readOnly: true
+                              readOnly: true,
+                              required: true
                             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("small", {
                               className: "text-muted",
                               children: "Status: "
@@ -5905,7 +5882,8 @@ var FormResign = /*#__PURE__*/function (_Component) {
                             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("textarea", {
                               className: "form-control",
                               placeholder: "Beri penjelasan mengenai alasan ingin resign dari asrama",
-                              rows: "3"
+                              rows: "3",
+                              required: true
                             })
                           })]
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
@@ -5916,25 +5894,11 @@ var FormResign = /*#__PURE__*/function (_Component) {
                             children: "Mulai resign"
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
                             className: "col-md-8",
-                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-                              className: "dropdown",
-                              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
-                                className: "btn btn-info dropdown-toggle",
-                                type: "button",
-                                id: "dropdownMenuButton",
-                                "data-toggle": "dropdown",
-                                "aria-haspopup": "true",
-                                "aria-expanded": "false",
-                                children: "Sample tanggal"
-                              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-                                className: "dropdown-menu",
-                                "aria-labelledby": "dropdownMenuButton",
-                                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
-                                  className: "dropdown-item",
-                                  href: "#",
-                                  children: "Action"
-                                })
-                              })]
+                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
+                              type: "date",
+                              className: "form-control",
+                              name: "startDate",
+                              required: true
                             })
                           })]
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
@@ -6182,6 +6146,11 @@ var Login = /*#__PURE__*/function (_Component) {
   }
 
   _createClass(Login, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      document.body.classList.add('bg-gradient-primary');
+    }
+  }, {
     key: "handleFieldChange",
     value: function handleFieldChange(e) {
       var name = e.target.name;

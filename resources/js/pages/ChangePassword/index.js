@@ -53,6 +53,7 @@ class ChangePassword extends Component {
                                                         className="form-control" 
                                                         name="current_password"
                                                         placeholder="Masukan password saat ini"
+                                                        required
                                                         />
                                                 </div>
                                             </div>
@@ -65,6 +66,7 @@ class ChangePassword extends Component {
                                                         className="form-control" 
                                                         name="password"
                                                         placeholder="Masukan password baru"
+                                                        required
                                                         />
                                                 </div>
                                             </div>
@@ -77,6 +79,7 @@ class ChangePassword extends Component {
                                                         className="form-control" 
                                                         name="password-confirm"
                                                         placeholder="Masukan kembali password baru"
+                                                        required
                                                         />
                                                 </div>
                                             </div>

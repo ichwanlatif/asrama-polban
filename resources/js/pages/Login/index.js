@@ -14,6 +14,10 @@ class Login extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    componentDidMount() {
+        document.body.classList.add('bg-gradient-primary');
+    }
+
     handleFieldChange(e){
         let name = e.target.name;
         let value = e.target.value;
