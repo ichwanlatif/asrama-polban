@@ -7,12 +7,18 @@ import Footer from '../../components/Navigation/Footer';
 
 import PageHeading from '../../components/PageHeading';
 
-class UpdatePassword extends Component {
+class ChangePassword extends Component {
     constructor(){
         super();
         this.state = {
-            role: "1"
+            role: ""
         };
+    }
+
+    componentDidMount(){
+        this.setState({
+            role: localStorage.getItem("user_role")
+        });
     }
 
     render() {
@@ -47,6 +53,7 @@ class UpdatePassword extends Component {
                                                         className="form-control" 
                                                         name="current_password"
                                                         placeholder="Masukan password saat ini"
+                                                        required
                                                         />
                                                 </div>
                                             </div>
@@ -59,6 +66,7 @@ class UpdatePassword extends Component {
                                                         className="form-control" 
                                                         name="password"
                                                         placeholder="Masukan password baru"
+                                                        required
                                                         />
                                                 </div>
                                             </div>
@@ -67,10 +75,11 @@ class UpdatePassword extends Component {
                                                 <div className="col-md-8">
                                                     <input 
                                                         id="password-confirm" 
-                                                        type="password-confirm" 
+                                                        type="password" 
                                                         className="form-control" 
                                                         name="password-confirm"
                                                         placeholder="Masukan kembali password baru"
+                                                        required
                                                         />
                                                 </div>
                                             </div>
@@ -98,4 +107,4 @@ class UpdatePassword extends Component {
     }
 }
 
-export default UpdatePassword;
+export default ChangePassword;

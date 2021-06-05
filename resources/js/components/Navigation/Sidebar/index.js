@@ -33,7 +33,7 @@ class Sidebar extends Component {
 
                 {/* Role */}
                 <Link className="sidebar-brand d-flex align-items-center justify-content-center" to="/dashboard">
-                    <i class="fas fa-users"></i>
+                    <i className="fas fa-users"></i>
                     <div className="sidebar-brand-text mx-3">Asrama</div>
                 </Link>
 
@@ -43,7 +43,7 @@ class Sidebar extends Component {
                 {/* Dashboard */}
                 <li className="nav-item">
                     <Link className="nav-link" to="/dashboard">
-                        <i class="fas fa-home"></i>
+                        <i className="fas fa-home"></i>
                         <span>Dashboard</span>
                     </Link>
                 </li>
@@ -62,7 +62,7 @@ class Sidebar extends Component {
                 {/* Password */}
                 <li className="nav-item">
                     <Link className="nav-link collapsed" data-toggle="collapse" data-target="#collapsePassword" aria-expanded="true" aria-controls="collapsePassword">
-                        <i class="fas fa-key"></i>
+                        <i className="fas fa-key"></i>
                         <span>Password</span>
                     </Link>
                     <div id="collapsePassword" className="collapse" aria-labelledby="headingPresensi" data-parent="#accordionSidebar">

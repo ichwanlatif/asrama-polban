@@ -8,7 +8,7 @@ import Footer from '../../components/Navigation/Footer';
 
 import PageHeading from '../../components/PageHeading';
 
-class RiwayatPerizinan extends Component {
+class DataResign extends Component {
     constructor(){
         super();
         this.state = {
@@ -35,31 +35,27 @@ class RiwayatPerizinan extends Component {
                         <Topbar />
                         {/* <!-- End of Topbar --> */}
                         <div className="container-fluid">
-                            <PageHeading title="Riwayat Perizinan" />
+                            <PageHeading title="Data Resign Asrama" />
                             <div className="col-lg-12 col-md-12">
                                 <div className="card my-5">
                                     <div className="card-header">
-                                        <h6 className="text-primary">Riwayat Perizinan</h6>
+                                        <h6 className="text-primary">Data Resign Asrama Yang Belum Diproses</h6>
                                     </div>
                                     <div className="card-body">
                                         <div className="table-responsive">
                                             <table className="table table-hover">
                                                 <thead>
                                                     <tr>
+                                                    <th scope="col">Nama</th>
                                                     <th scope="col">Mulai</th>
-                                                    <th scope="col">Berakhir</th>
-                                                    <th scope="col">Jenis</th>
-                                                    <th scope="col">Status</th>
-                                                    <th scope="col">Konfirmasi kepulangan</th>
+                                                    <th scope="col">Proses</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <td>23 Mei 2021</td>
-                                                        <td>26 Mei 2021</td>
-                                                        <td>Pergi</td>
-                                                        <td><span class="badge badge-pill badge-success">Diterima Komdis</span></td>
-                                                        <td><Link to="#" className="btn btn-outline-primary btn-sm">Kembali</Link></td>
+                                                        <td>Ichwan Latif</td>
+                                                        <td>25 Mei 2021</td>
+                                                        <td><Link to="/formapprovalresign" className="btn btn-outline-primary btn-sm">Approve</Link></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -79,4 +75,4 @@ class RiwayatPerizinan extends Component {
     }
 }
 
-export default RiwayatPerizinan;
+export default DataResign;

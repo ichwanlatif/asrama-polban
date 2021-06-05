@@ -7,7 +7,7 @@ import Footer from '../../components/Navigation/Footer';
 
 import PageHeading from '../../components/PageHeading';
 
-class FormResign extends Component {
+class ImportMahasiswa extends Component {
     constructor(){
         super();
         this.state = {
@@ -34,36 +34,24 @@ class FormResign extends Component {
                         <Topbar />
                         {/* <!-- End of Topbar --> */}
                         <div className="container-fluid">
-                            <PageHeading title="Resign Asrama" />
+                            <PageHeading title="Import Mahasiswa" />
                             <div className="col-lg-12 col-md-12">
                                 <div className="card my-5">
                                     <div className="card-body">
-                                        <h4 className="text-primary text-center">Formulir resign asrama</h4>
-                                        <h6 className="text-center text-muted">Isi data formulir resign dibawah ini</h6>
+                                        <h4 className="text-primary text-center">Formulir import data mahasiswa</h4>
+                                        <h6 className="text-center text-muted">Upload file mahasiswa pada formulir dibawah ini</h6>
                                         <hr></hr>
 
-                                        {/* Form resign*/}
+                                        {/* Form perizinan*/}
                                         <form>
                                             <div className="form-group row">
-                                                <label for="description" className="col-md-3 col-form-label text-md-right">Keterangan</label>
-                                                <div className="col-md-8">
-                                                    <textarea 
-                                                        className="form-control"
-                                                        placeholder="Beri penjelasan mengenai alasan ingin resign dari asrama"
-                                                        rows="3"
-                                                        required>
-                                                    </textarea>
-                                                </div>
-                                            </div>
-                                            <div className="form-group row">
-                                                <label for="startdate" className="col-md-3 col-form-label text-md-right">Mulai resign</label>
+                                                <label for="formfile" className="col-md-3 col-form-label text-md-right">File mahasiswa</label>
                                                 <div className="col-md-8">
                                                     <input 
-                                                        type="date" 
-                                                        className="form-control"
-                                                        name="startDate"
-                                                        required
+                                                        className="form-control-file" 
+                                                        type="file"
                                                     />
+                                                    <small className="text-muted">Format yang didukung: *.xls, *.xlsx</small>
                                                 </div>
                                             </div>
                                             <div className="form-group row">
@@ -74,6 +62,7 @@ class FormResign extends Component {
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
                                 </div>
                             </div>
@@ -89,4 +78,4 @@ class FormResign extends Component {
     }
 }
 
-export default FormResign;
+export default ImportMahasiswa;

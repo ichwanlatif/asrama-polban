@@ -13,12 +13,15 @@ class RiwayatPresensi extends Component {
     constructor(){
         super();
         this.state = {
-            role: localStorage.getItem('user_role'),
+            role: '',
             datas: [],
         };
     }
 
     componentDidMount(){
+        this.setState({
+            role: localStorage.getItem("user_role")
+        });
         api().get('api/presensi/user/' + localStorage.getItem('user_id')).then(response =>{
             if(response.data.status === 201){
                 this.setState({
@@ -59,7 +62,6 @@ class RiwayatPresensi extends Component {
                                                     <tr>
                                                     <th scope="col">Tanggal</th>
                                                     <th scope="col">Waktu presensi</th>
-                                                    <th scope="col">Jenis</th>
                                                     <th scope="col">Koordinat</th>
                                                     <th scope="col">Status</th>
                                                     </tr>
@@ -77,9 +79,11 @@ class RiwayatPresensi extends Component {
                                                             <tr>
                                                                 <td>{new Date(presensi.created_at).toDateString()}</td>
                                                                 <td>{new Date(presensi.created_at).toTimeString()}</td>
-                                                                <td>Harian</td>
                                                                 <td>{presensi.latitude + ', ' + presensi.longitude}</td>
-                                                                <td><span class="badge badge-pill badge-success">{presensi.status ? "Hadir" : "Alfa"}</span></td>
+                                                                <td>
+                                                                    <span className={presensi.status ? "badge badge-pill badge-success" : "badge badge-pill badge-danger"}>{presensi.status ? "Hadir" : "Alfa"}
+                                                                    </span>
+                                                                </td>
                                                             </tr>
                                                         )
                                                     })}
