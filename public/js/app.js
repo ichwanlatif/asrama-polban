@@ -5717,8 +5717,7 @@ var FormPresensi = /*#__PURE__*/function (_Component) {
                               className: "form-control",
                               name: "coordinat",
                               value: this.state.lat + ", " + this.state["long"],
-                              readOnly: true,
-                              required: true
+                              readOnly: true
                             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("small", {
                               className: "text-muted",
                               children: "Status: "

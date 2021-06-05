@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PresensiController;
 use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\PerizinanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,3 +43,4 @@ Route::post('/presensi/create', [PresensiController::class, 'store']);
 // Route::get('/kehadiran/{id}', [KehadiranController::class, 'getKehadiranById']);
 Route::get('/presensi/user/{id}', [PresensiController::class, 'getKehadiranByUser']);
 // Route::get('/kehadiran/week', [KehadiranController::class, 'getKehadiranByWeek']);
+Route::get('/presensi/checkPerizinan/{id}', [PerizinanController::class, 'checkPerizinanToPresensi']);

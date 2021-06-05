@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Perizinan;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class PerizinanController extends Controller
 {
@@ -22,14 +23,14 @@ class PerizinanController extends Controller
         else{
             if($request->hasFile('file')){
 
-                $fileName = time().Str::random(10). $request->file->extension();
+                $fileName = time().Str::random(10). '.'.$request->file->extension();
                 $request->file->move(public_path('file_perizinan'), $fileName);
             }
             $insert = Perizinan::create([
-                'id_mhs' => $request->user_id,
-                'tanggal_pergi' => $request->perizinan_start_at,
-                'tanggal_pulang' => $request->perizinan_end_at,
-                'deskripsi' => $request->keterangan,
+                'id_mhs' => $request->id_mhs,
+                'tanggal_pergi' => $request->tanggal_pergi,
+                'tanggal_pulang' => $request->tanggal_pulang,
+                'deskripsi' => $request->deskripsi,
                 'file_pendukung' => $fileName,
                 'status_approval' => 0,
                 'catatan_pengurus' => " ",
@@ -51,5 +52,24 @@ class PerizinanController extends Controller
 
             return view('insertPerizinan');
         }
+    }
+
+    public function checkPerizinanToPresensi($id){
+        $perizinan = Perizinan::where([
+            ['id_mhs', '=', $id],
+            ['tanggal_pergi', '<=', Carbon::now()],
+            ['tanggal_pulang', '>=', Carbon::now()]
+        ])->first();
+
+        if($perizinan){
+            return response()->json([
+                'status' => 201,
+                'message' => 'Sedang Izin'
+            ], 201);
+        }
+        return response()->json([
+            'status' => 500,
+            'message' => 'Sedang Tidak Izin'
+        ], 500);
     }
 }
