@@ -35,23 +35,19 @@
             <div>
     
                 <div class="form-group">
-                    <input type="hidden" name="user_id" class="form-control" value="1">
-                </div>
-                <div class="form-group">
-                    <label>Perizinan Type</label>
-                    <input type="text" name="perizinan_type" class="form-control">
+                    <input type="hidden" name="id_mhs" class="form-control" value="3">
                 </div>
                 <div class="form-group">
                     <label>Mulai</label>
-                    <input type="date" name="perizinan_start_at" class="form-control">
+                    <input type="date" name="tanggal_pergi" class="form-control">
                 </div>
                 <div class="form-group">
                     <label>Selesai</label>
-                    <input type="date" name="perizinan_end_at" class="form-control">
+                    <input type="date" name="tanggal_pulang" class="form-control">
                 </div>
                 <div class="form-group">
                     <label>Keterangan</label>
-                    <input type="text" name="keterangan" class="form-control">
+                    <input type="text" name="deskripsi" class="form-control">
                 </div>
                 <div class="form-group">
                     <input type="file" name="file" class="form-control">
