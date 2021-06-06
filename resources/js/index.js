@@ -8,6 +8,7 @@ import "./assets/adminbootstrap/css/sb-admin-2.min.css";
 //Fontawesome Style
 import "./assets/fontawesome/css/all.min.css";
 
+
 //Redux
 import { Provider } from 'react-redux';
 import { Store } from './redux/store';

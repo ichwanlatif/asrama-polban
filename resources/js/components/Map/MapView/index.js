@@ -1,6 +1,18 @@
 import React, { Component } from 'react';
+import L from 'leaflet';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
+
 import 'leaflet/dist/leaflet.css';
+
+import icon from 'leaflet/dist/images/marker-icon.png';
+import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+
+//Setting marker icon
+let DefaultIcon = L.icon({
+    iconUrl: icon,
+    shadowUrl: iconShadow
+});
+L.Marker.prototype.options.icon = DefaultIcon;
 
 class MapView extends Component {
   constructor(props) {
@@ -31,7 +43,7 @@ class MapView extends Component {
 
         <Marker position={currentLocation}>
           <Popup>
-            Lokasimu sekarang
+            Lokasi presensi
           </Popup>
         </Marker>
       </Map>
