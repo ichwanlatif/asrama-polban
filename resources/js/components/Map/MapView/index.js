@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { Map, TileLayer } from 'react-leaflet';
+import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import data from '../../../assets/leaflet/data.json';
-import Markers from '../VenueMarkers';
 
 class MapView extends Component {
   constructor(props) {
@@ -10,6 +8,14 @@ class MapView extends Component {
     this.state = {
       currentLocation: { lat: this.props.lat, lng: this.props.lng },
       zoom: 12,
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props !== prevProps) {
+        this.setState({
+          currentLocation: { lat: this.props.lat, lng: this.props.lng },
+      })
     }
   }
 
@@ -23,7 +29,11 @@ class MapView extends Component {
           attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
         />
 
-        <Markers venues={data.venues}/>
+        <Marker position={currentLocation}>
+          <Popup>
+            Lokasimu sekarang
+          </Popup>
+        </Marker>
       </Map>
     );
   }

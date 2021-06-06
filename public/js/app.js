@@ -2611,12 +2611,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_leaflet__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-leaflet */ "./node_modules/react-leaflet/es/Map.js");
-/* harmony import */ var react_leaflet__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-leaflet */ "./node_modules/react-leaflet/es/TileLayer.js");
+/* harmony import */ var react_leaflet__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-leaflet */ "./node_modules/react-leaflet/es/Map.js");
+/* harmony import */ var react_leaflet__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-leaflet */ "./node_modules/react-leaflet/es/TileLayer.js");
+/* harmony import */ var react_leaflet__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-leaflet */ "./node_modules/react-leaflet/es/Marker.js");
+/* harmony import */ var react_leaflet__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-leaflet */ "./node_modules/react-leaflet/es/Popup.js");
 /* harmony import */ var leaflet_dist_leaflet_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! leaflet/dist/leaflet.css */ "./node_modules/leaflet/dist/leaflet.css");
-/* harmony import */ var _assets_leaflet_data_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../assets/leaflet/data.json */ "./resources/js/assets/leaflet/data.json");
-/* harmony import */ var _VenueMarkers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../VenueMarkers */ "./resources/js/components/Map/VenueMarkers/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2638,8 +2638,6 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-
 
 
 
@@ -2669,19 +2667,34 @@ var MapView = /*#__PURE__*/function (_Component) {
   }
 
   _createClass(MapView, [{
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      if (this.props !== prevProps) {
+        this.setState({
+          currentLocation: {
+            lat: this.props.lat,
+            lng: this.props.lng
+          }
+        });
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$state = this.state,
           currentLocation = _this$state.currentLocation,
           zoom = _this$state.zoom;
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_leaflet__WEBPACK_IMPORTED_MODULE_5__.default, {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_leaflet__WEBPACK_IMPORTED_MODULE_3__.default, {
         center: currentLocation,
         zoom: zoom,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_leaflet__WEBPACK_IMPORTED_MODULE_6__.default, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_leaflet__WEBPACK_IMPORTED_MODULE_4__.default, {
           url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
           attribution: "\xA9 <a href=\"http://osm.org/copyright\">OpenStreetMap</a> contributors"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_VenueMarkers__WEBPACK_IMPORTED_MODULE_3__.default, {
-          venues: _assets_leaflet_data_json__WEBPACK_IMPORTED_MODULE_2__.venues
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_leaflet__WEBPACK_IMPORTED_MODULE_5__.default, {
+          position: currentLocation,
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_leaflet__WEBPACK_IMPORTED_MODULE_6__.default, {
+            children: "Lokasimu sekarang"
+          })
         })]
       });
     }
@@ -2691,107 +2704,6 @@ var MapView = /*#__PURE__*/function (_Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MapView);
-
-/***/ }),
-
-/***/ "./resources/js/components/Map/MarkerPopup/index.js":
-/*!**********************************************************!*\
-  !*** ./resources/js/components/Map/MarkerPopup/index.js ***!
-  \**********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_leaflet__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-leaflet */ "./node_modules/react-leaflet/es/Popup.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-
-
-
-
-var MarkerPopup = function MarkerPopup(props) {
-  var name = props.data.name;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_leaflet__WEBPACK_IMPORTED_MODULE_2__.default, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-      className: "poup-text",
-      children: name
-    })
-  });
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MarkerPopup);
-
-/***/ }),
-
-/***/ "./resources/js/components/Map/VenueLocationIcon/index.js":
-/*!****************************************************************!*\
-  !*** ./resources/js/components/Map/VenueLocationIcon/index.js ***!
-  \****************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "VenueLocationIcon": () => (/* binding */ VenueLocationIcon)
-/* harmony export */ });
-/* harmony import */ var leaflet__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! leaflet */ "./node_modules/leaflet/dist/leaflet-src.js");
-/* harmony import */ var leaflet__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(leaflet__WEBPACK_IMPORTED_MODULE_0__);
-
-var VenueLocationIcon = leaflet__WEBPACK_IMPORTED_MODULE_0___default().icon({
-  iconUrl: __webpack_require__(/*! ../../../assets/leaflet/venue_location_icon.svg */ "./resources/js/assets/leaflet/venue_location_icon.svg"),
-  iconRetinaUrl: __webpack_require__(/*! ../../../assets/leaflet/venue_location_icon.svg */ "./resources/js/assets/leaflet/venue_location_icon.svg"),
-  iconAnchor: null,
-  shadowUrl: null,
-  shadowSize: null,
-  shadowAnchor: null,
-  iconSize: [35, 35],
-  className: 'leaflet-venue-icon'
-});
-
-/***/ }),
-
-/***/ "./resources/js/components/Map/VenueMarkers/index.js":
-/*!***********************************************************!*\
-  !*** ./resources/js/components/Map/VenueMarkers/index.js ***!
-  \***********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_leaflet__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-leaflet */ "./node_modules/react-leaflet/es/Marker.js");
-/* harmony import */ var _VenueLocationIcon__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../VenueLocationIcon */ "./resources/js/components/Map/VenueLocationIcon/index.js");
-/* harmony import */ var _MarkerPopup__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../MarkerPopup */ "./resources/js/components/Map/MarkerPopup/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-
-
-
-
-
-
-var VenueMarkers = function VenueMarkers(props) {
-  var venues = props.venues;
-  var markers = venues.map(function (venue, index) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_leaflet__WEBPACK_IMPORTED_MODULE_4__.default, {
-      position: venue.geometry,
-      icon: _VenueLocationIcon__WEBPACK_IMPORTED_MODULE_1__.VenueLocationIcon,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_MarkerPopup__WEBPACK_IMPORTED_MODULE_2__.default, {
-        data: venue
-      })
-    }, index);
-  });
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-    children: markers
-  });
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (VenueMarkers);
 
 /***/ }),
 
@@ -12080,7 +11992,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".leaflet-container {\n  width: 400px;\n  height: 400px;\n  position: relative;\n  outline: none;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".leaflet-container {\r\n  width: 400px;\r\n  height: 400px;\r\n  position: relative;\r\n  outline: none;\r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -12249,21 +12161,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/vendor/leaflet/dist/marker-icon.png?2b3e1faf89f94a4835397e7a43b4f77d");
-
-/***/ }),
-
-/***/ "./resources/js/assets/leaflet/venue_location_icon.svg":
-/*!*************************************************************!*\
-  !*** ./resources/js/assets/leaflet/venue_location_icon.svg ***!
-  \*************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/venue_location_icon.svg?fdcd72ecb8e3a16673dc49e60d4b291b");
 
 /***/ }),
 
@@ -95022,17 +94919,6 @@ function valueEqual(a, b) {
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (valueEqual);
 
-
-/***/ }),
-
-/***/ "./resources/js/assets/leaflet/data.json":
-/*!***********************************************!*\
-  !*** ./resources/js/assets/leaflet/data.json ***!
-  \***********************************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = JSON.parse('{"venues":[{"description":"Schon seit längerem wollte Rummel sich sein kleines Paradies schaffen, hat tiefe stille Wasser betörnt und stürmischen Zeiten getrotzt und hat endlich geankert - in einer schönen kleinen Bucht nicht weit von Euch! In diese Bucht läd Rummel von Mai bis Mitte September zum Chillen und Grillen, zum Schunkeln, Munkeln und natürlich Trunkeln. Und wenn Rummel mal so richtig gut drauf ist, dann wird auch mal ordentlich gerummelt! So oder so, zu Wasser wie zur Bucht, auch der Rummel ist nichts ohne seine Crew. Also Leichtmatrosen und Matrösinnen - kommt rum und lasst es Euch gut gehn! Ahoi* Ach ja, geöffnet ist nur an sonnigen und regenfreien Tagen :) ________________ Reservierungsanfragen sind nur per Mail möglich bucht@rummels-welt.de (Reservierungsanfragen werden nur zwischen Di-Fr beantwortet) ","name":"Rummels Bucht","geometry":[52.500772,13.472764]},{"description":"Das SEZ bietet ein großes Sport-, Freizeit- und Erholungsangebot. Ab sofort könnt ihr das SEZ für Events unter: sez@glut.berlin anmieten. Kommt vorbei und genießt den industriellen Charm einer in Vergessenheit geglaubten Location. ","name":"SEZ Berlin","geometry":[52.527025,13.446139]},{"description":"Das Huxleys seit fast einem Jahrhundert ein Name in Berlin. Varietébühne, Sportpalast, Rollschuhbahn und Ausflugsziel am Rande des Volksparks Hasenheide. Das HUXLEYS hat eine lange Geschichte, und die ist verbunden mit Entertainment, Vergnügen und Livemusik.","name":"Huxley\'s Neue Welt","geometry":[52.486319,13.421437]},{"description":"Wir sind ein Veranstaltungsort. Eine Plattform. Wir sind ein Kollektiv. Basisdemokratisch und solidarisch. Wir sind das Mensch Meier. Und ihr seid es auch, wenn ihr da seid. Wir wollen einen Raum erschaffen, in dem wir unsere Beziehungen selbstbestimmt formen. Das ist im Kapitalismus, im Patriarchat, leider kein erreichbares Ziel. Aber wir haben einfach schon mal angefangen, uns dieses Ziel als Weg formuliert. Für unsere Zukunft. In einem Raum für Inspiration, Intervention und Bewegung. KulturKunstPartyPolitik. Mit den Mitteln der Kritik und den Waffen der Kunst unordentlich Theater machen. Mensch Meier ","name":"Mensch Meier","geometry":[52.535069,13.452312]},{"description":"The club is located in a former underground gay cruising toilet under the Yorckstrasse in Kreuzberg.","name":"Zur Klappe","geometry":[52.493039,13.387248]},{"description":"Formerly Shift Bar in the Kraftwerk complex which also houses Tresor.","name":"OHM","geometry":[52.510507,13.42022]},{"description":"Club for electronic Music directly in the heart of Berlin! Between Hakescher Markt and 1 min. away from S Alexanderplatz. Stylish Crowd and many of Berlins most known artists.","name":"M-BIA","geometry":[52.522437,13.409063]},{"description":"Booze, Karaoke and Rock\'n\'Roll! Sparkles, disco lights, 14 private karaoke cabins and a big stage waiting for your performance! We have 10 cabins for walk-ins (for up to 10 guests) and 4 larger cabins for larger groups, which can be reserved in advance (for up to 18 guests). Mondays - MultiSEXual BOXhopping! Queer + Friends. Mix + Mingle! Box Sharing + Caring! 3,- Entry. Sing in the karaoke boxes all night long! Big stage opens at 22h. Tuesdays - The House of Presents’ Drag Show Doors at 9, pre-show at 10, main show at 11 Wednesdays - BOX HAPPY HOUR All cabins half-priced from 7pm - midnight Thursdays - Mixed Bag! Special Events, DJs, Live Musik, Queer Events, and more! Fridays / Saturday / Sunday: SING ON STAGE!","name":"Monster Ronson\'s Ichiban Karaoke","geometry":[52.505188,13.448437]},{"description":"Ägyptisches & Arabisches Restaurant · Smoker\'s Lounge · Club · Café · Cocktail Bar · Der feine Orient in Berlin","name":"Marooush Restaurant - Lounge - Bar - Club","geometry":[52.500938,13.321438]},{"description":"Kater Blau gives you everything you need for a party: House, Techno, Konfetti. Chill next to the Spree. All this on the ex wood markt area.","name":"Kater Blau","geometry":[52.512187,13.425563]}]}');
 
 /***/ })
 
