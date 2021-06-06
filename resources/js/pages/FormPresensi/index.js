@@ -8,6 +8,9 @@ import Footer from '../../components/Navigation/Footer';
 
 import PageHeading from '../../components/PageHeading';
 
+import MapView from '../../components/Map/MapView';
+import '../../assets/leaflet/map.css';
+
 class FormPresensi extends Component {
     constructor(props) {
         super(props);
@@ -121,6 +124,10 @@ class FormPresensi extends Component {
                                                         name="coordinat"
                                                         value={this.state.lat + ", " + this.state.long}
                                                         readOnly
+                                                    />
+                                                    <MapView
+                                                        lat={this.state.lat}
+                                                        lng={this.state.long}
                                                     />
                                                     {/* Conditional statement */}
                                                     <small className="text-muted">Status: </small>

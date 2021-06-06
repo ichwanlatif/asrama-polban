@@ -1,6 +1,5 @@
 import Cookies from 'js-cookie';
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { loginAuth } from '../../service/auth';
 
 class Login extends Component {
@@ -55,6 +54,7 @@ class Login extends Component {
                                         <div className="text-center">
                                             <h1 className="h4 text-gray-900 mb-4">Selamat Datang!</h1>
                                         </div>
+                                        <hr/>
                                         <form className="user">
                                             <div className="form-group">
                                             <   input 
@@ -79,20 +79,10 @@ class Login extends Component {
                                                     required
                                                 />
                                             </div>
-                                            <div className="form-group">
-                                            <div className="custom-control custom-checkbox small">
-                                                <input type="checkbox" className="custom-control-input" id="customCheck"/>
-                                                <label className="custom-control-label" for="customCheck">Ingatkan Saya</label>
-                                            </div>
-                                            </div>
                                             <button  onClick={this.handleSubmit} className="btn btn-primary btn-user btn-block">
                                                 Masuk
                                             </button>
                                         </form>
-                                        <hr/>
-                                        <div className="text-center">
-                                            <Link className="small" tol="#">Lupa Password?</Link>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
