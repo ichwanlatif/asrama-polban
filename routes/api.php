@@ -37,10 +37,13 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     //     Route::post('/delete', [UserController::class, 'delete']);
     // });
 });
-
+//Mahasiswa
 Route::get('/mahasiswaByUser/{id}', [MahasiswaController::class, 'getMahasiswaByUserId']);
+
+//Presensi
 Route::post('/presensi/create', [PresensiController::class, 'store']);
-// Route::get('/kehadiran/{id}', [KehadiranController::class, 'getKehadiranById']);
 Route::get('/presensi/user/{id}', [PresensiController::class, 'getKehadiranByUser']);
-// Route::get('/kehadiran/week', [KehadiranController::class, 'getKehadiranByWeek']);
-Route::get('/presensi/checkPerizinan/{id}', [PerizinanController::class, 'checkPerizinanToPresensi']);
+Route::get('/presensi/kehadiranToday/{id}', [PresensiController::class, 'checkKehadiranToday']);
+
+//Perizinan
+Route::get('/perizinan/checkPerizinan/{id}', [PerizinanController::class, 'checkPerizinanToPresensi']);

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { createPresensi } from '../../service/presensi';
-
+import api from '../../service/api';
 //Navigation
 import Sidebar from '../../components/Navigation/Sidebar';
 import Topbar from '../../components/Navigation/Topbar';
@@ -17,7 +17,8 @@ class FormPresensi extends Component {
             long: 0,
             currentDateTime: new Date().toLocaleString(),
             status_location: "Belum mendapatkan lokasi",
-            text_color : "text-warning"
+            text_color : "text-warning",
+            
         };
         this.onClickGetLocation = this.onClickGetLocation.bind(this);
         this.submitPresensi = this.submitPresensi.bind(this);
@@ -30,6 +31,26 @@ class FormPresensi extends Component {
                 role: localStorage.getItem("user_role")
             })
         }, 1000)
+        if(new Date().toLocaleTimeString() < "15.59.00" || new Date().toLocaleTimeString() > "20.01.00"){
+            alert("Tidak Dalam Waktu Presensi")
+            window.location.assign('/#/dashboard')
+        }
+        else{
+            api().get('api/perizinan/checkPerizinan/' + localStorage.getItem('user_id')).then(response =>{
+                if(response.data.status === 201){
+                    alert('Anda Sedang Izin')
+                    window.location.assign('/#/dashboard')
+                }
+            })
+
+            api().get('api/presensi/kehadiranToday/' + localStorage.getItem('user_id')).then(today =>{
+                if(today.data.status === 201){
+                    alert('Anda Telah Melakukan Presensi');
+                    document.getElementById("submit").disabled = true;
+                    document.getElementById("submit").className = "btn btn-success"
+                }
+            })
+        }
     }
 
     onClickGetLocation() {
@@ -116,9 +137,7 @@ class FormPresensi extends Component {
                                             </div>
                                             <div className="form-group row">
                                                 <div className="col-md-8 offset-md-3 mb-2">
-                                                    <button onClick={this.submitPresensi} type="submit" className="btn btn-success">
-                                                        Submit
-                                                    </button>
+                                                    <button id="submit" onClick={this.submitPresensi} type='submit' className='btn btn-info'>Submit</button>
                                                 </div>
                                             </div>
                                         </form>

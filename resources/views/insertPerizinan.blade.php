@@ -35,7 +35,7 @@
             <div>
     
                 <div class="form-group">
-                    <input type="hidden" name="id_mhs" class="form-control" value="3">
+                    <input type="hidden" name="id_mhs" class="form-control" value="1">
                 </div>
                 <div class="form-group">
                     <label>Mulai</label>
