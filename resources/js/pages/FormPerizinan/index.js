@@ -6,20 +6,54 @@ import Topbar from '../../components/Navigation/Topbar';
 import Footer from '../../components/Navigation/Footer';
 
 import PageHeading from '../../components/PageHeading';
+import { reduce } from 'lodash';
 
 class FormPerizinan extends Component {
     constructor(){
         super();
         this.state = {
-            role: ""
+            keterangan_izin: '',
+            tanggal_pergi: '',
+            tanggal_pulang: '',
+            surat_pendukung: ''
         };
+        this.handleFieldChange = this.handleFieldChange.bind(this);
+        this.handleFileChange = this.handleFileChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
+    }
+    
+    handleFieldChange(e){
+        let name = e.target.name;
+        let value = e.target.value;
+        let data = {};
+        data[name] = value;
+        this.setState(data);
     }
 
-    componentDidMount(){
-        this.setState({
-            role: localStorage.getItem("user_role")
-        });
+    handleFileChange(e){
+        let files = e.target.files || e.dataTransfer.files;
+        if(!files.length)
+            return;
+        let reader = new FileReader();
+        reader.onload = (e) => {
+            this.setState({
+                surat_pendukung: e.target.result
+            })
+        }
+        reader.readAsDataURL(file);
     }
+
+    handleSubmit(e){
+        e.preventDefault()
+        // createPerizinan(this.state);
+        console.log(this.state)
+    }
+
+    // componentDidMount(){
+    //     this.setState({
+    //         role: localStorage.getItem("user_role")
+    //     });
+    // }
 
     render() {
         return (
@@ -48,9 +82,11 @@ class FormPerizinan extends Component {
                                                 <label for="description" className="col-md-3 col-form-label text-md-right">Keterangan</label>
                                                 <div className="col-md-8">
                                                     <textarea 
+                                                        name="keterangan_izin"
                                                         className="form-control"
                                                         placeholder="Beri penjelasan mengenai alasan diharuskan pergi dari asrama"
                                                         rows="3"
+                                                        onChange={this.handleFieldChange}
                                                         required>
                                                     </textarea>
                                                 </div>
@@ -61,7 +97,8 @@ class FormPerizinan extends Component {
                                                     <input 
                                                         type="date" 
                                                         className="form-control"
-                                                        name="startDate"
+                                                        name="tanggal_pergi"
+                                                        onChange={this.handleFieldChange}
                                                         required
                                                     />
                                                 </div>
@@ -72,7 +109,8 @@ class FormPerizinan extends Component {
                                                     <input 
                                                         type="date" 
                                                         className="form-control"
-                                                        name="endDate"
+                                                        name="tanggal_pulang"
+                                                        onChange={this.handleFieldChange}
                                                         required
                                                     />
                                                 </div>
@@ -83,13 +121,14 @@ class FormPerizinan extends Component {
                                                     <input 
                                                         className="form-control-file" 
                                                         type="file"
+                                                        onChange={this.handleFileChange}
                                                     />
                                                     <small className="text-muted">Format yang didukung: *.jpg, *.pdf</small>
                                                 </div>
                                             </div>
                                             <div className="form-group row">
                                                 <div className="col-md-8 offset-md-3 mb-2">
-                                                    <button type="submit" className="btn btn-success">
+                                                    <button type="submit" className="btn btn-success" onClick={this.handleSubmit}>
                                                         Submit
                                                     </button>
                                                 </div>

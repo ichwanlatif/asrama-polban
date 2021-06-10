@@ -17,8 +17,8 @@ class CreateResign extends Migration
             $table->id();
             $table->unsignedBigInteger('id_mhs')->references('id')->on('users');
             $table->date('tanggal_resign');
-            $table->longText('deskripsi');
-            $table->tinyInteger('status_approval');
+            $table->longText('keterangan_resign');
+            $table->tinyInteger('status_resign');
             $table->timestamps();
         });
     }

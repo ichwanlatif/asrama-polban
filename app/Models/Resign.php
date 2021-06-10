@@ -13,7 +13,7 @@ class Resign extends Model
     protected $fillable = [
         'id_mhs',
         'tanggal_resign',
-        'deskripsi',
-        'status_approval'
+        'keterangan_resign',
+        'status_resign'
     ];
 }

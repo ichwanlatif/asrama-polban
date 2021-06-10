@@ -23,9 +23,12 @@ class UserImport implements ToCollection
             $user = User::create([
                 'email' => $row[0],
                 'password' => \Hash::make($row[1]),
-                'role' => 1
+                'role' => 1,
+                'deleted' => 0
             ]);
             
+            // dd(date(\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[7])->format('Y-m-d')));
+
             $mahasiswa = Mahasiswa::create([
                 'id_users' => $user->id,
                 'id_prodi' => $row[2],
@@ -33,7 +36,7 @@ class UserImport implements ToCollection
                 'nama_mhs' => $row[4],
                 'nim_mhs' => $row[5],
                 'jenis_kelamin' => $row[6],
-                'tempat_tgl_lahir' => $row[7],
+                'tanggal_lahir' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[7])->format('Y-m-d'),
                 'agama' => $row[8],
                 'alamat_mhs' => $row[9],
                 'no_hp_mhs' => $row[10],

@@ -14,9 +14,9 @@ class Perizinan extends Model
         'id_mhs',
         'tanggal_pergi',
         'tanggal_pulang',
-        'deskripsi',
-        'file_pendukung',
-        'status_approval',
+        'keterangan_izin',
+        'surat_pendukung',
+        'status_izin',
         'catatan_pengurus',
     ];
 }

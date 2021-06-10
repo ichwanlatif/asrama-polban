@@ -17,7 +17,7 @@ class Mahasiswa extends Model
         'nama_mhs',
         'nim_mhs',
         'jenis_kelamin',
-        'tempat_tgl_lahir',
+        'tanggal_lahir',
         'agama',
         'alamat_mhs',
         'no_hp_mhs',

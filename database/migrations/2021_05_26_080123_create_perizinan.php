@@ -18,10 +18,10 @@ class CreatePerizinan extends Migration
             $table->unsignedBigInteger('id_mhs')->references('id')->on('mahasiswa');
             $table->date('tanggal_pergi');
             $table->date('tanggal_pulang');
-            $table->longText('deskripsi');
-            $table->string('file_pendukung');
-            $table->tinyInteger('status_approval');
-            $table->longText('catatan_pengurus');
+            $table->longText('keterangan_izin');
+            $table->string('surat_pendukung');
+            $table->tinyInteger('status_izin');
+            $table->longText('catatan_pengurus')->nullable();
             $table->timestamps();
         });
     }
