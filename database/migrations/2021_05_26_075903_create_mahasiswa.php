@@ -21,7 +21,7 @@ class CreateMahasiswa extends Migration
             $table->string('nama_mhs');
             $table->string('nim_mhs');
             $table->tinyInteger('jenis_kelamin');
-            $table->string('tempat_tgl_lahir');
+            $table->date('tanggal_lahir');
             $table->string('agama');
             $table->string('alamat_mhs');
             $table->string('no_hp_mhs');

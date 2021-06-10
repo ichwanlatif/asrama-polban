@@ -26,7 +26,6 @@ export const loginAuth = (props) => {
                 else{
                     var endPoint = "api/manajemenByUser/" + response.data.data.id;
                 }
-                alert(endPoint)
                 api().get(endPoint).then(User => {
                     if(User.data.status !== 200){
                         alert(User.data.message)
