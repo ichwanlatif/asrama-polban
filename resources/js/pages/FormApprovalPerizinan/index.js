@@ -88,11 +88,11 @@ class FormApprovalPerizinan extends Component {
                                             <div className="form-group row">
                                                 <label for="formfile" className="col-md-3 col-form-label text-md-right">File pendukung</label>
                                                 <div className="col-md-8">
-                                                    <Link href="#" class="btn btn-light btn-icon-split">
-                                                        <span class="icon text-gray-600">
-                                                            <i class="fas fa-file-download"></i>
+                                                    <Link to="#" className="btn btn-light btn-icon-split">
+                                                        <span className="icon text-gray-600">
+                                                            <i className="fas fa-file-download"></i>
                                                         </span>
-                                                        <span class="text">Unduh file</span>
+                                                        <span className="text">Unduh file</span>
                                                     </Link>
                                                 </div>
                                             </div>

@@ -5,25 +5,9 @@ class SidebarPengurusKoordinator extends Component {
     render() {
         return (
             <div>
-                {/* Presensi */}
-                <div className="sidebar-heading">
-                    PRESENSI
-                </div>
-
-                {/* Rekap Presensi */}
-                <li className="nav-item">
-                    <Link className="nav-link" to="#">
-                        <i class="fas fa-clipboard-list"></i>
-                        <span>Rekap Presensi</span>
-                    </Link>
-                </li>
-                
-                {/* <!-- Divider --> */}
-                <hr className="sidebar-divider" />
-
                 {/* Perizinan */}
                 <div className="sidebar-heading">
-                    PERIZINAN
+                    PERSETUJUAN IZIN
                 </div>
 
                 {/* Form Approval */}
@@ -40,12 +24,20 @@ class SidebarPengurusKoordinator extends Component {
                         </div>
                     </div>
                 </li>
+                
+                {/* <!-- Divider --> */}
+                <hr className="sidebar-divider" />
+                
+                {/* Rekapitulasi */}
+                <div className="sidebar-heading">
+                    Rekapitulasi
+                </div>
 
-                {/* Rekap Perizinan */}
+                {/* Rekap Presensi */}
                 <li className="nav-item">
-                    <Link className="nav-link" to="#">
+                    <Link className="nav-link" to="/rekapitulasi">
                         <i class="fas fa-clipboard-list"></i>
-                        <span>Rekap perizinan</span>
+                        <span>Rekap Data Mahasiswa</span>
                     </Link>
                 </li>
                 

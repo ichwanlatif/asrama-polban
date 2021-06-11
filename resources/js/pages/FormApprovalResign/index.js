@@ -59,7 +59,7 @@ class FormApprovalResign extends Component {
                                                 <label for="description" className="col-md-3 col-form-label text-md-right">Keterangan</label>
                                                 <div className="col-md-8">
                                                     <textarea 
-                                                        class="form-control-plaintext"
+                                                        className="form-control-plaintext"
                                                         value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
                                                         rows="3">
                                                     </textarea>

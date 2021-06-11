@@ -19,6 +19,10 @@ import DataResign from './pages/DataResign';
 import FormApprovalResign from './pages/FormApprovalResign';
 import ImportMahasiswa from './pages/ImportMahasiswa';
 import DataMahasiswa from './pages/DataMahasiswa';
+import DetailMahasiswa from './pages/DetailMahasiswa';
+import EditMahasiswa from './pages/EditMahasiswa';
+import TambahMahasiswa from './pages/TambahMahasiswa';
+import Rekapitulasi from './pages/Rekapitulasi';
 
 import ChangePassword from './pages/ChangePassword';
 
@@ -41,6 +45,10 @@ const Main = props =>(
         <PrivateRoute exact path="/formapprovalresign" component={FormApprovalResign} />
         <PrivateRoute exact path="/importmahasiswa" component={ImportMahasiswa} />
         <PrivateRoute exact path="/datamahasiswa" component={DataMahasiswa} />
+        <PrivateRoute exact path="/detailmahasiswa" component={DetailMahasiswa} />
+        <PrivateRoute exact path="/editmahasiswa" component={EditMahasiswa} />
+        <PrivateRoute exact path="/tambahmahasiswa" component={TambahMahasiswa} />
+        <PrivateRoute exact path="/rekapitulasi" component={Rekapitulasi} />
         
         <PrivateRoute exact path="/gantipassword" component={ChangePassword} />
         <Route path="*" component={NotFound} />

@@ -5,25 +5,9 @@ class SidebarPengurusKomdis extends Component {
     render() {
         return (
             <div>
-                {/* Presensi */}
-                <div className="sidebar-heading">
-                    PRESENSI
-                </div>
-
-                {/* Rekap Presensi */}
-                <li className="nav-item">
-                    <Link className="nav-link" to="#">
-                        <i class="fas fa-clipboard-list"></i>
-                        <span>Rekap Presensi</span>
-                    </Link>
-                </li>
-                
-                {/* <!-- Divider --> */}
-                <hr className="sidebar-divider" />
-
                 {/* Perizinan */}
                 <div className="sidebar-heading">
-                    PERIZINAN
+                    PERSETUJUAN IZIN
                 </div>
 
                 {/* Form Approval */}
@@ -35,22 +19,31 @@ class SidebarPengurusKomdis extends Component {
                     <div id="collapsePresensi" className="collapse" aria-labelledby="headingPresensi" data-parent="#accordionSidebar">
                         <div className="bg-white py-2 collapse-inner rounded">
                             <h6 className="collapse-header">Jenis Perizinan:</h6>
-                            <Link className="collapse-item" to="/dataperizinan">Izin Pergi Asrama</Link>
+                            <Link className="collapse-item" to="#">Izin Kembali Asrama</Link>
                             <Link className="collapse-item" to="/dataresign">Resign Asrama</Link>
                         </div>
                     </div>
                 </li>
 
-                {/* Rekap Perizinan */}
-                <li className="nav-item">
-                    <Link className="nav-link" to="#">
-                        <i class="fas fa-clipboard-list"></i>
-                        <span>Rekap perizinan</span>
-                    </Link>
-                </li>
-
                 {/* <!-- Divider --> */}
                 <hr className="sidebar-divider" />
+                
+                {/* Rekapitulasi */}
+                <div className="sidebar-heading">
+                    Rekapitulasi
+                </div>
+
+                {/* Rekap Presensi */}
+                <li className="nav-item">
+                    <Link className="nav-link" to="/rekapitulasi">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span>Rekap Data Mahasiswa</span>
+                    </Link>
+                </li>
+                
+                {/* <!-- Divider --> */}
+                <hr className="sidebar-divider" />
+
             </div>
         );
     }
