@@ -19,14 +19,14 @@ class SidebarMahasiswa extends Component {
                     <div id="collapsePresensi" className="collapse" aria-labelledby="headingPresensi" data-parent="#accordionSidebar">
                         <div className="bg-white py-2 collapse-inner rounded">
                             <h6 className="collapse-header">Jenis Presensi:</h6>
-                            <Link className="collapse-item" to="/formpresensi">Presensi Asrama</Link>
+                            <Link className="collapse-item" to="/form-presensi">Presensi Asrama</Link>
                         </div>
                     </div>
                 </li>
 
                 {/* Riwayat Presensi */}
                 <li className="nav-item">
-                    <Link className="nav-link" to="/riwayatpresensi">
+                    <Link className="nav-link" to="/riwayat-presensi">
                         <i class="fas fa-clipboard-list"></i>
                         <span>Riwayat Presensi</span>
                     </Link>
@@ -49,15 +49,15 @@ class SidebarMahasiswa extends Component {
                     <div id="collapsePerizinan" className="collapse" aria-labelledby="headingPerizinan" data-parent="#accordionSidebar">
                         <div className="bg-white py-2 collapse-inner rounded">
                             <h6 className="collapse-header">Jenis Perizinan:</h6>
-                            <Link className="collapse-item" to="/formperizinan">Izin Pergi Asrama</Link>
-                            <Link className="collapse-item" to="/formresign">Resign Asrama</Link>
+                            <Link className="collapse-item" to="/form-perizinan">Izin Pergi Asrama</Link>
+                            <Link className="collapse-item" to="/form-resign">Resign Asrama</Link>
                         </div>
                     </div>
                 </li>
 
                 {/* Riwayat Perizinan */}
                 <li className="nav-item">
-                    <Link className="nav-link" to="/riwayatperizinan">
+                    <Link className="nav-link" to="/riwayat-perizinan">
                         <i class="fas fa-clipboard-list"></i>
                         <span>Riwayat perizinan</span>
                     </Link>

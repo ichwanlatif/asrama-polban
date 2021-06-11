@@ -19,8 +19,7 @@ class SidebarPengurusKomdis extends Component {
                     <div id="collapsePresensi" className="collapse" aria-labelledby="headingPresensi" data-parent="#accordionSidebar">
                         <div className="bg-white py-2 collapse-inner rounded">
                             <h6 className="collapse-header">Jenis Perizinan:</h6>
-                            <Link className="collapse-item" to="#">Izin Kembali Asrama</Link>
-                            <Link className="collapse-item" to="/dataresign">Resign Asrama</Link>
+                            <Link className="collapse-item" to="/data-izin-kembali">Izin Kembali Asrama</Link>
                         </div>
                     </div>
                 </li>

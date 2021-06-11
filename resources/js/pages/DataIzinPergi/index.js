@@ -8,7 +8,7 @@ import Footer from '../../components/Navigation/Footer';
 
 import PageHeading from '../../components/PageHeading';
 
-class DataPerizinan extends Component {
+class DataIzinPergi extends Component {
     constructor(){
         super();
         this.state = {
@@ -57,7 +57,7 @@ class DataPerizinan extends Component {
                                                         <td>Rizqa Nabila</td>
                                                         <td>25 Mei 2021</td>
                                                         <td>5 Juni 2021</td>
-                                                        <td><Link to="/formapprovalperizinan" className="btn btn-outline-primary btn-sm">Approve</Link></td>
+                                                        <td><Link to="/form-approval-izin-pergi" className="btn btn-outline-primary btn-sm">Approve</Link></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -77,4 +77,4 @@ class DataPerizinan extends Component {
     }
 }
 
-export default DataPerizinan;
+export default DataIzinPergi;

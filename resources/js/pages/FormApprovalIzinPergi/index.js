@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 //Navigation
 import Sidebar from '../../components/Navigation/Sidebar';
@@ -7,7 +8,7 @@ import Footer from '../../components/Navigation/Footer';
 
 import PageHeading from '../../components/PageHeading';
 
-class FormApprovalResign extends Component {
+class FormApprovalIzinPergi extends Component {
     constructor(){
         super();
         this.state = {
@@ -34,12 +35,12 @@ class FormApprovalResign extends Component {
                         <Topbar />
                         {/* <!-- End of Topbar --> */}
                         <div className="container-fluid">
-                            <PageHeading title="Approval Resign Asrama" />
+                            <PageHeading title="Approval Perizinan Asrama" />
                             <div className="col-lg-12 col-md-12">
                                 <div className="card my-5">
                                     <div className="card-body">
-                                        <h4 className="text-primary text-center">Formulir approval resign asrama</h4>
-                                        <h6 className="text-center text-muted">Isi data formulir approval resign dibawah ini</h6>
+                                        <h4 className="text-primary text-center">Formulir approval izin pergi asrama</h4>
+                                        <h6 className="text-center text-muted">Isi data formulir approval perizinan dibawah ini</h6>
                                         <hr></hr>
 
                                         {/* Form presensi*/}
@@ -50,7 +51,7 @@ class FormApprovalResign extends Component {
                                                     <input 
                                                         type="text" 
                                                         className="form-control-plaintext"
-                                                        value="Ichwan Latif"
+                                                        value="Rizqa"
                                                     />
                                                 </div>
                                             </div>
@@ -58,20 +59,41 @@ class FormApprovalResign extends Component {
                                                 <label for="description" className="col-md-3 col-form-label text-md-right">Keterangan</label>
                                                 <div className="col-md-8">
                                                     <textarea 
-                                                        className="form-control-plaintext"
+                                                        class="form-control-plaintext"
                                                         value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
                                                         rows="3">
                                                     </textarea>
                                                 </div>
                                             </div>
                                             <div className="form-group row">
-                                                <label for="startdate" className="col-md-3 col-form-label text-md-right">Mulai resign</label>
+                                                <label for="startdate" className="col-md-3 col-form-label text-md-right">Mulai izin</label>
                                                 <div className="col-md-8">
                                                     <input 
                                                         type="text" 
                                                         className="form-control-plaintext" 
                                                         value="25 Mei 2021"
                                                     />
+                                                </div>
+                                            </div>
+                                            <div className="form-group row">
+                                                <label for="enddate" className="col-md-3 col-form-label text-md-right">Berakhir pada</label>
+                                                <div className="col-md-8">
+                                                    <input 
+                                                        type="text" 
+                                                        className="form-control-plaintext" 
+                                                        value="5 Juni 2021"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className="form-group row">
+                                                <label for="formfile" className="col-md-3 col-form-label text-md-right">File pendukung</label>
+                                                <div className="col-md-8">
+                                                    <Link to="#" className="btn btn-light btn-icon-split">
+                                                        <span className="icon text-gray-600">
+                                                            <i className="fas fa-file-download"></i>
+                                                        </span>
+                                                        <span className="text">Unduh file</span>
+                                                    </Link>
                                                 </div>
                                             </div>
                                             <div className="form-group row">
@@ -89,6 +111,16 @@ class FormApprovalResign extends Component {
                                                             Tolak
                                                         </label>
                                                     </div>
+                                                </div>
+                                            </div>
+                                            <div className="form-group row">
+                                                <label for="note" className="col-md-3 col-form-label text-md-right">Catatan</label>
+                                                <div className="col-md-8">
+                                                    <textarea 
+                                                        className="form-control"
+                                                        placeholder="(opsional)"
+                                                        rows="3">
+                                                    </textarea>
                                                 </div>
                                             </div>
                                             <div className="form-group row">
@@ -115,4 +147,4 @@ class FormApprovalResign extends Component {
     }
 }
 
-export default FormApprovalResign;
+export default FormApprovalIzinPergi;

@@ -8,7 +8,7 @@ import Footer from '../../components/Navigation/Footer';
 
 import PageHeading from '../../components/PageHeading';
 
-class DataMahasiswa extends Component {
+class DataIzinKembali extends Component {
     constructor(){
         super();
         this.state = {
@@ -35,11 +35,11 @@ class DataMahasiswa extends Component {
                         <Topbar />
                         {/* <!-- End of Topbar --> */}
                         <div className="container-fluid">
-                            <PageHeading title="Data Mahasiswa" />
+                            <PageHeading title="Data Izin Pergi Asrama" />
                             <div className="col-lg-12 col-md-12">
                                 <div className="card my-5">
                                     <div className="card-header">
-                                        <h6 className="text-primary">Data Mahasiswa</h6>
+                                        <h6 className="text-primary">Data Izin Kembali Asrama Yang Belum Diproses</h6>
                                     </div>
                                     <div className="card-body">
                                         <div className="table-responsive">
@@ -47,42 +47,21 @@ class DataMahasiswa extends Component {
                                                 <thead>
                                                     <tr>
                                                     <th scope="col">Nama</th>
-                                                    <th scope="col">Email</th>
-                                                    <th scope="col">Password</th>
-                                                    <th scope="col">Kamar</th>
-                                                    <th scope="col">Jabatan</th>
-                                                    <th scope="col">Status</th>
-                                                    <th scope="col"></th>
+                                                    <th scope="col">Mulai</th>
+                                                    <th scope="col">Berakhir</th>
+                                                    <th scope="col">Proses</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr>
                                                         <td>Rizqa Nabila</td>
-                                                        <td>rizqa.fauziyyah.tif18@polban.ac.id</td>
-                                                        <td>******</td>
-                                                        <td>A2</td>
-                                                        <td>Mahasiswa</td>
-                                                        <td>Aktif</td>
-                                                        <td>
-                                                            <Link to="/edit-mahasiswa" className="text-success mx-1">
-                                                                <i className="fas fa-edit"></i>
-                                                            </Link>
-                                                            <Link to="/detail-mahasiswa" className="text-primary mx-1">
-                                                                <i className="fas fa-info-circle"></i>
-                                                            </Link>
-                                                        </td>
+                                                        <td>25 Mei 2021</td>
+                                                        <td>5 Juni 2021</td>
+                                                        <td><Link to="/form-approval-izin-kembali" className="btn btn-outline-primary btn-sm">Approve</Link></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
                                         </div>
-                                        
-                                        <Link to="/tambah-mahasiswa" class="btn btn-primary btn-icon-split">
-                                            <span className="icon text-white-50">
-                                                <i className="fas fa-user-plus"></i>
-                                            </span>
-                                            <span className="text">Tambah mahasiswa</span>
-                                        </Link>
-
                                     </div>
                                 </div>
                             </div>
@@ -98,4 +77,4 @@ class DataMahasiswa extends Component {
     }
 }
 
-export default DataMahasiswa;
+export default DataIzinKembali;

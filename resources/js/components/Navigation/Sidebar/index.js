@@ -68,7 +68,7 @@ class Sidebar extends Component {
                     <div id="collapsePassword" className="collapse" aria-labelledby="headingPresensi" data-parent="#accordionSidebar">
                         <div className="bg-white py-2 collapse-inner rounded">
                             <h6 className="collapse-header">Atur Password:</h6>
-                            <Link className="collapse-item" to="/gantipassword">Ganti Password</Link>
+                            <Link className="collapse-item" to="/ganti-password">Ganti Password</Link>
                         </div>
                     </div>
                 </li>

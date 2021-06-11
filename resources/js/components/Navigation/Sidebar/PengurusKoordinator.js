@@ -19,8 +19,8 @@ class SidebarPengurusKoordinator extends Component {
                     <div id="collapsePresensi" className="collapse" aria-labelledby="headingPresensi" data-parent="#accordionSidebar">
                         <div className="bg-white py-2 collapse-inner rounded">
                             <h6 className="collapse-header">Jenis Perizinan:</h6>
-                            <Link className="collapse-item" to="/dataperizinan">Izin Pergi Asrama</Link>
-                            <Link className="collapse-item" to="/dataresign">Resign Asrama</Link>
+                            <Link className="collapse-item" to="/data-izin-pergi">Izin Pergi Asrama</Link>
+                            <Link className="collapse-item" to="/data-resign">Resign Asrama</Link>
                         </div>
                     </div>
                 </li>
@@ -58,8 +58,8 @@ class SidebarPengurusKoordinator extends Component {
                     <div id="collapseDataMahasiswa" className="collapse" aria-labelledby="headingDataMahasiswa" data-parent="#accordionSidebar">
                         <div className="bg-white py-2 collapse-inner rounded">
                             <h6 className="collapse-header">Menu:</h6>
-                            <Link className="collapse-item" to="/importmahasiswa">Import Data</Link>
-                            <Link className="collapse-item" to="/datamahasiswa">Daftar Mahasiswa</Link>
+                            <Link className="collapse-item" to="/import-mahasiswa">Import Data</Link>
+                            <Link className="collapse-item" to="/data-mahasiswa">Daftar Mahasiswa</Link>
                         </div>
                     </div>
                 </li>

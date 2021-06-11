@@ -8,7 +8,7 @@ import Footer from '../../components/Navigation/Footer';
 
 import PageHeading from '../../components/PageHeading';
 
-class DetailMahasiswa extends Component {
+class Profile extends Component {
     constructor(){
         super();
         this.state = {
@@ -35,11 +35,11 @@ class DetailMahasiswa extends Component {
                         <Topbar />
                         {/* <!-- End of Topbar --> */}
                         <div className="container-fluid">
-                            <PageHeading title="Detail Mahasiswa" />
+                            <PageHeading title="Profile" />
                             <div className="col-lg-12 col-md-12">
                                 <div className="card my-5">
                                     <div className="card-body">
-                                        <h4 className="text-primary text-center">Detail Mahasiswa</h4>
+                                        <h4 className="text-primary text-center">Profile</h4>
                                         <hr></hr>
 
                                         {/* Data mahasiswa*/}
@@ -49,7 +49,7 @@ class DetailMahasiswa extends Component {
                                                 <input 
                                                     type="text" 
                                                     className="form-control-plaintext"
-                                                    value="rizqa.fauzziyah.tif18@polban.ac.id"
+                                                    value="ichwan.latif.tif18@polban.ac.id"
                                                 />
                                             </div>
                                         </div>
@@ -69,7 +69,7 @@ class DetailMahasiswa extends Component {
                                                 <input 
                                                     type="text" 
                                                     className="form-control-plaintext"
-                                                    value="Rizqa Nabila"
+                                                    value="Ichwan Latif"
                                                 />
                                             </div>
                                         </div>
@@ -79,7 +79,7 @@ class DetailMahasiswa extends Component {
                                                 <input 
                                                     type="text" 
                                                     className="form-control-plaintext"
-                                                    value="181511065"
+                                                    value="181511046"
                                                 />
                                             </div>
                                         </div>
@@ -109,7 +109,7 @@ class DetailMahasiswa extends Component {
                                                 <input 
                                                     type="text" 
                                                     className="form-control-plaintext"
-                                                    value="Perempuan"
+                                                    value="Laki-laki"
                                                 />
                                             </div>
                                         </div>
@@ -189,7 +189,7 @@ class DetailMahasiswa extends Component {
                                                 <input 
                                                     type="text" 
                                                     className="form-control-plaintext"
-                                                    value="A2"
+                                                    value="A1"
                                                 />
                                             </div>
                                         </div>
@@ -213,11 +213,6 @@ class DetailMahasiswa extends Component {
                                                 />
                                             </div>
                                         </div>
-                                        <div className="form-group row">
-                                            <div className="col-md-8 offset-md-3 mb-2">
-                                                <Link to="/edit-mahasiswa" className="btn btn-success">Sunting</Link>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -233,4 +228,4 @@ class DetailMahasiswa extends Component {
     }
 }
 
-export default DetailMahasiswa;
+export default Profile;

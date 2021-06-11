@@ -192,12 +192,21 @@ class TambahMahasiswa extends Component {
                                             </div>
                                             <div className="form-group row">
                                                 <label for="kamar" className="col-md-3 col-form-label text-md-right">Kamar</label>
-                                                <div className="col-md-1">
+                                                <div className="col-md-2">
                                                     <input 
-                                                        type="number" 
+                                                        type="text" 
                                                         className="form-control"
-                                                        min="1"
                                                     />
+                                                </div>
+                                            </div>
+                                            <div className="form-group row">
+                                                <label for="jabatan" className="col-md-3 col-form-label text-md-right">Jabatan</label>
+                                                <div className="col-md-8">
+                                                    <select className="custom-select mr-sm-2" id="jabatan" name="jabatan">
+                                                        <option value="1">Mahasiswa</option>
+                                                        <option value="2">Pengurus Koordinator</option>
+                                                        <option value="3">Pengurus Komisi disiplin</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div className="form-group row">

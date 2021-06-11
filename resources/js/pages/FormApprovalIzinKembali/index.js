@@ -8,7 +8,7 @@ import Footer from '../../components/Navigation/Footer';
 
 import PageHeading from '../../components/PageHeading';
 
-class FormApprovalPerizinan extends Component {
+class FormApprovalIzinKembali extends Component {
     constructor(){
         super();
         this.state = {
@@ -39,7 +39,7 @@ class FormApprovalPerizinan extends Component {
                             <div className="col-lg-12 col-md-12">
                                 <div className="card my-5">
                                     <div className="card-body">
-                                        <h4 className="text-primary text-center">Formulir approval izin pergi asrama</h4>
+                                        <h4 className="text-primary text-center">Formulir approval izin kembali asrama</h4>
                                         <h6 className="text-center text-muted">Isi data formulir approval perizinan dibawah ini</h6>
                                         <hr></hr>
 
@@ -114,16 +114,6 @@ class FormApprovalPerizinan extends Component {
                                                 </div>
                                             </div>
                                             <div className="form-group row">
-                                                <label for="note" className="col-md-3 col-form-label text-md-right">Catatan</label>
-                                                <div className="col-md-8">
-                                                    <textarea 
-                                                        className="form-control"
-                                                        placeholder="(opsional)"
-                                                        rows="3">
-                                                    </textarea>
-                                                </div>
-                                            </div>
-                                            <div className="form-group row">
                                                 <div className="col-md-8 offset-md-3 mb-2">
                                                     <button type="submit" className="btn btn-success">
                                                         Submit
@@ -147,4 +137,4 @@ class FormApprovalPerizinan extends Component {
     }
 }
 
-export default FormApprovalPerizinan;
+export default FormApprovalIzinKembali;
