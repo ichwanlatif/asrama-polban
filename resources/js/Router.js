@@ -18,10 +18,8 @@ import DataIzinPergi from './pages/DataIzinPergi';
 import FormApprovalIzinPergi from './pages/FormApprovalIzinPergi';
 
 import DataIzinKembali from './pages/DataIzinKembali';
-import FormApprovalIzinKembali from './pages/FormApprovalIzinKembali';
 
 import DataResign from './pages/DataResign';
-import FormApprovalResign from './pages/FormApprovalResign';
 
 import ImportMahasiswa from './pages/ImportMahasiswa';
 import DataMahasiswa from './pages/DataMahasiswa';
@@ -52,10 +50,8 @@ const Main = props =>(
         <PrivateRoute exact path="/form-approval-izin-pergi" component={FormApprovalIzinPergi} />
 
         <PrivateRoute exact path="/data-izin-kembali" component={DataIzinKembali} />
-        <PrivateRoute exact path="/form-approval-izin-kembali" component={FormApprovalIzinKembali} />
 
         <PrivateRoute exact path="/data-resign" component={DataResign} />
-        <PrivateRoute exact path="/form-approval-resign" component={FormApprovalResign} />
 
         <PrivateRoute exact path="/import-mahasiswa" component={ImportMahasiswa} />
         <PrivateRoute exact path="/data-mahasiswa" component={DataMahasiswa} />

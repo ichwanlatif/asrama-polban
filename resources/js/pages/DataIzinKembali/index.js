@@ -57,7 +57,7 @@ class DataIzinKembali extends Component {
                                                         <td>Rizqa Nabila</td>
                                                         <td>25 Mei 2021</td>
                                                         <td>5 Juni 2021</td>
-                                                        <td><Link to="/form-approval-izin-kembali" className="btn btn-outline-primary btn-sm">Approve</Link></td>
+                                                        <td><Link to="#" className="btn btn-outline-primary btn-sm">Approve</Link></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
