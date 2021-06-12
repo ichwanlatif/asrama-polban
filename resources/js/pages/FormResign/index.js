@@ -57,7 +57,7 @@ class FormResign extends Component {
                                             </div>
                                             <div className="form-group row">
                                                 <label for="startdate" className="col-md-3 col-form-label text-md-right">Mulai resign</label>
-                                                <div className="col-md-8">
+                                                <div className="col-md-3">
                                                     <input 
                                                         type="date" 
                                                         className="form-control"

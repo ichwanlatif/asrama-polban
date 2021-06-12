@@ -55,7 +55,7 @@ class DataResign extends Component {
                                                     <tr>
                                                         <td>Ichwan Latif</td>
                                                         <td>25 Mei 2021</td>
-                                                        <td><Link to="/formapprovalresign" className="btn btn-outline-primary btn-sm">Approve</Link></td>
+                                                        <td><Link to="#" className="btn btn-outline-primary btn-sm">Approve</Link></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
