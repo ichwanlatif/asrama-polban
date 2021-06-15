@@ -1,14 +1,15 @@
 import api from './api';
 
 
-export const createPresensi = (props) => {
-    api().post('api/presensi/create', props).then(response => {
+export const createPerizinan = (props) => {
+    // console.log(props);
+    api().post('api/perizinan/create', props).then(response => {
         if(response.data.status === 'success'){
             console.log(response.data.msg)
-            window.location.assign('/#/riwayatpresensi')
+            window.location.assign('/#/riwayatperizinan')
         }
         else{
-            alert("Gagal Absensi")
+            alert(response.data.msg)
         }
     })
 }

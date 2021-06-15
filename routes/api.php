@@ -46,4 +46,7 @@ Route::get('/presensi/user/{id}', [PresensiController::class, 'getKehadiranByUse
 Route::get('/presensi/kehadiranToday/{id}', [PresensiController::class, 'checkKehadiranToday']);
 
 //Perizinan
+Route::post('/perizinan/create', [PerizinanController::class, 'store']);
 Route::get('/perizinan/checkPerizinan/{id}', [PerizinanController::class, 'checkPerizinanToPresensi']);
+Route::put('/perizinan/approval/{id}', [PerizinanController::class, 'approvalPerizinan']);
+Route::get('/perizinan', [PerizinanController::class, 'getAllPengajuanPerizinan']);

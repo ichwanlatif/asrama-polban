@@ -28,20 +28,9 @@ class AuthController extends Controller
             if (! \Hash::check($request->password, $user->password, [])) {
                 throw new \Exception('Error in Login');
             }
-//Test
+
             $tokenResult = $user->createToken('token-auth')->plainTextToken;
-            // $respon = [
-            //     'status' => 'success',
-            //     'msg' => 'Login successfully',
-            //     'errors' => null,
-            //     'content' => [
-            //         'status_code' => 200,
-            //         'access_token' => $tokenResult,
-            //         'token_type' => 'Bearer',
-            //     ]
-            // ];
-            // return response()->json($respon, 200);
-            return response()->json(["status" => 200, "success" => true, "message" => "You have logged in successfully", "token" => $tokenResult, "data" => $user]);
+            return response()->json(["status" => 'success', "message" => "You have logged in successfully", "token" => $tokenResult, "data" => $user]);
         }
     }
 
@@ -54,7 +43,7 @@ class AuthController extends Controller
             'errors' => null,
             'content' => null,
         ];
-        return response()->json($respon, 200);
+        return response()->json($respon);
     }
 
     public function logoutall(Request $request) {
@@ -66,6 +55,6 @@ class AuthController extends Controller
             'errors' => null,
             'content' => null,
         ];
-        return response()->json($respon, 200);
+        return response()->json($respon);
     }
 }

@@ -5539,8 +5539,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Navigation_Topbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Navigation/Topbar */ "./resources/js/components/Navigation/Topbar/index.js");
 /* harmony import */ var _components_Navigation_Footer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/Navigation/Footer */ "./resources/js/components/Navigation/Footer/index.js");
 /* harmony import */ var _components_PageHeading__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/PageHeading */ "./resources/js/components/PageHeading/index.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _service_perizinan__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../service/perizinan */ "./resources/js/service/perizinan.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -5586,10 +5585,10 @@ var FormPerizinan = /*#__PURE__*/function (_Component) {
 
     _this = _super.call(this);
     _this.state = {
+      id_mhs: localStorage.getItem('user_id'),
       keterangan_izin: '',
       tanggal_pergi: '',
-      tanggal_pulang: '',
-      surat_pendukung: ''
+      tanggal_pulang: ''
     };
     _this.handleFieldChange = _this.handleFieldChange.bind(_assertThisInitialized(_this));
     _this.handleFileChange = _this.handleFileChange.bind(_assertThisInitialized(_this));
@@ -5609,26 +5608,23 @@ var FormPerizinan = /*#__PURE__*/function (_Component) {
   }, {
     key: "handleFileChange",
     value: function handleFileChange(e) {
-      var _this2 = this;
-
-      var files = e.target.files || e.dataTransfer.files;
-      if (!files.length) return;
-      var reader = new FileReader();
-
-      reader.onload = function (e) {
-        _this2.setState({
-          surat_pendukung: e.target.result
-        });
-      };
-
-      reader.readAsDataURL(file);
+      var files = e.target.files[0];
+      this.setState({
+        file: files
+      });
     }
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      e.preventDefault(); // createPerizinan(this.state);
-
-      console.log(this.state);
+      e.preventDefault();
+      var data = new FormData();
+      data.append('file', this.state.file);
+      data.append('id_mhs', this.state.id_mhs);
+      data.append('tanggal_pergi', this.state.tanggal_pergi);
+      data.append('tanggal_pulang', this.state.tanggal_pulang);
+      data.append('keterangan_izin', this.state.keterangan_izin);
+      console.warn(this.state.file);
+      (0,_service_perizinan__WEBPACK_IMPORTED_MODULE_5__.createPerizinan)(data);
     } // componentDidMount(){
     //     this.setState({
     //         role: localStorage.getItem("user_role")
@@ -6826,14 +6822,14 @@ var RiwayatPresensi = /*#__PURE__*/function (_Component) {
         role: localStorage.getItem("user_role")
       });
       (0,_service_api__WEBPACK_IMPORTED_MODULE_5__.default)().get('api/presensi/user/' + localStorage.getItem('user_id')).then(function (response) {
-        if (response.data.status === 201) {
+        if (response.data.status === 'success') {
           _this2.setState({
             datas: response.data.data
           });
 
           console.log(_this2.state.datas);
         } else {
-          alert('Gagal load data');
+          alert(response.data.msg);
         }
       });
     }
@@ -7111,7 +7107,7 @@ __webpack_require__.r(__webpack_exports__);
 var loginAuth = function loginAuth(props) {
   (0,_api__WEBPACK_IMPORTED_MODULE_0__.default)().get('/sanctum/csrf-cookie').then(function () {
     (0,_api__WEBPACK_IMPORTED_MODULE_0__.default)().post('api/login', props).then(function (response) {
-      if (response.data.status !== 200) {
+      if (response.data.status !== 'success') {
         console.log(response.data.message); // notLoggedIn;
       } else {
         localStorage.setItem('user_role', response.data.data.role);
@@ -7120,7 +7116,7 @@ var loginAuth = function loginAuth(props) {
         if (response.data.data.role === '1') {
           var endPoint = "api/mahasiswaByUser/" + response.data.data.id;
           (0,_api__WEBPACK_IMPORTED_MODULE_0__.default)().get(endPoint).then(function (User) {
-            if (User.data.status !== 200) {
+            if (User.data.status !== 'success') {
               alert(User.data.message);
             } else {
               localStorage.setItem('user_id', User.data.data.id);
@@ -7146,6 +7142,33 @@ var logoutAuth = function logoutAuth() {
 
 /***/ }),
 
+/***/ "./resources/js/service/perizinan.js":
+/*!*******************************************!*\
+  !*** ./resources/js/service/perizinan.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "createPerizinan": () => (/* binding */ createPerizinan)
+/* harmony export */ });
+/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./api */ "./resources/js/service/api.js");
+
+var createPerizinan = function createPerizinan(props) {
+  // console.log(props);
+  (0,_api__WEBPACK_IMPORTED_MODULE_0__.default)().post('api/perizinan/create', props).then(function (response) {
+    if (response.data.status === 'success') {
+      console.log(response.data.msg);
+      window.location.assign('/#/riwayatperizinan');
+    } else {
+      alert(response.data.msg);
+    }
+  });
+};
+
+/***/ }),
+
 /***/ "./resources/js/service/presensi.js":
 /*!******************************************!*\
   !*** ./resources/js/service/presensi.js ***!
@@ -7163,20 +7186,18 @@ __webpack_require__.r(__webpack_exports__);
 var createPresensi = function createPresensi(props) {
   (0,_api__WEBPACK_IMPORTED_MODULE_0__.default)().post('api/presensi/create', props).then(function (response) {
     if (response.data.status === 'success') {
-      console.log(response.data.msg);
       window.location.assign('/#/riwayatpresensi');
     } else {
-      alert("Gagal Absensi");
+      alert(response.data.msg);
     }
   });
 };
 var getRiwayatPresensi = function getRiwayatPresensi() {
   (0,_api__WEBPACK_IMPORTED_MODULE_0__.default)().get('api/presensi/user/' + localStorage.getItem('user_id')).then(function (response) {
-    if (response.data.status === 201) {
-      // console.log(response.data.data)
+    if (response.data.status === 'success') {
       return response.data.data;
     } else {
-      alert('Gagal load data');
+      alert(response.data.msg);
     }
   });
 };

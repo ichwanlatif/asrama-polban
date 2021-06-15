@@ -23,14 +23,14 @@ class RiwayatPresensi extends Component {
             role: localStorage.getItem("user_role")
         });
         api().get('api/presensi/user/' + localStorage.getItem('user_id')).then(response =>{
-            if(response.data.status === 201){
+            if(response.data.status === 'success'){
                 this.setState({
                     datas: response.data.data
                 })
                 console.log(this.state.datas)
             }
             else{
-                alert('Gagal load data');
+                alert(response.data.msg);
             }
         })
     }

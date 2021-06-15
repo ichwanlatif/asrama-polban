@@ -3,8 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Perizinan;
+use App\Models\Mahasiswa;
+use App\Models\User;
+
+use App\Mail\PengajuanPerizinanMail;
+use App\Mail\ApprovalMail;
+
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+
 use Carbon\Carbon;
 
 class PerizinanController extends Controller
@@ -13,44 +21,60 @@ class PerizinanController extends Controller
         $validasi = \Validator::make($request->all(), [
             'tanggal_pergi' => 'required',
             'tanggal_pulang' => 'required',
-            'deskripsi' => 'required',
+            'keterangan_izin' => 'required',
             'id_mhs' => 'required',
         ]);
 
         if($validasi->fails()){
-            return response()->json(["status" => $validasi->errors()], 422);
+            return response()->json(["status" => 422, "msg" => "Form Tidak Valid"]);
         }
         else{
-            if($request->hasFile('file')){
+            if($request->tanggal_pergi > $request->tanggal_pulang){
+                return response()->json(["status" => 422, "msg" => "Tanggal Pergi dan Pulang Tidak Benar"]);
+            }
+            if($request->file('file')){
 
-                $fileName = time().Str::random(10). '.'.$request->file->extension();
-                $request->file->move(public_path('file_perizinan'), $fileName);
+                $fileName = time().'-'.Str::random(10). '.'.$request->file('file')->getClientOriginalExtension();
+                $request->file('file')->storeAs('public/file_perizinan', $fileName);
             }
             $insert = Perizinan::create([
                 'id_mhs' => $request->id_mhs,
                 'tanggal_pergi' => $request->tanggal_pergi,
                 'tanggal_pulang' => $request->tanggal_pulang,
-                'deskripsi' => $request->deskripsi,
-                'file_pendukung' => $fileName,
-                'status_approval' => 0,
+                'keterangan_izin' => $request->keterangan_izin,
+                'surat_pendukung' => $fileName,
+                'status_izin' => 0,
                 'catatan_pengurus' => " ",
             ]);
 
-            // if($insert){
-            //     return response()->json([
-            //         'status' => 'success',
-            //         'msg' => 'Kehadiran berhasil diinput',
-            //         'data' => $insert
-            //     ], 201);
-            // }
-            // else{
-            //     return response()->json([
-            //         'status' => 'error',
-            //         'msg' => 'Kehadiran gagal diinput',
-            //     ], 500);
-            // }
+            if($insert){
 
-            return view('insertPerizinan');
+                $mahasiswa = Mahasiswa::where('id', $request->id_mhs)->first();
+                $pengurus = User::where('role', 2)->first();
+
+                $details = [
+                    'from' => $mahasiswa->nama_mhs,
+                    'tanggal_pergi' => $request->tanggal_pergi,
+                    'tanggal_pulang' => $request->tanggal_pulang,
+                    'keterangan_izin' => $request->keterangan_izin
+                ];
+
+                Mail::to($pengurus->email)->send(new PengajuanPerizinanMail($details));
+
+                return response()->json([
+                    'status' => 'success',
+                    'msg' => 'Perizinan berhasil diinput',
+                    'data' => $insert
+                ], 201);
+            }
+            else{
+                return response()->json([
+                    'status' => 'error',
+                    'msg' => 'Perizinan gagal diinput',
+                ]);
+            }
+
+            // return view('insertPerizinan');
         }
     }
 
@@ -63,13 +87,68 @@ class PerizinanController extends Controller
 
         if($perizinan){
             return response()->json([
-                'status' => 201,
-                'message' => 'Sedang Izin'
-            ], 201);
+                'status' => 'success',
+                'msg' => 'Sedang Izin'
+            ]);
         }
         return response()->json([
-            'status' => 500,
-            'message' => 'Sedang Tidak Izin'
-        ], 500);
+            'status' => 'error',
+            'msg' => 'Sedang Tidak Izin'
+        ]);
+    }
+
+    public function approvalPerizinan($id){
+        $perizinan = Perizinan::where([
+            ['id', '=', $id],
+            ['status_izin', '=', 0],
+        ])->first();
+        
+        $perizinan->update([
+            'status_izin' => 1
+        ]);
+
+        $details = [
+            'tanggal_pergi' => $perizinan->tanggal_pergi,
+            'tanggal_pulang' => $perizinan->tanggal_pulang,
+            'keterangan_izin' => $perizinan->keterangan_izin
+        ];
+
+        $mahasiswa = Mahasiswa::where('id', $perizinan->id_mhs)->first();
+        $akun = User::where('id', $mahasiswa->id_users)->first();
+
+        Mail::to($akun->email)->send(new ApprovalMail($details));
+
+
+        if($perizinan){
+            return response()->json([
+                'status' => 'success',
+                'msg' => 'Success approv',
+                'data' => $perizinan
+            ]);
+        }
+        else{
+            return response()->json([
+                'status' => 'error',
+                'msg' => 'Failed to approv'
+            ]);
+        }
+    }
+
+    public function getAllPengajuanPerizinan(){
+        $perizinan = Perizinan::all();
+        
+        if($perizinan){
+            return response()->json([
+                'status' => 'success',
+                'msg' => 'Success approv',
+                'data' => $perizinan
+            ]);
+        }
+        else{
+            return response()->json([
+                'status' => 'error',
+                'msg' => 'Failed to approv'
+            ]);
+        }
     }
 }

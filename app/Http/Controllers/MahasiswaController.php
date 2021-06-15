@@ -10,11 +10,19 @@ class MahasiswaController extends Controller
     public function getMahasiswaByUserId($id){
         $mahasiswa = Mahasiswa::where('id_users', $id)->first();
         
-        return response()->json([
-            "status" => 200,
-            "success" => true,
-            "data" => $mahasiswa
-        ]);
+        if($mahasiswa){
+            return response()->json([
+                "status" => 'success',
+                "msg" => "Success get mahasiswa",
+                "data" => $mahasiswa
+            ]);
+        }
+        else{
+            return response()->json([
+                "status" => 'error',
+                "msg" => "Mahasiswa Not Found"
+            ]);
+        }
         
     }
 }

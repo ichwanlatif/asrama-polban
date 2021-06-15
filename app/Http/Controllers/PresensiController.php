@@ -59,7 +59,7 @@ class PresensiController extends Controller
                 return response()->json([
                     'status' => 'error',
                     'msg' => 'Presensi gagal diinput',
-                ], 500);
+                ]);
             }
         }
     }
@@ -73,14 +73,15 @@ class PresensiController extends Controller
 
         if($kehadiran){
             return response()->json([
-                'status' => 201,
+                'status' => 'success',
                 'data' => $kehadiran
-            ], 201);
+            ]);
         }
         else{
             return response()->json([
-                'status' => 500,
-            ], 500);
+                'status' => 'error',
+                'msg' => "Kehadiran Not Found"
+            ]);
         }
     }
 
@@ -93,14 +94,15 @@ class PresensiController extends Controller
 
         if($kehadiran){
             return response()->json([
-                'status' => 201,
+                'status' => 'success',
                 'data' => $kehadiran
-            ], 201);
+            ]);
         }
         else{
             return response()->json([
-                'status' => 500,
-            ], 500);
+                'status' => 'error',
+                'msg' => 'Kehadiran not found'
+            ]);
         }
     }
 

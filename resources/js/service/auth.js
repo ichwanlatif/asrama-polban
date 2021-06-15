@@ -6,7 +6,7 @@ import {logIn, logOut, notLoggedIn} from './token'
 export const loginAuth = (props) => {
     api().get('/sanctum/csrf-cookie').then(() => {
         api().post('api/login', props).then(response => {
-            if(response.data.status !== 200){
+            if(response.data.status !== 'success'){
                 console.log(response.data.message)
                 // notLoggedIn;
             }
@@ -17,7 +17,7 @@ export const loginAuth = (props) => {
                 if(response.data.data.role === '1'){
                     var endPoint = "api/mahasiswaByUser/" + response.data.data.id;
                     api().get(endPoint).then(User => {
-                        if(User.data.status !== 200){
+                        if(User.data.status !== 'success'){
                             alert(User.data.message)
                         }
                         else{

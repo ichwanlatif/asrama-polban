@@ -6,16 +6,16 @@ import Topbar from '../../components/Navigation/Topbar';
 import Footer from '../../components/Navigation/Footer';
 
 import PageHeading from '../../components/PageHeading';
-import { reduce } from 'lodash';
+import { createPerizinan } from '../../service/perizinan';
 
 class FormPerizinan extends Component {
     constructor(){
         super();
         this.state = {
+            id_mhs: localStorage.getItem('user_id'),
             keterangan_izin: '',
             tanggal_pergi: '',
             tanggal_pulang: '',
-            surat_pendukung: ''
         };
         this.handleFieldChange = this.handleFieldChange.bind(this);
         this.handleFileChange = this.handleFileChange.bind(this)
@@ -31,22 +31,25 @@ class FormPerizinan extends Component {
     }
 
     handleFileChange(e){
-        let files = e.target.files || e.dataTransfer.files;
-        if(!files.length)
-            return;
-        let reader = new FileReader();
-        reader.onload = (e) => {
-            this.setState({
-                surat_pendukung: e.target.result
-            })
-        }
-        reader.readAsDataURL(file);
+        let files = e.target.files[0];
+        this.setState({
+            file: files
+        })
     }
 
     handleSubmit(e){
         e.preventDefault()
-        // createPerizinan(this.state);
-        console.log(this.state)
+
+        const data = new FormData()
+        data.append('file', this.state.file)
+        data.append('id_mhs', this.state.id_mhs)
+        data.append('tanggal_pergi', this.state.tanggal_pergi)
+        data.append('tanggal_pulang', this.state.tanggal_pulang)
+        data.append('keterangan_izin', this.state.keterangan_izin)
+        
+        console.warn(this.state.file);
+
+        createPerizinan(data);
     }
 
     // componentDidMount(){
