@@ -8,7 +8,7 @@ import Footer from '../../components/Navigation/Footer';
 
 import PageHeading from '../../components/PageHeading';
 
-class FormApprovalIzinPergi extends Component {
+class FormApprovalIzinPulang extends Component {
     constructor(){
         super();
         this.state = {
@@ -35,11 +35,11 @@ class FormApprovalIzinPergi extends Component {
                         <Topbar />
                         {/* <!-- End of Topbar --> */}
                         <div className="container-fluid">
-                            <PageHeading title="Approval Perizinan Asrama" />
+                            <PageHeading title="Approval Izin Pulang Asrama" />
                             <div className="col-lg-12 col-md-12">
                                 <div className="card my-5">
                                     <div className="card-body">
-                                        <h4 className="text-primary text-center">Formulir approval izin pergi asrama</h4>
+                                        <h4 className="text-primary text-center">Formulir approval izin pulang asrama</h4>
                                         <h6 className="text-center text-muted">Isi data formulir approval perizinan dibawah ini</h6>
                                         <hr></hr>
 
@@ -147,4 +147,4 @@ class FormApprovalIzinPergi extends Component {
     }
 }
 
-export default FormApprovalIzinPergi;
+export default FormApprovalIzinPulang;

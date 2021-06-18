@@ -7,7 +7,7 @@ import Footer from '../../components/Navigation/Footer';
 
 import PageHeading from '../../components/PageHeading';
 
-class FormPerizinan extends Component {
+class FormIzinPulang extends Component {
     constructor(){
         super();
         this.state = {
@@ -34,11 +34,11 @@ class FormPerizinan extends Component {
                         <Topbar />
                         {/* <!-- End of Topbar --> */}
                         <div className="container-fluid">
-                            <PageHeading title="Izin Pergi Asrama" />
+                            <PageHeading title="Izin Pulang Asrama" />
                             <div className="col-lg-12 col-md-12">
                                 <div className="card my-5">
                                     <div className="card-body">
-                                        <h4 className="text-primary text-center">Formulir izin pergi asrama</h4>
+                                        <h4 className="text-primary text-center">Formulir izin pulang asrama</h4>
                                         <h6 className="text-center text-muted">Isi data formulir perizinan dibawah ini</h6>
                                         <hr></hr>
 
@@ -111,4 +111,4 @@ class FormPerizinan extends Component {
     }
 }
 
-export default FormPerizinan;
+export default FormIzinPulang;

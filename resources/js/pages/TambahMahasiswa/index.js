@@ -209,23 +209,7 @@ class TambahMahasiswa extends Component {
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div className="form-group row">
-                                                <label for="active" className="col-md-3 col-form-label text-md-right">Status keaktifan</label>
-                                                <div className="col-md-8">
-                                                    <div className="form-check form-check-inline">
-                                                        <input className="form-check-input" type="radio" name="status" id="aktif" value="1"/>
-                                                        <label className="form-check-label" for="aktif">
-                                                            Aktif
-                                                        </label>
-                                                    </div>
-                                                    <div className="form-check form-check-inline">
-                                                        <input className="form-check-input" type="radio" name="status" id="keluar" value="0"/>
-                                                        <label className="form-check-label" for="keluar">
-                                                            Keluar
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            
                                             <div className="form-group row">
                                                 <div className="col-md-8 offset-md-3 mb-2">
                                                     <button type="submit" className="btn btn-success">

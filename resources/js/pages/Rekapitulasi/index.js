@@ -70,7 +70,29 @@ class Rekapitulasi extends Component {
                                                 </tbody>
                                             </table>
                                         </div>
+
+                                        {/* pagination */}
+                                        <nav aria-label="Page navigation example">
+                                            <ul class="pagination justify-content-end">
+                                                <li class="page-item">
+                                                <a class="page-link" href="#" aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                                </li>
+                                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                <li class="page-item">
+                                                <a class="page-link" href="#" aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                    <span class="sr-only">Next</span>
+                                                </a>
+                                                </li>
+                                            </ul>
+                                        </nav>
                                         
+                                        {/* Unduh file */}
                                         <Link to="#" className="btn btn-light btn-icon-split">
                                             <span className="icon text-gray-600">
                                                 <i className="fas fa-file-download"></i>

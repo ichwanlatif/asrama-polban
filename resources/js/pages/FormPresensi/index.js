@@ -34,7 +34,7 @@ class FormPresensi extends Component {
                 role: localStorage.getItem("user_role")
             })
         }, 1000)
-        if(new Date().toLocaleTimeString() < "15.59.00" || new Date().toLocaleTimeString() > "20.01.00"){
+        if(new Date().toLocaleTimeString() < "13.59.00" || new Date().toLocaleTimeString() > "20.01.00"){
             alert("Tidak Dalam Waktu Presensi")
             window.location.assign('/#/dashboard')
         }

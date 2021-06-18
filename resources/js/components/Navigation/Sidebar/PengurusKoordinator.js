@@ -19,7 +19,7 @@ class SidebarPengurusKoordinator extends Component {
                     <div id="collapsePresensi" className="collapse" aria-labelledby="headingPresensi" data-parent="#accordionSidebar">
                         <div className="bg-white py-2 collapse-inner rounded">
                             <h6 className="collapse-header">Jenis Perizinan:</h6>
-                            <Link className="collapse-item" to="/data-izin-pergi">Izin Pergi Asrama</Link>
+                            <Link className="collapse-item" to="/data-izin-pulang">Izin Pulang Asrama</Link>
                             <Link className="collapse-item" to="/data-resign">Resign Asrama</Link>
                         </div>
                     </div>

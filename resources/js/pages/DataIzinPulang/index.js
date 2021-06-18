@@ -39,7 +39,7 @@ class DataIzinPergi extends Component {
                             <div className="col-lg-12 col-md-12">
                                 <div className="card my-5">
                                     <div className="card-header">
-                                        <h6 className="text-primary">Data Izin Pergi Asrama Yang Belum Diproses</h6>
+                                        <h6 className="text-primary">Data Izin Pulang Asrama Yang Belum Diproses</h6>
                                     </div>
                                     <div className="card-body">
                                         <div className="table-responsive">
@@ -57,7 +57,7 @@ class DataIzinPergi extends Component {
                                                         <td>Rizqa Nabila</td>
                                                         <td>25 Mei 2021</td>
                                                         <td>5 Juni 2021</td>
-                                                        <td><Link to="/form-approval-izin-pergi" className="btn btn-outline-primary btn-sm">Approve</Link></td>
+                                                        <td><Link to="/form-approval-izin-pulang" className="btn btn-outline-primary btn-sm">Approve</Link></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
