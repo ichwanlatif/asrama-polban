@@ -181,7 +181,7 @@ class FormApprovalPerizinan extends Component {
                                                         rows="3"
                                                         name="catatan_pengurus"
                                                         onChange={this.handleFieldChange}
-                                                        valud={this.state.catatan_pengurus}
+                                                        value={this.state.catatan_pengurus}
                                                         >
                                                     </textarea>
                                                 </div>

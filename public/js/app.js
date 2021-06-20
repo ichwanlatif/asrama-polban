@@ -5369,7 +5369,7 @@ var FormApprovalPerizinan = /*#__PURE__*/function (_Component) {
                               rows: "3",
                               name: "catatan_pengurus",
                               onChange: this.handleFieldChange,
-                              valud: this.state.catatan_pengurus
+                              value: this.state.catatan_pengurus
                             })
                           })]
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
