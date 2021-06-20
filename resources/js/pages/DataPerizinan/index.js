@@ -7,12 +7,14 @@ import Topbar from '../../components/Navigation/Topbar';
 import Footer from '../../components/Navigation/Footer';
 
 import PageHeading from '../../components/PageHeading';
+import api from '../../service/api';
 
 class DataPerizinan extends Component {
     constructor(){
         super();
         this.state = {
-            role: ""
+            role: "",
+            datas: []
         };
     }
 
@@ -20,9 +22,22 @@ class DataPerizinan extends Component {
         this.setState({
             role: localStorage.getItem("user_role")
         });
+
+        api().get('api/perizinan').then(response =>{
+            if(response.data.status === 'success'){
+                this.setState({
+                    datas: response.data.data
+                })
+                console.log(this.state.datas)
+            }
+            else{
+                alert(response.data.msg);
+            }
+        })
     }
 
     render() {
+        const data = this.state.datas
         return (
             <div>
                 <div id="wrapper">
@@ -53,12 +68,23 @@ class DataPerizinan extends Component {
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>Rizqa Nabila</td>
-                                                        <td>25 Mei 2021</td>
-                                                        <td>5 Juni 2021</td>
-                                                        <td><Link to="/formapprovalperizinan" className="btn btn-outline-primary btn-sm">Approve</Link></td>
-                                                    </tr>
+                                                {data.map(perizinan => {
+                                                        const {
+                                                            id,
+                                                            nama_mhs,
+                                                            tanggal_pergi,
+                                                            tanggal_pulang,
+                                                            status_izin
+                                                        } = perizinan;
+                                                        return (
+                                                            <tr>
+                                                                <td>{perizinan.nama_mhs}</td>
+                                                                <td>{perizinan.tanggal_pergi}</td>
+                                                                <td>{perizinan.tanggal_pulang}</td>
+                                                                <td><Link to={"/formapprovalperizinan/" + perizinan.id} className="btn btn-outline-primary btn-sm">Approve</Link></td>
+                                                            </tr>
+                                                        )
+                                                    })}
                                                 </tbody>
                                             </table>
                                         </div>

@@ -12,6 +12,8 @@ use App\Mail\ApprovalMail;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 use Carbon\Carbon;
 
@@ -97,14 +99,15 @@ class PerizinanController extends Controller
         ]);
     }
 
-    public function approvalPerizinan($id){
+    public function approvalPerizinan(Request $request){
         $perizinan = Perizinan::where([
-            ['id', '=', $id],
+            ['id', '=', $request->id],
             ['status_izin', '=', 0],
         ])->first();
         
         $perizinan->update([
-            'status_izin' => 1
+            'status_izin' => $request->status_izin,
+            'catatan_pengurus' => $request->catatan_pengurus
         ]);
 
         $details = [
@@ -135,19 +138,64 @@ class PerizinanController extends Controller
     }
 
     public function getAllPengajuanPerizinan(){
-        $perizinan = Perizinan::all();
+        $perizinan = DB::table('perizinan')
+            ->where('status_izin', '=', 0)
+            ->join('mahasiswa', 'perizinan.id_mhs', '=', 'mahasiswa.id')
+            ->select('perizinan.*', 'mahasiswa.nama_mhs')
+            ->get();
         
         if($perizinan){
             return response()->json([
                 'status' => 'success',
-                'msg' => 'Success approv',
+                'msg' => 'Success get data',
                 'data' => $perizinan
             ]);
         }
         else{
             return response()->json([
                 'status' => 'error',
-                'msg' => 'Failed to approv'
+                'msg' => 'Failed to get data'
+            ]);
+        }
+    }
+
+    public function getRiwayatPerizinan($id){
+        
+        $perizinan = Perizinan::where('id_mhs', $id)->orderByDesc('created_at')->get();
+        
+        if($perizinan){
+            return response()->json([
+                'status' => 'success',
+                'msg' => 'Success get data',
+                'data' => $perizinan
+            ]);
+        }
+        else{
+            return response()->json([
+                'status' => 'error',
+                'msg' => 'Failed to get data'
+            ]);
+        }
+    }
+
+    public function getDetailPerizinan($id){  
+        
+        $perizinan = DB::table('perizinan')
+            ->join('mahasiswa', 'mahasiswa.id', '=', 'perizinan.id_mhs')
+            ->where('perizinan.id', $id)
+            ->first();
+        
+        if($perizinan){
+            return response()->json([
+                'status' => 'success',
+                'msg' => 'Success get data',
+                'data' => $perizinan
+            ]);
+        }
+        else{
+            return response()->json([
+                'status' => 'error',
+                'msg' => 'Failed to get data'
             ]);
         }
     }

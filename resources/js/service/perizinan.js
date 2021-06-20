@@ -13,3 +13,15 @@ export const createPerizinan = (props) => {
         }
     })
 }
+
+export const updatePerizinan = (props) => {
+    api().put('api/perizinan/approval', props).then(response => {
+        if(response.data.status === 'success'){
+            console.log(response.data.msg)
+            window.location.assign('/#/dataperizinan')
+        }
+        else{
+            alert(response.data.msg)
+        }
+    })
+}

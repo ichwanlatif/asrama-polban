@@ -8,11 +8,13 @@ import Footer from '../../components/Navigation/Footer';
 
 import PageHeading from '../../components/PageHeading';
 
+import api from '../../service/api';
 class RiwayatPerizinan extends Component {
     constructor(){
         super();
         this.state = {
-            role: ""
+            role: "",
+            datas: [],
         };
     }
 
@@ -20,9 +22,21 @@ class RiwayatPerizinan extends Component {
         this.setState({
             role: localStorage.getItem("user_role")
         });
+        api().get('api/perizinan/' + localStorage.getItem('user_id')).then(response =>{
+            if(response.data.status === 'success'){
+                this.setState({
+                    datas: response.data.data
+                })
+                console.log(this.state.datas)
+            }
+            else{
+                alert(response.data.msg);
+            }
+        })
     }
 
     render() {
+        const data = this.state.datas
         return (
             <div>
                 <div id="wrapper">
@@ -54,13 +68,36 @@ class RiwayatPerizinan extends Component {
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>23 Mei 2021</td>
-                                                        <td>26 Mei 2021</td>
-                                                        <td>Pergi</td>
-                                                        <td><span class="badge badge-pill badge-success">Diterima Komdis</span></td>
-                                                        <td><Link to="#" className="btn btn-outline-primary btn-sm">Kembali</Link></td>
-                                                    </tr>
+                                                    {data.map(perizinan => {
+                                                        const {
+                                                            id,
+                                                            tanggal_pergi,
+                                                            tanggal_pulang,
+                                                            status_izin
+                                                        } = perizinan;
+                                                        let status, hidden;
+                                                        if(perizinan.status_izin === 0){
+                                                            status = "Mengajukan"
+                                                            hidden = true
+                                                        }
+                                                        else if(perizinan.status_izin === 1){
+                                                            status = "Disetujui Koordinator"
+                                                            hidden = false
+                                                        }
+                                                        else{
+                                                            status = "Sudah Kembali"
+                                                            hidden = true
+                                                        }
+                                                        return (
+                                                            <tr>
+                                                                <td>{perizinan.tanggal_pergi}</td>
+                                                                <td>{perizinan.tanggal_pulang}</td>
+                                                                <td>Pergi</td>
+                                                                <td>{status}</td>
+                                                                <td><Link id="kembali" to="#" hidden={hidden} className="btn btn-outline-primary btn-sm">Kembali</Link></td>
+                                                            </tr>
+                                                        )
+                                                    })}
                                                 </tbody>
                                             </table>
                                         </div>

@@ -52,11 +52,11 @@ class FormPerizinan extends Component {
         createPerizinan(data);
     }
 
-    // componentDidMount(){
-    //     this.setState({
-    //         role: localStorage.getItem("user_role")
-    //     });
-    // }
+    componentDidMount(){
+        this.setState({
+            role: localStorage.getItem("user_role")
+        });
+    }
 
     render() {
         return (

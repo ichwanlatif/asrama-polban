@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 //Navigation
 import Sidebar from '../../components/Navigation/Sidebar';
@@ -7,19 +7,73 @@ import Topbar from '../../components/Navigation/Topbar';
 import Footer from '../../components/Navigation/Footer';
 
 import PageHeading from '../../components/PageHeading';
+import api from '../../service/api';
+import { updatePerizinan } from '../../service/perizinan';
 
 class FormApprovalPerizinan extends Component {
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state = {
-            role: ""
+            role: "",
+            id_mhs: "",
+            nama_mhs: "",
+            tanggal_pergi: "",
+            tanggal_pulang: "",
+            keterangan_izin: "",
+            status_izin: "",
+            catatan_pengurus: "",
+            surat_pendukung: "",
         };
+
+        this.handleFieldChange = this.handleFieldChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this)
+    }
+
+    handleFieldChange(e){
+        let name = e.target.name;
+        let value = e.target.value;
+        let data = {};
+        data[name] = value;
+        this.setState(data);
+        console.log(e.target)
+    }
+
+    handleSubmit(e){
+        e.preventDefault()
+        console.log(this.state)
+        updatePerizinan({
+            id: this.state.id,
+            status_izin: this.state.status_izin,
+            catatan_pengurus: this.state.catatan_pengurus
+        })
+
     }
 
     componentDidMount(){
         this.setState({
             role: localStorage.getItem("user_role")
         });
+        const { id } = this.props.match.params
+
+        api().get('api/perizinan/detail/' + id).then(response => {
+            if(response.data.status === 'success'){
+                this.setState({
+                    id: id,
+                    id_mhs: response.data.data.id_mhs,
+                    nama_mhs: response.data.data.nama_mhs,
+                    tanggal_pergi: response.data.data.tanggal_pergi,
+                    tanggal_pulang: response.data.data.tanggal_pulang,
+                    keterangan_izin: response.data.data.keterangan_izin,
+                    status_izin: response.data.data.status_izin,
+                    surat_pendukung: response.data.data.surat_pendukung,
+                    catatan_pengurus: response.data.data.catatan_pengurus,
+                })
+                console.log(response.data.data.tanggal_pergi)
+            }
+            else{
+                alert(response.data.msg)
+            }
+        })
     }
 
     render() {
@@ -43,6 +97,7 @@ class FormApprovalPerizinan extends Component {
                                         <h6 className="text-center text-muted">Isi data formulir approval perizinan dibawah ini</h6>
                                         <hr></hr>
 
+                                        
                                         {/* Form presensi*/}
                                         <form>
                                             <div className="form-group row">
@@ -51,7 +106,8 @@ class FormApprovalPerizinan extends Component {
                                                     <input 
                                                         type="text" 
                                                         className="form-control-plaintext"
-                                                        value="Rizqa"
+                                                        disabled
+                                                        value={this.state.nama_mhs}
                                                     />
                                                 </div>
                                             </div>
@@ -60,7 +116,8 @@ class FormApprovalPerizinan extends Component {
                                                 <div className="col-md-8">
                                                     <textarea 
                                                         class="form-control-plaintext"
-                                                        value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                                                        value={this.state.keterangan_izin}
+                                                        disabled
                                                         rows="3">
                                                     </textarea>
                                                 </div>
@@ -70,8 +127,9 @@ class FormApprovalPerizinan extends Component {
                                                 <div className="col-md-8">
                                                     <input 
                                                         type="text" 
-                                                        className="form-control-plaintext" 
-                                                        value="25 Mei 2021"
+                                                        className="form-control-plaintext"
+                                                        disabled 
+                                                        value={this.state.tanggal_pergi}
                                                     />
                                                 </div>
                                             </div>
@@ -80,33 +138,34 @@ class FormApprovalPerizinan extends Component {
                                                 <div className="col-md-8">
                                                     <input 
                                                         type="text" 
-                                                        className="form-control-plaintext" 
-                                                        value="5 Juni 2021"
+                                                        className="form-control-plaintext"
+                                                        disabled 
+                                                        value={this.state.tanggal_pulang}
                                                     />
                                                 </div>
                                             </div>
                                             <div className="form-group row">
                                                 <label for="formfile" className="col-md-3 col-form-label text-md-right">File pendukung</label>
                                                 <div className="col-md-8">
-                                                    <Link href="#" class="btn btn-light btn-icon-split">
+                                                    <a href={'/storage/file_perizinan/' + this.state.surat_pendukung} download={this.state.surat_pendukung} class="btn btn-light btn-icon-split">
                                                         <span class="icon text-gray-600">
                                                             <i class="fas fa-file-download"></i>
                                                         </span>
                                                         <span class="text">Unduh file</span>
-                                                    </Link>
+                                                    </a>
                                                 </div>
                                             </div>
                                             <div className="form-group row">
                                                 <label for="statusApproval" className="col-md-3 col-form-label text-md-right">Status</label>
                                                 <div className="col-md-8">
                                                     <div className="form-check form-check-inline">
-                                                        <input className="form-check-input" type="radio" name="status" id="setuju" value="1"/>
+                                                        <input className="form-check-input" onChange={this.handleFieldChange} type="radio" name="status_izin" id="setuju" value="1"/>
                                                         <label className="form-check-label" for="setuju">
                                                             Setuju
                                                         </label>
                                                     </div>
                                                     <div className="form-check form-check-inline">
-                                                        <input className="form-check-input" type="radio" name="status" id="tolak" value="0"/>
+                                                        <input className="form-check-input" onChange={this.handleFieldChange} type="radio" name="status_izin" id="tolak" value="4"/>
                                                         <label className="form-check-label" for="tolak">
                                                             Tolak
                                                         </label>
@@ -119,13 +178,17 @@ class FormApprovalPerizinan extends Component {
                                                     <textarea 
                                                         className="form-control"
                                                         placeholder="(opsional)"
-                                                        rows="3">
+                                                        rows="3"
+                                                        name="catatan_pengurus"
+                                                        onChange={this.handleFieldChange}
+                                                        valud={this.state.catatan_pengurus}
+                                                        >
                                                     </textarea>
                                                 </div>
                                             </div>
                                             <div className="form-group row">
                                                 <div className="col-md-8 offset-md-3 mb-2">
-                                                    <button type="submit" className="btn btn-success">
+                                                    <button type="submit" onClick={this.handleSubmit} className="btn btn-success">
                                                         Submit
                                                     </button>
                                                 </div>

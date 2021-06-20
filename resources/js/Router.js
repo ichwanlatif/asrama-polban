@@ -36,7 +36,7 @@ const Main = props =>(
         <PrivateRoute exact path="/riwayatperizinan" component={RiwayatPerizinan} />
 
         <PrivateRoute exact path="/dataperizinan" component={DataPerizinan} />
-        <PrivateRoute exact path="/formapprovalperizinan" component={FormApprovalPerizinan} />
+        <PrivateRoute exact path="/formapprovalperizinan/:id" component={FormApprovalPerizinan} />
         <PrivateRoute exact path="/dataresign" component={DataResign} />
         <PrivateRoute exact path="/formapprovalresign" component={FormApprovalResign} />
         <PrivateRoute exact path="/importmahasiswa" component={ImportMahasiswa} />
