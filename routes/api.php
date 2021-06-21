@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PresensiController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\PerizinanController;
+use App\Http\Controllers\ResignController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,3 +54,7 @@ Route::get('/perizinan', [PerizinanController::class, 'getAllPengajuanPerizinan'
 Route::get('/perizinan/{id}', [PerizinanController::class, 'getRiwayatPerizinan']);
 Route::get('/perizinan/detail/{id}', [PerizinanController::class, 'getDetailPerizinan']);
 Route::put('/kembali', [PerizinanController::class, 'kembali']);
+
+//Resign
+Route::post('/resign/create', [ResignController::class, 'store']);
+Route::get('/resign/{id}', [ResignController::class, 'getRiwayatResign']);

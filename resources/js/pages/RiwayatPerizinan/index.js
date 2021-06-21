@@ -13,7 +13,8 @@ class RiwayatPerizinan extends Component {
         super();
         this.state = {
             role: "",
-            datas: [],
+            datasIzin: [],
+            datasResign: [],
         };
         this.kembali = this.kembali.bind(this)
     }
@@ -25,12 +26,22 @@ class RiwayatPerizinan extends Component {
         api().get('api/perizinan/' + localStorage.getItem('user_id')).then(response =>{
             if(response.data.status === 'success'){
                 this.setState({
-                    datas: response.data.data
+                    datasIzin: response.data.data
                 })
-                console.log(this.state.datas)
             }
             else{
                 alert(response.data.msg);
+            }
+        })
+
+        api().get('api/resign/' + localStorage.getItem('user_id')).then(resign => {
+            if(resign.data.status === 'success'){
+                this.setState({
+                    datasResign: resign.data.data
+                })
+            }
+            else{
+                alert(resign.data.msg);
             }
         })
     }
@@ -44,7 +55,8 @@ class RiwayatPerizinan extends Component {
     }
 
     render() {
-        const data = this.state.datas
+        const dataIzin = this.state.datasIzin
+        const dataResign = this.state.datasResign 
         return (
             <div>
                 <div id="wrapper">
@@ -76,7 +88,31 @@ class RiwayatPerizinan extends Component {
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    {data.map(perizinan => {
+                                                    {dataResign.map(resign => {
+                                                        const {
+                                                            id,
+                                                            tanggal_resign,
+                                                            keterangan_resign,
+                                                            status_resign
+                                                        } = resign;
+                                                        let statusResign;
+                                                        if(resign.status_resign === 0){
+                                                            statusResign = "Mengajukan"
+                                                        }
+                                                        else if(resign.status_resign === 5){
+                                                            statusResign = "Terkonfirmasi Resign"
+                                                        }
+                                                        return (
+                                                            <tr>
+                                                                <td>{resign.tanggal_resign}</td>
+                                                                <td> - </td>
+                                                                <td>Resign</td>
+                                                                <td>{statusResign}</td>
+                                                                <td> - </td>
+                                                            </tr>
+                                                        )
+                                                    })}
+                                                    {dataIzin.map(perizinan => {
                                                         const {
                                                             id,
                                                             tanggal_pergi,

@@ -6861,7 +6861,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Navigation_Topbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Navigation/Topbar */ "./resources/js/components/Navigation/Topbar/index.js");
 /* harmony import */ var _components_Navigation_Footer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/Navigation/Footer */ "./resources/js/components/Navigation/Footer/index.js");
 /* harmony import */ var _components_PageHeading__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/PageHeading */ "./resources/js/components/PageHeading/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _service_resign__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../service/resign */ "./resources/js/service/resign.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -6893,20 +6894,23 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var FormResign = /*#__PURE__*/function (_Component) {
   _inherits(FormResign, _Component);
 
   var _super = _createSuper(FormResign);
 
-  function FormResign() {
+  function FormResign(props) {
     var _this;
 
     _classCallCheck(this, FormResign);
 
-    _this = _super.call(this);
+    _this = _super.call(this, props);
     _this.state = {
       role: ""
     };
+    _this.handleFieldChange = _this.handleFieldChange.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -6918,72 +6922,96 @@ var FormResign = /*#__PURE__*/function (_Component) {
       });
     }
   }, {
+    key: "handleFieldChange",
+    value: function handleFieldChange(e) {
+      var name = e.target.name;
+      var value = e.target.value;
+      var data = {};
+      data[name] = value;
+      this.setState(data);
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      e.preventDefault();
+      console.log(this.state);
+      (0,_service_resign__WEBPACK_IMPORTED_MODULE_5__.createResign)({
+        id_mhs: localStorage.getItem('user_id'),
+        tanggal_resign: this.state.tanggal_resign,
+        keterangan_resign: this.state.keterangan_resign
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
           id: "wrapper",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_Navigation_Sidebar__WEBPACK_IMPORTED_MODULE_1__.default, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_Navigation_Sidebar__WEBPACK_IMPORTED_MODULE_1__.default, {
             role: this.state.role
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
             id: "content-wrapper",
             className: "d-flex flex-column",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
               id: "content",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_Navigation_Topbar__WEBPACK_IMPORTED_MODULE_2__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_Navigation_Topbar__WEBPACK_IMPORTED_MODULE_2__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
                 className: "container-fluid",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_PageHeading__WEBPACK_IMPORTED_MODULE_4__.default, {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_PageHeading__WEBPACK_IMPORTED_MODULE_4__.default, {
                   title: "Resign Asrama"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                   className: "col-lg-12 col-md-12",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                     className: "card my-5",
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
                       className: "card-body",
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h4", {
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h4", {
                         className: "text-primary text-center",
                         children: "Formulir resign asrama"
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h6", {
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h6", {
                         className: "text-center text-muted",
                         children: "Isi data formulir resign dibawah ini"
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("form", {
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("form", {
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
                           className: "form-group row",
-                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
                             "for": "description",
                             className: "col-md-3 col-form-label text-md-right",
                             children: "Keterangan"
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                             className: "col-md-8",
-                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("textarea", {
+                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("textarea", {
                               className: "form-control",
                               placeholder: "Beri penjelasan mengenai alasan ingin resign dari asrama",
                               rows: "3",
+                              name: "keterangan_resign",
+                              onChange: this.handleFieldChange,
                               required: true
                             })
                           })]
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
                           className: "form-group row",
-                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
-                            "for": "startdate",
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                            "for": "tanggal_resign",
                             className: "col-md-3 col-form-label text-md-right",
                             children: "Mulai resign"
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                             className: "col-md-3",
-                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
+                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
                               type: "date",
                               className: "form-control",
-                              name: "startDate",
+                              name: "tanggal_resign",
+                              onChange: this.handleFieldChange,
                               required: true
                             })
                           })]
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                           className: "form-group row",
-                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                             className: "col-md-8 offset-md-3 mb-2",
-                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
                               type: "submit",
                               className: "btn btn-success",
+                              onClick: this.handleSubmit,
                               children: "Submit"
                             })
                           })
@@ -6993,7 +7021,7 @@ var FormResign = /*#__PURE__*/function (_Component) {
                   })
                 })]
               })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_Navigation_Footer__WEBPACK_IMPORTED_MODULE_3__.default, {})]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_Navigation_Footer__WEBPACK_IMPORTED_MODULE_3__.default, {})]
           })]
         })
       });
@@ -8016,7 +8044,8 @@ var RiwayatPerizinan = /*#__PURE__*/function (_Component) {
     _this = _super.call(this);
     _this.state = {
       role: "",
-      datas: []
+      datasIzin: [],
+      datasResign: []
     };
     _this.kembali = _this.kembali.bind(_assertThisInitialized(_this));
     return _this;
@@ -8033,12 +8062,19 @@ var RiwayatPerizinan = /*#__PURE__*/function (_Component) {
       (0,_service_api__WEBPACK_IMPORTED_MODULE_5__.default)().get('api/perizinan/' + localStorage.getItem('user_id')).then(function (response) {
         if (response.data.status === 'success') {
           _this2.setState({
-            datas: response.data.data
+            datasIzin: response.data.data
           });
-
-          console.log(_this2.state.datas);
         } else {
           alert(response.data.msg);
+        }
+      });
+      (0,_service_api__WEBPACK_IMPORTED_MODULE_5__.default)().get('api/resign/' + localStorage.getItem('user_id')).then(function (resign) {
+        if (resign.data.status === 'success') {
+          _this2.setState({
+            datasResign: resign.data.data
+          });
+        } else {
+          alert(resign.data.msg);
         }
       });
     }
@@ -8056,7 +8092,8 @@ var RiwayatPerizinan = /*#__PURE__*/function (_Component) {
     value: function render() {
       var _this3 = this;
 
-      var data = this.state.datas;
+      var dataIzin = this.state.datasIzin;
+      var dataResign = this.state.datasResign;
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
           id: "wrapper",
@@ -8106,8 +8143,34 @@ var RiwayatPerizinan = /*#__PURE__*/function (_Component) {
                                 children: "Konfirmasi kepulangan"
                               })]
                             })
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("tbody", {
-                            children: data.map(function (perizinan) {
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("tbody", {
+                            children: [dataResign.map(function (resign) {
+                              var id = resign.id,
+                                  tanggal_resign = resign.tanggal_resign,
+                                  keterangan_resign = resign.keterangan_resign,
+                                  status_resign = resign.status_resign;
+                              var statusResign;
+
+                              if (resign.status_resign === 0) {
+                                statusResign = "Mengajukan";
+                              } else if (resign.status_resign === 5) {
+                                statusResign = "Terkonfirmasi Resign";
+                              }
+
+                              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("tr", {
+                                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("td", {
+                                  children: resign.tanggal_resign
+                                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("td", {
+                                  children: " - "
+                                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("td", {
+                                  children: "Resign"
+                                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("td", {
+                                  children: statusResign
+                                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("td", {
+                                  children: " - "
+                                })]
+                              });
+                            }), dataIzin.map(function (perizinan) {
                               var id = perizinan.id,
                                   tanggal_pergi = perizinan.tanggal_pergi,
                                   tanggal_pulang = perizinan.tanggal_pulang,
@@ -8151,7 +8214,7 @@ var RiwayatPerizinan = /*#__PURE__*/function (_Component) {
                                   })
                                 })]
                               });
-                            })
+                            })]
                           })]
                         })
                       })
@@ -9080,6 +9143,32 @@ var getRiwayatPresensi = function getRiwayatPresensi() {
   (0,_api__WEBPACK_IMPORTED_MODULE_0__.default)().get('api/presensi/user/' + localStorage.getItem('user_id')).then(function (response) {
     if (response.data.status === 'success') {
       return response.data.data;
+    } else {
+      alert(response.data.msg);
+    }
+  });
+};
+
+/***/ }),
+
+/***/ "./resources/js/service/resign.js":
+/*!****************************************!*\
+  !*** ./resources/js/service/resign.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "createResign": () => (/* binding */ createResign)
+/* harmony export */ });
+/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./api */ "./resources/js/service/api.js");
+
+var createResign = function createResign(props) {
+  (0,_api__WEBPACK_IMPORTED_MODULE_0__.default)().post('api/resign/create', props).then(function (response) {
+    if (response.data.status === 'success') {
+      console.log(response.data.msg);
+      window.location.assign('/#/riwayat-perizinan');
     } else {
       alert(response.data.msg);
     }

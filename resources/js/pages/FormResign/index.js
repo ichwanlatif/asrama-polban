@@ -6,19 +6,41 @@ import Topbar from '../../components/Navigation/Topbar';
 import Footer from '../../components/Navigation/Footer';
 
 import PageHeading from '../../components/PageHeading';
+import { createResign } from '../../service/resign';
 
 class FormResign extends Component {
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state = {
-            role: ""
+            role: "",
         };
+
+        this.handleFieldChange = this.handleFieldChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
 
     componentDidMount(){
         this.setState({
             role: localStorage.getItem("user_role")
         });
+    }
+
+    handleFieldChange(e){
+        let name = e.target.name;
+        let value = e.target.value;
+        let data = {};
+        data[name] = value;
+        this.setState(data);
+    }
+
+    handleSubmit(e){
+        e.preventDefault()
+        console.log(this.state)
+        createResign({
+            id_mhs: localStorage.getItem('user_id'),
+            tanggal_resign: this.state.tanggal_resign,
+            keterangan_resign: this.state.keterangan_resign
+        })
     }
 
     render() {
@@ -51,24 +73,27 @@ class FormResign extends Component {
                                                         className="form-control"
                                                         placeholder="Beri penjelasan mengenai alasan ingin resign dari asrama"
                                                         rows="3"
+                                                        name="keterangan_resign"
+                                                        onChange={this.handleFieldChange}
                                                         required>
                                                     </textarea>
                                                 </div>
                                             </div>
                                             <div className="form-group row">
-                                                <label for="startdate" className="col-md-3 col-form-label text-md-right">Mulai resign</label>
+                                                <label for="tanggal_resign" className="col-md-3 col-form-label text-md-right">Mulai resign</label>
                                                 <div className="col-md-3">
                                                     <input 
                                                         type="date" 
                                                         className="form-control"
-                                                        name="startDate"
+                                                        name="tanggal_resign"
+                                                        onChange={this.handleFieldChange}
                                                         required
                                                     />
                                                 </div>
                                             </div>
                                             <div className="form-group row">
                                                 <div className="col-md-8 offset-md-3 mb-2">
-                                                    <button type="submit" className="btn btn-success">
+                                                    <button type="submit" className="btn btn-success" onClick={this.handleSubmit}>
                                                         Submit
                                                     </button>
                                                 </div>
