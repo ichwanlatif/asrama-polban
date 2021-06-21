@@ -52,3 +52,4 @@ Route::put('/perizinan/approval', [PerizinanController::class, 'approvalPerizina
 Route::get('/perizinan', [PerizinanController::class, 'getAllPengajuanPerizinan']);
 Route::get('/perizinan/{id}', [PerizinanController::class, 'getRiwayatPerizinan']);
 Route::get('/perizinan/detail/{id}', [PerizinanController::class, 'getDetailPerizinan']);
+Route::put('/kembali', [PerizinanController::class, 'kembali']);

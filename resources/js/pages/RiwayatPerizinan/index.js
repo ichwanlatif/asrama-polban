@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-
 //Navigation
 import Sidebar from '../../components/Navigation/Sidebar';
 import Topbar from '../../components/Navigation/Topbar';
@@ -9,6 +7,7 @@ import Footer from '../../components/Navigation/Footer';
 import PageHeading from '../../components/PageHeading';
 
 import api from '../../service/api';
+import { kembali } from '../../service/perizinan';
 class RiwayatPerizinan extends Component {
     constructor(){
         super();
@@ -16,6 +15,7 @@ class RiwayatPerizinan extends Component {
             role: "",
             datas: [],
         };
+        this.kembali = this.kembali.bind(this)
     }
 
     componentDidMount(){
@@ -33,6 +33,14 @@ class RiwayatPerizinan extends Component {
                 alert(response.data.msg);
             }
         })
+    }
+
+    kembali(id){
+        console.log(id)
+        kembali({
+            id: id
+        })
+
     }
 
     render() {
@@ -102,7 +110,7 @@ class RiwayatPerizinan extends Component {
                                                                 <td>{perizinan.tanggal_pulang}</td>
                                                                 <td>Pergi</td>
                                                                 <td>{status}</td>
-                                                                <td><Link id="kembali" to="#" hidden={hidden} className="btn btn-outline-primary btn-sm">Kembali</Link></td>
+                                                                <td><button hidden={hidden} onClick={() => this.kembali(perizinan.id)} className="btn btn-outline-primary btn-sm">Kembali</button></td>
                                                             </tr>
                                                         )
                                                     })}

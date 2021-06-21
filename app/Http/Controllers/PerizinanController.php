@@ -199,4 +199,29 @@ class PerizinanController extends Controller
             ]);
         }
     }
+
+    public function kembali(Request $request){
+        $perizinan = Perizinan::where([
+            ['id', '=', $request->id],
+            ['status_izin', '=', 1],
+        ])->first();
+
+        $perizinan->update([
+            'status_izin' => 3
+        ]);
+
+        if($perizinan){
+            return response()->json([
+                'status' => 'success',
+                'msg' => 'Success kembali',
+                'data' => $perizinan
+            ]);
+        }
+        else{
+            return response()->json([
+                'status' => 'error',
+                'msg' => 'Failed to kembali'
+            ]);
+        }
+    }
 }
