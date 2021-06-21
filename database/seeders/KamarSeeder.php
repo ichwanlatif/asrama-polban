@@ -16,7 +16,7 @@ class KamarSeeder extends Seeder
     {
         for($i = 1; $i <= 24; $i++){
             $Kamar = Kamar::create([
-                'nomor_kamar' => "A$i",
+                'no_kamar' => "A$i",
             ]);
         }
     }

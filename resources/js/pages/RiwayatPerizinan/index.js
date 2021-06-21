@@ -114,21 +114,21 @@ class RiwayatPerizinan extends Component {
 
                                         {/* pagination */}
                                         <nav aria-label="Page navigation example">
-                                            <ul class="pagination justify-content-end">
-                                                <li class="page-item">
-                                                <a class="page-link" href="#" aria-label="Previous">
+                                            <ul className="pagination justify-content-end">
+                                                <li className="page-item">
+                                                <Link className="page-link" to="#" aria-label="Previous">
                                                     <span aria-hidden="true">&laquo;</span>
-                                                    <span class="sr-only">Previous</span>
-                                                </a>
+                                                    <span className="sr-only">Previous</span>
+                                                </Link>
                                                 </li>
-                                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                                <li class="page-item">
-                                                <a class="page-link" href="#" aria-label="Next">
+                                                <li className="page-item"><a className="page-link" href="#">1</a></li>
+                                                <li className="page-item"><a className="page-link" href="#">2</a></li>
+                                                <li className="page-item"><a className="page-link" href="#">3</a></li>
+                                                <li className="page-item">
+                                                <Link className="page-link" to="#" aria-label="Next">
                                                     <span aria-hidden="true">&raquo;</span>
-                                                    <span class="sr-only">Next</span>
-                                                </a>
+                                                    <span className="sr-only">Next</span>
+                                                </Link>
                                                 </li>
                                             </ul>
                                         </nav>

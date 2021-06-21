@@ -2290,8 +2290,8 @@ var Main = function Main(props) {
       component: _pages_FormPresensi__WEBPACK_IMPORTED_MODULE_5__.default
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_PrivateRoute__WEBPACK_IMPORTED_MODULE_1__.PrivateRoute, {
       exact: true,
-      path: "/form-perizinan",
-      component: _pages_FormPerizinan__WEBPACK_IMPORTED_MODULE_6__.default
+      path: "/form-izin-pulang",
+      component: _pages_FormIzinPulang__WEBPACK_IMPORTED_MODULE_6__.default
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_PrivateRoute__WEBPACK_IMPORTED_MODULE_1__.PrivateRoute, {
       exact: true,
       path: "/form-resign",
@@ -2306,12 +2306,12 @@ var Main = function Main(props) {
       component: _pages_RiwayatPerizinan__WEBPACK_IMPORTED_MODULE_9__.default
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_PrivateRoute__WEBPACK_IMPORTED_MODULE_1__.PrivateRoute, {
       exact: true,
-      path: "/data-izin-pergi",
-      component: _pages_DataIzinPergi__WEBPACK_IMPORTED_MODULE_10__.default
+      path: "/data-izin-pulang",
+      component: _pages_DataIzinPulang__WEBPACK_IMPORTED_MODULE_10__.default
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_PrivateRoute__WEBPACK_IMPORTED_MODULE_1__.PrivateRoute, {
       exact: true,
-      path: "/form-approval-izin-pergi/:id",
-      component: _pages_FormApprovalIzinPergi__WEBPACK_IMPORTED_MODULE_11__.default
+      path: "/form-approval-izin-pulang/:id",
+      component: _pages_FormApprovalIzinPulang__WEBPACK_IMPORTED_MODULE_11__.default
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_PrivateRoute__WEBPACK_IMPORTED_MODULE_1__.PrivateRoute, {
       exact: true,
       path: "/data-izin-kembali",
@@ -4705,53 +4705,53 @@ var DataIzinKembali = /*#__PURE__*/function (_Component) {
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("nav", {
                         "aria-label": "Page navigation example",
                         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("ul", {
-                          "class": "pagination",
+                          className: "pagination",
                           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
-                            "class": "page-item",
-                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("a", {
-                              "class": "page-link",
-                              href: "#",
+                            className: "page-item",
+                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
+                              className: "page-link",
+                              to: "#",
                               "aria-label": "Previous",
                               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
                                 "aria-hidden": "true",
                                 children: "\xAB"
                               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
-                                "class": "sr-only",
+                                className: "sr-only",
                                 children: "Previous"
                               })]
                             })
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
                             "class": "page-item",
                             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
-                              "class": "page-link",
+                              className: "page-link",
                               href: "#",
                               children: "1"
                             })
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
-                            "class": "page-item",
+                            className: "page-item",
                             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
-                              "class": "page-link",
+                              className: "page-link",
                               href: "#",
                               children: "2"
                             })
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
-                            "class": "page-item",
+                            className: "page-item",
                             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
-                              "class": "page-link",
+                              className: "page-link",
                               href: "#",
                               children: "3"
                             })
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
-                            "class": "page-item",
-                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("a", {
-                              "class": "page-link",
-                              href: "#",
+                            className: "page-item",
+                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
+                              className: "page-link",
+                              to: "#",
                               "aria-label": "Next",
                               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
                                 "aria-hidden": "true",
                                 children: "\xBB"
                               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
-                                "class": "sr-only",
+                                className: "sr-only",
                                 children: "Next"
                               })]
                             })
@@ -4828,15 +4828,15 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-var DataIzinPergi = /*#__PURE__*/function (_Component) {
-  _inherits(DataIzinPergi, _Component);
+var DataIzinPulang = /*#__PURE__*/function (_Component) {
+  _inherits(DataIzinPulang, _Component);
 
-  var _super = _createSuper(DataIzinPergi);
+  var _super = _createSuper(DataIzinPulang);
 
-  function DataIzinPergi() {
+  function DataIzinPulang() {
     var _this;
 
-    _classCallCheck(this, DataIzinPergi);
+    _classCallCheck(this, DataIzinPulang);
 
     _this = _super.call(this);
     _this.state = {
@@ -4846,7 +4846,7 @@ var DataIzinPergi = /*#__PURE__*/function (_Component) {
     return _this;
   }
 
-  _createClass(DataIzinPergi, [{
+  _createClass(DataIzinPulang, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       var _this2 = this;
@@ -4892,7 +4892,7 @@ var DataIzinPergi = /*#__PURE__*/function (_Component) {
                       className: "card-header",
                       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h6", {
                         className: "text-primary",
-                        children: "Data Izin Pulang Asrama Yang Belum Diproses"
+                        children: "Data Izin Pergi Asrama Yang Belum Diproses"
                       })
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                       className: "card-body",
@@ -4932,7 +4932,7 @@ var DataIzinPergi = /*#__PURE__*/function (_Component) {
                                   children: perizinan.tanggal_pulang
                                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("td", {
                                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Link, {
-                                    to: "/form-approval-izin-pergi/" + perizinan.id,
+                                    to: "/form-approval-izin-pulang/" + perizinan.id,
                                     className: "btn btn-outline-primary btn-sm",
                                     children: "Approve"
                                   })
@@ -4941,62 +4941,7 @@ var DataIzinPergi = /*#__PURE__*/function (_Component) {
                             })
                           })]
                         })
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("nav", {
-                        "aria-label": "Page navigation example",
-                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("ul", {
-                          "class": "pagination",
-                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
-                            "class": "page-item",
-                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("a", {
-                              "class": "page-link",
-                              href: "#",
-                              "aria-label": "Previous",
-                              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
-                                "aria-hidden": "true",
-                                children: "\xAB"
-                              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
-                                "class": "sr-only",
-                                children: "Previous"
-                              })]
-                            })
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
-                            "class": "page-item",
-                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
-                              "class": "page-link",
-                              href: "#",
-                              children: "1"
-                            })
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
-                            "class": "page-item",
-                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
-                              "class": "page-link",
-                              href: "#",
-                              children: "2"
-                            })
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
-                            "class": "page-item",
-                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
-                              "class": "page-link",
-                              href: "#",
-                              children: "3"
-                            })
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
-                            "class": "page-item",
-                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("a", {
-                              "class": "page-link",
-                              href: "#",
-                              "aria-label": "Next",
-                              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
-                                "aria-hidden": "true",
-                                children: "\xBB"
-                              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
-                                "class": "sr-only",
-                                children: "Next"
-                              })]
-                            })
-                          })]
-                        })
-                      })]
+                      })
                     })]
                   })
                 })]
@@ -5008,10 +4953,10 @@ var DataIzinPergi = /*#__PURE__*/function (_Component) {
     }
   }]);
 
-  return DataIzinPergi;
+  return DataIzinPulang;
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (DataIzinPergi);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (DataIzinPulang);
 
 /***/ }),
 
@@ -5209,53 +5154,53 @@ var DataMahasiswa = /*#__PURE__*/function (_Component) {
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("nav", {
                         "aria-label": "Page navigation example",
                         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("ul", {
-                          "class": "pagination",
+                          className: "pagination",
                           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
-                            "class": "page-item",
-                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("a", {
-                              "class": "page-link",
-                              href: "#",
+                            className: "page-item",
+                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
+                              className: "page-link",
+                              to: "#",
                               "aria-label": "Previous",
                               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
                                 "aria-hidden": "true",
                                 children: "\xAB"
                               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
-                                "class": "sr-only",
+                                className: "sr-only",
                                 children: "Previous"
                               })]
                             })
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
-                            "class": "page-item",
+                            className: "page-item",
                             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
-                              "class": "page-link",
+                              className: "page-link",
                               href: "#",
                               children: "1"
                             })
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
-                            "class": "page-item",
+                            className: "page-item",
                             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
-                              "class": "page-link",
+                              className: "page-link",
                               href: "#",
                               children: "2"
                             })
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
-                            "class": "page-item",
+                            className: "page-item",
                             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
-                              "class": "page-link",
+                              className: "page-link",
                               href: "#",
                               children: "3"
                             })
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
-                            "class": "page-item",
-                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("a", {
-                              "class": "page-link",
-                              href: "#",
+                            className: "page-item",
+                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
+                              className: "page-link",
+                              to: "#",
                               "aria-label": "Next",
                               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
                                 "aria-hidden": "true",
                                 children: "\xBB"
                               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
-                                "class": "sr-only",
+                                className: "sr-only",
                                 children: "Next"
                               })]
                             })
@@ -5438,9 +5383,9 @@ var DataResign = /*#__PURE__*/function (_Component) {
                           "class": "pagination",
                           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
                             "class": "page-item",
-                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("a", {
+                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
                               "class": "page-link",
-                              href: "#",
+                              to: "#",
                               "aria-label": "Previous",
                               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
                                 "aria-hidden": "true",
@@ -5451,37 +5396,37 @@ var DataResign = /*#__PURE__*/function (_Component) {
                               })]
                             })
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
-                            "class": "page-item",
+                            className: "page-item",
                             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
                               "class": "page-link",
                               href: "#",
                               children: "1"
                             })
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
-                            "class": "page-item",
+                            className: "page-item",
                             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
                               "class": "page-link",
                               href: "#",
                               children: "2"
                             })
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
-                            "class": "page-item",
+                            className: "page-item",
                             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
                               "class": "page-link",
                               href: "#",
                               children: "3"
                             })
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
-                            "class": "page-item",
-                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("a", {
-                              "class": "page-link",
+                            className: "page-item",
+                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
+                              className: "page-link",
                               href: "#",
                               "aria-label": "Next",
                               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
                                 "aria-hidden": "true",
                                 children: "\xBB"
                               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
-                                "class": "sr-only",
+                                className: "sr-only",
                                 children: "Next"
                               })]
                             })
@@ -6297,10 +6242,10 @@ var EditMahasiswa = /*#__PURE__*/function (_Component) {
 
 /***/ }),
 
-/***/ "./resources/js/pages/FormApprovalIzinPergi/index.js":
-/*!***********************************************************!*\
-  !*** ./resources/js/pages/FormApprovalIzinPergi/index.js ***!
-  \***********************************************************/
+/***/ "./resources/js/pages/FormApprovalIzinPulang/index.js":
+/*!************************************************************!*\
+  !*** ./resources/js/pages/FormApprovalIzinPulang/index.js ***!
+  \************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -6350,15 +6295,15 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-var FormApprovalIzinPergi = /*#__PURE__*/function (_Component) {
-  _inherits(FormApprovalIzinPergi, _Component);
+var FormApprovalIzinPulang = /*#__PURE__*/function (_Component) {
+  _inherits(FormApprovalIzinPulang, _Component);
 
-  var _super = _createSuper(FormApprovalIzinPergi);
+  var _super = _createSuper(FormApprovalIzinPulang);
 
-  function FormApprovalIzinPergi(props) {
+  function FormApprovalIzinPulang(props) {
     var _this;
 
-    _classCallCheck(this, FormApprovalIzinPergi);
+    _classCallCheck(this, FormApprovalIzinPulang);
 
     _this = _super.call(this, props);
     _this.state = {
@@ -6377,7 +6322,7 @@ var FormApprovalIzinPergi = /*#__PURE__*/function (_Component) {
     return _this;
   }
 
-  _createClass(FormApprovalIzinPergi, [{
+  _createClass(FormApprovalIzinPulang, [{
     key: "handleFieldChange",
     value: function handleFieldChange(e) {
       var name = e.target.name;
@@ -6626,10 +6571,10 @@ var FormApprovalIzinPergi = /*#__PURE__*/function (_Component) {
 
 /***/ }),
 
-/***/ "./resources/js/pages/FormPerizinan/index.js":
-/*!***************************************************!*\
-  !*** ./resources/js/pages/FormPerizinan/index.js ***!
-  \***************************************************/
+/***/ "./resources/js/pages/FormIzinPulang/index.js":
+/*!****************************************************!*\
+  !*** ./resources/js/pages/FormIzinPulang/index.js ***!
+  \****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -6676,15 +6621,15 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-var FormPerizinan = /*#__PURE__*/function (_Component) {
-  _inherits(FormPerizinan, _Component);
+var FormIzinPulang = /*#__PURE__*/function (_Component) {
+  _inherits(FormIzinPulang, _Component);
 
-  var _super = _createSuper(FormPerizinan);
+  var _super = _createSuper(FormIzinPulang);
 
-  function FormPerizinan() {
+  function FormIzinPulang() {
     var _this;
 
-    _classCallCheck(this, FormPerizinan);
+    _classCallCheck(this, FormIzinPulang);
 
     _this = _super.call(this);
     _this.state = {
@@ -6699,7 +6644,7 @@ var FormPerizinan = /*#__PURE__*/function (_Component) {
     return _this;
   }
 
-  _createClass(FormPerizinan, [{
+  _createClass(FormIzinPulang, [{
     key: "handleFieldChange",
     value: function handleFieldChange(e) {
       var name = e.target.name;
@@ -6752,7 +6697,7 @@ var FormPerizinan = /*#__PURE__*/function (_Component) {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_Navigation_Topbar__WEBPACK_IMPORTED_MODULE_2__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
                 className: "container-fluid",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_PageHeading__WEBPACK_IMPORTED_MODULE_4__.default, {
-                  title: "Izin Pergi Asrama"
+                  title: "Izin Pulang Asrama"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                   className: "col-lg-12 col-md-12",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
@@ -6761,7 +6706,7 @@ var FormPerizinan = /*#__PURE__*/function (_Component) {
                       className: "card-body",
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h4", {
                         className: "text-primary text-center",
-                        children: "Formulir izin pergi asrama"
+                        children: "Formulir izin pulang asrama"
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h6", {
                         className: "text-center text-muted",
                         children: "Isi data formulir perizinan dibawah ini"
@@ -7089,7 +7034,7 @@ var FormPresensi = /*#__PURE__*/function (_Component) {
                               id: "submit",
                               onClick: this.submitPresensi,
                               type: "submit",
-                              className: "btn btn-info",
+                              className: "btn btn-success",
                               children: "Submit"
                             })
                           })
@@ -8406,9 +8351,9 @@ var RiwayatPerizinan = /*#__PURE__*/function (_Component) {
                         className: "text-primary",
                         children: "Riwayat Perizinan"
                       })
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
                       className: "card-body",
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                         className: "table-responsive",
                         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("table", {
                           className: "table table-hover",
@@ -8422,7 +8367,7 @@ var RiwayatPerizinan = /*#__PURE__*/function (_Component) {
                                 children: "Berakhir"
                               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("th", {
                                 scope: "col",
-                                children: "Jenis"
+                                children: "Jenis izin"
                               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("th", {
                                 scope: "col",
                                 children: "Status"
@@ -8478,56 +8423,56 @@ var RiwayatPerizinan = /*#__PURE__*/function (_Component) {
                             })
                           })]
                         })
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("nav", {
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("nav", {
                         "aria-label": "Page navigation example",
-                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("ul", {
-                          "class": "pagination justify-content-end",
-                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
-                            "class": "page-item",
-                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("a", {
-                              "class": "page-link",
-                              href: "#",
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("ul", {
+                          className: "pagination justify-content-end",
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("li", {
+                            className: "page-item",
+                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Link, {
+                              className: "page-link",
+                              to: "#",
                               "aria-label": "Previous",
-                              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
                                 "aria-hidden": "true",
                                 children: "\xAB"
-                              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
-                                "class": "sr-only",
+                              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+                                className: "sr-only",
                                 children: "Previous"
                               })]
                             })
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
-                            "class": "page-item",
-                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
-                              "class": "page-link",
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("li", {
+                            className: "page-item",
+                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("a", {
+                              className: "page-link",
                               href: "#",
                               children: "1"
                             })
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
-                            "class": "page-item",
-                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
-                              "class": "page-link",
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("li", {
+                            className: "page-item",
+                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("a", {
+                              className: "page-link",
                               href: "#",
                               children: "2"
                             })
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
-                            "class": "page-item",
-                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
-                              "class": "page-link",
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("li", {
+                            className: "page-item",
+                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("a", {
+                              className: "page-link",
                               href: "#",
                               children: "3"
                             })
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
-                            "class": "page-item",
-                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("a", {
-                              "class": "page-link",
-                              href: "#",
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("li", {
+                            className: "page-item",
+                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Link, {
+                              className: "page-link",
+                              to: "#",
                               "aria-label": "Next",
-                              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
                                 "aria-hidden": "true",
                                 children: "\xBB"
-                              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
-                                "class": "sr-only",
+                              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+                                className: "sr-only",
                                 children: "Next"
                               })]
                             })
@@ -8564,6 +8509,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _components_Navigation_Sidebar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/Navigation/Sidebar */ "./resources/js/components/Navigation/Sidebar/index.js");
 /* harmony import */ var _components_Navigation_Topbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Navigation/Topbar */ "./resources/js/components/Navigation/Topbar/index.js");
 /* harmony import */ var _components_Navigation_Footer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/Navigation/Footer */ "./resources/js/components/Navigation/Footer/index.js");
@@ -8591,6 +8537,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
  //Navigation
 
@@ -8721,9 +8668,9 @@ var RiwayatPresensi = /*#__PURE__*/function (_Component) {
                           "class": "pagination justify-content-end",
                           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("li", {
                             "class": "page-item",
-                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("a", {
+                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Link, {
                               "class": "page-link",
-                              href: "#",
+                              to: "#",
                               "aria-label": "Previous",
                               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
                                 "aria-hidden": "true",
@@ -8734,37 +8681,37 @@ var RiwayatPresensi = /*#__PURE__*/function (_Component) {
                               })]
                             })
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("li", {
-                            "class": "page-item",
+                            className: "page-item",
                             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("a", {
-                              "class": "page-link",
+                              className: "page-link",
                               href: "#",
                               children: "1"
                             })
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("li", {
-                            "class": "page-item",
+                            className: "page-item",
                             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("a", {
-                              "class": "page-link",
+                              className: "page-link",
                               href: "#",
                               children: "2"
                             })
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("li", {
-                            "class": "page-item",
+                            className: "page-item",
                             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("a", {
-                              "class": "page-link",
+                              className: "page-link",
                               href: "#",
                               children: "3"
                             })
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("li", {
-                            "class": "page-item",
-                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("a", {
-                              "class": "page-link",
-                              href: "#",
+                            className: "page-item",
+                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Link, {
+                              className: "page-link",
+                              to: "#",
                               "aria-label": "Next",
                               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
                                 "aria-hidden": "true",
                                 children: "\xBB"
                               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
-                                "class": "sr-only",
+                                className: "sr-only",
                                 children: "Next"
                               })]
                             })
@@ -9431,7 +9378,7 @@ var updatePerizinan = function updatePerizinan(props) {
   (0,_api__WEBPACK_IMPORTED_MODULE_0__.default)().put('api/perizinan/approval', props).then(function (response) {
     if (response.data.status === 'success') {
       console.log(response.data.msg);
-      window.location.assign('/#/data-izin-pergi');
+      window.location.assign('/#/data-izin-pulang');
     } else {
       alert(response.data.msg);
     }

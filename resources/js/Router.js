@@ -46,8 +46,8 @@ const Main = props =>(
         <PrivateRoute exact path="/riwayat-presensi" component={RiwayatPresensi} />
         <PrivateRoute exact path="/riwayat-perizinan" component={RiwayatPerizinan} />
 
-        <PrivateRoute exact path="/data-izin-pergi" component={DataIzinPergi} />
-        <PrivateRoute exact path="/form-approval-izin-pergi/:id" component={FormApprovalIzinPergi} />
+        <PrivateRoute exact path="/data-izin-pulang" component={DataIzinPulang} />
+        <PrivateRoute exact path="/form-approval-izin-pulang/:id" component={FormApprovalIzinPulang} />
 
         <PrivateRoute exact path="/data-izin-kembali" component={DataIzinKembali} />
 

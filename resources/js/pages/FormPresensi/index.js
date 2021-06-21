@@ -143,7 +143,7 @@ class FormPresensi extends Component {
                                             </div>
                                             <div className="form-group row">
                                                 <div className="col-md-8 offset-md-3 mb-2">
-                                                    <button id="submit" onClick={this.submitPresensi} type='submit' className='btn btn-info'>Submit</button>
+                                                    <button id="submit" onClick={this.submitPresensi} type='submit' className='btn btn-success'>Submit</button>
                                                 </div>
                                             </div>
                                         </form>

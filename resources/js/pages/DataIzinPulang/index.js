@@ -7,12 +7,14 @@ import Topbar from '../../components/Navigation/Topbar';
 import Footer from '../../components/Navigation/Footer';
 
 import PageHeading from '../../components/PageHeading';
+import api from '../../service/api';
 
-class DataIzinPergi extends Component {
+class DataIzinPulang extends Component {
     constructor(){
         super();
         this.state = {
-            role: ""
+            role: "",
+            datas: []
         };
     }
 
@@ -20,9 +22,22 @@ class DataIzinPergi extends Component {
         this.setState({
             role: localStorage.getItem("user_role")
         });
+
+        api().get('api/perizinan').then(response =>{
+            if(response.data.status === 'success'){
+                this.setState({
+                    datas: response.data.data
+                })
+                console.log(this.state.datas)
+            }
+            else{
+                alert(response.data.msg);
+            }
+        })
     }
 
     render() {
+        const data = this.state.datas
         return (
             <div>
                 <div id="wrapper">
@@ -35,23 +50,13 @@ class DataIzinPergi extends Component {
                         <Topbar />
                         {/* <!-- End of Topbar --> */}
                         <div className="container-fluid">
-                            <PageHeading title="Data Izin Pulang Asrama" />
+                            <PageHeading title="Data Izin Pergi Asrama" />
                             <div className="col-lg-12 col-md-12">
                                 <div className="card my-5">
                                     <div className="card-header">
-                                        <h6 className="text-primary">Data Izin Pulang Asrama Yang Belum Diproses</h6>
+                                        <h6 className="text-primary">Data Izin Pergi Asrama Yang Belum Diproses</h6>
                                     </div>
                                     <div className="card-body">
-
-                                        {/* Search Bar */}
-                                        <div className="input-group mb-2 border rounded-pill p-1 col-lg-4 col-md-8 col-sm-12">
-                                            <input type="text" placeholder="Cari mahasiswa.." className="form-control bg-none border-0 font-italic"/>
-                                            <div className="input-group-append border-0">
-                                                <button type="submit" className="btn btn-link text-primary"><i className="fa fa-search"></i></button>
-                                            </div>
-                                        </div>
-
-                                        {/* Tabel Perizinan */}
                                         <div className="table-responsive">
                                             <table className="table table-hover">
                                                 <thead>
@@ -63,37 +68,26 @@ class DataIzinPergi extends Component {
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>Rizqa Nabila</td>
-                                                        <td>25 Mei 2021</td>
-                                                        <td>5 Juni 2021</td>
-                                                        <td><Link to="/form-approval-izin-pulang" className="btn btn-outline-primary btn-sm">Approve</Link></td>
-                                                    </tr>
+                                                {data.map(perizinan => {
+                                                        const {
+                                                            id,
+                                                            nama_mhs,
+                                                            tanggal_pergi,
+                                                            tanggal_pulang,
+                                                            status_izin
+                                                        } = perizinan;
+                                                        return (
+                                                            <tr>
+                                                                <td>{perizinan.nama_mhs}</td>
+                                                                <td>{perizinan.tanggal_pergi}</td>
+                                                                <td>{perizinan.tanggal_pulang}</td>
+                                                                <td><Link to={"/form-approval-izin-pulang/" + perizinan.id} className="btn btn-outline-primary btn-sm">Approve</Link></td>
+                                                            </tr>
+                                                        )
+                                                    })}
                                                 </tbody>
                                             </table>
                                         </div>
-
-                                        {/* pagination */}
-                                        <nav aria-label="Page navigation example">
-                                            <ul class="pagination">
-                                                <li class="page-item">
-                                                <a class="page-link" href="#" aria-label="Previous">
-                                                    <span aria-hidden="true">&laquo;</span>
-                                                    <span class="sr-only">Previous</span>
-                                                </a>
-                                                </li>
-                                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                                <li class="page-item">
-                                                <a class="page-link" href="#" aria-label="Next">
-                                                    <span aria-hidden="true">&raquo;</span>
-                                                    <span class="sr-only">Next</span>
-                                                </a>
-                                                </li>
-                                            </ul>
-                                        </nav>
-
                                     </div>
                                 </div>
                             </div>
@@ -109,4 +103,4 @@ class DataIzinPergi extends Component {
     }
 }
 
-export default DataIzinPergi;
+export default DataIzinPulang;
