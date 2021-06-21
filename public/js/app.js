@@ -2310,7 +2310,7 @@ var Main = function Main(props) {
       component: _pages_DataIzinPergi__WEBPACK_IMPORTED_MODULE_10__.default
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_PrivateRoute__WEBPACK_IMPORTED_MODULE_1__.PrivateRoute, {
       exact: true,
-      path: "/form-approval-izin-pergi",
+      path: "/form-approval-izin-pergi/:id",
       component: _pages_FormApprovalIzinPergi__WEBPACK_IMPORTED_MODULE_11__.default
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_PrivateRoute__WEBPACK_IMPORTED_MODULE_1__.PrivateRoute, {
       exact: true,
@@ -4859,7 +4859,7 @@ var DataIzinPergi = /*#__PURE__*/function (_Component) {
                                   children: perizinan.tanggal_pulang
                                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("td", {
                                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Link, {
-                                    to: "/formapprovalperizinan/" + perizinan.id,
+                                    to: "/form-approval-izin-pergi/" + perizinan.id,
                                     className: "btn btn-outline-primary btn-sm",
                                     children: "Approve"
                                   })
@@ -6080,15 +6080,15 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-var FormApprovalPerizinan = /*#__PURE__*/function (_Component) {
-  _inherits(FormApprovalPerizinan, _Component);
+var FormApprovalIzinPergi = /*#__PURE__*/function (_Component) {
+  _inherits(FormApprovalIzinPergi, _Component);
 
-  var _super = _createSuper(FormApprovalPerizinan);
+  var _super = _createSuper(FormApprovalIzinPergi);
 
-  function FormApprovalPerizinan(props) {
+  function FormApprovalIzinPergi(props) {
     var _this;
 
-    _classCallCheck(this, FormApprovalPerizinan);
+    _classCallCheck(this, FormApprovalIzinPergi);
 
     _this = _super.call(this, props);
     _this.state = {
@@ -6107,7 +6107,7 @@ var FormApprovalPerizinan = /*#__PURE__*/function (_Component) {
     return _this;
   }
 
-  _createClass(FormApprovalPerizinan, [{
+  _createClass(FormApprovalIzinPergi, [{
     key: "handleFieldChange",
     value: function handleFieldChange(e) {
       var name = e.target.name;
@@ -6349,7 +6349,7 @@ var FormApprovalPerizinan = /*#__PURE__*/function (_Component) {
     }
   }]);
 
-  return FormApprovalPerizinan;
+  return FormApprovalIzinPergi;
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FormApprovalIzinPergi);
@@ -9010,7 +9010,7 @@ var createPerizinan = function createPerizinan(props) {
   (0,_api__WEBPACK_IMPORTED_MODULE_0__.default)().post('api/perizinan/create', props).then(function (response) {
     if (response.data.status === 'success') {
       console.log(response.data.msg);
-      window.location.assign('/#/riwayatperizinan');
+      window.location.assign('/#/riwayat-perizinan');
     } else {
       alert(response.data.msg);
     }
@@ -9020,7 +9020,7 @@ var updatePerizinan = function updatePerizinan(props) {
   (0,_api__WEBPACK_IMPORTED_MODULE_0__.default)().put('api/perizinan/approval', props).then(function (response) {
     if (response.data.status === 'success') {
       console.log(response.data.msg);
-      window.location.assign('/#/dataperizinan');
+      window.location.assign('/#/data-izin-pergi');
     } else {
       alert(response.data.msg);
     }
@@ -9046,7 +9046,7 @@ __webpack_require__.r(__webpack_exports__);
 var createPresensi = function createPresensi(props) {
   (0,_api__WEBPACK_IMPORTED_MODULE_0__.default)().post('api/presensi/create', props).then(function (response) {
     if (response.data.status === 'success') {
-      window.location.assign('/#/riwayatpresensi');
+      window.location.assign('/#/riwayat-presensi');
     } else {
       alert(response.data.msg);
     }

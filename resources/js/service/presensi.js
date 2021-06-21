@@ -4,7 +4,7 @@ import api from './api';
 export const createPresensi = (props) => {
     api().post('api/presensi/create', props).then(response => {
         if(response.data.status === 'success'){
-            window.location.assign('/#/riwayatpresensi')
+            window.location.assign('/#/riwayat-presensi')
         }
         else{
             alert(response.data.msg)

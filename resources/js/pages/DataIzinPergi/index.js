@@ -81,7 +81,7 @@ class DataIzinPergi extends Component {
                                                                 <td>{perizinan.nama_mhs}</td>
                                                                 <td>{perizinan.tanggal_pergi}</td>
                                                                 <td>{perizinan.tanggal_pulang}</td>
-                                                                <td><Link to={"/formapprovalperizinan/" + perizinan.id} className="btn btn-outline-primary btn-sm">Approve</Link></td>
+                                                                <td><Link to={"/form-approval-izin-pergi/" + perizinan.id} className="btn btn-outline-primary btn-sm">Approve</Link></td>
                                                             </tr>
                                                         )
                                                     })}

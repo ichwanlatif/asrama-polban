@@ -10,7 +10,7 @@ import PageHeading from '../../components/PageHeading';
 import api from '../../service/api';
 import { updatePerizinan } from '../../service/perizinan';
 
-class FormApprovalPerizinan extends Component {
+class FormApprovalIzinPergi extends Component {
     constructor(props){
         super(props);
         this.state = {
