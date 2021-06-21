@@ -28,7 +28,7 @@ class MahasiswaSeeder extends Seeder
             'nama_mhs' => 'Chiwan',
             'nim_mhs' => '181511046',
             'jenis_kelamin' => 1,
-            'tempat_tgl_lahir' => 'Bekasi,200/04/17',
+            'tempat_tgl_lahir' => 'Bekasi,2000/04/17',
             'agama' => 'Islam',
             'alamat_mhs' => 'Perum Villa Permata',
             'no_hp_mhs' => '08991276549',

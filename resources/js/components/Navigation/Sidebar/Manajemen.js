@@ -5,35 +5,19 @@ class SidebarManajemen extends Component {
     render() {
         return (
             <div>
-                {/* Presensi */}
+                {/* Rekapitulasi */}
                 <div className="sidebar-heading">
-                    PRESENSI
+                    Rekapitulasi
                 </div>
 
                 {/* Rekap Presensi */}
                 <li className="nav-item">
-                    <Link className="nav-link" to="#">
+                    <Link className="nav-link" to="/rekapitulasi">
                         <i class="fas fa-clipboard-list"></i>
-                        <span>Rekap Presensi</span>
+                        <span>Rekap Data Mahasiswa</span>
                     </Link>
                 </li>
                 
-                {/* <!-- Divider --> */}
-                <hr className="sidebar-divider" />
-
-                {/* Perizinan */}
-                <div className="sidebar-heading">
-                    PERIZINAN
-                </div>
-
-                {/* Rekap Perizinan */}
-                <li className="nav-item">
-                    <Link className="nav-link" to="#">
-                        <i class="fas fa-clipboard-list"></i>
-                        <span>Rekap perizinan</span>
-                    </Link>
-                </li>
-
                 {/* <!-- Divider --> */}
                 <hr className="sidebar-divider" />
             </div>

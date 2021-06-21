@@ -9,7 +9,7 @@ import Footer from '../../components/Navigation/Footer';
 import PageHeading from '../../components/PageHeading';
 import api from '../../service/api';
 
-class DataPerizinan extends Component {
+class DataIzinPergi extends Component {
     constructor(){
         super();
         this.state = {
@@ -103,4 +103,4 @@ class DataPerizinan extends Component {
     }
 }
 
-export default DataPerizinan;
+export default DataIzinPergi;

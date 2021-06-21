@@ -210,4 +210,4 @@ class FormApprovalPerizinan extends Component {
     }
 }
 
-export default FormApprovalPerizinan;
+export default FormApprovalIzinPergi;
