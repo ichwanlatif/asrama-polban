@@ -36,40 +36,40 @@ class ProdiSeeder extends Seeder
             ['id_jurusan' => '4', 'nama_prodi' => 'DIV - Teknologi Pembangkit Tenaga Listrik' ],
             ['id_jurusan' => '4', 'nama_prodi' => 'DIV - Teknik Konversi Energi' ],
 
-             //Teknik Elektro
-             ['id_jurusan' => '5', 'nama_prodi' => 'DIII - Teknik Elektronika' ],
-             ['id_jurusan' => '5', 'nama_prodi' => 'DIII - Teknik Listrik' ],
-             ['id_jurusan' => '5', 'nama_prodi' => 'DIII - Teknik Telekomunikasi' ],
-             ['id_jurusan' => '5', 'nama_prodi' => 'DIV - Teknik Elektronika' ],
-             ['id_jurusan' => '5', 'nama_prodi' => 'DIV - Teknik Telekomunikasi' ],
-             ['id_jurusan' => '5', 'nama_prodi' => 'DIV - Teknik Otomasi Indurstri' ],
+            //Teknik Elektro
+            ['id_jurusan' => '5', 'nama_prodi' => 'DIII - Teknik Elektronika' ],
+            ['id_jurusan' => '5', 'nama_prodi' => 'DIII - Teknik Listrik' ],
+            ['id_jurusan' => '5', 'nama_prodi' => 'DIII - Teknik Telekomunikasi' ],
+            ['id_jurusan' => '5', 'nama_prodi' => 'DIV - Teknik Elektronika' ],
+            ['id_jurusan' => '5', 'nama_prodi' => 'DIV - Teknik Telekomunikasi' ],
+            ['id_jurusan' => '5', 'nama_prodi' => 'DIV - Teknik Otomasi Indurstri' ],
 
-             //Teknik Kimia
-             ['id_jurusan' => '6', 'nama_prodi' => 'DIII - Teknik Kimia' ],
-             ['id_jurusan' => '6', 'nama_prodi' => 'DIII - Analis Kimia' ],
-             ['id_jurusan' => '6', 'nama_prodi' => 'DIV - Teknik Kimia Produksi Bersih' ],
+            //Teknik Kimia
+            ['id_jurusan' => '6', 'nama_prodi' => 'DIII - Teknik Kimia' ],
+            ['id_jurusan' => '6', 'nama_prodi' => 'DIII - Analis Kimia' ],
+            ['id_jurusan' => '6', 'nama_prodi' => 'DIV - Teknik Kimia Produksi Bersih' ],
 
-             //Teknik Komputer dan Informatika
-             ['id_jurusan' => '7', 'nama_prodi' => 'DIII - Teknik Informatika' ],
-             ['id_jurusan' => '7', 'nama_prodi' => 'DIV - Teknik Informatika' ],
+            //Teknik Komputer dan Informatika
+            ['id_jurusan' => '7', 'nama_prodi' => 'DIII - Teknik Informatika' ],
+            ['id_jurusan' => '7', 'nama_prodi' => 'DIV - Teknik Informatika' ],
 
-             //Akuntansi
-             ['id_jurusan' => '8', 'nama_prodi' => 'DIII - Akuntansi' ],
-             ['id_jurusan' => '8', 'nama_prodi' => 'DIII - Keuangan dan Perbankan' ],
-             ['id_jurusan' => '8', 'nama_prodi' => 'DIV - Akuntansi Manajemen Pemerintahan' ],
-             ['id_jurusan' => '8', 'nama_prodi' => 'DIV - Keuangan Syariah' ],
-             ['id_jurusan' => '8', 'nama_prodi' => 'DIV - Akuntasi' ],
-             
-             //Administrasi Niaga
-             ['id_jurusan' => '9', 'nama_prodi' => 'DIII - Administrasi Bisnis' ],
-             ['id_jurusan' => '9', 'nama_prodi' => 'DIII - Manajemen Pemasaran' ],
-             ['id_jurusan' => '9', 'nama_prodi' => 'DIII - Usaha Perjalanan Wisata' ],
-             ['id_jurusan' => '9', 'nama_prodi' => 'DIV - Manajemen Pemasaran' ],
-             ['id_jurusan' => '9', 'nama_prodi' => 'DIV - Administrasi Bisnis' ],
-             ['id_jurusan' => '9', 'nama_prodi' => 'DIV - Manajemen Aset' ],
-             
-             //Bahasa Inggris
-             ['id_jurusan' => '10', 'nama_prodi' => 'DIII - Bahasa Inggris' ],
+            //Akuntansi
+            ['id_jurusan' => '8', 'nama_prodi' => 'DIII - Akuntansi' ],
+            ['id_jurusan' => '8', 'nama_prodi' => 'DIII - Keuangan dan Perbankan' ],
+            ['id_jurusan' => '8', 'nama_prodi' => 'DIV - Akuntansi Manajemen Pemerintahan' ],
+            ['id_jurusan' => '8', 'nama_prodi' => 'DIV - Keuangan Syariah' ],
+            ['id_jurusan' => '8', 'nama_prodi' => 'DIV - Akuntasi' ],
+            
+            //Administrasi Niaga
+            ['id_jurusan' => '9', 'nama_prodi' => 'DIII - Administrasi Bisnis' ],
+            ['id_jurusan' => '9', 'nama_prodi' => 'DIII - Manajemen Pemasaran' ],
+            ['id_jurusan' => '9', 'nama_prodi' => 'DIII - Usaha Perjalanan Wisata' ],
+            ['id_jurusan' => '9', 'nama_prodi' => 'DIV - Manajemen Pemasaran' ],
+            ['id_jurusan' => '9', 'nama_prodi' => 'DIV - Administrasi Bisnis' ],
+            ['id_jurusan' => '9', 'nama_prodi' => 'DIV - Manajemen Aset' ],
+            
+            //Bahasa Inggris
+            ['id_jurusan' => '10', 'nama_prodi' => 'DIII - Bahasa Inggris' ],
              
         ];
 

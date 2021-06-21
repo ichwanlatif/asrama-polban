@@ -42,6 +42,24 @@ class DataMahasiswa extends Component {
                                         <h6 className="text-primary">Data Mahasiswa</h6>
                                     </div>
                                     <div className="card-body">
+
+                                        {/* Search Bar */}
+                                        <div className="input-group mb-2 border rounded-pill p-1 col-lg-4 col-md-8 col-sm-12">
+                                            <input type="text" placeholder="Cari mahasiswa.." className="form-control bg-none border-0 font-italic"/>
+                                            <div className="input-group-append border-0">
+                                                <button type="submit" className="btn btn-link text-primary"><i className="fa fa-search"></i></button>
+                                            </div>
+                                        </div>
+
+                                        {/* Tambah mahasiswa */}
+                                        <Link to="/tambah-mahasiswa" className="btn btn-primary btn-icon-split mb-2">
+                                            <span className="icon text-white-50">
+                                                <i className="fas fa-user-plus"></i>
+                                            </span>
+                                            <span className="text">Tambah mahasiswa</span>
+                                        </Link>
+
+                                        {/* Tabel Mahasiswa */}
                                         <div className="table-responsive">
                                             <table className="table table-hover">
                                                 <thead>
@@ -75,14 +93,28 @@ class DataMahasiswa extends Component {
                                                 </tbody>
                                             </table>
                                         </div>
-                                        
-                                        <Link to="/tambah-mahasiswa" class="btn btn-primary btn-icon-split">
-                                            <span className="icon text-white-50">
-                                                <i className="fas fa-user-plus"></i>
-                                            </span>
-                                            <span className="text">Tambah mahasiswa</span>
-                                        </Link>
 
+                                        {/* pagination */}
+                                        <nav aria-label="Page navigation example">
+                                            <ul class="pagination">
+                                                <li class="page-item">
+                                                <a class="page-link" href="#" aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                                </li>
+                                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                <li class="page-item">
+                                                <a class="page-link" href="#" aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                    <span class="sr-only">Next</span>
+                                                </a>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                        
                                     </div>
                                 </div>
                             </div>
