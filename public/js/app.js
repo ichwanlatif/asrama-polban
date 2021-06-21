@@ -5347,7 +5347,7 @@ var FormApprovalPerizinan = /*#__PURE__*/function (_Component) {
                                 type: "radio",
                                 name: "status_izin",
                                 id: "tolak",
-                                value: "4"
+                                value: "2"
                               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("label", {
                                 className: "form-check-label",
                                 "for": "tolak",
@@ -6826,8 +6826,14 @@ var RiwayatPerizinan = /*#__PURE__*/function (_Component) {
                               } else if (perizinan.status_izin === 1) {
                                 status = "Disetujui Koordinator";
                                 hidden = false;
-                              } else {
+                              } else if (perizinan.status_izin === 2) {
+                                status = "Ditolak";
+                                hidden = true;
+                              } else if (perizinan.status_izin === 3) {
                                 status = "Sudah Kembali";
+                                hidden = true;
+                              } else if (perizinan.status_izin === 4) {
+                                status = "Terkonfirmasi Kembali";
                                 hidden = true;
                               }
 

@@ -165,7 +165,7 @@ class FormApprovalPerizinan extends Component {
                                                         </label>
                                                     </div>
                                                     <div className="form-check form-check-inline">
-                                                        <input className="form-check-input" onChange={this.handleFieldChange} type="radio" name="status_izin" id="tolak" value="4"/>
+                                                        <input className="form-check-input" onChange={this.handleFieldChange} type="radio" name="status_izin" id="tolak" value="2"/>
                                                         <label className="form-check-label" for="tolak">
                                                             Tolak
                                                         </label>

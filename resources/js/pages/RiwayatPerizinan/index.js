@@ -84,8 +84,16 @@ class RiwayatPerizinan extends Component {
                                                             status = "Disetujui Koordinator"
                                                             hidden = false
                                                         }
-                                                        else{
+                                                        else if(perizinan.status_izin === 2){
+                                                            status = "Ditolak"
+                                                            hidden = true
+                                                        }
+                                                        else if(perizinan.status_izin === 3){
                                                             status = "Sudah Kembali"
+                                                            hidden = true
+                                                        }
+                                                        else if(perizinan.status_izin === 4){
+                                                            status = "Terkonfirmasi Kembali"
                                                             hidden = true
                                                         }
                                                         return (
