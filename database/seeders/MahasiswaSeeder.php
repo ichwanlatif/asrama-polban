@@ -25,16 +25,15 @@ class MahasiswaSeeder extends Seeder
             'id_users' => $user->id,
             'id_prodi' => 1,
             'id_kamar' => 1,
-            'nama_mhs' => 'Chiwan',
+            'nama_mhs' => 'Ichwan Latif',
             'nim_mhs' => '181511046',
             'jenis_kelamin' => 1,
-            'tempat_tgl_lahir' => 'Bekasi,2000/04/17',
+            'tanggal_lahir' => '2000-01-01',
             'agama' => 'Islam',
-            'alamat_mhs' => 'Perum Villa Permata',
-            'no_hp_mhs' => '08991276549',
-            'nama_ortu' => 'Bu ichwan',
-            'no_hp_ortu' => '08991276549',
-            'status_keaktifan' => 1,
+            'alamat_mhs' => 'Bekasi',
+            'no_hp_mhs' => '0812345678',
+            'nama_ortu' => 'Pak ichwan',
+            'no_hp_ortu' => '0812345678',
             'golongan_ukt' => 1
         ]);
     }

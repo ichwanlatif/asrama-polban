@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 //Navigation
 import Sidebar from '../../components/Navigation/Sidebar';
@@ -6,15 +7,12 @@ import Topbar from '../../components/Navigation/Topbar';
 import Footer from '../../components/Navigation/Footer';
 
 import PageHeading from '../../components/PageHeading';
-import api from '../../service/api';
-// import { getRiwayatPresensi } from '../../service/presensi';
 
-class RiwayatPresensi extends Component {
+class DataIzinPergi extends Component {
     constructor(){
         super();
         this.state = {
-            role: '',
-            datas: [],
+            role: ""
         };
     }
 
@@ -22,21 +20,9 @@ class RiwayatPresensi extends Component {
         this.setState({
             role: localStorage.getItem("user_role")
         });
-        api().get('api/presensi/user/' + localStorage.getItem('user_id')).then(response =>{
-            if(response.data.status === 'success'){
-                this.setState({
-                    datas: response.data.data
-                })
-                console.log(this.state.datas)
-            }
-            else{
-                alert(response.data.msg);
-            }
-        })
     }
 
     render() {
-        const data = this.state.datas
         return (
             <div>
                 <div id="wrapper">
@@ -49,53 +35,47 @@ class RiwayatPresensi extends Component {
                         <Topbar />
                         {/* <!-- End of Topbar --> */}
                         <div className="container-fluid">
-                            <PageHeading title="Riwayat Presensi Kehadiran" />
+                            <PageHeading title="Data Izin Pulang Asrama" />
                             <div className="col-lg-12 col-md-12">
                                 <div className="card my-5">
                                     <div className="card-header">
-                                        <h6 className="text-primary">Riwayat Presensi Kehadiran</h6>
+                                        <h6 className="text-primary">Data Izin Pulang Asrama Yang Belum Diproses</h6>
                                     </div>
                                     <div className="card-body">
 
-                                        {/* Tabel Presensi */}
+                                        {/* Search Bar */}
+                                        <div className="input-group mb-2 border rounded-pill p-1 col-lg-4 col-md-8 col-sm-12">
+                                            <input type="text" placeholder="Cari mahasiswa.." className="form-control bg-none border-0 font-italic"/>
+                                            <div className="input-group-append border-0">
+                                                <button type="submit" className="btn btn-link text-primary"><i className="fa fa-search"></i></button>
+                                            </div>
+                                        </div>
+
+                                        {/* Tabel Perizinan */}
                                         <div className="table-responsive">
                                             <table className="table table-hover">
                                                 <thead>
                                                     <tr>
-                                                    <th scope="col">Tanggal</th>
-                                                    <th scope="col">Waktu presensi</th>
-                                                    <th scope="col">Koordinat GPS</th>
-                                                    <th scope="col">Status</th>
+                                                    <th scope="col">Nama</th>
+                                                    <th scope="col">Mulai</th>
+                                                    <th scope="col">Berakhir</th>
+                                                    <th scope="col">Proses</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    {data.map(presensi => {
-                                                        const {
-                                                            id,
-                                                            status,
-                                                            latitude,
-                                                            longitude,
-                                                            created_at,
-                                                        } = presensi;
-                                                        return (
-                                                            <tr>
-                                                                <td>{new Date(presensi.created_at).toDateString()}</td>
-                                                                <td>{new Date(presensi.created_at).toTimeString()}</td>
-                                                                <td>{presensi.latitude + ', ' + presensi.longitude}</td>
-                                                                <td>
-                                                                    <span className={presensi.status ? "badge badge-pill badge-success" : "badge badge-pill badge-danger"}>{presensi.status ? "Hadir" : "Alfa"}
-                                                                    </span>
-                                                                </td>
-                                                            </tr>
-                                                        )
-                                                    })}
+                                                    <tr>
+                                                        <td>Rizqa Nabila</td>
+                                                        <td>25 Mei 2021</td>
+                                                        <td>5 Juni 2021</td>
+                                                        <td><Link to="/form-approval-izin-pulang" className="btn btn-outline-primary btn-sm">Approve</Link></td>
+                                                    </tr>
                                                 </tbody>
                                             </table>
                                         </div>
 
                                         {/* pagination */}
                                         <nav aria-label="Page navigation example">
-                                            <ul class="pagination justify-content-end">
+                                            <ul class="pagination">
                                                 <li class="page-item">
                                                 <a class="page-link" href="#" aria-label="Previous">
                                                     <span aria-hidden="true">&laquo;</span>
@@ -129,4 +109,4 @@ class RiwayatPresensi extends Component {
     }
 }
 
-export default RiwayatPresensi;
+export default DataIzinPergi;

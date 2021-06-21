@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\User;
-use App\Models\Pengurus_Komdis;
+use App\Models\Mahasiswa;
 
 class PengurusKomdisSeeder extends Seeder
 {
@@ -16,18 +16,25 @@ class PengurusKomdisSeeder extends Seeder
     public function run()
     {
         $user = User::create([
-            'email' => "koko.koko.tif18@polban.ac.id",
+            'email' => "komdis@polban.ac.id",
             'password' => \Hash::make(123456),
             'role' => 3
         ]);
         
-        $komdis = Pengurus_Komdis::create([
+        $mahasiswa = Mahasiswa::create([
             'id_users' => $user->id,
             'id_prodi' => 1,
             'id_kamar' => 1,
-            'nama_pengurus_komdis' => "Koko Koko",
-            'nim_pengurus_komdis' => "181511100",
-            'no_hp_pengurus_komdis' => "08787896548",
+            'nama_mhs' => 'Rizqa',
+            'nim_mhs' => '181511065',
+            'jenis_kelamin' => 2,
+            'tanggal_lahir' => '2000-01-01',
+            'agama' => 'Islam',
+            'alamat_mhs' => 'Tasikmalaya',
+            'no_hp_mhs' => '0812345678',
+            'nama_ortu' => 'Bu qoqo',
+            'no_hp_ortu' => '0812345678',
+            'golongan_ukt' => 1
         ]);
     }
 }

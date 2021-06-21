@@ -8,14 +8,14 @@ import Profile from './pages/Profile';
 
 //Mahasiswa
 import FormPresensi from './pages/FormPresensi';
-import FormPerizinan from './pages/FormPerizinan';
+import FormIzinPulang from './pages/FormIzinPulang';
 import FormResign from './pages/FormResign';
 import RiwayatPresensi from './pages/RiwayatPresensi';
 import RiwayatPerizinan from './pages/RiwayatPerizinan';
 
 //Pengurus dan Manajemen
-import DataIzinPergi from './pages/DataIzinPergi';
-import FormApprovalIzinPergi from './pages/FormApprovalIzinPergi';
+import DataIzinPulang from './pages/DataIzinPulang';
+import FormApprovalIzinPulang from './pages/FormApprovalIzinPulang';
 
 import DataIzinKembali from './pages/DataIzinKembali';
 
@@ -41,7 +41,7 @@ const Main = props =>(
         <PrivateRoute exact path="/profile" component={Profile} />
         
         <PrivateRoute exact path="/form-presensi" component={FormPresensi} />
-        <PrivateRoute exact path="/form-perizinan" component={FormPerizinan} />
+        <PrivateRoute exact path="/form-izin-pulang" component={FormIzinPulang} />
         <PrivateRoute exact path="/form-resign" component={FormResign} />
         <PrivateRoute exact path="/riwayat-presensi" component={RiwayatPresensi} />
         <PrivateRoute exact path="/riwayat-perizinan" component={RiwayatPerizinan} />

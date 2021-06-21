@@ -3,6 +3,7 @@ import L from 'leaflet';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 
 import 'leaflet/dist/leaflet.css';
+import '../../../assets/leaflet/map.css';
 
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';

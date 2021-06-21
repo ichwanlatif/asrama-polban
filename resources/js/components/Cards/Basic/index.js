@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class CardBasic extends Component {
   constructor(props) {
@@ -17,7 +18,14 @@ class CardBasic extends Component {
     return (
       <div className="card shadow mb-4">
         <div className="card-header py-3">
-          <h6 className="m-0 font-weight-bold text-primary">{this.state.title}</h6>
+          <div className="row no-gutters align-items-center">
+            <div className="col">
+              <h6 className="m-0 font-weight-bold text-primary">{this.state.title}</h6>
+            </div>
+            <div className="col-auto">
+              <Link to={this.props.link}>Lihat detail</Link>
+            </div>
+          </div>
         </div>
         <div className="card-body">
           {this.props.children}

@@ -29,97 +29,59 @@ class DashboardManajemen extends Component {
                 </div>
                 <div className="row">
                     <div className="col-lg-6">
-                        <CardBasic title="Presensi">
-                            <div className="float-left font-weight-bold">Status</div>
-                            <div class="float-right font-weight-bold">Jumlah mahasiswa</div>
-                            <br />
-                            <hr />
-                            <div className="float-left">Hadir</div>
-                            <div class="float-right">50</div>
-                            <br />
-                            <hr />
-                            <div className="float-left">Alfa</div>
-                            <div class="float-right">6</div>
-                            <br />
-                            <hr />
-                            <div className="float-left">Izin</div>
-                            <div class="float-right">4</div>
+                        <CardBasic title="Presensi" link="/rekapitulasi">
+                            <div className="table-responsive">
+                                <table className="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Status</th>
+                                            <th scope="col" className="text-right">Jumlah mahasiswa</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Hadir</td>
+                                            <td className="text-right">60</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Izin</td>
+                                            <td className="text-right">4</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Alfa</td>
+                                            <td className="text-right">5</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </CardBasic>
                     </div>
                     <div className="col-lg-6">
-                        <CardBasic title="Perizinan">
-                        <div className="float-left font-weight-bold">Status</div>
-                            <div class="float-right font-weight-bold">Jumlah perizinan</div>
-                            <br />
-                            <hr />
-                            <div className="float-left">Belum diproses</div>
-                            <div class="float-right">1</div>
-                            <br />
-                            <hr />
-                            <div className="float-left">Disetujui</div>
-                            <div class="float-right">4</div>
-                            <br />
-                            <hr />
-                            <div className="float-left">Ditolak</div>
-                            <div class="float-right">2</div>
-                        </CardBasic>
-                    </div>
-                </div>
-
-
-                <hr />
-                {/* ASRAMA B */}
-                <div className="row">
-                    <CardInfo title="Gedung Asrama"
-                        icon="house-user"
-                        color="primary"
-                        value="B" />
-
-                    <CardInfo title="Jumlah Mahasiswa"
-                        icon="users"
-                        color="primary"
-                        value="55" />
-
-                    <CardInfo title="Jumlah Pengurus"
-                        icon="users"
-                        color="primary"
-                        value="2" />
-                </div>
-                <div className="row">
-                    <div className="col-lg-6">
-                        <CardBasic title="Presensi">
-                            <div className="float-left font-weight-bold">Status</div>
-                            <div class="float-right font-weight-bold">Jumlah mahasiswa</div>
-                            <br />
-                            <hr />
-                            <div className="float-left">Hadir</div>
-                            <div class="float-right">52</div>
-                            <br />
-                            <hr />
-                            <div className="float-left">Alfa</div>
-                            <div class="float-right">1</div>
-                            <br />
-                            <hr />
-                            <div className="float-left">Izin</div>
-                            <div class="float-right">2</div>
-                        </CardBasic>
-                    </div>
-                    <div className="col-lg-6">
-                        <CardBasic title="Perizinan">
-                        <div className="float-left font-weight-bold">Status</div>
-                            <div class="float-right font-weight-bold">Jumlah perizinan</div>
-                            <br />
-                            <hr />
-                            <div className="float-left">Belum diproses</div>
-                            <div class="float-right">1</div>
-                            <br />
-                            <hr />
-                            <div className="float-left">Disetujui</div>
-                            <div class="float-right">2</div>
-                            <br />
-                            <hr />
-                            <div className="float-left">Ditolak</div>
-                            <div class="float-right">0</div>
+                        <CardBasic title="Perizinan" link="/rekapitulasi">
+                            <div className="table-responsive">
+                                <table className="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Status</th>
+                                            <th scope="col" className="text-right">Jumlah perizinan</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Belum diproses</td>
+                                            <td className="text-right">1</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Disetujui</td>
+                                            <td className="text-right">4</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ditolak</td>
+                                            <td className="text-right">2</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </CardBasic>
                     </div>
                 </div>

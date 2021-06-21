@@ -43,52 +43,50 @@ class Login extends Component {
         return (
             <div className="container">
                 <div className="row justify-content-center">
-                <div className="col-xl-10 col-lg-12 col-md-9">
-                    <div className="card o-hidden border-0 shadow-lg my-5">
-                        <div className="card-body p-0">
-                            {/* <!-- Nested Row within Card Body --> */}
-                            <div className="row">
-                                <div className="col-lg-6 d-none d-lg-block bg-login-image"></div>
-                                <div className="col-lg-6">
-                                    <div className="p-5">
-                                        <div className="text-center">
-                                            <h1 className="h4 text-gray-900 mb-4">Selamat Datang!</h1>
-                                        </div>
-                                        <hr/>
-                                        <form className="user">
-                                            <div className="form-group">
-                                            <   input 
-                                                    type="email"
-                                                    name="email"
-                                                    className="form-control form-control-user" 
-                                                    aria-describedby="emailHelp" 
-                                                    placeholder="Masukan Alamat Email"
-                                                    value={this.state.email}
-                                                    onChange={this.handleFieldChange}
-                                                    required
-                                                />
-                                            </div>
-                                            <div className="form-group">
-                                                <input 
-                                                    type="password"
-                                                    name="password"
-                                                    className="form-control form-control-user"
-                                                    placeholder="Masukan Password"
-                                                    value={this.state.password}
-                                                    onChange={this.handleFieldChange}
-                                                    required
-                                                />
-                                            </div>
-                                            <button  onClick={this.handleSubmit} className="btn btn-primary btn-user btn-block">
-                                                Masuk
-                                            </button>
-                                        </form>
+                    <div className="col-lg-6 col-md-8 col-sm-12">
+                        <div className="card o-hidden border-0 shadow-lg my-5">
+                            <div className="card-body p-0">
+                                {/* <!-- Nested Row within Card Body --> */}
+                                <div className="p-5">
+                                    <div className="text-center">
+                                    <img className="img-fluid mx-auto" src="/images/web/logo_dormitory_2.jpg" width="300"/>
+                                        <h1 className="h4 text-gray-900 mb-4">
+                                            PRESENSI DAN PERIZINAN<br/>ASRAMA POLBAN
+                                        </h1>
                                     </div>
+                                    <hr/>
+                                    <form className="user">
+                                        <div className="form-group">
+                                        <   input 
+                                                type="email"
+                                                name="email"
+                                                className="form-control form-control-user" 
+                                                aria-describedby="emailHelp" 
+                                                placeholder="Masukan Alamat Email"
+                                                value={this.state.email}
+                                                onChange={this.handleFieldChange}
+                                                required
+                                            />
+                                        </div>
+                                        <div className="form-group">
+                                            <input 
+                                                type="password"
+                                                name="password"
+                                                className="form-control form-control-user"
+                                                placeholder="Masukan Password"
+                                                value={this.state.password}
+                                                onChange={this.handleFieldChange}
+                                                required
+                                            />
+                                        </div>
+                                        <button  onClick={this.handleSubmit} className="btn btn-primary btn-user btn-block">
+                                            <i className="fas fa-sign-in-alt"></i> Masuk
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 </div>
             </div>
         )
