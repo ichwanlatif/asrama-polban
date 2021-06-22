@@ -58,5 +58,7 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     //Resign
     Route::post('/resign/create', [ResignController::class, 'store']);
     Route::get('/resign/{id}', [ResignController::class, 'getRiwayatResign']);
+    Route::get('/resign', [ResignController::class, 'getAllResign']);
+    Route::put('/resign/approval', [ResignController::class, 'approveResign']);
 
 });

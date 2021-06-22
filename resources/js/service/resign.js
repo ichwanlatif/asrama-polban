@@ -13,3 +13,15 @@ export const createResign = (props) => {
         }
     })
 }
+
+export const approve = (props) => {
+    api().put('api/resign/approval', props).then(response => {
+        if(response.data.status === 'success'){
+            console.log(response.data.msg)
+            window.location.reload()
+        }
+        else{
+            alert(response.data.msg)
+        }
+    })
+}

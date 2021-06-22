@@ -7,22 +7,47 @@ import Topbar from '../../components/Navigation/Topbar';
 import Footer from '../../components/Navigation/Footer';
 
 import PageHeading from '../../components/PageHeading';
+import api from '../../service/api';
+import { approve } from '../../service/resign';
 
 class DataResign extends Component {
     constructor(){
         super();
         this.state = {
-            role: ""
+            role: "",
+            datas: []
         };
+
+        this.approve = this.approve.bind(this)
     }
 
     componentDidMount(){
         this.setState({
             role: localStorage.getItem("user_role")
         });
+
+        api().get('api/resign').then(response =>{
+            if(response.data.status === 'success'){
+                this.setState({
+                    datas: response.data.data
+                })
+                console.log(this.state.datas)
+            }
+            else{
+                alert(response.data.msg);
+            }
+        })
+    }
+
+    approve(id){
+        console.log(id)
+        approve({
+            id: id
+        })
     }
 
     render() {
+        const data = this.state.datas
         return (
             <div>
                 <div id="wrapper">
@@ -62,11 +87,20 @@ class DataResign extends Component {
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>Ichwan Latif</td>
-                                                        <td>25 Mei 2021</td>
-                                                        <td><Link to="#" className="btn btn-outline-primary btn-sm">Approve</Link></td>
-                                                    </tr>
+                                                    {data.map(resign => {
+                                                        const {
+                                                            id,
+                                                            nama_mhs,
+                                                            taggal_resign,
+                                                        } = resign;
+                                                        return (
+                                                            <tr>
+                                                                <td>{resign.nama_mhs}</td>
+                                                                <td>{resign.tanggal_resign}</td>
+                                                                <td><button onClick={() => this.approve(resign.id)} className="btn btn-outline-primary btn-sm">Approve</button></td>
+                                                            </tr>
+                                                        )
+                                                    })}
                                                 </tbody>
                                             </table>
                                         </div>
