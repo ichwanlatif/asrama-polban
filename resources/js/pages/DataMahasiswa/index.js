@@ -103,9 +103,9 @@ class DataMahasiswa extends Component {
                                                     <span className="sr-only">Previous</span>
                                                 </Link>
                                                 </li>
-                                                <li className="page-item"><a className="page-link" href="#">1</a></li>
-                                                <li className="page-item"><a className="page-link" href="#">2</a></li>
-                                                <li className="page-item"><a className="page-link" href="#">3</a></li>
+                                                <li className="page-item"><Link className="page-link" to="#">1</Link></li>
+                                                <li className="page-item"><Link className="page-link" to="#">2</Link></li>
+                                                <li className="page-item"><Link className="page-link" to="#">3</Link></li>
                                                 <li className="page-item">
                                                 <Link className="page-link" to="#" aria-label="Next">
                                                     <span aria-hidden="true">&raquo;</span>
