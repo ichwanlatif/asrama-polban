@@ -1,5 +1,6 @@
 import Cookies from "js-cookie"
 import cookie from 'cookie'
+import { Redirect } from "react-router-dom"
 
 
 export const isLoggedIn = (reqCookies = null) => {
@@ -18,13 +19,13 @@ export const logOut = () => {
     if(typeof window !== 'undefined'){
         Cookies.remove('cake', {expires:86400, sameSite: 'lax'})
         localStorage.clear();
-        // return <Redirect to='/' />
+        return <Redirect to='/' />
     }
 
 }
 
 export const notLoggedIn = () => {
-    // return <Redirect to='/' />
+    return <Redirect to='/' />
 }
 
 export const cekLog = () => {
