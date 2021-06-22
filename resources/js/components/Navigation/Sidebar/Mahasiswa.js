@@ -49,7 +49,7 @@ class SidebarMahasiswa extends Component {
                     <div id="collapsePerizinan" className="collapse" aria-labelledby="headingPerizinan" data-parent="#accordionSidebar">
                         <div className="bg-white py-2 collapse-inner rounded">
                             <h6 className="collapse-header">Jenis Perizinan:</h6>
-                            <Link className="collapse-item" to="/form-perizinan">Izin Pergi Asrama</Link>
+                            <Link className="collapse-item" to="/form-izin-pulang">Izin Pulang Asrama</Link>
                             <Link className="collapse-item" to="/form-resign">Resign Asrama</Link>
                         </div>
                     </div>

@@ -1,6 +1,6 @@
 .leaflet-container {
-  width: 400px;
-  height: 400px;
-  position: relative;
-  outline: none;
+    width: 100px;
+    height:400px;
+    min-width: 100%;
+    display: block;
 }

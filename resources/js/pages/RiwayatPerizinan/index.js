@@ -76,13 +76,15 @@ class RiwayatPerizinan extends Component {
                                         <h6 className="text-primary">Riwayat Perizinan</h6>
                                     </div>
                                     <div className="card-body">
+
+                                        {/* Tabel Perizinan */}
                                         <div className="table-responsive">
                                             <table className="table table-hover">
                                                 <thead>
                                                     <tr>
                                                     <th scope="col">Mulai</th>
                                                     <th scope="col">Berakhir</th>
-                                                    <th scope="col">Jenis</th>
+                                                    <th scope="col">Jenis izin</th>
                                                     <th scope="col">Status</th>
                                                     <th scope="col">Konfirmasi kepulangan</th>
                                                     </tr>
@@ -153,6 +155,28 @@ class RiwayatPerizinan extends Component {
                                                 </tbody>
                                             </table>
                                         </div>
+
+                                        {/* pagination */}
+                                        <nav aria-label="Page navigation example">
+                                            <ul className="pagination">
+                                                <li className="page-item">
+                                                <Link className="page-link" to="#" aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                    <span className="sr-only">Previous</span>
+                                                </Link>
+                                                </li>
+                                                <li className="page-item"><Link className="page-link" to="#">1</Link></li>
+                                                <li className="page-item"><Link className="page-link" to="#">2</Link></li>
+                                                <li className="page-item"><Link className="page-link" to="#">3</Link></li>
+                                                <li className="page-item">
+                                                <Link className="page-link" to="#" aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                    <span className="sr-only">Next</span>
+                                                </Link>
+                                                </li>
+                                            </ul>
+                                        </nav>
+
                                     </div>
                                 </div>
                             </div>

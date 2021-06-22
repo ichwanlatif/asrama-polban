@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\User;
-use App\Models\Pengurus_Koordinator;
+use App\Models\Mahasiswa;
 
 class PengurusKoordinatorSeeder extends Seeder
 {
@@ -16,18 +16,25 @@ class PengurusKoordinatorSeeder extends Seeder
     public function run()
     {
         $user = User::create([
-            'email' => "irfan.siswara.tif18@polban.ac.id",
+            'email' => "koordinator@polban.ac.id",
             'password' => \Hash::make(123456),
             'role' => 2
         ]);
         
-        $koordinator = Pengurus_Koordinator::create([
+        $mahasiswa = Mahasiswa::create([
             'id_users' => $user->id,
             'id_prodi' => 1,
             'id_kamar' => 1,
-            'nama_pengurus_koordinator' => "Irfan Siswara",
-            'nim_pengurus_koordinator' => "181511048",
-            'no_hp_pengurus_koordinator' => "08787891454",
+            'nama_mhs' => 'Irfan',
+            'nim_mhs' => '181511048',
+            'jenis_kelamin' => 1,
+            'tanggal_lahir' => '2000-01-01',
+            'agama' => 'Islam',
+            'alamat_mhs' => 'Karawang',
+            'no_hp_mhs' => '0812345678',
+            'nama_ortu' => 'Pak irfan',
+            'no_hp_ortu' => '0812345678',
+            'golongan_ukt' => 1
         ]);
     }
 }

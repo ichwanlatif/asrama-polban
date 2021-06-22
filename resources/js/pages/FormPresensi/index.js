@@ -9,7 +9,6 @@ import Footer from '../../components/Navigation/Footer';
 import PageHeading from '../../components/PageHeading';
 
 import MapView from '../../components/Map/MapView';
-import '../../assets/leaflet/map.css';
 
 class FormPresensi extends Component {
     constructor(props) {
@@ -34,7 +33,7 @@ class FormPresensi extends Component {
                 role: localStorage.getItem("user_role")
             })
         }, 1000)
-        if(new Date().toLocaleTimeString() < "15.59.00" || new Date().toLocaleTimeString() > "20.01.00"){
+        if(new Date().toLocaleTimeString() < "12.59.00" || new Date().toLocaleTimeString() > "22.01.00"){
             alert("Tidak Dalam Waktu Presensi")
             window.location.assign('/#/dashboard')
         }
@@ -144,7 +143,7 @@ class FormPresensi extends Component {
                                             </div>
                                             <div className="form-group row">
                                                 <div className="col-md-8 offset-md-3 mb-2">
-                                                    <button id="submit" onClick={this.submitPresensi} type='submit' className='btn btn-info'>Submit</button>
+                                                    <button id="submit" onClick={this.submitPresensi} type='submit' className='btn btn-success'>Submit</button>
                                                 </div>
                                             </div>
                                         </form>

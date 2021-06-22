@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 //Navigation
 import Sidebar from '../../components/Navigation/Sidebar';
@@ -56,13 +57,15 @@ class RiwayatPresensi extends Component {
                                         <h6 className="text-primary">Riwayat Presensi Kehadiran</h6>
                                     </div>
                                     <div className="card-body">
+
+                                        {/* Tabel Presensi */}
                                         <div className="table-responsive">
                                             <table className="table table-hover">
                                                 <thead>
                                                     <tr>
                                                     <th scope="col">Tanggal</th>
                                                     <th scope="col">Waktu presensi</th>
-                                                    <th scope="col">Koordinat</th>
+                                                    <th scope="col">Koordinat GPS</th>
                                                     <th scope="col">Status</th>
                                                     </tr>
                                                 </thead>
@@ -90,6 +93,28 @@ class RiwayatPresensi extends Component {
                                                 </tbody>
                                             </table>
                                         </div>
+
+                                        {/* pagination */}
+                                        <nav aria-label="Page navigation example">
+                                            <ul className="pagination">
+                                                <li className="page-item">
+                                                <Link className="page-link" to="#" aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                    <span className="sr-only">Previous</span>
+                                                </Link>
+                                                </li>
+                                                <li className="page-item"><Link className="page-link" to="#">1</Link></li>
+                                                <li className="page-item"><Link className="page-link" to="#">2</Link></li>
+                                                <li className="page-item"><Link className="page-link" to="#">3</Link></li>
+                                                <li className="page-item">
+                                                <Link className="page-link" to="#" aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                    <span className="sr-only">Next</span>
+                                                </Link>
+                                                </li>
+                                            </ul>
+                                        </nav>
+
                                     </div>
                                 </div>
                             </div>

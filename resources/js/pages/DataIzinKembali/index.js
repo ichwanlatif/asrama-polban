@@ -35,13 +35,23 @@ class DataIzinKembali extends Component {
                         <Topbar />
                         {/* <!-- End of Topbar --> */}
                         <div className="container-fluid">
-                            <PageHeading title="Data Izin Pergi Asrama" />
+                            <PageHeading title="Data Izin Kembali Asrama" />
                             <div className="col-lg-12 col-md-12">
                                 <div className="card my-5">
                                     <div className="card-header">
                                         <h6 className="text-primary">Data Izin Kembali Asrama Yang Belum Diproses</h6>
                                     </div>
                                     <div className="card-body">
+
+                                        {/* Search Bar */}
+                                        <div className="input-group mb-2 border rounded-pill p-1 col-lg-4 col-md-8 col-sm-12">
+                                            <input type="text" placeholder="Cari mahasiswa.." className="form-control bg-none border-0 font-italic"/>
+                                            <div className="input-group-append border-0">
+                                                <button type="submit" className="btn btn-link text-primary"><i className="fa fa-search"></i></button>
+                                            </div>
+                                        </div>
+
+                                        {/* Tabel Izin Kembali */}
                                         <div className="table-responsive">
                                             <table className="table table-hover">
                                                 <thead>
@@ -62,6 +72,28 @@ class DataIzinKembali extends Component {
                                                 </tbody>
                                             </table>
                                         </div>
+
+                                        {/* pagination */}
+                                        <nav aria-label="Page navigation example">
+                                            <ul className="pagination">
+                                                <li className="page-item">
+                                                <Link className="page-link" to="#" aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                    <span className="sr-only">Previous</span>
+                                                </Link>
+                                                </li>
+                                                <li className="page-item"><Link className="page-link" to="#">1</Link></li>
+                                                <li className="page-item"><Link className="page-link" to="#">2</Link></li>
+                                                <li className="page-item"><Link className="page-link" to="#">3</Link></li>
+                                                <li className="page-item">
+                                                <Link className="page-link" to="#" aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                    <span className="sr-only">Next</span>
+                                                </Link>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                        
                                     </div>
                                 </div>
                             </div>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 //Navigation
 import Sidebar from '../../components/Navigation/Sidebar';
@@ -10,7 +10,7 @@ import PageHeading from '../../components/PageHeading';
 import api from '../../service/api';
 import { updatePerizinan } from '../../service/perizinan';
 
-class FormApprovalIzinPergi extends Component {
+class FormApprovalIzinPulang extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -210,4 +210,4 @@ class FormApprovalIzinPergi extends Component {
     }
 }
 
-export default FormApprovalIzinPergi;
+export default FormApprovalIzinPulang;

@@ -33,8 +33,7 @@ class Sidebar extends Component {
 
                 {/* Role */}
                 <Link className="sidebar-brand d-flex align-items-center justify-content-center" to="/dashboard">
-                    <i className="fas fa-users"></i>
-                    <div className="sidebar-brand-text mx-3">Asrama</div>
+                    <img className="img-fluid img-thumbnail" src="/images/web/logo_dormitory_2.jpg" width="120"/>
                 </Link>
 
                 {/* <!-- Divider --> */}

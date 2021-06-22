@@ -9,7 +9,7 @@ import Footer from '../../components/Navigation/Footer';
 import PageHeading from '../../components/PageHeading';
 import api from '../../service/api';
 
-class DataIzinPergi extends Component {
+class DataIzinPulang extends Component {
     constructor(){
         super();
         this.state = {
@@ -50,13 +50,23 @@ class DataIzinPergi extends Component {
                         <Topbar />
                         {/* <!-- End of Topbar --> */}
                         <div className="container-fluid">
-                            <PageHeading title="Data Izin Pergi Asrama" />
+                            <PageHeading title="Data Izin Pulang Asrama" />
                             <div className="col-lg-12 col-md-12">
                                 <div className="card my-5">
                                     <div className="card-header">
-                                        <h6 className="text-primary">Data Izin Pergi Asrama Yang Belum Diproses</h6>
+                                        <h6 className="text-primary">Data Izin Pulang Asrama Yang Belum Diproses</h6>
                                     </div>
                                     <div className="card-body">
+
+                                        {/* Search Bar */}
+                                        <div className="input-group mb-2 border rounded-pill p-1 col-lg-4 col-md-8 col-sm-12">
+                                            <input type="text" placeholder="Cari mahasiswa.." className="form-control bg-none border-0 font-italic"/>
+                                            <div className="input-group-append border-0">
+                                                <button type="submit" className="btn btn-link text-primary"><i className="fa fa-search"></i></button>
+                                            </div>
+                                        </div>
+
+                                        {/* Tabel Izin Pulang */}
                                         <div className="table-responsive">
                                             <table className="table table-hover">
                                                 <thead>
@@ -81,13 +91,35 @@ class DataIzinPergi extends Component {
                                                                 <td>{perizinan.nama_mhs}</td>
                                                                 <td>{perizinan.tanggal_pergi}</td>
                                                                 <td>{perizinan.tanggal_pulang}</td>
-                                                                <td><Link to={"/form-approval-izin-pergi/" + perizinan.id} className="btn btn-outline-primary btn-sm">Approve</Link></td>
+                                                                <td><Link to={"/form-approval-izin-pulang/" + perizinan.id} className="btn btn-outline-primary btn-sm">Approve</Link></td>
                                                             </tr>
                                                         )
                                                     })}
                                                 </tbody>
                                             </table>
                                         </div>
+
+                                        {/* pagination */}
+                                        <nav aria-label="Page navigation example">
+                                            <ul className="pagination">
+                                                <li className="page-item">
+                                                <Link className="page-link" to="#" aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                    <span className="sr-only">Previous</span>
+                                                </Link>
+                                                </li>
+                                                <li className="page-item"><a className="page-link" href="#">1</a></li>
+                                                <li className="page-item"><a className="page-link" href="#">2</a></li>
+                                                <li className="page-item"><a className="page-link" href="#">3</a></li>
+                                                <li className="page-item">
+                                                <Link className="page-link" to="#" aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                    <span className="sr-only">Next</span>
+                                                </Link>
+                                                </li>
+                                            </ul>
+                                        </nav>
+
                                     </div>
                                 </div>
                             </div>
@@ -103,4 +135,4 @@ class DataIzinPergi extends Component {
     }
 }
 
-export default DataIzinPergi;
+export default DataIzinPulang;
