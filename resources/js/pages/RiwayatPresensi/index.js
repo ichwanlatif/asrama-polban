@@ -8,6 +8,7 @@ import Footer from '../../components/Navigation/Footer';
 
 import PageHeading from '../../components/PageHeading';
 import api from '../../service/api';
+import { Tab } from 'bootstrap';
 // import { getRiwayatPresensi } from '../../service/presensi';
 
 class RiwayatPresensi extends Component {
@@ -37,7 +38,15 @@ class RiwayatPresensi extends Component {
     }
 
     render() {
-        const data = this.state.datas
+        const data = this.state.datas;
+        let TableStatus;
+
+        if (this.state.datas.length == 0) {
+            TableStatus = <h6 className="text-center">Tidak ada presensi</h6>;
+          } else {
+            TableStatus = <h6 className="text-center"></h6>;
+        }
+
         return (
             <div>
                 <div id="wrapper">
@@ -93,6 +102,8 @@ class RiwayatPresensi extends Component {
                                                 </tbody>
                                             </table>
                                         </div>
+
+                                        {TableStatus}
 
                                         {/* pagination */}
                                         <nav aria-label="Page navigation example">

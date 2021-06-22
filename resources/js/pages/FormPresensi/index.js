@@ -20,7 +20,6 @@ class FormPresensi extends Component {
             currentDateTime: new Date().toLocaleString(),
             status_location: "Belum mendapatkan lokasi",
             text_color : "text-warning",
-            
         };
         this.onClickGetLocation = this.onClickGetLocation.bind(this);
         this.submitPresensi = this.submitPresensi.bind(this);
