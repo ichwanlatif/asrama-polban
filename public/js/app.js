@@ -9464,7 +9464,8 @@ var loginAuth = function loginAuth(props) {
   (0,_api__WEBPACK_IMPORTED_MODULE_0__.default)().get('/sanctum/csrf-cookie').then(function () {
     (0,_api__WEBPACK_IMPORTED_MODULE_0__.default)().post('api/login', props).then(function (response) {
       if (response.data.status !== 'success') {
-        console.log(response.data.message); // notLoggedIn;
+        console.log(response.data.message);
+        _token__WEBPACK_IMPORTED_MODULE_1__.notLoggedIn;
       } else {
         localStorage.setItem('user_role', response.data.data.role);
         (0,_token__WEBPACK_IMPORTED_MODULE_1__.logIn)(response.data.token); // alert(response.data.data.role)
@@ -9626,6 +9627,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! js-cookie */ "./node_modules/js-cookie/src/js.cookie.js");
 /* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(js_cookie__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var cookie__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! cookie */ "./node_modules/cookie/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
 
 
 var isLoggedIn = function isLoggedIn() {
@@ -9649,10 +9654,16 @@ var logOut = function logOut() {
       expires: 86400,
       sameSite: 'lax'
     });
-    localStorage.clear(); // return <Redirect to='/' />
+    localStorage.clear();
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Redirect, {
+      to: "/"
+    });
   }
 };
-var notLoggedIn = function notLoggedIn() {// return <Redirect to='/' />
+var notLoggedIn = function notLoggedIn() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Redirect, {
+    to: "/"
+  });
 };
 var cekLog = function cekLog() {
   var status = js_cookie__WEBPACK_IMPORTED_MODULE_0___default().get('cake');

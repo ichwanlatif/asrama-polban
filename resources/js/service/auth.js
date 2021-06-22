@@ -8,7 +8,7 @@ export const loginAuth = (props) => {
         api().post('api/login', props).then(response => {
             if(response.data.status !== 'success'){
                 console.log(response.data.message)
-                // notLoggedIn;
+                notLoggedIn;
             }
             else{
                 localStorage.setItem('user_role', response.data.data.role);
