@@ -2661,6 +2661,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_leaflet__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-leaflet */ "./node_modules/react-leaflet/es/TileLayer.js");
 /* harmony import */ var react_leaflet__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-leaflet */ "./node_modules/react-leaflet/es/Marker.js");
 /* harmony import */ var react_leaflet__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-leaflet */ "./node_modules/react-leaflet/es/Popup.js");
+/* harmony import */ var react_leaflet__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-leaflet */ "./node_modules/react-leaflet/es/Circle.js");
 /* harmony import */ var leaflet_dist_leaflet_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! leaflet/dist/leaflet.css */ "./node_modules/leaflet/dist/leaflet.css");
 /* harmony import */ var _assets_leaflet_map_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../assets/leaflet/map.css */ "./resources/js/assets/leaflet/map.css");
 /* harmony import */ var leaflet_dist_images_marker_icon_png__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! leaflet/dist/images/marker-icon.png */ "./node_modules/leaflet/dist/images/marker-icon.png");
@@ -2720,7 +2721,7 @@ var MapView = /*#__PURE__*/function (_Component) {
         lat: _this.props.lat,
         lng: _this.props.lng
       },
-      zoom: 12
+      zoom: 15
     };
     return _this;
   }
@@ -2743,6 +2744,9 @@ var MapView = /*#__PURE__*/function (_Component) {
       var _this$state = this.state,
           currentLocation = _this$state.currentLocation,
           zoom = _this$state.zoom;
+      var fillBlueOptions = {
+        fillColor: 'blue'
+      };
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_leaflet__WEBPACK_IMPORTED_MODULE_7__.default, {
         center: currentLocation,
         zoom: zoom,
@@ -2753,6 +2757,13 @@ var MapView = /*#__PURE__*/function (_Component) {
           position: currentLocation,
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_leaflet__WEBPACK_IMPORTED_MODULE_10__.default, {
             children: "Lokasi presensi"
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_leaflet__WEBPACK_IMPORTED_MODULE_11__.default, {
+          center: [-6.87202462684, 107.57093365],
+          pathOptions: fillBlueOptions,
+          radius: 50,
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_leaflet__WEBPACK_IMPORTED_MODULE_10__.default, {
+            children: "Radius Asrama Polban"
           })
         })]
       });
@@ -2910,7 +2921,7 @@ var SidebarMahasiswa = /*#__PURE__*/function (_Component) {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
               "class": "fas fa-calendar-check"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-              children: "Form Presensi"
+              children: "Formulir Presensi"
             })]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
             id: "collapsePresensi",
@@ -3468,7 +3479,7 @@ var Sidebar = /*#__PURE__*/function (_Component) {
           to: "/dashboard",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("img", {
             className: "img-fluid img-thumbnail",
-            src: "/images/web/logo_dormitory_2.jpg",
+            src: "/images/web/logo-web-polban.png",
             width: "120"
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("hr", {
@@ -4705,7 +4716,7 @@ var DataIzinKembali = /*#__PURE__*/function (_Component) {
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("nav", {
                         "aria-label": "Page navigation example",
                         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("ul", {
-                          className: "pagination",
+                          className: "pagination justify-content-end",
                           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
                             className: "page-item",
                             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
@@ -4973,7 +4984,7 @@ var DataIzinPulang = /*#__PURE__*/function (_Component) {
                       }), TableStatus, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("nav", {
                         "aria-label": "Page navigation example",
                         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("ul", {
-                          className: "pagination",
+                          className: "pagination justify-content-end",
                           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("li", {
                             className: "page-item",
                             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Link, {
@@ -5163,18 +5174,21 @@ var DataMahasiswa = /*#__PURE__*/function (_Component) {
                             })
                           })
                         })]
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
-                        to: "/tambah-mahasiswa",
-                        className: "btn btn-primary btn-icon-split mb-2",
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
-                          className: "icon text-white-50",
-                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("i", {
-                            className: "fas fa-user-plus"
-                          })
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
-                          className: "text",
-                          children: "Tambah mahasiswa"
-                        })]
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+                        className: "d-flex justify-content-end",
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
+                          to: "/tambah-mahasiswa",
+                          className: "btn btn-primary btn-icon-split mb-2",
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                            className: "icon text-white-50",
+                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("i", {
+                              className: "fas fa-user-plus"
+                            })
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                            className: "text",
+                            children: "Tambah mahasiswa"
+                          })]
+                        })
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
                         className: "table-responsive",
                         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("table", {
@@ -5238,7 +5252,7 @@ var DataMahasiswa = /*#__PURE__*/function (_Component) {
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("nav", {
                         "aria-label": "Page navigation example",
                         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("ul", {
-                          className: "pagination",
+                          className: "pagination justify-content-end",
                           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
                             className: "page-item",
                             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
@@ -5464,7 +5478,7 @@ var DataResign = /*#__PURE__*/function (_Component) {
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("nav", {
                         "aria-label": "Page navigation example",
                         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("ul", {
-                          className: "pagination",
+                          className: "pagination justify-content-end",
                           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
                             className: "page-item",
                             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
@@ -6551,7 +6565,7 @@ var FormApprovalIzinPulang = /*#__PURE__*/function (_Component) {
                           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("label", {
                             "for": "formfile",
                             className: "col-md-3 col-form-label text-md-right",
-                            children: "File pendukung"
+                            children: "Surat pendukung"
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
                             className: "col-md-8",
                             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("a", {
@@ -6781,26 +6795,29 @@ var FormIzinPulang = /*#__PURE__*/function (_Component) {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_Navigation_Topbar__WEBPACK_IMPORTED_MODULE_2__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
                 className: "container-fluid",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_PageHeading__WEBPACK_IMPORTED_MODULE_4__.default, {
-                  title: "Izin Pulang Asrama"
+                  title: "Izin Meninggalkan Asrama Polban"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                   className: "col-lg-12 col-md-12",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                     className: "card my-5",
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
                       className: "card-body",
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h4", {
-                        className: "text-primary text-center",
-                        children: "Formulir izin pulang asrama"
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h6", {
-                        className: "text-center text-muted",
-                        children: "Isi data formulir perizinan dibawah ini"
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("h6", {
+                        className: "text-justify text-muted",
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+                          className: "text-danger",
+                          children: "*"
+                        }), " Penghuni Asrama Mahasiswa Polban yang ingin pergi diharuskan untuk mengisi formulir ini.", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+                          className: "text-danger",
+                          children: "*"
+                        }), " Silakan tunggu konfirmasi dari kantor PD3."]
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("form", {
                         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
                           className: "form-group row",
                           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
                             "for": "description",
                             className: "col-md-3 col-form-label text-md-right",
-                            children: "Keterangan"
+                            children: "Alasan meninggalkan asrama"
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                             className: "col-md-8",
                             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("textarea", {
@@ -6817,7 +6834,7 @@ var FormIzinPulang = /*#__PURE__*/function (_Component) {
                           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
                             "for": "startdate",
                             className: "col-md-3 col-form-label text-md-right",
-                            children: "Mulai izin"
+                            children: "Mulai pergi"
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                             className: "col-md-3",
                             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
@@ -6831,25 +6848,83 @@ var FormIzinPulang = /*#__PURE__*/function (_Component) {
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
                           className: "form-group row",
                           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
-                            "for": "enddate",
+                            "for": "coordinat",
                             className: "col-md-3 col-form-label text-md-right",
-                            children: "Berakhir pada"
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-                            className: "col-md-3",
-                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
-                              type: "date",
-                              className: "form-control",
-                              name: "tanggal_pulang",
-                              onChange: this.handleFieldChange,
-                              required: true
-                            })
+                            children: "Kondisi kesehatan"
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                            className: "col-md-8",
+                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                              className: "input-group mb-2",
+                              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                                className: "custom-control custom-radio",
+                                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+                                  type: "radio",
+                                  id: "healthy",
+                                  name: "health",
+                                  className: "custom-control-input"
+                                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                                  className: "custom-control-label",
+                                  "for": "healthy",
+                                  children: "Sehat"
+                                })]
+                              })
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                              className: "input-group mb-2",
+                              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                                className: "input-group-prepend",
+                                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                                  className: "input-group-text",
+                                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+                                    type: "radio",
+                                    id: "sick",
+                                    name: "health",
+                                    "aria-label": "Radio button for following text input"
+                                  })
+                                })
+                              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+                                type: "text",
+                                className: "form-control",
+                                "aria-label": "Text input with radio button",
+                                placeholder: "Yang lain:"
+                              })]
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("small", {
+                              className: "text-muted",
+                              children: "Jelaskan keluhan saudara, jika merasa sakit."
+                            })]
+                          })]
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                          className: "form-group row",
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                            "for": "coordinat",
+                            className: "col-md-3 col-form-label text-md-right",
+                            children: "Suhu badan"
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                            className: "col-md-8",
+                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                              className: "input-group",
+                              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+                                type: "number",
+                                className: "form-control",
+                                "aria-describedby": "temperature"
+                              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                                className: "input-group-append",
+                                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+                                  className: "input-group-text",
+                                  id: "temperature",
+                                  children: "\xB0Celcius"
+                                })
+                              })]
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("small", {
+                              className: "text-muted",
+                              children: "Dapat dilakukan sendiri atau di pos keamanan pintu masuk 1 Polban."
+                            })]
                           })]
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
                           className: "form-group row",
                           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
                             "for": "formfile",
                             className: "col-md-3 col-form-label text-md-right",
-                            children: "File pendukung"
+                            children: "Surat pendukung (opsional)"
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
                             className: "col-md-8",
                             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
@@ -6858,9 +6933,81 @@ var FormIzinPulang = /*#__PURE__*/function (_Component) {
                               onChange: this.handleFileChange
                             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("small", {
                               className: "text-muted",
-                              children: "Format yang didukung: *.jpg, *.pdf"
+                              children: "Format yang didukung: *.jpg, *.png, *.pdf"
                             })]
                           })]
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                          className: "form-group row",
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                            "for": "address",
+                            className: "col-md-3 col-form-label text-md-right",
+                            children: "Alamat tujuan pergi"
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                            className: "col-md-8",
+                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+                              type: "text",
+                              className: "form-control"
+                            })
+                          })]
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                          className: "form-group row",
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                            "for": "description",
+                            className: "col-md-3 col-form-label text-md-right",
+                            children: "Transportasi yang digunakan"
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                            className: "col-md-8",
+                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("select", {
+                              "class": "form-control",
+                              id: "vehicle",
+                              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                                children: "Sepeda"
+                              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                                children: "Motor"
+                              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                                children: "Mobil"
+                              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                                children: "Angkutan Kota"
+                              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                                children: "Travel"
+                              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                                children: "Bus Antar Kota"
+                              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                                children: "Pesawat"
+                              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                                children: "Kereta Api"
+                              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                                children: "Kapal Laut"
+                              })]
+                            })
+                          })]
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                          className: "form-group row my-4",
+                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                            className: "col-md-11",
+                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("label", {
+                              className: "col-form-label text-justify",
+                              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+                                className: "text-danger",
+                                children: "*"
+                              }), " Saya akan menanggung segala bentuk kerugian yang timbul dan tidak akan menuntut pihak Manajemen Polban. Demikian keterangan ini dibuat tanpa paksaan dan untuk dipergunakan sesuai dengan kepentingannya."]
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("small", {
+                              className: "text-muted",
+                              children: "Silakan tunggu respon dari Kantor PD3. Saudara belum di ijinkan untuk meninggalkan Asrama sebelum ada surat ijin resmi dari Kantor PD3."
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                              "class": "custom-control custom-checkbox",
+                              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+                                type: "checkbox",
+                                "class": "custom-control-input",
+                                id: "aggrement",
+                                required: true
+                              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                                "class": "custom-control-label",
+                                "for": "aggrement",
+                                children: "Saya memahami dan setuju"
+                              })]
+                            })]
+                          })
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                           className: "form-group row",
                           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
@@ -6982,7 +7129,7 @@ var FormPresensi = /*#__PURE__*/function (_Component) {
         });
       }, 1000);
 
-      if (new Date().toLocaleTimeString() < "12.59.00" || new Date().toLocaleTimeString() > "22.01.00") {
+      if (new Date().toLocaleTimeString() < "06.59.00" || new Date().toLocaleTimeString() > "21.01.00") {
         alert("Tidak Dalam Waktu Presensi");
         window.location.assign('/#/dashboard');
       } else {
@@ -7046,26 +7193,32 @@ var FormPresensi = /*#__PURE__*/function (_Component) {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_Navigation_Topbar__WEBPACK_IMPORTED_MODULE_4__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
                 className: "container-fluid",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_PageHeading__WEBPACK_IMPORTED_MODULE_6__.default, {
-                  title: "Presensi Asrama"
+                  title: "Absensi Penghuni Asrama Polban"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
                   className: "col-lg-12 col-md-12",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
                     className: "card my-5",
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
                       className: "card-body",
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("h4", {
-                        className: "text-primary text-center",
-                        children: "Formulir presensi"
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("h6", {
-                        className: "text-center text-muted",
-                        children: "Isi data formulir presensi dibawah ini"
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("h6", {
+                        className: "text-justify text-muted",
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("span", {
+                          className: "text-danger",
+                          children: "*"
+                        }), " Untuk menjaga suasana Asrama Polban dan kampus Polban yang aman dan sehat, maka diminta kepada seluruh penghuni Asrama Polban untuk mengisi form ini setiap hari setiap pukul 7 pagi dan 7 petang.", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("span", {
+                          className: "text-danger",
+                          children: "*"
+                        }), " Apabila saudara tidak mengisi form ini, maka Polban akan menganggap bahwa saudara sedang sakit dan untuk itu akan kami rujuk untuk pulang ke orangtua atau ke rumah sakit.", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("span", {
+                          className: "text-danger",
+                          children: "*"
+                        }), " Bila suhu badan saudara mencapai 37,3 C, maka Polban akan membawa saudara ke klinik/rumah sakit. Mahasiswa yang sakit, akan di isolasi atau tidak di ijinkan untuk tinggal di Asrama Polban agar tidak menularkan ke temannya."]
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("form", {
                         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
                           className: "form-group row",
                           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("label", {
                             "for": "time",
                             className: "col-md-3 col-form-label text-md-right",
-                            children: "Waktu presensi"
+                            children: "Waktu absensi"
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
                             className: "col-md-8",
                             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("input", {
@@ -7079,7 +7232,7 @@ var FormPresensi = /*#__PURE__*/function (_Component) {
                           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("label", {
                             "for": "coordinat",
                             className: "col-md-3 col-form-label text-md-right",
-                            children: "Koordinat presensi"
+                            children: "Posisi saat ini"
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
                             className: "col-md-8",
                             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("input", {
@@ -7110,6 +7263,80 @@ var FormPresensi = /*#__PURE__*/function (_Component) {
                               children: "Ambil lokasi"
                             })
                           })
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+                          className: "form-group row",
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("label", {
+                            "for": "coordinat",
+                            className: "col-md-3 col-form-label text-md-right",
+                            children: "Kondisi kesehatan"
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+                            className: "col-md-8",
+                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+                              className: "input-group mb-2",
+                              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+                                className: "custom-control custom-radio",
+                                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("input", {
+                                  type: "radio",
+                                  id: "healthy",
+                                  name: "health",
+                                  className: "custom-control-input"
+                                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("label", {
+                                  className: "custom-control-label",
+                                  "for": "healthy",
+                                  children: "Sehat"
+                                })]
+                              })
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+                              className: "input-group mb-2",
+                              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+                                className: "input-group-prepend",
+                                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+                                  className: "input-group-text",
+                                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("input", {
+                                    type: "radio",
+                                    id: "sick",
+                                    name: "health",
+                                    "aria-label": "Radio button for following text input"
+                                  })
+                                })
+                              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("input", {
+                                type: "text",
+                                className: "form-control",
+                                "aria-label": "Text input with radio button",
+                                placeholder: "Yang lain:"
+                              })]
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("small", {
+                              className: "text-muted",
+                              children: "Jelaskan keluhan saudara, jika merasa sakit."
+                            })]
+                          })]
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+                          className: "form-group row",
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("label", {
+                            "for": "coordinat",
+                            className: "col-md-3 col-form-label text-md-right",
+                            children: "Suhu badan"
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+                            className: "col-md-8",
+                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+                              className: "input-group",
+                              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("input", {
+                                type: "number",
+                                className: "form-control",
+                                "aria-describedby": "temperature"
+                              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+                                className: "input-group-append",
+                                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("span", {
+                                  className: "input-group-text",
+                                  id: "temperature",
+                                  children: "\xB0Celcius"
+                                })
+                              })]
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("small", {
+                              className: "text-muted",
+                              children: "Dapat dilakukan sendiri atau di pos keamanan pintu masuk 1 Polban."
+                            })]
+                          })]
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
                           className: "form-group row",
                           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
@@ -7254,36 +7481,57 @@ var FormResign = /*#__PURE__*/function (_Component) {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_Navigation_Topbar__WEBPACK_IMPORTED_MODULE_2__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
                 className: "container-fluid",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_PageHeading__WEBPACK_IMPORTED_MODULE_4__.default, {
-                  title: "Resign Asrama"
+                  title: "Resign Asrama Polban"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                   className: "col-lg-12 col-md-12",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                     className: "card my-5",
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                       className: "card-body",
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h4", {
-                        className: "text-primary text-center",
-                        children: "Formulir resign asrama"
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h6", {
-                        className: "text-center text-muted",
-                        children: "Isi data formulir resign dibawah ini"
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("form", {
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("form", {
                         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
                           className: "form-group row",
                           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
                             "for": "description",
                             className: "col-md-3 col-form-label text-md-right",
-                            children: "Keterangan"
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                            children: "Alasan resign Asrama Polban"
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
                             className: "col-md-8",
-                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("textarea", {
-                              className: "form-control",
-                              placeholder: "Beri penjelasan mengenai alasan ingin resign dari asrama",
-                              rows: "3",
-                              name: "keterangan_resign",
-                              onChange: this.handleFieldChange,
-                              required: true
-                            })
+                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                              className: "input-group mb-2",
+                              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                                className: "custom-control custom-radio",
+                                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+                                  type: "radio",
+                                  id: "expired",
+                                  name: "reason",
+                                  className: "custom-control-input"
+                                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                                  className: "custom-control-label",
+                                  "for": "expired",
+                                  children: "Masa tinggal habis"
+                                })]
+                              })
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                              className: "input-group mb-2",
+                              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                                className: "input-group-prepend",
+                                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                                  className: "input-group-text",
+                                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+                                    type: "radio",
+                                    id: "other",
+                                    name: "reason",
+                                    "aria-label": "Radio button for following text input"
+                                  })
+                                })
+                              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+                                type: "text",
+                                className: "form-control",
+                                "aria-label": "Text input with radio button",
+                                placeholder: "Yang lain:"
+                              })]
+                            })]
                           })]
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
                           className: "form-group row",
@@ -7301,6 +7549,119 @@ var FormResign = /*#__PURE__*/function (_Component) {
                               required: true
                             })
                           })]
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                          className: "form-group row",
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                            "for": "coordinat",
+                            className: "col-md-3 col-form-label text-md-right",
+                            children: "Kondisi kesehatan"
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                            className: "col-md-8",
+                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                              className: "input-group mb-2",
+                              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                                className: "custom-control custom-radio",
+                                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+                                  type: "radio",
+                                  id: "healthy",
+                                  name: "health",
+                                  className: "custom-control-input"
+                                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                                  className: "custom-control-label",
+                                  "for": "healthy",
+                                  children: "Sehat"
+                                })]
+                              })
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                              className: "input-group mb-2",
+                              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                                className: "input-group-prepend",
+                                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                                  className: "input-group-text",
+                                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+                                    type: "radio",
+                                    id: "sick",
+                                    name: "health",
+                                    "aria-label": "Radio button for following text input"
+                                  })
+                                })
+                              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+                                type: "text",
+                                className: "form-control",
+                                "aria-label": "Text input with radio button",
+                                placeholder: "Yang lain:"
+                              })]
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("small", {
+                              className: "text-muted",
+                              children: "Jelaskan keluhan saudara, jika merasa sakit."
+                            })]
+                          })]
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                          className: "form-group row",
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                            "for": "coordinat",
+                            className: "col-md-3 col-form-label text-md-right",
+                            children: "Suhu badan"
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                            className: "col-md-8",
+                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                              className: "input-group",
+                              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+                                type: "number",
+                                className: "form-control",
+                                "aria-describedby": "temperature"
+                              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                                className: "input-group-append",
+                                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+                                  className: "input-group-text",
+                                  id: "temperature",
+                                  children: "\xB0Celcius"
+                                })
+                              })]
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("small", {
+                              className: "text-muted",
+                              children: "Dapat dilakukan sendiri atau di pos keamanan pintu masuk 1 Polban."
+                            })]
+                          })]
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                          className: "form-group row",
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                            "for": "description",
+                            className: "col-md-3 col-form-label text-md-right",
+                            children: "Kendaraan yang dibawa"
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                            className: "col-md-8",
+                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("select", {
+                              "class": "form-control",
+                              id: "vehicle",
+                              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                                children: "Sepeda"
+                              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                                children: "Motor"
+                              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                                children: "Mobil"
+                              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                                children: "Tidak ada"
+                              })]
+                            })
+                          })]
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                          className: "form-group row",
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                            "for": "formfile",
+                            className: "col-md-3 col-form-label text-md-right",
+                            children: "STNK (opsional)"
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                            className: "col-md-8",
+                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+                              className: "form-control-file",
+                              type: "file",
+                              onChange: this.handleFileChange
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("small", {
+                              className: "text-muted",
+                              children: "Format yang didukung: *.jpg, *.png, *.pdf"
+                            })]
+                          })]
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                           className: "form-group row",
                           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
@@ -7313,7 +7674,7 @@ var FormResign = /*#__PURE__*/function (_Component) {
                             })
                           })
                         })]
-                      })]
+                      })
                     })
                   })
                 })]
@@ -7612,7 +7973,7 @@ var Login = /*#__PURE__*/function (_Component) {
                     className: "text-center",
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
                       className: "img-fluid mx-auto",
-                      src: "/images/web/logo_dormitory_2.jpg",
+                      src: "/images/web/logo-web-polban.png",
                       width: "300"
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("h1", {
                       className: "h4 text-gray-900 mb-4",
@@ -8230,18 +8591,21 @@ var Rekapitulasi = /*#__PURE__*/function (_Component) {
                             })
                           })
                         })]
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
-                        to: "#",
-                        className: "btn btn-light btn-icon-split mb-2",
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
-                          className: "icon text-gray-600",
-                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("i", {
-                            className: "fas fa-file-download"
-                          })
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
-                          className: "text",
-                          children: "Unduh rekap"
-                        })]
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+                        className: "d-flex justify-content-end",
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
+                          to: "#",
+                          className: "btn btn-light btn-icon-split mb-2 justify-content-end",
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                            className: "icon text-gray-600",
+                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("i", {
+                              className: "fas fa-file-download"
+                            })
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                            className: "text",
+                            children: "Unduh rekap"
+                          })]
+                        })
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
                         className: "table-responsive",
                         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("table", {
@@ -8299,7 +8663,7 @@ var Rekapitulasi = /*#__PURE__*/function (_Component) {
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("nav", {
                         "aria-label": "Page navigation example",
                         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("ul", {
-                          className: "pagination",
+                          className: "pagination justify-content-end",
                           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
                             className: "page-item",
                             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
@@ -8626,7 +8990,7 @@ var RiwayatPerizinan = /*#__PURE__*/function (_Component) {
                       }), TableStatus, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("nav", {
                         "aria-label": "Page navigation example",
                         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("ul", {
-                          className: "pagination",
+                          className: "pagination justify-content-end",
                           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("li", {
                             className: "page-item",
                             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link, {
@@ -8881,7 +9245,7 @@ var RiwayatPresensi = /*#__PURE__*/function (_Component) {
                       }), TableStatus, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("nav", {
                         "aria-label": "Page navigation example",
                         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("ul", {
-                          className: "pagination",
+                          className: "pagination justify-content-end",
                           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("li", {
                             className: "page-item",
                             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link, {
@@ -14670,6 +15034,63 @@ module.exports = function (url, options) {
 
   return url;
 };
+
+/***/ }),
+
+/***/ "./node_modules/fast-deep-equal/index.js":
+/*!***********************************************!*\
+  !*** ./node_modules/fast-deep-equal/index.js ***!
+  \***********************************************/
+/***/ ((module) => {
+
+"use strict";
+
+
+// do not edit .js files directly - edit src/index.jst
+
+
+
+module.exports = function equal(a, b) {
+  if (a === b) return true;
+
+  if (a && b && typeof a == 'object' && typeof b == 'object') {
+    if (a.constructor !== b.constructor) return false;
+
+    var length, i, keys;
+    if (Array.isArray(a)) {
+      length = a.length;
+      if (length != b.length) return false;
+      for (i = length; i-- !== 0;)
+        if (!equal(a[i], b[i])) return false;
+      return true;
+    }
+
+
+
+    if (a.constructor === RegExp) return a.source === b.source && a.flags === b.flags;
+    if (a.valueOf !== Object.prototype.valueOf) return a.valueOf() === b.valueOf();
+    if (a.toString !== Object.prototype.toString) return a.toString() === b.toString();
+
+    keys = Object.keys(a);
+    length = keys.length;
+    if (length !== Object.keys(b).length) return false;
+
+    for (i = length; i-- !== 0;)
+      if (!Object.prototype.hasOwnProperty.call(b, keys[i])) return false;
+
+    for (i = length; i-- !== 0;) {
+      var key = keys[i];
+
+      if (!equal(a[key], b[key])) return false;
+    }
+
+    return true;
+  }
+
+  // true if both NaN, false otherwise
+  return a!==a && b!==b;
+};
+
 
 /***/ }),
 
@@ -87542,6 +87963,65 @@ if (false) {} else {
 
 /***/ }),
 
+/***/ "./node_modules/react-leaflet/es/Circle.js":
+/*!*************************************************!*\
+  !*** ./node_modules/react-leaflet/es/Circle.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js");
+/* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inheritsLoose */ "./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js");
+/* harmony import */ var leaflet__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! leaflet */ "./node_modules/leaflet/dist/leaflet-src.js");
+/* harmony import */ var leaflet__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(leaflet__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./context */ "./node_modules/react-leaflet/es/context.js");
+/* harmony import */ var _Path__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Path */ "./node_modules/react-leaflet/es/Path.js");
+
+
+
+
+
+
+
+
+var Circle = /*#__PURE__*/function (_Path) {
+  (0,_babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_1__.default)(Circle, _Path);
+
+  function Circle() {
+    return _Path.apply(this, arguments) || this;
+  }
+
+  var _proto = Circle.prototype;
+
+  _proto.createLeafletElement = function createLeafletElement(props) {
+    var center = props.center,
+        radius = props.radius,
+        options = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_0__.default)(props, ["center", "radius"]);
+
+    return new leaflet__WEBPACK_IMPORTED_MODULE_2__.Circle(center, radius, this.getOptions(options));
+  };
+
+  _proto.updateLeafletElement = function updateLeafletElement(fromProps, toProps) {
+    if (toProps.center !== fromProps.center) {
+      this.leafletElement.setLatLng(toProps.center);
+    }
+
+    if (toProps.radius !== fromProps.radius) {
+      this.leafletElement.setRadius(toProps.radius);
+    }
+  };
+
+  return Circle;
+}(_Path__WEBPACK_IMPORTED_MODULE_3__.default);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,_context__WEBPACK_IMPORTED_MODULE_4__.withLeaflet)(Circle));
+
+/***/ }),
+
 /***/ "./node_modules/react-leaflet/es/DivOverlay.js":
 /*!*****************************************************!*\
   !*** ./node_modules/react-leaflet/es/DivOverlay.js ***!
@@ -88394,6 +88874,86 @@ var Marker = /*#__PURE__*/function (_MapLayer) {
 
 /***/ }),
 
+/***/ "./node_modules/react-leaflet/es/Path.js":
+/*!***********************************************!*\
+  !*** ./node_modules/react-leaflet/es/Path.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Path)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inheritsLoose */ "./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js");
+/* harmony import */ var fast_deep_equal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! fast-deep-equal */ "./node_modules/fast-deep-equal/index.js");
+/* harmony import */ var fast_deep_equal__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(fast_deep_equal__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _MapLayer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./MapLayer */ "./node_modules/react-leaflet/es/MapLayer.js");
+/* harmony import */ var _utils_pick__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils/pick */ "./node_modules/react-leaflet/es/utils/pick.js");
+
+
+
+
+
+
+
+var OPTIONS = ['stroke', 'color', 'weight', 'opacity', 'lineCap', 'lineJoin', 'dashArray', 'dashOffset', 'fill', 'fillColor', 'fillOpacity', 'fillRule', 'bubblingMouseEvents', 'renderer', 'className', // Interactive Layer
+'interactive', // Layer
+'pane', 'attribution'];
+
+var Path = /*#__PURE__*/function (_MapLayer) {
+  (0,_babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_1__.default)(Path, _MapLayer);
+
+  function Path(props) {
+    var _this;
+
+    _this = _MapLayer.call(this, props) || this;
+
+    if (_this.contextValue == null) {
+      _this.contextValue = (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({}, props.leaflet, {
+        popupContainer: _this.leafletElement
+      });
+    }
+
+    return _this;
+  }
+
+  var _proto = Path.prototype;
+
+  _proto.componentDidUpdate = function componentDidUpdate(prevProps) {
+    _MapLayer.prototype.componentDidUpdate.call(this, prevProps);
+
+    this.setStyleIfChanged(prevProps, this.props);
+  };
+
+  _proto.getPathOptions = function getPathOptions(props) {
+    return (0,_utils_pick__WEBPACK_IMPORTED_MODULE_3__.default)(props, OPTIONS);
+  };
+
+  _proto.setStyle = function setStyle(options) {
+    if (options === void 0) {
+      options = {};
+    }
+
+    this.leafletElement.setStyle(options);
+  };
+
+  _proto.setStyleIfChanged = function setStyleIfChanged(fromProps, toProps) {
+    var nextStyle = this.getPathOptions(toProps);
+
+    if (!fast_deep_equal__WEBPACK_IMPORTED_MODULE_2___default()(nextStyle, this.getPathOptions(fromProps))) {
+      this.setStyle(nextStyle);
+    }
+  };
+
+  return Path;
+}(_MapLayer__WEBPACK_IMPORTED_MODULE_4__.default);
+
+
+
+/***/ }),
+
 /***/ "./node_modules/react-leaflet/es/Popup.js":
 /*!************************************************!*\
   !*** ./node_modules/react-leaflet/es/Popup.js ***!
@@ -88660,6 +89220,31 @@ function omit(obj) {
     }
 
     return acc;
+  }, {});
+}
+
+/***/ }),
+
+/***/ "./node_modules/react-leaflet/es/utils/pick.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/react-leaflet/es/utils/pick.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ pick)
+/* harmony export */ });
+
+
+function pick(object, keys) {
+  return keys.reduce(function (obj, key) {
+    if (typeof object[key] !== 'undefined') {
+      obj[key] = object[key];
+    }
+
+    return obj;
   }, {});
 }
 

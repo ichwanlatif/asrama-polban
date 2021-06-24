@@ -71,18 +71,21 @@ class FormIzinPulang extends Component {
                         <Topbar />
                         {/* <!-- End of Topbar --> */}
                         <div className="container-fluid">
-                            <PageHeading title="Izin Pulang Asrama" />
+                            <PageHeading title="Izin Meninggalkan Asrama Polban" />
                             <div className="col-lg-12 col-md-12">
                                 <div className="card my-5">
                                     <div className="card-body">
-                                        <h4 className="text-primary text-center">Formulir izin pulang asrama</h4>
-                                        <h6 className="text-center text-muted">Isi data formulir perizinan dibawah ini</h6>
+                                        <h6 className="text-justify text-muted">
+                                            <span className="text-danger">*</span> Penghuni Asrama Mahasiswa Polban yang ingin pergi diharuskan untuk mengisi formulir ini.<br/><br/>
+                                            <span className="text-danger">*</span> Silakan tunggu konfirmasi dari kantor PD3.
+                                        </h6>
                                         <hr></hr>
 
                                         {/* Form perizinan*/}
                                         <form>
+
                                             <div className="form-group row">
-                                                <label for="description" className="col-md-3 col-form-label text-md-right">Keterangan</label>
+                                                <label for="description" className="col-md-3 col-form-label text-md-right">Alasan meninggalkan asrama</label>
                                                 <div className="col-md-8">
                                                     <textarea 
                                                         name="keterangan_izin"
@@ -94,8 +97,9 @@ class FormIzinPulang extends Component {
                                                     </textarea>
                                                 </div>
                                             </div>
+
                                             <div className="form-group row">
-                                                <label for="startdate" className="col-md-3 col-form-label text-md-right">Mulai izin</label>
+                                                <label for="startdate" className="col-md-3 col-form-label text-md-right">Mulai pergi</label>
                                                 <div className="col-md-3">
                                                     <input 
                                                         type="date" 
@@ -106,29 +110,99 @@ class FormIzinPulang extends Component {
                                                     />
                                                 </div>
                                             </div>
+
                                             <div className="form-group row">
-                                                <label for="enddate" className="col-md-3 col-form-label text-md-right">Berakhir pada</label>
-                                                <div className="col-md-3">
-                                                    <input 
-                                                        type="date" 
-                                                        className="form-control"
-                                                        name="tanggal_pulang"
-                                                        onChange={this.handleFieldChange}
-                                                        required
-                                                    />
+                                                <label for="coordinat" className="col-md-3 col-form-label text-md-right">Kondisi kesehatan</label>
+                                                <div className="col-md-8">
+
+                                                    <div className="input-group mb-2"> 
+                                                        <div className="custom-control custom-radio">
+                                                            <input type="radio" id="healthy" name="health" className="custom-control-input"/>
+                                                            <label className="custom-control-label" for="healthy">Sehat</label>
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="input-group mb-2"> 
+                                                        <div className="input-group-prepend">
+                                                            <div className="input-group-text">
+                                                                <input type="radio" id="sick" name="health" aria-label="Radio button for following text input"/>
+                                                            </div>
+                                                        </div>
+                                                        <input 
+                                                            type="text" 
+                                                            className="form-control" 
+                                                            aria-label="Text input with radio button"
+                                                            placeholder="Yang lain:"/>
+                                                    </div>
+
+                                                    <small className="text-muted">Jelaskan keluhan saudara, jika merasa sakit.</small>
                                                 </div>
                                             </div>
+
                                             <div className="form-group row">
-                                                <label for="formfile" className="col-md-3 col-form-label text-md-right">File pendukung</label>
+                                                <label for="coordinat" className="col-md-3 col-form-label text-md-right">Suhu badan</label>
+                                                <div className="col-md-8">
+                                                    <div className="input-group">
+                                                        <input
+                                                            type="number"
+                                                            className="form-control"
+                                                            aria-describedby="temperature"
+                                                        />
+                                                        <div className="input-group-append">
+                                                            <span className="input-group-text" id="temperature">&deg;Celcius</span>
+                                                        </div>
+                                                    </div>
+                                                    <small className="text-muted">Dapat dilakukan sendiri atau di pos keamanan pintu masuk 1 Polban.</small>
+                                                </div>
+                                            </div>
+
+                                            <div className="form-group row">
+                                                <label for="formfile" className="col-md-3 col-form-label text-md-right">Surat pendukung (opsional)</label>
                                                 <div className="col-md-8">
                                                     <input 
                                                         className="form-control-file" 
                                                         type="file"
                                                         onChange={this.handleFileChange}
                                                     />
-                                                    <small className="text-muted">Format yang didukung: *.jpg, *.pdf</small>
+                                                    <small className="text-muted">Format yang didukung: *.jpg, *.png, *.pdf</small>
                                                 </div>
                                             </div>
+
+                                            <div className="form-group row">
+                                                <label for="address" className="col-md-3 col-form-label text-md-right">Alamat tujuan pergi</label>
+                                                <div className="col-md-8">
+                                                    <input type="text" className="form-control"/>
+                                                </div>
+                                            </div>
+
+                                            <div className="form-group row">
+                                                <label for="description" className="col-md-3 col-form-label text-md-right">Transportasi yang digunakan</label>
+                                                <div className="col-md-8">
+                                                    <select class="form-control" id="vehicle">
+                                                        <option>Sepeda</option>
+                                                        <option>Motor</option>
+                                                        <option>Mobil</option>
+                                                        <option>Angkutan Kota</option>
+                                                        <option>Travel</option>
+                                                        <option>Bus Antar Kota</option>
+                                                        <option>Pesawat</option>
+                                                        <option>Kereta Api</option>
+                                                        <option>Kapal Laut</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div className="form-group row my-4">
+                                                <div className="col-md-11">
+                                                    <label className="col-form-label text-justify"><span className="text-danger">*</span> Saya akan menanggung segala bentuk kerugian yang timbul dan tidak akan menuntut pihak Manajemen Polban. Demikian keterangan ini dibuat tanpa paksaan dan untuk dipergunakan sesuai dengan kepentingannya.</label>
+                                                    <small className="text-muted">Silakan tunggu respon dari Kantor PD3. Saudara belum di ijinkan untuk meninggalkan Asrama sebelum ada surat ijin resmi dari Kantor PD3.</small>
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" id="aggrement" required/>
+                                                        <label class="custom-control-label" for="aggrement">Saya memahami dan setuju</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                             <div className="form-group row">
                                                 <div className="col-md-8 offset-md-3 mb-2">
                                                     <button type="submit" className="btn btn-success" onClick={this.handleSubmit}>
@@ -136,6 +210,7 @@ class FormIzinPulang extends Component {
                                                     </button>
                                                 </div>
                                             </div>
+                                            
                                         </form>
 
                                     </div>

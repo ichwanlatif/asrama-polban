@@ -145,7 +145,7 @@ class FormApprovalIzinPulang extends Component {
                                                 </div>
                                             </div>
                                             <div className="form-group row">
-                                                <label for="formfile" className="col-md-3 col-form-label text-md-right">File pendukung</label>
+                                                <label for="formfile" className="col-md-3 col-form-label text-md-right">Surat pendukung</label>
                                                 <div className="col-md-8">
                                                     <a href={'/storage/file_perizinan/' + this.state.surat_pendukung} download={this.state.surat_pendukung} class="btn btn-light btn-icon-split">
                                                         <span class="icon text-gray-600">

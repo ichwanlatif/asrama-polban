@@ -32,7 +32,7 @@ class FormPresensi extends Component {
                 role: localStorage.getItem("user_role")
             })
         }, 1000)
-        if(new Date().toLocaleTimeString() < "12.59.00" || new Date().toLocaleTimeString() > "22.01.00"){
+        if(new Date().toLocaleTimeString() < "06.59.00" || new Date().toLocaleTimeString() > "21.01.00"){
             alert("Tidak Dalam Waktu Presensi")
             window.location.assign('/#/dashboard')
         }
@@ -93,18 +93,20 @@ class FormPresensi extends Component {
                         <Topbar />
                         {/* <!-- End of Topbar --> */}
                         <div className="container-fluid">
-                            <PageHeading title="Presensi Asrama" />
+                            <PageHeading title="Absensi Penghuni Asrama Polban" />
                             <div className="col-lg-12 col-md-12">
                                 <div className="card my-5">
                                     <div className="card-body">
-                                        <h4 className="text-primary text-center">Formulir presensi</h4>
-                                        <h6 className="text-center text-muted">Isi data formulir presensi dibawah ini</h6>
+                                        <h6 className="text-justify text-muted">
+                                            <span className="text-danger">*</span> Untuk menjaga suasana Asrama Polban dan kampus Polban yang aman dan sehat, maka diminta kepada seluruh penghuni Asrama Polban untuk mengisi form ini setiap hari setiap pukul 7 pagi dan 7 petang.<br/><br/>
+                                            <span className="text-danger">*</span> Apabila saudara tidak mengisi form ini, maka Polban akan menganggap bahwa saudara sedang sakit dan untuk itu akan kami rujuk untuk pulang ke orangtua atau ke rumah sakit.<br/><br/>
+                                            <span className="text-danger">*</span> Bila suhu badan saudara mencapai 37,3 C, maka Polban akan membawa saudara ke klinik/rumah sakit. Mahasiswa yang sakit, akan di isolasi atau tidak di ijinkan untuk tinggal di Asrama Polban agar tidak menularkan ke temannya.</h6>
                                         <hr></hr>
 
                                         {/* Form presensi*/}
                                         <form>
                                             <div className="form-group row">
-                                                <label for="time" className="col-md-3 col-form-label text-md-right">Waktu presensi</label>
+                                                <label for="time" className="col-md-3 col-form-label text-md-right">Waktu absensi</label>
                                                 <div className="col-md-8">
                                                     <input 
                                                         type="text" 
@@ -113,8 +115,9 @@ class FormPresensi extends Component {
                                                     />
                                                 </div>
                                             </div>
+
                                             <div className="form-group row">
-                                                <label for="coordinat" className="col-md-3 col-form-label text-md-right">Koordinat presensi</label>
+                                                <label for="coordinat" className="col-md-3 col-form-label text-md-right">Posisi saat ini</label>
                                                 <div className="col-md-8">
                                                     <input
                                                         type="text"
@@ -135,11 +138,58 @@ class FormPresensi extends Component {
                                                     <Map latitude={this.state.lat} longitude={this.state.long} />
                                                 </div> */}
                                             </div>
+
                                             <div className="form-group row">
                                                 <div className="col-md-8 offset-md-3 mb-4">
                                                     <button className="btn btn-primary" type="button" onClick={this.onClickGetLocation}>Ambil lokasi</button>
                                                 </div>
                                             </div>
+
+                                            <div className="form-group row">
+                                                <label for="coordinat" className="col-md-3 col-form-label text-md-right">Kondisi kesehatan</label>
+                                                <div className="col-md-8">
+
+                                                    <div className="input-group mb-2"> 
+                                                        <div className="custom-control custom-radio">
+                                                            <input type="radio" id="healthy" name="health" className="custom-control-input"/>
+                                                            <label className="custom-control-label" for="healthy">Sehat</label>
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="input-group mb-2"> 
+                                                        <div className="input-group-prepend">
+                                                            <div className="input-group-text">
+                                                                <input type="radio" id="sick" name="health" aria-label="Radio button for following text input"/>
+                                                            </div>
+                                                        </div>
+                                                        <input 
+                                                            type="text" 
+                                                            className="form-control" 
+                                                            aria-label="Text input with radio button"
+                                                            placeholder="Yang lain:"/>
+                                                    </div>
+
+                                                    <small className="text-muted">Jelaskan keluhan saudara, jika merasa sakit.</small>
+                                                </div>
+                                            </div>
+
+                                            <div className="form-group row">
+                                                <label for="coordinat" className="col-md-3 col-form-label text-md-right">Suhu badan</label>
+                                                <div className="col-md-8">
+                                                    <div className="input-group">
+                                                        <input
+                                                            type="number"
+                                                            className="form-control"
+                                                            aria-describedby="temperature"
+                                                        />
+                                                        <div className="input-group-append">
+                                                            <span className="input-group-text" id="temperature">&deg;Celcius</span>
+                                                        </div>
+                                                    </div>
+                                                    <small className="text-muted">Dapat dilakukan sendiri atau di pos keamanan pintu masuk 1 Polban.</small>
+                                                </div>
+                                            </div>
+                                            
                                             <div className="form-group row">
                                                 <div className="col-md-8 offset-md-3 mb-2">
                                                     <button id="submit" onClick={this.submitPresensi} type='submit' className='btn btn-success'>Submit</button>

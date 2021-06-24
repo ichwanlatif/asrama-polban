@@ -68,7 +68,7 @@ class Login extends Component {
                                 {/* <!-- Nested Row within Card Body --> */}
                                 <div className="p-5">
                                     <div className="text-center">
-                                    <img className="img-fluid mx-auto" src="/images/web/logo_dormitory_2.jpg" width="300"/>
+                                    <img className="img-fluid mx-auto" src="/images/web/logo-web-polban.png" width="300"/>
                                     <hr/>
                                     <h1 className="h4 text-gray-900 mb-4">
                                         PRESENSI DAN PERIZINAN<br/>ASRAMA POLBAN
