@@ -13,13 +13,17 @@ class CreatePresensi extends Migration
      */
     public function up()
     {
-        Schema::create('presensi', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('id_mhs')->references('id')->on('mahasiswa');
-            $table->tinyInteger('status');
+        Schema::create('Presensi', function (Blueprint $table) {
+            $table->bigIncrements('id_presensi');
+            $table->unsignedBigInteger('id_mhs');
+            $table->integer('status_presensi');
             $table->string('latitude');
             $table->string('longitude');
+            $table->integer('suhu_badan');
+            $table->string('kondisi_kesehatan', 50);
             $table->timestamps();
+
+            $table->foreign('id_mhs')->references('id_mhs')->on('Mahasiswa')->onDelete('cascade');
         });
     }
 

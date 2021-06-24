@@ -13,10 +13,13 @@ class CreateKamar extends Migration
      */
     public function up()
     {
-        Schema::create('kamar', function (Blueprint $table) {
-            $table->id();
-            $table->string('no_kamar');
+        Schema::create('Kamar', function (Blueprint $table) {
+            $table->bigIncrements('id_kamar');
+            $table->unsignedBigInteger('id_gedung');
+            $table->integer('no_kamar');
             $table->timestamps();
+
+            $table->foreign('id_gedung')->references('id_gedung')->on('Gedung')->onDelete('cascade');
         });
     }
 

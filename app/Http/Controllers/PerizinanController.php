@@ -100,6 +100,13 @@ class PerizinanController extends Controller
     }
 
     public function approvalPerizinan(Request $request){
+        $validasi = \Validator::make($request->all(), [
+            'status_izin' => 'required',
+        ]);
+
+        if($validasi->fails()){
+            return response()->json(["status" => 422, "msg" => "Form Tidak Valid"]);
+        }
         $perizinan = Perizinan::where([
             ['id', '=', $request->id],
             ['status_izin', '=', 0],

@@ -13,16 +13,23 @@ class CreatePerizinan extends Migration
      */
     public function up()
     {
-        Schema::create('perizinan', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('id_mhs')->references('id')->on('mahasiswa');
+        Schema::create('Perizinan', function (Blueprint $table) {
+            $table->bigIncrements('id_perizinan');
+            $table->unsignedBigInteger('id_mhs');
             $table->date('tanggal_pergi');
             $table->date('tanggal_pulang');
-            $table->longText('keterangan_izin');
-            $table->string('surat_pendukung');
-            $table->tinyInteger('status_izin');
-            $table->longText('catatan_pengurus')->nullable();
+            $table->string('keterangan_izin', 125);
+            $table->string('alamat_izin', 125);
+            $table->string('keterangan_kembali')->nullable();
+            $table->string('surat_pendukung')->nullable();
+            $table->longText('catatan_approval')->nullable();
+            $table->integer('status_izin');
+            $table->integer('suhu_badan');
+            $table->string('kondisi_kesehatan', 50);
+            $table->string('jenis_kendaraan', 10);
             $table->timestamps();
+
+            $table->foreign('id_mhs')->references('id_mhs')->on('Mahasiswa')->onDelete('cascade');
         });
     }
 

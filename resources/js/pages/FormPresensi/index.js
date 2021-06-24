@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { createPresensi } from '../../service/presensi';
 import api from '../../service/api';
+import HaversineGeolocation from 'haversine-geolocation';
 //Navigation
 import Sidebar from '../../components/Navigation/Sidebar';
 import Topbar from '../../components/Navigation/Topbar';
@@ -17,6 +18,7 @@ class FormPresensi extends Component {
             role:"1",
             lat: 0,
             long: 0,
+            status: 10,
             currentDateTime: new Date().toLocaleString(),
             status_location: "Belum mendapatkan lokasi",
             text_color : "text-warning",
@@ -33,38 +35,69 @@ class FormPresensi extends Component {
                 role: localStorage.getItem("user_role")
             })
         }, 1000)
-        if(new Date().toLocaleTimeString() < "12.59.00" || new Date().toLocaleTimeString() > "22.01.00"){
-            alert("Tidak Dalam Waktu Presensi")
-            window.location.assign('/#/dashboard')
-        }
-        else{
-            api().get('api/perizinan/checkPerizinan/' + localStorage.getItem('user_id')).then(response =>{
-                if(response.data.status === 'success'){
-                    alert('Anda Sedang Izin')
-                    window.location.assign('/#/dashboard')
-                }
-            })
+        // if(new Date().toLocaleTimeString() < "12.59.00" || new Date().toLocaleTimeString() > "22.01.00"){
+        //     alert("Tidak Dalam Waktu Presensi")
+        //     window.location.assign('/#/dashboard')
+        // }
+        // else{
+        //     api().get('api/perizinan/checkPerizinan/' + localStorage.getItem('user_id')).then(response =>{
+        //         if(response.data.status === 'success'){
+        //             alert('Anda Sedang Izin')
+        //             window.location.assign('/#/dashboard')
+        //         }
+        //     })
 
-            api().get('api/presensi/kehadiranToday/' + localStorage.getItem('user_id')).then(today =>{
-                if(today.data.status === 'success'){
-                    alert('Anda Telah Melakukan Presensi');
-                    document.getElementById("submit").disabled = true;
-                    document.getElementById("submit").className = "btn btn-success"
-                }
-            })
-        }
+        //     api().get('api/presensi/kehadiranToday/' + localStorage.getItem('user_id')).then(today =>{
+        //         if(today.data.status === 'success'){
+        //             alert('Anda Telah Melakukan Presensi');
+        //             document.getElementById("submit").disabled = true;
+        //             document.getElementById("submit").className = "btn btn-success"
+        //         }
+        //     })
+        // }
     }
 
     onClickGetLocation() {
         if(navigator.geolocation){
             navigator.geolocation.getCurrentPosition((position => {
                 this.setState({
-                    lat: position.coords.latitude,
-                    long: position.coords.longitude,
-                    status_location: "Sudah mendapatkan lokasi",
-                    text_color : "text-success"
+                    lat: -6.872161,
+                    long: 107.570858
+
+                    // lat: position.coords.latitude,
+                    // long: position.coords.longitude,
                 })
+                console.log("Lat: " + this.state.lat)
+                console.log("Long: " + this.state.long)
+                const points = [
+                    {
+                        latitude: this.state.lat,
+                        longitude: this.state.long
+                    },
+                    {
+                        latitude: -6.871925383063508, 
+                        longitude: 107.57102532659914,
+                    }
+                ]
+                let hasil = HaversineGeolocation.getDistanceBetween(points[0], points[1], 'm');
+                console.log(hasil);
+                if(hasil > 50){
+                    this.setState({
+                        status: 0,
+                        status_location: "Berada di Luar Asrama",
+                        text_color : "text-danger",
+                    })
+                }
+                else{
+                    this.setState({
+                        status: 1,
+                        status_location: "Berada di Asrama",
+                        text_color : "text-success",
+                    })
+                }
             }))
+
+            
         }
         else{
             alert('Browser anda tidak support')
@@ -74,11 +107,17 @@ class FormPresensi extends Component {
     submitPresensi(e){
         e.preventDefault()
         console.log(this.state.lat)
-        createPresensi({
-            latitude: this.state.lat,
-            longitude: this.state.long,
-            id_mhs: localStorage.getItem('user_id')
-        })
+        if(this.state.status === 10){
+            alert('Silahkan Get Location Terlebih Dahulu')
+        }
+        else{
+            createPresensi({
+                status: this.state.status,
+                latitude: this.state.lat,
+                longitude: this.state.long,
+                id_mhs: localStorage.getItem('user_id')
+            })
+        }
     }
 
     render() {

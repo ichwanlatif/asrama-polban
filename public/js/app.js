@@ -150,9 +150,13 @@ function ownKeys(object, enumerableOnly) {
 
   if (Object.getOwnPropertySymbols) {
     var symbols = Object.getOwnPropertySymbols(object);
-    if (enumerableOnly) symbols = symbols.filter(function (sym) {
-      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-    });
+
+    if (enumerableOnly) {
+      symbols = symbols.filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+      });
+    }
+
     keys.push.apply(keys, symbols);
   }
 
@@ -2174,7 +2178,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! js-cookie */ "./node_modules/js-cookie/src/js.cookie.js");
 /* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(js_cookie__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+var _excluded = ["component"];
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
@@ -2189,7 +2195,7 @@ function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) r
 
 var PrivateRoute = function PrivateRoute(_ref) {
   var Component = _ref.component,
-      rest = _objectWithoutProperties(_ref, ["component"]);
+      rest = _objectWithoutProperties(_ref, _excluded);
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Route, _objectSpread(_objectSpread({}, rest), {}, {
     render: function render(props) {
@@ -6931,12 +6937,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _service_presensi__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../service/presensi */ "./resources/js/service/presensi.js");
 /* harmony import */ var _service_api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../service/api */ "./resources/js/service/api.js");
-/* harmony import */ var _components_Navigation_Sidebar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/Navigation/Sidebar */ "./resources/js/components/Navigation/Sidebar/index.js");
-/* harmony import */ var _components_Navigation_Topbar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/Navigation/Topbar */ "./resources/js/components/Navigation/Topbar/index.js");
-/* harmony import */ var _components_Navigation_Footer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/Navigation/Footer */ "./resources/js/components/Navigation/Footer/index.js");
-/* harmony import */ var _components_PageHeading__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/PageHeading */ "./resources/js/components/PageHeading/index.js");
-/* harmony import */ var _components_Map_MapView__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../components/Map/MapView */ "./resources/js/components/Map/MapView/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var haversine_geolocation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! haversine-geolocation */ "./node_modules/haversine-geolocation/dist/build.js");
+/* harmony import */ var haversine_geolocation__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(haversine_geolocation__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _components_Navigation_Sidebar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/Navigation/Sidebar */ "./resources/js/components/Navigation/Sidebar/index.js");
+/* harmony import */ var _components_Navigation_Topbar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/Navigation/Topbar */ "./resources/js/components/Navigation/Topbar/index.js");
+/* harmony import */ var _components_Navigation_Footer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/Navigation/Footer */ "./resources/js/components/Navigation/Footer/index.js");
+/* harmony import */ var _components_PageHeading__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../components/PageHeading */ "./resources/js/components/PageHeading/index.js");
+/* harmony import */ var _components_Map_MapView__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../components/Map/MapView */ "./resources/js/components/Map/MapView/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -6958,6 +6966,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -6986,6 +6995,7 @@ var FormPresensi = /*#__PURE__*/function (_Component) {
       role: "1",
       lat: 0,
       "long": 0,
+      status: 10,
       currentDateTime: new Date().toLocaleString(),
       status_location: "Belum mendapatkan lokasi",
       text_color: "text-warning"
@@ -7005,26 +7015,25 @@ var FormPresensi = /*#__PURE__*/function (_Component) {
           currentDateTime: new Date().toLocaleString(),
           role: localStorage.getItem("user_role")
         });
-      }, 1000);
-
-      if (new Date().toLocaleTimeString() < "12.59.00" || new Date().toLocaleTimeString() > "22.01.00") {
-        alert("Tidak Dalam Waktu Presensi");
-        window.location.assign('/#/dashboard');
-      } else {
-        (0,_service_api__WEBPACK_IMPORTED_MODULE_2__.default)().get('api/perizinan/checkPerizinan/' + localStorage.getItem('user_id')).then(function (response) {
-          if (response.data.status === 'success') {
-            alert('Anda Sedang Izin');
-            window.location.assign('/#/dashboard');
-          }
-        });
-        (0,_service_api__WEBPACK_IMPORTED_MODULE_2__.default)().get('api/presensi/kehadiranToday/' + localStorage.getItem('user_id')).then(function (today) {
-          if (today.data.status === 'success') {
-            alert('Anda Telah Melakukan Presensi');
-            document.getElementById("submit").disabled = true;
-            document.getElementById("submit").className = "btn btn-success";
-          }
-        });
-      }
+      }, 1000); // if(new Date().toLocaleTimeString() < "12.59.00" || new Date().toLocaleTimeString() > "22.01.00"){
+      //     alert("Tidak Dalam Waktu Presensi")
+      //     window.location.assign('/#/dashboard')
+      // }
+      // else{
+      //     api().get('api/perizinan/checkPerizinan/' + localStorage.getItem('user_id')).then(response =>{
+      //         if(response.data.status === 'success'){
+      //             alert('Anda Sedang Izin')
+      //             window.location.assign('/#/dashboard')
+      //         }
+      //     })
+      //     api().get('api/presensi/kehadiranToday/' + localStorage.getItem('user_id')).then(today =>{
+      //         if(today.data.status === 'success'){
+      //             alert('Anda Telah Melakukan Presensi');
+      //             document.getElementById("submit").disabled = true;
+      //             document.getElementById("submit").className = "btn btn-success"
+      //         }
+      //     })
+      // }
     }
   }, {
     key: "onClickGetLocation",
@@ -7034,11 +7043,37 @@ var FormPresensi = /*#__PURE__*/function (_Component) {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
           _this3.setState({
-            lat: position.coords.latitude,
-            "long": position.coords.longitude,
-            status_location: "Sudah mendapatkan lokasi",
-            text_color: "text-success"
+            lat: -6.872161,
+            "long": 107.570858 // lat: position.coords.latitude,
+            // long: position.coords.longitude,
+
           });
+
+          console.log("Lat: " + _this3.state.lat);
+          console.log("Long: " + _this3.state["long"]);
+          var points = [{
+            latitude: _this3.state.lat,
+            longitude: _this3.state["long"]
+          }, {
+            latitude: -6.871925383063508,
+            longitude: 107.57102532659914
+          }];
+          var hasil = haversine_geolocation__WEBPACK_IMPORTED_MODULE_3___default().getDistanceBetween(points[0], points[1], 'm');
+          console.log(hasil);
+
+          if (hasil > 50) {
+            _this3.setState({
+              status: 0,
+              status_location: "Berada di Luar Asrama",
+              text_color: "text-danger"
+            });
+          } else {
+            _this3.setState({
+              status: 1,
+              status_location: "Berada di Asrama",
+              text_color: "text-success"
+            });
+          }
         });
       } else {
         alert('Browser anda tidak support');
@@ -7049,97 +7084,103 @@ var FormPresensi = /*#__PURE__*/function (_Component) {
     value: function submitPresensi(e) {
       e.preventDefault();
       console.log(this.state.lat);
-      (0,_service_presensi__WEBPACK_IMPORTED_MODULE_1__.createPresensi)({
-        latitude: this.state.lat,
-        longitude: this.state["long"],
-        id_mhs: localStorage.getItem('user_id')
-      });
+
+      if (this.state.status === 10) {
+        alert('Silahkan Get Location Terlebih Dahulu');
+      } else {
+        (0,_service_presensi__WEBPACK_IMPORTED_MODULE_1__.createPresensi)({
+          status: this.state.status,
+          latitude: this.state.lat,
+          longitude: this.state["long"],
+          id_mhs: localStorage.getItem('user_id')
+        });
+      }
     }
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
           id: "wrapper",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_Navigation_Sidebar__WEBPACK_IMPORTED_MODULE_3__.default, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_components_Navigation_Sidebar__WEBPACK_IMPORTED_MODULE_4__.default, {
             role: this.state.role
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
             id: "content-wrapper",
             className: "d-flex flex-column",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
               id: "content",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_Navigation_Topbar__WEBPACK_IMPORTED_MODULE_4__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_components_Navigation_Topbar__WEBPACK_IMPORTED_MODULE_5__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
                 className: "container-fluid",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_PageHeading__WEBPACK_IMPORTED_MODULE_6__.default, {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_components_PageHeading__WEBPACK_IMPORTED_MODULE_7__.default, {
                   title: "Presensi Asrama"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
                   className: "col-lg-12 col-md-12",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
                     className: "card my-5",
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
                       className: "card-body",
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("h4", {
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("h4", {
                         className: "text-primary text-center",
                         children: "Formulir presensi"
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("h6", {
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("h6", {
                         className: "text-center text-muted",
                         children: "Isi data formulir presensi dibawah ini"
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("form", {
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("form", {
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
                           className: "form-group row",
-                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("label", {
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("label", {
                             "for": "time",
                             className: "col-md-3 col-form-label text-md-right",
                             children: "Waktu presensi"
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
                             className: "col-md-8",
-                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("input", {
+                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("input", {
                               type: "text",
                               className: "form-control-plaintext",
                               value: this.state.currentDateTime
                             })
                           })]
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
                           className: "form-group row",
-                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("label", {
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("label", {
                             "for": "coordinat",
                             className: "col-md-3 col-form-label text-md-right",
                             children: "Koordinat presensi"
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
                             className: "col-md-8",
-                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("input", {
+                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("input", {
                               type: "text",
                               className: "form-control",
                               name: "coordinat",
                               value: this.state.lat + ", " + this.state["long"],
                               readOnly: true
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_Map_MapView__WEBPACK_IMPORTED_MODULE_7__.default, {
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_components_Map_MapView__WEBPACK_IMPORTED_MODULE_8__.default, {
                               lat: this.state.lat,
                               lng: this.state["long"]
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("small", {
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("small", {
                               className: "text-muted",
                               children: "Status: "
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("small", {
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("small", {
                               className: this.state.text_color,
                               children: this.state.status_location
                             })]
                           })]
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
                           className: "form-group row",
-                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
                             className: "col-md-8 offset-md-3 mb-4",
-                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("button", {
+                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("button", {
                               className: "btn btn-primary",
                               type: "button",
                               onClick: this.onClickGetLocation,
                               children: "Ambil lokasi"
                             })
                           })
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
                           className: "form-group row",
-                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
                             className: "col-md-8 offset-md-3 mb-2",
-                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("button", {
+                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("button", {
                               id: "submit",
                               onClick: this.submitPresensi,
                               type: "submit",
@@ -7153,7 +7194,7 @@ var FormPresensi = /*#__PURE__*/function (_Component) {
                   })
                 })]
               })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_Navigation_Footer__WEBPACK_IMPORTED_MODULE_5__.default, {})]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_components_Navigation_Footer__WEBPACK_IMPORTED_MODULE_6__.default, {})]
           })]
         })
       });
@@ -9369,7 +9410,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "MenuOpenReducer": () => (/* binding */ MenuOpenReducer)
 /* harmony export */ });
 /* harmony import */ var _actions_ActionTypes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/ActionTypes */ "./resources/js/redux/actions/ActionTypes.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
@@ -14937,6 +14978,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/fonts/fa-solid-900.woff2?ada6e6df937f7e5e8b790dfea07109b7");
+
+/***/ }),
+
+/***/ "./node_modules/haversine-geolocation/dist/build.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/haversine-geolocation/dist/build.js ***!
+  \**********************************************************/
+/***/ ((module) => {
+
+!function(e,t){if(true)module.exports=t();else { var n, r; }}(window,(function(){return function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}return r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,"a",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p="",r(r.s=5)}([function(e,t){e.exports=function(e,t){(null==t||t>e.length)&&(t=e.length);for(var r=0,n=new Array(t);r<t;r++)n[r]=e[r];return n}},function(e,t){e.exports=function(e,t,r){return t in e?Object.defineProperty(e,t,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[t]=r,e}},function(e,t,r){var n=r(6),o=r(7),i=r(8),a=r(9);e.exports=function(e){return n(e)||o(e)||i(e)||a()}},function(e,t){e.exports=function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}},function(e,t){function r(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}e.exports=function(e,t,n){return t&&r(e.prototype,t),n&&r(e,n),e}},function(e,t,r){"use strict";r.r(t);var n=r(1),o=r.n(n),i=r(2),a=r.n(i),u=r(3),c=r.n(u),s=r(4),f=r.n(s);function l(e,t){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var n=Object.getOwnPropertySymbols(e);t&&(n=n.filter((function(t){return Object.getOwnPropertyDescriptor(e,t).enumerable}))),r.push.apply(r,n)}return r}function p(e){for(var t=1;t<arguments.length;t++){var r=null!=arguments[t]?arguments[t]:{};t%2?l(Object(r),!0).forEach((function(t){o()(e,t,r[t])})):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):l(Object(r)).forEach((function(t){Object.defineProperty(e,t,Object.getOwnPropertyDescriptor(r,t))}))}return e}var y=function(){function e(){c()(this,e)}return f()(e,[{key:"_convertMeasurements",value:function(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"km",r="";switch(t.toLowerCase()){case"mi":r=(.62137*e).toFixed(1);break;case"km":r=e.toFixed(1);break;case"m":r=(1e3*e).toFixed();break;default:r=e.toFixed(1)}return parseFloat(r)}},{key:"_haversine",value:function(){for(var e=arguments.length,t=new Array(e),r=0;r<e;r++)t[r]=arguments[r];var n=t.map((function(e){return e/180*Math.PI})),o=n[0],i=n[1],a=n[2],u=n[3],c=6372.8,s=a-o,f=u-i,l=Math.sin(s/2)*Math.sin(s/2)+Math.sin(f/2)*Math.sin(f/2)*Math.cos(o)*Math.cos(a),p=2*Math.asin(Math.sqrt(l));return c*p}},{key:"isGeolocationAvailable",value:function(){return new Promise((function(e,t){"geolocation"in navigator?navigator.geolocation.getCurrentPosition((function(t){e(t)}),(function(e){switch(e.code){case e.PERMISSION_DENIED:t(new Error("Error: Permission denied"));break;case e.POSITION_UNAVAILABLE:t(new Error("Error: Position unavailable"));break;case e.TIMEOUT:t(new Error("Error: Timeout"))}})):t(new Error("Error: Geolocation disabled in your browser"))}))}},{key:"getDistanceBetween",value:function(e,t,r){if(e.hasOwnProperty("latitude")&&e.hasOwnProperty("longitude")&&t.hasOwnProperty("latitude")&&t.hasOwnProperty("longitude")){var n=this._haversine(e.latitude,e.longitude,t.latitude,t.longitude);return this._convertMeasurements(n,r)}throw new Error("Error: Position latitude or longitude is not correct")}},{key:"getClosestPosition",value:function(e,t,r){var n=this,o=t.map((function(t){return n.getDistanceBetween(e,t,r)})),i=o.indexOf(Math.min.apply(Math,a()(o)));return console.log("getClosestPosition: closestPosition: ",p(p({},t[i]),{},{haversine:{distance:o[i],measurement:r,accuracy:e.accuracy}})),p(p({},t[i]),{},{haversine:{distance:o[i],measurement:r,accuracy:e.accuracy}})}}]),e}();t.default=new y},function(e,t,r){var n=r(0);e.exports=function(e){if(Array.isArray(e))return n(e)}},function(e,t){e.exports=function(e){if("undefined"!=typeof Symbol&&Symbol.iterator in Object(e))return Array.from(e)}},function(e,t,r){var n=r(0);e.exports=function(e,t){if(e){if("string"==typeof e)return n(e,t);var r=Object.prototype.toString.call(e).slice(8,-1);return"Object"===r&&e.constructor&&(r=e.constructor.name),"Map"===r||"Set"===r?Array.from(e):"Arguments"===r||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(r)?n(e,t):void 0}}},function(e,t){e.exports=function(){throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}}])}));
+//# sourceMappingURL=build.js.map
 
 /***/ }),
 
@@ -97633,7 +97685,7 @@ function valueEqual(a, b) {
 /******/ 					__webpack_require__.m[moduleId] = moreModules[moduleId];
 /******/ 				}
 /******/ 			}
-/******/ 			if(runtime) runtime(__webpack_require__);
+/******/ 			if(runtime) var result = runtime(__webpack_require__);
 /******/ 			if(parentChunkLoadingFunction) parentChunkLoadingFunction(data);
 /******/ 			for(;i < chunkIds.length; i++) {
 /******/ 				chunkId = chunkIds[i];
@@ -97642,7 +97694,7 @@ function valueEqual(a, b) {
 /******/ 				}
 /******/ 				installedChunks[chunkIds[i]] = 0;
 /******/ 			}
-/******/ 			__webpack_require__.O();
+/******/ 			return __webpack_require__.O(result);
 /******/ 		}
 /******/ 		
 /******/ 		var chunkLoadingGlobal = self["webpackChunk"] = self["webpackChunk"] || [];
