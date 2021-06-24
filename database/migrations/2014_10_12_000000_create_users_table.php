@@ -15,9 +15,9 @@ class CreateUsersTable extends Migration
     {
         Schema::create('Users', function (Blueprint $table) {
             $table->bigIncrements('id_users');
-            $table->string('email')->unique();
+            $table->string('email', 50)->unique();
             $table->string('password');
-            $table->string('role');
+            $table->integer('role');
             $table->rememberToken();
             $table->timestamps();
         });

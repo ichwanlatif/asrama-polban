@@ -20,9 +20,9 @@ class CreatePerizinan extends Migration
             $table->date('tanggal_pulang');
             $table->string('keterangan_izin', 125);
             $table->string('alamat_izin', 125);
-            $table->string('keterangan_kembali')->nullable();
+            $table->string('keterangan_kembali', 125)->nullable();
             $table->string('surat_pendukung')->nullable();
-            $table->longText('catatan_approval')->nullable();
+            $table->string('catatan_approval', 125)->nullable();
             $table->integer('status_izin');
             $table->integer('suhu_badan');
             $table->string('kondisi_kesehatan', 50);
