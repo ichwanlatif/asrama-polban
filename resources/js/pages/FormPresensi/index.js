@@ -187,27 +187,11 @@ class FormPresensi extends Component {
                                             <div className="form-group row">
                                                 <label for="coordinat" className="col-md-3 col-form-label text-md-right">Kondisi kesehatan</label>
                                                 <div className="col-md-8">
-
-                                                    <div className="input-group mb-2"> 
-                                                        <div className="custom-control custom-radio">
-                                                            <input type="radio" id="healthy" name="health" className="custom-control-input"/>
-                                                            <label className="custom-control-label" for="healthy">Sehat</label>
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="input-group mb-2"> 
-                                                        <div className="input-group-prepend">
-                                                            <div className="input-group-text">
-                                                                <input type="radio" id="sick" name="health" aria-label="Radio button for following text input"/>
-                                                            </div>
-                                                        </div>
-                                                        <input 
-                                                            type="text" 
-                                                            className="form-control" 
-                                                            aria-label="Text input with radio button"
-                                                            placeholder="Yang lain:"/>
-                                                    </div>
-
+                                                    <input 
+                                                        type="text" 
+                                                        className="form-control"
+                                                        placeholder="contoh: Sehat / Sakit"
+                                                    />
                                                     <small className="text-muted">Jelaskan keluhan saudara, jika merasa sakit.</small>
                                                 </div>
                                             </div>

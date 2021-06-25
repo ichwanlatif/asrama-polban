@@ -6900,7 +6900,6 @@ var FormIzinPulang = /*#__PURE__*/function (_Component) {
                             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
                               type: "text",
                               className: "form-control",
-                              name: "health",
                               placeholder: "contoh: Sehat / Sakit"
                             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("small", {
                               className: "text-muted",
@@ -7324,7 +7323,6 @@ var FormPresensi = /*#__PURE__*/function (_Component) {
                             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("input", {
                               type: "text",
                               className: "form-control",
-                              name: "health",
                               placeholder: "contoh: Sehat / Sakit"
                             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("small", {
                               className: "text-muted",
@@ -7521,7 +7519,6 @@ var FormResign = /*#__PURE__*/function (_Component) {
                             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
                               type: "text",
                               className: "form-control",
-                              name: "health",
                               placeholder: "contoh: Masa tinggal habis"
                             })
                           })]
@@ -7552,7 +7549,6 @@ var FormResign = /*#__PURE__*/function (_Component) {
                             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
                               type: "text",
                               className: "form-control",
-                              name: "health",
                               placeholder: "contoh: Sehat / Sakit"
                             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("small", {
                               className: "text-muted",
