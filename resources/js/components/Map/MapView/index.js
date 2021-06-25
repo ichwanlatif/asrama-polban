@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import L from 'leaflet';
-import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
+import { Map, TileLayer, Marker, Popup, Circle } from 'react-leaflet';
 
 import 'leaflet/dist/leaflet.css';
 import '../../../assets/leaflet/map.css';
@@ -20,7 +20,7 @@ class MapView extends Component {
     super(props);
     this.state = {
       currentLocation: { lat: this.props.lat, lng: this.props.lng },
-      zoom: 12,
+      zoom: 15,
     }
   }
 
@@ -34,6 +34,7 @@ class MapView extends Component {
 
   render() {
     const { currentLocation, zoom } = this.state;
+    const fillBlueOptions = { fillColor: 'blue' };
 
     return (
       <Map center={currentLocation} zoom={zoom}>
@@ -47,6 +48,9 @@ class MapView extends Component {
             Lokasi presensi
           </Popup>
         </Marker>
+        <Circle center={[-6.87202462684,107.57093365]} pathOptions={fillBlueOptions} radius={50}>
+          <Popup>Radius Asrama Polban</Popup>
+        </Circle>
       </Map>
     );
   }

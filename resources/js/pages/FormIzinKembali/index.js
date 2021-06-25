@@ -8,7 +8,7 @@ import Footer from '../../components/Navigation/Footer';
 import PageHeading from '../../components/PageHeading';
 import { createResign } from '../../service/resign';
 
-class FormResign extends Component {
+class FormIzinKembali extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -56,40 +56,35 @@ class FormResign extends Component {
                         <Topbar />
                         {/* <!-- End of Topbar --> */}
                         <div className="container-fluid">
-                            <PageHeading title="Resign Asrama Polban" />
+                            <PageHeading title="Izin Kembali Ke Asrama" />
                             <div className="col-lg-12 col-md-12">
                                 <div className="card my-5">
                                     <div className="card-body">
+                                        <h6 className="text-justify text-muted">
+                                            <span className="text-danger">*</span> Penghuni Asrama Mahasiswa Polban yang mau kembali masuk ke asrama diharuskan untuk mengisi formulir ini.<br/><br/>
+                                            <span className="text-danger">*</span> Silakan tunggu konfirmasi dari kantor PD3.
+                                        </h6>
+                                        <hr></hr>
 
-                                        {/* Form resign*/}
+                                        {/* Form izin kembali*/}
                                         <form>
-                                            <div className="form-group row">
-                                                <label for="description" className="col-md-3 col-form-label text-md-right">Alasan resign Asrama Polban</label>
-                                                <div className="col-md-8">
-                                                    <div className="input-group mb-2"> 
-                                                        <div className="custom-control custom-radio">
-                                                            <input type="radio" id="expired" name="reason" className="custom-control-input"/>
-                                                            <label className="custom-control-label" for="expired">Masa tinggal habis</label>
-                                                        </div>
-                                                    </div>
 
-                                                    <div className="input-group mb-2"> 
-                                                        <div className="input-group-prepend">
-                                                            <div className="input-group-text">
-                                                                <input type="radio" id="other" name="reason" aria-label="Radio button for following text input"/>
-                                                            </div>
-                                                        </div>
-                                                        <input 
-                                                            type="text" 
-                                                            className="form-control" 
-                                                            aria-label="Text input with radio button"
-                                                            placeholder="Yang lain:"/>
-                                                    </div>
+                                            <div className="form-group row">
+                                                <label for="description" className="col-md-3 col-form-label text-md-right">Alasan kembali ke asrama</label>
+                                                <div className="col-md-8">
+                                                    <textarea 
+                                                        name="keterangan_izin"
+                                                        className="form-control"
+                                                        placeholder="Beri penjelasan mengenai alasan diharuskan pergi dari asrama"
+                                                        rows="3"
+                                                        onChange={this.handleFieldChange}
+                                                        required>
+                                                    </textarea>
                                                 </div>
                                             </div>
 
                                             <div className="form-group row">
-                                                <label for="tanggal_resign" className="col-md-3 col-form-label text-md-right">Mulai resign</label>
+                                                <label for="tanggal_resign" className="col-md-3 col-form-label text-md-right">Mulai kembali</label>
                                                 <div className="col-md-3">
                                                     <input 
                                                         type="date" 
@@ -147,19 +142,7 @@ class FormResign extends Component {
                                             </div>
 
                                             <div className="form-group row">
-                                                <label for="description" className="col-md-3 col-form-label text-md-right">Kendaraan yang dibawa</label>
-                                                <div className="col-md-8">
-                                                    <select class="form-control" id="vehicle">
-                                                        <option>Sepeda</option>
-                                                        <option>Motor</option>
-                                                        <option>Mobil</option>
-                                                        <option>Tidak ada</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            
-                                            <div className="form-group row">
-                                                <label for="formfile" className="col-md-3 col-form-label text-md-right">STNK (opsional)</label>
+                                                <label for="formfile" className="col-md-3 col-form-label text-md-right">Surat pendukung (opsional)</label>
                                                 <div className="col-md-8">
                                                     <input 
                                                         className="form-control-file" 
@@ -167,6 +150,41 @@ class FormResign extends Component {
                                                         onChange={this.handleFileChange}
                                                     />
                                                     <small className="text-muted">Format yang didukung: *.jpg, *.png, *.pdf</small>
+                                                </div>
+                                            </div>
+
+                                            <div className="form-group row">
+                                                <label for="address" className="col-md-3 col-form-label text-md-right">Alamat tujuan pergi</label>
+                                                <div className="col-md-8">
+                                                    <input type="text" className="form-control"/>
+                                                </div>
+                                            </div>
+
+                                            <div className="form-group row">
+                                                <label for="description" className="col-md-3 col-form-label text-md-right">Transportasi yang digunakan</label>
+                                                <div className="col-md-8">
+                                                    <select class="form-control" id="vehicle">
+                                                        <option>Sepeda</option>
+                                                        <option>Motor</option>
+                                                        <option>Mobil</option>
+                                                        <option>Angkutan Kota</option>
+                                                        <option>Travel</option>
+                                                        <option>Bus Antar Kota</option>
+                                                        <option>Pesawat</option>
+                                                        <option>Kereta Api</option>
+                                                        <option>Kapal Laut</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div className="form-group row my-4">
+                                                <div className="col-md-11">
+                                                    <label className="col-form-label text-justify"><span className="text-danger">*</span> Saya akan menanggung segala bentuk kerugian yang timbul dan tidak akan menuntut pihak Manajemen Polban. Demikian keterangan ini dibuat tanpa paksaan dan untuk dipergunakan sesuai dengan kepentingannya.</label>
+                                                    <small className="text-muted">Silakan tunggu respon dari Kantor PD3. Saudara belum di ijinkan untuk memasuki Asrama sebelum ada surat ijin resmi dari Kantor PD3.</small>
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" id="aggrement" required/>
+                                                        <label class="custom-control-label" for="aggrement">Saya memahami dan setuju</label>
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -193,4 +211,4 @@ class FormResign extends Component {
     }
 }
 
-export default FormResign;
+export default FormIzinKembali;

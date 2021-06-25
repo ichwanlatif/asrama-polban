@@ -58,7 +58,15 @@ class RiwayatPerizinan extends Component {
 
     render() {
         const dataIzin = this.state.datasIzin
-        const dataResign = this.state.datasResign 
+        const dataResign = this.state.datasResign
+        let TableStatus;
+
+        if (this.state.datasIzin.length == 0 && this.state.datasResign.length == 0) {
+            TableStatus = <h6 className="text-center">Tidak ada perizinan</h6>;
+          } else {
+            TableStatus = <h6 className="text-center"></h6>;
+        }
+
         return (
             <div>
                 <div id="wrapper">
@@ -158,9 +166,11 @@ class RiwayatPerizinan extends Component {
                                             </table>
                                         </div>
 
+                                        {TableStatus}
+
                                         {/* pagination */}
                                         <nav aria-label="Page navigation example">
-                                            <ul className="pagination">
+                                            <ul className="pagination justify-content-end">
                                                 <li className="page-item">
                                                 <Link className="page-link" to="#" aria-label="Previous">
                                                     <span aria-hidden="true">&laquo;</span>

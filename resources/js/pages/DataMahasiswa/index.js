@@ -51,13 +51,15 @@ class DataMahasiswa extends Component {
                                             </div>
                                         </div>
 
-                                        {/* Tambah mahasiswa */}
-                                        <Link to="/tambah-mahasiswa" className="btn btn-primary btn-icon-split mb-2">
-                                            <span className="icon text-white-50">
-                                                <i className="fas fa-user-plus"></i>
-                                            </span>
-                                            <span className="text">Tambah mahasiswa</span>
-                                        </Link>
+                                        <div className="d-flex justify-content-end">
+                                            {/* Tambah mahasiswa */}
+                                            <Link to="/tambah-mahasiswa" className="btn btn-primary btn-icon-split mb-2">
+                                                <span className="icon text-white-50">
+                                                    <i className="fas fa-user-plus"></i>
+                                                </span>
+                                                <span className="text">Tambah mahasiswa</span>
+                                            </Link>
+                                        </div>
 
                                         {/* Tabel Mahasiswa */}
                                         <div className="table-responsive">
@@ -96,7 +98,7 @@ class DataMahasiswa extends Component {
 
                                         {/* pagination */}
                                         <nav aria-label="Page navigation example">
-                                            <ul className="pagination">
+                                            <ul className="pagination justify-content-end">
                                                 <li className="page-item">
                                                 <Link className="page-link" to="#" aria-label="Previous">
                                                     <span aria-hidden="true">&laquo;</span>

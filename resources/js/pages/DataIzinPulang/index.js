@@ -38,6 +38,14 @@ class DataIzinPulang extends Component {
 
     render() {
         const data = this.state.datas
+        let TableStatus;
+
+        if (this.state.datas.length == 0) {
+            TableStatus = <h6 className="text-center">Tidak ada izin yang perlu diproses</h6>;
+          } else {
+            TableStatus = <h6 className="text-center"></h6>;
+        }
+
         return (
             <div>
                 <div id="wrapper">
@@ -99,9 +107,11 @@ class DataIzinPulang extends Component {
                                             </table>
                                         </div>
 
+                                        {TableStatus}
+
                                         {/* pagination */}
                                         <nav aria-label="Page navigation example">
-                                            <ul className="pagination">
+                                            <ul className="pagination justify-content-end">
                                                 <li className="page-item">
                                                 <Link className="page-link" to="#" aria-label="Previous">
                                                     <span aria-hidden="true">&laquo;</span>

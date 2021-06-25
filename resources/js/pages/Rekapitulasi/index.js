@@ -51,13 +51,15 @@ class Rekapitulasi extends Component {
                                             </div>
                                         </div>
 
-                                        {/* Unduh file */}
-                                        <Link to="#" className="btn btn-light btn-icon-split mb-2">
-                                            <span className="icon text-gray-600">
-                                                <i className="fas fa-file-download"></i>
-                                            </span>
-                                            <span className="text">Unduh rekap</span>
-                                        </Link>
+                                        <div className="d-flex justify-content-end">
+                                            {/* Unduh file */}
+                                            <Link to="#" className="btn btn-light btn-icon-split mb-2 justify-content-end">
+                                                <span className="icon text-gray-600">
+                                                    <i className="fas fa-file-download"></i>
+                                                </span>
+                                                <span className="text">Unduh rekap</span>
+                                            </Link>
+                                        </div>
 
                                         {/* Tabel Rekap */}
                                         <div className="table-responsive">
@@ -91,7 +93,7 @@ class Rekapitulasi extends Component {
 
                                         {/* pagination */}
                                         <nav aria-label="Page navigation example">
-                                            <ul className="pagination">
+                                            <ul className="pagination justify-content-end">
                                                 <li className="page-item">
                                                 <Link className="page-link" to="#" aria-label="Previous">
                                                     <span aria-hidden="true">&laquo;</span>

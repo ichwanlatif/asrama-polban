@@ -2,12 +2,21 @@ import Cookies from 'js-cookie';
 import React, { Component } from 'react';
 import { loginAuth } from '../../service/auth';
 
+function loadingAnimation() {
+    return new Promise(function(resolve) {
+      setTimeout(() => resolve([1, 2, 3]), 1000);
+    });
+}
+
 class Login extends Component {
     constructor (props){
         super(props);
         this.state = {
             email: '',
             password: '',
+            
+            isLoading:false,
+            list: []
         }
         this.handleFieldChange = this.handleFieldChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -28,11 +37,21 @@ class Login extends Component {
 
 
     handleSubmit(e){
-        e.preventDefault()
+        this.setState({ isLoading: true });
+
+        e.preventDefault();
         loginAuth({
             email: this.state.email,
             password: this.state.password
-        })
+        });
+
+        // Set status animasi loading
+        loadingAnimation().then(list => {
+            this.setState({
+              isLoading: false,
+              list,
+            });
+        });
     }
 
     render() {
@@ -49,12 +68,14 @@ class Login extends Component {
                                 {/* <!-- Nested Row within Card Body --> */}
                                 <div className="p-5">
                                     <div className="text-center">
-                                    <img className="img-fluid mx-auto" src="/images/web/logo_dormitory_2.jpg" width="300"/>
-                                        <h1 className="h4 text-gray-900 mb-4">
-                                            PRESENSI DAN PERIZINAN<br/>ASRAMA POLBAN
-                                        </h1>
-                                    </div>
+                                    <img className="img-fluid mx-auto" src="/images/web/logo-web-polban.png" width="300"/>
                                     <hr/>
+                                    <h1 className="h4 text-gray-900 mb-4">
+                                        PRESENSI DAN PERIZINAN<br/>ASRAMA POLBAN
+                                    </h1>
+                                    </div>
+
+                                    {/* Login Form */}
                                     <form className="user">
                                         <div className="form-group">
                                         <   input 
@@ -79,10 +100,11 @@ class Login extends Component {
                                                 required
                                             />
                                         </div>
-                                        <button  onClick={this.handleSubmit} className="btn btn-primary btn-user btn-block">
-                                            <i className="fas fa-sign-in-alt"></i> Masuk
+                                        <button  onClick={this.handleSubmit} className="btn btn-primary btn-user btn-block" disabled={this.state.isLoading}>
+                                            {this.state.isLoading ? <i className="fas fa-spinner fa-pulse"></i> : <i className="fas fa-sign-in-alt"></i>} Masuk
                                         </button>
                                     </form>
+                                    
                                 </div>
                             </div>
                         </div>

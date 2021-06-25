@@ -14,7 +14,7 @@ class SidebarMahasiswa extends Component {
                 <li className="nav-item">
                     <Link className="nav-link collapsed" data-toggle="collapse" data-target="#collapsePresensi" aria-expanded="true" aria-controls="collapsePresensi">
                         <i class="fas fa-calendar-check"></i>
-                        <span>Form Presensi</span>
+                        <span>Formulir Presensi</span>
                     </Link>
                     <div id="collapsePresensi" className="collapse" aria-labelledby="headingPresensi" data-parent="#accordionSidebar">
                         <div className="bg-white py-2 collapse-inner rounded">

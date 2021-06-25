@@ -107,7 +107,7 @@ class DataResign extends Component {
 
                                         {/* pagination */}
                                         <nav aria-label="Page navigation example">
-                                            <ul className="pagination">
+                                            <ul className="pagination justify-content-end">
                                                 <li className="page-item">
                                                 <Link className="page-link" to="#" aria-label="Previous">
                                                     <span aria-hidden="true">&laquo;</span>
