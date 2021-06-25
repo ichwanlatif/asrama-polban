@@ -20,7 +20,7 @@ class MapView extends Component {
     super(props);
     this.state = {
       currentLocation: { lat: this.props.lat, lng: this.props.lng },
-      zoom: 15,
+      zoom: 18,
     }
   }
 
