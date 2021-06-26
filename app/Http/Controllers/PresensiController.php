@@ -14,7 +14,10 @@ class PresensiController extends Controller
         $validasi = \Validator::make($request->all(), [
             'latitude' => 'required',
             'longitude' => 'required',
-            'id_mhs' => 'required'
+            'id_mhs' => 'required',
+            'suhu_badan' => 'required',
+            'kondisi_kesehatan' => 'required',
+            'status' => 'required'
         ]);
 
         if($validasi->fails()){
@@ -22,10 +25,12 @@ class PresensiController extends Controller
         }
         else{
             $insert = Presensi::create([
-                'status' => $request->status,
+                'status_presensi' => $request->status,
                 'latitude' => $request->latitude,
                 'longitude' => $request->longitude,
-                'id_mhs' => $request->id_mhs
+                'id_mhs' => $request->id_mhs,
+                'suhu_badan' => $request->suhu_badan,
+                'kondisi_kesehatan' => $request->kondisi_kesehatan
             ]);
             
             if($insert){

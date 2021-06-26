@@ -13,9 +13,7 @@ class FormIzinPulang extends Component {
         super();
         this.state = {
             id_mhs: localStorage.getItem('user_id'),
-            keterangan_izin: '',
-            tanggal_pergi: '',
-            tanggal_pulang: '',
+            suhu_badan: 36,
         };
         this.handleFieldChange = this.handleFieldChange.bind(this);
         this.handleFileChange = this.handleFileChange.bind(this)
@@ -40,16 +38,27 @@ class FormIzinPulang extends Component {
     handleSubmit(e){
         e.preventDefault()
 
-        const data = new FormData()
-        data.append('file', this.state.file)
-        data.append('id_mhs', this.state.id_mhs)
-        data.append('tanggal_pergi', this.state.tanggal_pergi)
-        data.append('tanggal_pulang', this.state.tanggal_pulang)
-        data.append('keterangan_izin', this.state.keterangan_izin)
-        
-        console.warn(this.state.file);
+        if(document.getElementById('aggrement').checked == false){
+            alert('Setujui Terlebih Dahulu');
 
-        createPerizinan(data);
+        }
+        else{
+            const data = new FormData()
+            data.append('file', this.state.file)
+            data.append('id_mhs', this.state.id_mhs)
+            data.append('tanggal_pergi', this.state.tanggal_pergi)
+            data.append('jenis_kendaraan', this.state.jenis_kendaraan)
+            data.append('keterangan_izin', this.state.keterangan_izin)
+            data.append('kondisi_kesehatan', this.state.kondisi_kesehatan)
+            data.append('suhu_badan', this.state.suhu_badan)
+            data.append('alamat_izin', this.state.alamat_izin)
+            
+            // console.warn(this.state.file);
+
+            console.log(this.state);
+
+            createPerizinan(data);
+        }
     }
 
     componentDidMount(){
@@ -115,7 +124,9 @@ class FormIzinPulang extends Component {
                                                 <label for="coordinat" className="col-md-3 col-form-label text-md-right">Kondisi kesehatan</label>
                                                 <div className="col-md-8">
                                                     <input 
-                                                        type="text" 
+                                                        type="text"
+                                                        name="kondisi_kesehatan"
+                                                        onChange={this.handleFieldChange} 
                                                         className="form-control"
                                                         placeholder="contoh: Sehat / Sakit"
                                                     />
@@ -129,8 +140,11 @@ class FormIzinPulang extends Component {
                                                     <div className="input-group">
                                                         <input
                                                             type="number"
+                                                            name="suhu_badan"
                                                             className="form-control"
+                                                            onChange={this.handleFieldChange}
                                                             aria-describedby="temperature"
+                                                            value={this.state.suhu_badan}
                                                         />
                                                         <div className="input-group-append">
                                                             <span className="input-group-text" id="temperature">&deg;Celcius</span>
@@ -155,14 +169,14 @@ class FormIzinPulang extends Component {
                                             <div className="form-group row">
                                                 <label for="address" className="col-md-3 col-form-label text-md-right">Alamat tujuan pergi</label>
                                                 <div className="col-md-8">
-                                                    <input type="text" className="form-control"/>
+                                                    <input type="text" name="alamat_izin" onChange={this.handleFieldChange} className="form-control"/>
                                                 </div>
                                             </div>
 
                                             <div className="form-group row">
                                                 <label for="description" className="col-md-3 col-form-label text-md-right">Transportasi yang digunakan</label>
                                                 <div className="col-md-8">
-                                                    <select class="form-control" id="vehicle">
+                                                    <select class="form-control" onChange={this.handleFieldChange} name="jenis_kendaraan" id="vehicle">
                                                         <option>Sepeda</option>
                                                         <option>Motor</option>
                                                         <option>Mobil</option>

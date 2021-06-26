@@ -19,11 +19,14 @@ class FormPresensi extends Component {
             lat: 0,
             long: 0,
             status: 10,
+            suhu_badan: 36,
+            kondisi_kesehatan: "",
             currentDateTime: new Date().toLocaleString(),
             status_location: "Belum mendapatkan lokasi",
             text_color : "text-warning",
         };
         this.onClickGetLocation = this.onClickGetLocation.bind(this);
+        this.handleFieldChange = this.handleFieldChange.bind(this);
         this.submitPresensi = this.submitPresensi.bind(this);
     }
 
@@ -103,6 +106,15 @@ class FormPresensi extends Component {
         }
     }
 
+    handleFieldChange(e){
+        let name = e.target.name;
+        let value = e.target.value;
+        let data = {};
+        data[name] = value;
+        this.setState(data);
+        console.log(name, value);
+    }
+
     submitPresensi(e){
         e.preventDefault()
         console.log(this.state.lat)
@@ -110,10 +122,13 @@ class FormPresensi extends Component {
             alert('Silahkan Get Location Terlebih Dahulu')
         }
         else{
+            // console.log(this.state)
             createPresensi({
                 status: this.state.status,
                 latitude: this.state.lat,
                 longitude: this.state.long,
+                suhu_badan: this.state.suhu_badan,
+                kondisi_kesehatan: this.state.kondisi_kesehatan,
                 id_mhs: localStorage.getItem('user_id')
             })
         }
@@ -190,7 +205,10 @@ class FormPresensi extends Component {
                                                     <input 
                                                         type="text" 
                                                         className="form-control"
+                                                        name="kondisi_kesehatan"
                                                         placeholder="contoh: Sehat / Sakit"
+                                                        onChange={this.handleFieldChange}
+                                                        required
                                                     />
                                                     <small className="text-muted">Jelaskan keluhan saudara, jika merasa sakit.</small>
                                                 </div>
@@ -202,8 +220,12 @@ class FormPresensi extends Component {
                                                     <div className="input-group">
                                                         <input
                                                             type="number"
+                                                            name="suhu_badan"
                                                             className="form-control"
                                                             aria-describedby="temperature"
+                                                            onChange={this.handleFieldChange}
+                                                            value={this.state.suhu_badan}
+                                                            required
                                                         />
                                                         <div className="input-group-append">
                                                             <span className="input-group-text" id="temperature">&deg;Celcius</span>

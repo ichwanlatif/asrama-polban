@@ -17,7 +17,7 @@ class CreatePerizinan extends Migration
             $table->bigIncrements('id_perizinan');
             $table->unsignedBigInteger('id_mhs');
             $table->date('tanggal_pergi');
-            $table->date('tanggal_pulang');
+            $table->date('tanggal_pulang')->nullable();
             $table->string('keterangan_izin', 125);
             $table->string('alamat_izin', 125);
             $table->string('keterangan_kembali', 125)->nullable();

@@ -15,15 +15,16 @@ class Mahasiswa extends Model
         'id_prodi',
         'id_kamar',
         'nama_mhs',
-        'nim_mhs',
-        'jenis_kelamin',
-        'tanggal_lahir',
-        'agama',
-        'alamat_mhs',
+        'nim',
+        'alamat',
         'no_hp_mhs',
         'nama_ortu',
         'no_hp_ortu',
+        'jenis_kelamin',
         'status_keaktifan',
-        'golongan_ukt'
+        'tanggal_lahir',
+        'agama',
+        'keterangan_asal',
+        'role_mhs',
     ];
 }

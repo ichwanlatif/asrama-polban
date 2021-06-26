@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 
-class ManajemenSeeder extends Seeder
+class PengelolaSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,9 +15,9 @@ class ManajemenSeeder extends Seeder
     public function run()
     {
         $user = User::create([
-            'email' => "manajemen@polban.ac.id",
+            'email' => "pengelola@polban.ac.id",
             'password' => \Hash::make(123456),
-            'role' => 3
+            'role' => 2
         ]);
     }
 }

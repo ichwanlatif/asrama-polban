@@ -14,6 +14,10 @@ class Resign extends Model
         'id_mhs',
         'tanggal_resign',
         'keterangan_resign',
+        'suhu_badan',
+        'kondisi_kesehatan',
+        'jenis_kendaraan',
+        'keterangan_stnk',
         'status_resign'
     ];
 }

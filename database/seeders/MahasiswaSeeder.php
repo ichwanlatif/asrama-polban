@@ -16,26 +16,27 @@ class MahasiswaSeeder extends Seeder
     public function run()
     {
         $user = User::create([
-            'email' => "irfan.siswara.tif18@polban.ac.id",
+            'email' => "ichwan.latif.tif18@polban.ac.id",
             'password' => \Hash::make(123456),
             'role' => 1
         ]);
         
         $mahasiswa = Mahasiswa::create([
-            'id_users' => $user->id,
-            'id_prodi' => 1,
-            'id_kamar' => 1,
-            'nama_mhs' => 'Irfan Siswara',
-            'nim_mhs' => '181511048',
+            'id_users' => 1,
+            'id_prodi' => 23,
+            'id_kamar' => 6,
+            'nama_mhs' => "Ichwan Latif Fajari",
+            'nim' => "181511046",
+            'alamat' => "Perum Villa Permata Blok DD5/33",
+            'no_hp_mhs' => "08991276549",
+            'nama_ortu' => "Bapak Ichwan",
+            'no_hp_ortu' => "087878910454",
             'jenis_kelamin' => 1,
-            'tanggal_lahir' => '2000-01-01',
-            'agama' => 'Islam',
-            'alamat_mhs' => 'Bekasi',
-            'no_hp_mhs' => '0812345678',
-            'nama_ortu' => 'Pak irfan',
-            'no_hp_ortu' => '0812345678',
             'status_keaktifan' => 1,
-            'golongan_ukt' => 1
+            'tanggal_lahir' => "2000-04-17",
+            'agama' => "Islam",
+            'keterangan_asal' => "ADIK",
+            'role_mhs' => "Anggota",
         ]);
     }
 }

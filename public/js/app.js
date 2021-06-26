@@ -6776,9 +6776,7 @@ var FormIzinPulang = /*#__PURE__*/function (_Component) {
     _this = _super.call(this);
     _this.state = {
       id_mhs: localStorage.getItem('user_id'),
-      keterangan_izin: '',
-      tanggal_pergi: '',
-      tanggal_pulang: ''
+      suhu_badan: 36
     };
     _this.handleFieldChange = _this.handleFieldChange.bind(_assertThisInitialized(_this));
     _this.handleFileChange = _this.handleFileChange.bind(_assertThisInitialized(_this));
@@ -6807,14 +6805,23 @@ var FormIzinPulang = /*#__PURE__*/function (_Component) {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
-      var data = new FormData();
-      data.append('file', this.state.file);
-      data.append('id_mhs', this.state.id_mhs);
-      data.append('tanggal_pergi', this.state.tanggal_pergi);
-      data.append('tanggal_pulang', this.state.tanggal_pulang);
-      data.append('keterangan_izin', this.state.keterangan_izin);
-      console.warn(this.state.file);
-      (0,_service_perizinan__WEBPACK_IMPORTED_MODULE_5__.createPerizinan)(data);
+
+      if (document.getElementById('aggrement').checked == false) {
+        alert('Setujui Terlebih Dahulu');
+      } else {
+        var data = new FormData();
+        data.append('file', this.state.file);
+        data.append('id_mhs', this.state.id_mhs);
+        data.append('tanggal_pergi', this.state.tanggal_pergi);
+        data.append('jenis_kendaraan', this.state.jenis_kendaraan);
+        data.append('keterangan_izin', this.state.keterangan_izin);
+        data.append('kondisi_kesehatan', this.state.kondisi_kesehatan);
+        data.append('suhu_badan', this.state.suhu_badan);
+        data.append('alamat_izin', this.state.alamat_izin); // console.warn(this.state.file);
+
+        console.log(this.state);
+        (0,_service_perizinan__WEBPACK_IMPORTED_MODULE_5__.createPerizinan)(data);
+      }
     }
   }, {
     key: "componentDidMount",
@@ -6899,6 +6906,8 @@ var FormIzinPulang = /*#__PURE__*/function (_Component) {
                             className: "col-md-8",
                             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
                               type: "text",
+                              name: "kondisi_kesehatan",
+                              onChange: this.handleFieldChange,
                               className: "form-control",
                               placeholder: "contoh: Sehat / Sakit"
                             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("small", {
@@ -6918,8 +6927,11 @@ var FormIzinPulang = /*#__PURE__*/function (_Component) {
                               className: "input-group",
                               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
                                 type: "number",
+                                name: "suhu_badan",
                                 className: "form-control",
-                                "aria-describedby": "temperature"
+                                onChange: this.handleFieldChange,
+                                "aria-describedby": "temperature",
+                                value: this.state.suhu_badan
                               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                                 className: "input-group-append",
                                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
@@ -6960,6 +6972,8 @@ var FormIzinPulang = /*#__PURE__*/function (_Component) {
                             className: "col-md-8",
                             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
                               type: "text",
+                              name: "alamat_izin",
+                              onChange: this.handleFieldChange,
                               className: "form-control"
                             })
                           })]
@@ -6973,6 +6987,8 @@ var FormIzinPulang = /*#__PURE__*/function (_Component) {
                             className: "col-md-8",
                             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("select", {
                               "class": "form-control",
+                              onChange: this.handleFieldChange,
+                              name: "jenis_kendaraan",
                               id: "vehicle",
                               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
                                 children: "Sepeda"
@@ -7126,11 +7142,14 @@ var FormPresensi = /*#__PURE__*/function (_Component) {
       lat: 0,
       "long": 0,
       status: 10,
+      suhu_badan: 36,
+      kondisi_kesehatan: "",
       currentDateTime: new Date().toLocaleString(),
       status_location: "Belum mendapatkan lokasi",
       text_color: "text-warning"
     };
     _this.onClickGetLocation = _this.onClickGetLocation.bind(_assertThisInitialized(_this));
+    _this.handleFieldChange = _this.handleFieldChange.bind(_assertThisInitialized(_this));
     _this.submitPresensi = _this.submitPresensi.bind(_assertThisInitialized(_this));
     return _this;
   }
@@ -7210,6 +7229,16 @@ var FormPresensi = /*#__PURE__*/function (_Component) {
       }
     }
   }, {
+    key: "handleFieldChange",
+    value: function handleFieldChange(e) {
+      var name = e.target.name;
+      var value = e.target.value;
+      var data = {};
+      data[name] = value;
+      this.setState(data);
+      console.log(name, value);
+    }
+  }, {
     key: "submitPresensi",
     value: function submitPresensi(e) {
       e.preventDefault();
@@ -7218,10 +7247,13 @@ var FormPresensi = /*#__PURE__*/function (_Component) {
       if (this.state.status === 10) {
         alert('Silahkan Get Location Terlebih Dahulu');
       } else {
+        // console.log(this.state)
         (0,_service_presensi__WEBPACK_IMPORTED_MODULE_1__.createPresensi)({
           status: this.state.status,
           latitude: this.state.lat,
           longitude: this.state["long"],
+          suhu_badan: this.state.suhu_badan,
+          kondisi_kesehatan: this.state.kondisi_kesehatan,
           id_mhs: localStorage.getItem('user_id')
         });
       }
@@ -7323,7 +7355,10 @@ var FormPresensi = /*#__PURE__*/function (_Component) {
                             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("input", {
                               type: "text",
                               className: "form-control",
-                              placeholder: "contoh: Sehat / Sakit"
+                              name: "kondisi_kesehatan",
+                              placeholder: "contoh: Sehat / Sakit",
+                              onChange: this.handleFieldChange,
+                              required: true
                             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("small", {
                               className: "text-muted",
                               children: "Jelaskan keluhan saudara, jika merasa sakit."
@@ -7341,8 +7376,12 @@ var FormPresensi = /*#__PURE__*/function (_Component) {
                               className: "input-group",
                               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("input", {
                                 type: "number",
+                                name: "suhu_badan",
                                 className: "form-control",
-                                "aria-describedby": "temperature"
+                                "aria-describedby": "temperature",
+                                onChange: this.handleFieldChange,
+                                value: this.state.suhu_badan,
+                                required: true
                               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
                                 className: "input-group-append",
                                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("span", {
@@ -9180,10 +9219,23 @@ var RiwayatPresensi = /*#__PURE__*/function (_Component) {
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("tbody", {
                             children: data.map(function (presensi) {
                               var id = presensi.id,
-                                  status = presensi.status,
+                                  status_presensi = presensi.status_presensi,
                                   latitude = presensi.latitude,
                                   longitude = presensi.longitude,
                                   created_at = presensi.created_at;
+                              var status, color;
+
+                              if (presensi.status_presensi === 0) {
+                                status = "Alfa";
+                                color = "badge badge-pill badge-danger";
+                              } else if (presensi.status_presensi === 1) {
+                                status = "Hadir";
+                                color = "badge badge-pill badge-success";
+                              } else {
+                                status = "Izin";
+                                color = "badge badge-pill badge-info";
+                              }
+
                               return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("tr", {
                                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("td", {
                                   children: new Date(presensi.created_at).toDateString()
@@ -9193,8 +9245,8 @@ var RiwayatPresensi = /*#__PURE__*/function (_Component) {
                                   children: presensi.latitude + ', ' + presensi.longitude
                                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("td", {
                                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
-                                    className: presensi.status ? "badge badge-pill badge-success" : "badge badge-pill badge-danger",
-                                    children: presensi.status ? "Hadir" : "Alfa"
+                                    className: color,
+                                    children: status
                                   })
                                 })]
                               });
@@ -9855,13 +9907,14 @@ var loginAuth = function loginAuth(props) {
     (0,_api__WEBPACK_IMPORTED_MODULE_0__.default)().post('api/login', props).then(function (response) {
       if (response.data.status !== 'success') {
         console.log(response.data.message);
+        alert('Failed To Login');
         _token__WEBPACK_IMPORTED_MODULE_1__.notLoggedIn;
       } else {
         localStorage.setItem('user_role', response.data.data.role);
         (0,_token__WEBPACK_IMPORTED_MODULE_1__.logIn)(response.data.token); // alert(response.data.data.role)
 
         if (response.data.data.role === '1') {
-          var endPoint = "api/mahasiswaByUser/" + response.data.data.id;
+          var endPoint = "api/mahasiswaByUser/" + response.data.data.id_users;
           (0,_api__WEBPACK_IMPORTED_MODULE_0__.default)().get(endPoint).then(function (User) {
             if (User.data.status !== 'success') {
               alert(User.data.message);

@@ -15,8 +15,13 @@ class Perizinan extends Model
         'tanggal_pergi',
         'tanggal_pulang',
         'keterangan_izin',
+        'alamat_izin',
+        'keterangan_kembali',
         'surat_pendukung',
+        'catatan_approval',
         'status_izin',
-        'catatan_pengurus',
+        'suhu_badan',
+        'kondisi_kesehatan',
+        'jenis_kendaraan',
     ];
 }

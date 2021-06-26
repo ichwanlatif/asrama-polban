@@ -22,7 +22,10 @@ class PerizinanController extends Controller
     public function store(Request $request){
         $validasi = \Validator::make($request->all(), [
             'tanggal_pergi' => 'required',
-            'tanggal_pulang' => 'required',
+            'jenis_kendaraan' => 'required',
+            'kondisi_kesehatan' => 'required',
+            'suhu_badan' => 'required',
+            'alamat_izin' => 'required',
             'keterangan_izin' => 'required',
             'id_mhs' => 'required',
         ]);
@@ -31,9 +34,9 @@ class PerizinanController extends Controller
             return response()->json(["status" => 422, "msg" => "Form Tidak Valid"]);
         }
         else{
-            if($request->tanggal_pergi > $request->tanggal_pulang){
-                return response()->json(["status" => 422, "msg" => "Tanggal Pergi dan Pulang Tidak Benar"]);
-            }
+            // if($request->tanggal_pergi > $request->tanggal_pulang){
+            //     return response()->json(["status" => 422, "msg" => "Tanggal Pergi dan Pulang Tidak Benar"]);
+            // }
             if($request->file('file')){
 
                 $fileName = time().'-'.Str::random(10). '.'.$request->file('file')->getClientOriginalExtension();
@@ -42,23 +45,29 @@ class PerizinanController extends Controller
             $insert = Perizinan::create([
                 'id_mhs' => $request->id_mhs,
                 'tanggal_pergi' => $request->tanggal_pergi,
-                'tanggal_pulang' => $request->tanggal_pulang,
                 'keterangan_izin' => $request->keterangan_izin,
+                'alamat_izin' => $request->alamat_izin,
                 'surat_pendukung' => $fileName,
+                'suhu_badan' => $request->suhu_badan,
+                'kondisi_kesehatan' => $request->kondisi_kesehatan,
+                'jenis_kendaraan' => $request->jenis_kendaraan,
                 'status_izin' => 0,
-                'catatan_pengurus' => " ",
             ]);
 
             if($insert){
 
-                $mahasiswa = Mahasiswa::where('id', $request->id_mhs)->first();
+                $mahasiswa = Mahasiswa::where('id_mhs', $request->id_mhs)->first();
                 $pengurus = User::where('role', 2)->first();
 
                 $details = [
                     'from' => $mahasiswa->nama_mhs,
                     'tanggal_pergi' => $request->tanggal_pergi,
-                    'tanggal_pulang' => $request->tanggal_pulang,
-                    'keterangan_izin' => $request->keterangan_izin
+                    'keterangan_izin' => $request->keterangan_izin,
+                    'alamat_izin' => $request->alamat_izin,
+                    'surat_pendukung' => $fileName,
+                    'suhu_badan' => $request->suhu_badan,
+                    'kondisi_kesehatan' => $request->kondisi_kesehatan,
+                    'jenis_kendaraan' => $request->jenis_kendaraan,
                 ];
 
                 Mail::to($pengurus->email)->send(new PengajuanPerizinanMail($details));
@@ -147,7 +156,7 @@ class PerizinanController extends Controller
     public function getAllPengajuanPerizinan(){
         $perizinan = DB::table('perizinan')
             ->where('status_izin', '=', 0)
-            ->join('mahasiswa', 'perizinan.id_mhs', '=', 'mahasiswa.id')
+            ->join('mahasiswa', 'perizinan.id_mhs', '=', 'mahasiswa.id_mhs')
             ->select('perizinan.*', 'mahasiswa.nama_mhs')
             ->get();
         

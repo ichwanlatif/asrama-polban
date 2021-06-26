@@ -82,18 +82,31 @@ class RiwayatPresensi extends Component {
                                                     {data.map(presensi => {
                                                         const {
                                                             id,
-                                                            status,
+                                                            status_presensi,
                                                             latitude,
                                                             longitude,
                                                             created_at,
                                                         } = presensi;
+                                                        let status, color;
+                                                        if(presensi.status_presensi === 0){
+                                                            status = "Alfa"
+                                                            color = "badge badge-pill badge-danger"
+                                                        }
+                                                        else if(presensi.status_presensi === 1){
+                                                            status = "Hadir"
+                                                            color = "badge badge-pill badge-success"
+                                                        }
+                                                        else{
+                                                            status = "Izin"
+                                                            color = "badge badge-pill badge-info"
+                                                        }
                                                         return (
                                                             <tr>
                                                                 <td>{new Date(presensi.created_at).toDateString()}</td>
                                                                 <td>{new Date(presensi.created_at).toTimeString()}</td>
                                                                 <td>{presensi.latitude + ', ' + presensi.longitude}</td>
                                                                 <td>
-                                                                    <span className={presensi.status ? "badge badge-pill badge-success" : "badge badge-pill badge-danger"}>{presensi.status ? "Hadir" : "Alfa"}
+                                                                    <span className={color}>{status}
                                                                     </span>
                                                                 </td>
                                                             </tr>

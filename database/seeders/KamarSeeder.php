@@ -14,10 +14,13 @@ class KamarSeeder extends Seeder
      */
     public function run()
     {
-        for($i = 1; $i <= 24; $i++){
-            $Kamar = Kamar::create([
-                'no_kamar' => "A$i",
-            ]);
+        for($j = 1; $j <= 3; $j++){
+            for($i = 1; $i <= 24; $i++){
+                $Kamar = Kamar::create([
+                    'id_gedung'  => $j,
+                    'no_kamar' => "$i",
+                ]);
+            }
         }
     }
 }

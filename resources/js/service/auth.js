@@ -8,6 +8,7 @@ export const loginAuth = (props) => {
         api().post('api/login', props).then(response => {
             if(response.data.status !== 'success'){
                 console.log(response.data.message)
+                alert('Failed To Login')
                 notLoggedIn;
             }
             else{
@@ -15,7 +16,7 @@ export const loginAuth = (props) => {
                 logIn(response.data.token);
                 // alert(response.data.data.role)
                 if(response.data.data.role === '1'){
-                    var endPoint = "api/mahasiswaByUser/" + response.data.data.id;
+                    var endPoint = "api/mahasiswaByUser/" + response.data.data.id_users;
                     api().get(endPoint).then(User => {
                         if(User.data.status !== 'success'){
                             alert(User.data.message)

@@ -13,8 +13,10 @@ class Presensi extends Model
 
     protected $fillable = [
         'id_mhs',
-        'status',
+        'status_presensi',
         'latitude',
-        'longitude'
+        'longitude',
+        'suhu_badan',
+        'kondisi_kesehatan',
     ];
 }
