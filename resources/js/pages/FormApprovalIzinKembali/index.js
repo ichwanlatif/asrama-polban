@@ -10,7 +10,7 @@ import PageHeading from '../../components/PageHeading';
 import api from '../../service/api';
 import { updatePerizinan } from '../../service/perizinan';
 
-class FormApprovalIzinPulang extends Component {
+class FormApprovalIzinKembali extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -166,6 +166,7 @@ class FormApprovalIzinPulang extends Component {
                                                     <input 
                                                         type="text" 
                                                         className="form-control-plaintext"
+                                                        value="Asrama Polban"
                                                         disabled
                                                     />
                                                 </div>
@@ -181,7 +182,7 @@ class FormApprovalIzinPulang extends Component {
                                                 </div>
                                             </div>
                                             <div className="form-group row">
-                                                <label for="description" className="col-md-3 col-form-label text-md-right">Alasan meninggalkan asrama</label>
+                                                <label for="description" className="col-md-3 col-form-label text-md-right">Alasan kembali ke asrama</label>
                                                 <div className="col-md-8">
                                                     <textarea 
                                                         class="form-control-plaintext"
@@ -192,7 +193,7 @@ class FormApprovalIzinPulang extends Component {
                                                 </div>
                                             </div>
                                             <div className="form-group row">
-                                                <label for="startdate" className="col-md-3 col-form-label text-md-right">Mulai pergi</label>
+                                                <label for="startdate" className="col-md-3 col-form-label text-md-right">Mulai kembali</label>
                                                 <div className="col-md-8">
                                                     <input 
                                                         type="text" 
@@ -267,4 +268,4 @@ class FormApprovalIzinPulang extends Component {
     }
 }
 
-export default FormApprovalIzinPulang;
+export default FormApprovalIzinKembali;
