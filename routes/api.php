@@ -31,13 +31,6 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     // manggil controller dengan mengubah namespace di RouteServiceProvider.php biar bisa kayak versi2 sebelumnya
     Route::post('logoutall', [AuthController::class, 'logoutall']);
 
-    // Route::prefix('user')->group(function () {
-    //     Route::get('/', [UserController::class, 'index']);
-    //     Route::post('/create', [UserController::class, 'create']);
-    //     Route::put('/update', [UserController::class, 'update']);
-    //     Route::post('/delete', [UserController::class, 'delete']);
-    // });
-
     //Mahasiswa
     Route::get('/mahasiswaByUser/{id}', [MahasiswaController::class, 'getMahasiswaByUserId']);
 
