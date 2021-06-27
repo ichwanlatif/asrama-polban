@@ -10,7 +10,7 @@ import PageHeading from '../../components/PageHeading';
 import api from '../../service/api';
 import { updatePerizinan } from '../../service/perizinan';
 
-class FormApprovalIzinPulang extends Component {
+class FormApprovalResign extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -89,11 +89,11 @@ class FormApprovalIzinPulang extends Component {
                         <Topbar />
                         {/* <!-- End of Topbar --> */}
                         <div className="container-fluid">
-                            <PageHeading title="Approval Perizinan Asrama" />
+                            <PageHeading title="Approval Resign Asrama" />
                             <div className="col-lg-12 col-md-12">
                                 <div className="card my-5">
                                     <div className="card-body">
-                                        <h6 className="text-justify text-muted">Isi data formulir approval perizinan dibawah ini</h6>
+                                        <h6 className="text-justify text-muted">Isi data formulir approval resign dibawah ini</h6>
                                         <hr></hr>
 
                                         
@@ -111,7 +111,27 @@ class FormApprovalIzinPulang extends Component {
                                                 </div>
                                             </div>
                                             <div className="form-group row">
-                                                <label for="hp" className="col-md-3 col-form-label text-md-right">Nomor HP</label>
+                                                <label for="nim" className="col-md-3 col-form-label text-md-right">Nomor Induk Mahasiswa</label>
+                                                <div className="col-md-8">
+                                                    <input 
+                                                        type="text" 
+                                                        className="form-control-plaintext"
+                                                        disabled
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className="form-group row">
+                                                <label for="prodi" className="col-md-3 col-form-label text-md-right">Prodi</label>
+                                                <div className="col-md-8">
+                                                    <input 
+                                                        type="text" 
+                                                        className="form-control-plaintext"
+                                                        disabled
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className="form-group row">
+                                                <label for="jurusan" className="col-md-3 col-form-label text-md-right">Jurusan</label>
                                                 <div className="col-md-8">
                                                     <input 
                                                         type="text" 
@@ -161,7 +181,7 @@ class FormApprovalIzinPulang extends Component {
                                                 </div>
                                             </div>
                                             <div className="form-group row">
-                                                <label for="address" className="col-md-3 col-form-label text-md-right">Alamat tujuan</label>
+                                                <label for="ortu" className="col-md-3 col-form-label text-md-right">Nama orang tua</label>
                                                 <div className="col-md-8">
                                                     <input 
                                                         type="text" 
@@ -171,7 +191,7 @@ class FormApprovalIzinPulang extends Component {
                                                 </div>
                                             </div>
                                             <div className="form-group row">
-                                                <label for="vehicle" className="col-md-3 col-form-label text-md-right">Transportasi yang digunakan</label>
+                                                <label for="address" className="col-md-3 col-form-label text-md-right">Alamat orang tua</label>
                                                 <div className="col-md-8">
                                                     <input 
                                                         type="text" 
@@ -181,7 +201,28 @@ class FormApprovalIzinPulang extends Component {
                                                 </div>
                                             </div>
                                             <div className="form-group row">
-                                                <label for="description" className="col-md-3 col-form-label text-md-right">Alasan meninggalkan asrama</label>
+                                                <label for="vehicle" className="col-md-3 col-form-label text-md-right">Kendaraan yang dibawa</label>
+                                                <div className="col-md-8">
+                                                    <input 
+                                                        type="text" 
+                                                        className="form-control-plaintext"
+                                                        disabled
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className="form-group row">
+                                                <label for="formfile" className="col-md-3 col-form-label text-md-right">STNK</label>
+                                                <div className="col-md-8">
+                                                    <a href={'/storage/file_perizinan/' + this.state.surat_pendukung} download={this.state.surat_pendukung} class="btn btn-light btn-icon-split">
+                                                        <span class="icon text-gray-600">
+                                                            <i class="fas fa-file-download"></i>
+                                                        </span>
+                                                        <span class="text">Unduh file</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div className="form-group row">
+                                                <label for="description" className="col-md-3 col-form-label text-md-right">Alasan resign Asrama Polban</label>
                                                 <div className="col-md-8">
                                                     <textarea 
                                                         class="form-control-plaintext"
@@ -192,7 +233,7 @@ class FormApprovalIzinPulang extends Component {
                                                 </div>
                                             </div>
                                             <div className="form-group row">
-                                                <label for="startdate" className="col-md-3 col-form-label text-md-right">Mulai pergi</label>
+                                                <label for="startdate" className="col-md-3 col-form-label text-md-right">Mulai resign</label>
                                                 <div className="col-md-8">
                                                     <input 
                                                         type="text" 
@@ -200,17 +241,6 @@ class FormApprovalIzinPulang extends Component {
                                                         disabled 
                                                         value={this.state.tanggal_pergi}
                                                     />
-                                                </div>
-                                            </div>
-                                            <div className="form-group row">
-                                                <label for="formfile" className="col-md-3 col-form-label text-md-right">Surat pendukung</label>
-                                                <div className="col-md-8">
-                                                    <a href={'/storage/file_perizinan/' + this.state.surat_pendukung} download={this.state.surat_pendukung} class="btn btn-light btn-icon-split">
-                                                        <span class="icon text-gray-600">
-                                                            <i class="fas fa-file-download"></i>
-                                                        </span>
-                                                        <span class="text">Unduh file</span>
-                                                    </a>
                                                 </div>
                                             </div>
                                             <div className="form-group row">
@@ -267,4 +297,4 @@ class FormApprovalIzinPulang extends Component {
     }
 }
 
-export default FormApprovalIzinPulang;
+export default FormApprovalResign;

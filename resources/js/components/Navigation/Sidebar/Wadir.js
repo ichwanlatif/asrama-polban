@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-class SidebarPengurusKoordinator extends Component {
+class SidebarWadir extends Component {
     render() {
         return (
             <div>
@@ -20,6 +20,7 @@ class SidebarPengurusKoordinator extends Component {
                         <div className="bg-white py-2 collapse-inner rounded">
                             <h6 className="collapse-header">Jenis Perizinan:</h6>
                             <Link className="collapse-item" to="/data-izin-pulang">Izin Pulang Asrama</Link>
+                            <Link className="collapse-item" to="/data-izin-kembali">Izin Kembali Asrama</Link>
                             <Link className="collapse-item" to="/data-resign">Resign Asrama</Link>
                         </div>
                     </div>
@@ -33,7 +34,7 @@ class SidebarPengurusKoordinator extends Component {
                     Rekapitulasi
                 </div>
 
-                {/* Rekap Presensi */}
+                {/* Rekap presensi dan perizinan */}
                 <li className="nav-item">
                     <Link className="nav-link" to="/rekapitulasi">
                         <i class="fas fa-clipboard-list"></i>
@@ -71,4 +72,4 @@ class SidebarPengurusKoordinator extends Component {
     }
 }
 
-export default SidebarPengurusKoordinator;
+export default SidebarWadir;

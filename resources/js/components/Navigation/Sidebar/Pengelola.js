@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-class SidebarPengurusKomdis extends Component {
+class SidebarPengelola extends Component {
     render() {
         return (
             <div>
@@ -19,11 +19,13 @@ class SidebarPengurusKomdis extends Component {
                     <div id="collapsePresensi" className="collapse" aria-labelledby="headingPresensi" data-parent="#accordionSidebar">
                         <div className="bg-white py-2 collapse-inner rounded">
                             <h6 className="collapse-header">Jenis Perizinan:</h6>
+                            <Link className="collapse-item" to="/data-izin-pulang">Izin Pulang Asrama</Link>
                             <Link className="collapse-item" to="/data-izin-kembali">Izin Kembali Asrama</Link>
+                            <Link className="collapse-item" to="/data-resign">Resign Asrama</Link>
                         </div>
                     </div>
                 </li>
-
+                
                 {/* <!-- Divider --> */}
                 <hr className="sidebar-divider" />
                 
@@ -32,7 +34,7 @@ class SidebarPengurusKomdis extends Component {
                     Rekapitulasi
                 </div>
 
-                {/* Rekap Presensi */}
+                {/* Rekap presensi dan perizinan */}
                 <li className="nav-item">
                     <Link className="nav-link" to="/rekapitulasi">
                         <i class="fas fa-clipboard-list"></i>
@@ -43,9 +45,31 @@ class SidebarPengurusKomdis extends Component {
                 {/* <!-- Divider --> */}
                 <hr className="sidebar-divider" />
 
+                {/* Kelola data mahasiswa */}
+                <div className="sidebar-heading">
+                    KELOLA DATA MAHASISWA
+                </div>
+
+                {/* Data Mahasiswa */}
+                <li className="nav-item">
+                    <Link className="nav-link collapsed" data-toggle="collapse" data-target="#collapseDataMahasiswa" aria-expanded="true" aria-controls="collapseDataMahasiswa">
+                        <i class="fas fa-id-card"></i>
+                        <span>Data Mahasiswa</span>
+                    </Link>
+                    <div id="collapseDataMahasiswa" className="collapse" aria-labelledby="headingDataMahasiswa" data-parent="#accordionSidebar">
+                        <div className="bg-white py-2 collapse-inner rounded">
+                            <h6 className="collapse-header">Menu:</h6>
+                            <Link className="collapse-item" to="/import-mahasiswa">Import Data</Link>
+                            <Link className="collapse-item" to="/data-mahasiswa">Daftar Mahasiswa</Link>
+                        </div>
+                    </div>
+                </li>
+
+                {/* <!-- Divider --> */}
+                <hr className="sidebar-divider" />
             </div>
         );
     }
 }
 
-export default SidebarPengurusKomdis;
+export default SidebarPengelola;
