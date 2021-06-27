@@ -8,6 +8,7 @@ import { clickMenuOpen } from '../../../redux/actions';
 //Role
 import SidebarMahasiswa from './Mahasiswa';
 import SidebarPengelola from './Pengelola';
+import SidebarWadir from './Wadir';
  
 class Sidebar extends Component {
 
@@ -17,6 +18,8 @@ class Sidebar extends Component {
                 return <SidebarMahasiswa/>;
             case "2":
                 return <SidebarPengelola/>;
+            case "3":
+                return <SidebarWadir/>;
         }
     }
       

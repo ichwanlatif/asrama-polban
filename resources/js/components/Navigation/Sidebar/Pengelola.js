@@ -20,6 +20,7 @@ class SidebarPengelola extends Component {
                         <div className="bg-white py-2 collapse-inner rounded">
                             <h6 className="collapse-header">Jenis Perizinan:</h6>
                             <Link className="collapse-item" to="/data-izin-pulang">Izin Pulang Asrama</Link>
+                            <Link className="collapse-item" to="/data-izin-kembali">Izin Kembali Asrama</Link>
                             <Link className="collapse-item" to="/data-resign">Resign Asrama</Link>
                         </div>
                     </div>
