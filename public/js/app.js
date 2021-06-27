@@ -9911,15 +9911,15 @@ var loginAuth = function loginAuth(props) {
         _token__WEBPACK_IMPORTED_MODULE_1__.notLoggedIn;
       } else {
         localStorage.setItem('user_role', response.data.data.role);
-        (0,_token__WEBPACK_IMPORTED_MODULE_1__.logIn)(response.data.token); // alert(response.data.data.role)
+        (0,_token__WEBPACK_IMPORTED_MODULE_1__.logIn)(response.data.token); // alert(response.data.data.id_users)
 
-        if (response.data.data.role === '1') {
+        if (response.data.data.role == 1) {
           var endPoint = "api/mahasiswaByUser/" + response.data.data.id_users;
           (0,_api__WEBPACK_IMPORTED_MODULE_0__.default)().get(endPoint).then(function (User) {
             if (User.data.status !== 'success') {
               alert(User.data.message);
             } else {
-              localStorage.setItem('user_id', User.data.data.id);
+              localStorage.setItem('user_id', User.data.data.id_mhs);
             }
           });
         }

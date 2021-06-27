@@ -14,15 +14,15 @@ export const loginAuth = (props) => {
             else{
                 localStorage.setItem('user_role', response.data.data.role);
                 logIn(response.data.token);
-                // alert(response.data.data.role)
-                if(response.data.data.role === '1'){
+                // alert(response.data.data.id_users)
+                if(response.data.data.role == 1){
                     var endPoint = "api/mahasiswaByUser/" + response.data.data.id_users;
                     api().get(endPoint).then(User => {
                         if(User.data.status !== 'success'){
                             alert(User.data.message)
                         }
                         else{
-                            localStorage.setItem('user_id', User.data.data.id);
+                            localStorage.setItem('user_id', User.data.data.id_mhs);
                         }
                     })
                 }

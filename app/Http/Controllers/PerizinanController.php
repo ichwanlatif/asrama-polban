@@ -117,7 +117,7 @@ class PerizinanController extends Controller
             return response()->json(["status" => 422, "msg" => "Form Tidak Valid"]);
         }
         $perizinan = Perizinan::where([
-            ['id', '=', $request->id],
+            ['id_perizinan', '=', $request->id],
             ['status_izin', '=', 0],
         ])->first();
         
@@ -132,8 +132,8 @@ class PerizinanController extends Controller
             'keterangan_izin' => $perizinan->keterangan_izin
         ];
 
-        $mahasiswa = Mahasiswa::where('id', $perizinan->id_mhs)->first();
-        $akun = User::where('id', $mahasiswa->id_users)->first();
+        $mahasiswa = Mahasiswa::where('id_mhs', $perizinan->id_mhs)->first();
+        $akun = User::where('id_users', $mahasiswa->id_users)->first();
 
         Mail::to($akun->email)->send(new ApprovalMail($details));
 
