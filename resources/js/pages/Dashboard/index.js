@@ -7,8 +7,8 @@ import Footer from '../../components/Navigation/Footer';
 
 //Role
 import DashboardMahasiswa from './Mahasiswa';
-import DashboardPengurus from './Pengurus';
-import DashboardManajemen from './Manajemen';
+import DashboardPengelola from './Pengelola';
+import DashboardWadir from './Wadir';
 
 class Dashboard extends Component {
     constructor(){
@@ -23,11 +23,9 @@ class Dashboard extends Component {
             case "1":
                 return <DashboardMahasiswa />;
             case "2":
-                return <DashboardPengurus/>;
+                return <DashboardPengelola/>;
             case "3":
-                return <DashboardPengurus/>;
-            case "4":
-                return <DashboardManajemen/>;
+                return <DashboardWadir/>;
         }
     }
 
