@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Mail\PengajuanResignMail;
 use App\Mail\ApprovalResignMail;
 
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
 
@@ -20,30 +21,49 @@ class ResignController extends Controller
         $validasi = \Validator::make($request->all(), [
             'tanggal_resign' => 'required',
             'keterangan_resign' => 'required',
+            'jenis_kendaraan' => 'required',
+            'kondisi_kesehatan' => 'required',
+            'suhu_badan' => 'required',
             'id_mhs' => 'required',
+
         ]);
         if($validasi->fails()){
             return response()->json(["status" => 'error', "msg" => "Form Tidak Valid"]);
         }
         else{
+            
+            if($request->file('file')){
+                $fileName = time().'-'.Str::random(10). '.'.$request->file('file')->getClientOriginalExtension();
+                $request->file('file')->storeAs('public/stnk_kendaraan', $fileName);
+            }
+            else{
+                $fileName = null;
+            }
             $insert = Resign::create([
                 'id_mhs' => $request->id_mhs,
                 'tanggal_resign' => $request->tanggal_resign,
                 'keterangan_resign' => $request->keterangan_resign,
+                'suhu_badan' => $request->suhu_badan,
+                'kondisi_kesehatan' => $request->kondisi_kesehatan,
+                'jenis_kendaraan' => $request->jenis_kendaraan,
+                'keterangan_stnk' => $fileName,
                 'status_resign' => 0,
             ]);
 
             if($insert){
-                $mahasiswa = Mahasiswa::where('id', $request->id_mhs)->first();
-                $pengurus = User::where('role', 2)->first();
+                $mahasiswa = Mahasiswa::where('id_mhs', $request->id_mhs)->first();
+                $pengelola = User::where('role', 2)->first();
 
                 $details = [
                     'from' => $mahasiswa->nama_mhs,
                     'tanggal_resign' => $request->tanggal_resign,
-                    'keterangan_resign' => $request->keterangan_resign
+                    'keterangan_resign' => $request->keterangan_resign,
+                    'suhu_badan' => $request->suhu_badan,
+                    'kondisi_kesehatan' => $request->kondisi_kesehatan,
+                    'jenis_kendaraan' => $request->jenis_kendaraan,
                 ];
 
-                Mail::to($pengurus->email)->send(new PengajuanResignMail($details));
+                Mail::to($pengelola->email)->send(new PengajuanResignMail($details));
 
                 return response()->json([
                     'status' => 'success',

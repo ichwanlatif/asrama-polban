@@ -11,6 +11,10 @@
     <h4>Perizinan pada:</h4>
     <p>Tanggal: {{$details['tanggal_pergi']}} s.d {{$details['tanggal_pulang']}}</p>
     <p>Alasan: {{$details['keterangan_izin']}}</p>
+    <p>Tujuan: {{$details['alamat_izin']}}</p>
+    <p>Suhu Badan: {{$details['suhu_badan']}} °C</p>
+    <p>Kondisi Badan: {{$details['kondisi_kesehatan']}}</p>
+    <p>Kendaraan digunakan: {{$details['jenis_kendaraan']}}</p>
     <br>
     <h4>TELAH DI APPROVAL</h4>
 

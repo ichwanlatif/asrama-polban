@@ -19,11 +19,12 @@ class DataIzinPulang extends Component {
     }
 
     componentDidMount(){
+        var role = localStorage.getItem("user_role")
         this.setState({
             role: localStorage.getItem("user_role")
         });
 
-        api().get('api/perizinan').then(response =>{
+        api().get('api/perizinan/' + role).then(response =>{
             if(response.data.status === 'success'){
                 this.setState({
                     datas: response.data.data
@@ -82,24 +83,38 @@ class DataIzinPulang extends Component {
                                                     <th scope="col">Nama</th>
                                                     <th scope="col">Mulai</th>
                                                     <th scope="col">Berakhir</th>
+                                                    <th scope="col">Status</th>
                                                     <th scope="col">Proses</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                 {data.map(perizinan => {
                                                         const {
-                                                            id,
+                                                            id_perizinan,
                                                             nama_mhs,
                                                             tanggal_pergi,
                                                             tanggal_pulang,
                                                             status_izin
                                                         } = perizinan;
+                                                        let status;
+                                                        switch (perizinan.status_izin) {
+                                                            case 0:
+                                                                status = "Mengajukan"
+                                                                break;
+                                                            case 1:
+                                                                status = "Disetujui Pengelola"
+                                                                break;
+                                                            default:
+                                                                status = "Error"
+                                                                break;
+                                                        }
                                                         return (
                                                             <tr>
                                                                 <td>{perizinan.nama_mhs}</td>
                                                                 <td>{perizinan.tanggal_pergi}</td>
                                                                 <td>{perizinan.tanggal_pulang}</td>
-                                                                <td><Link to={"/form-approval-izin-pulang/" + perizinan.id} className="btn btn-outline-primary btn-sm">Approve</Link></td>
+                                                                <td>{status}</td>
+                                                                <td><Link to={"/form-approval-izin-pulang/" + perizinan.id_perizinan} className="btn btn-outline-primary btn-sm">Approve</Link></td>
                                                             </tr>
                                                         )
                                                     })}

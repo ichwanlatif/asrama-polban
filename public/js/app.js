@@ -5287,10 +5287,11 @@ var DataIzinPulang = /*#__PURE__*/function (_Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
+      var role = localStorage.getItem("user_role");
       this.setState({
         role: localStorage.getItem("user_role")
       });
-      (0,_service_api__WEBPACK_IMPORTED_MODULE_5__.default)().get('api/perizinan').then(function (response) {
+      (0,_service_api__WEBPACK_IMPORTED_MODULE_5__.default)().get('api/perizinan/' + role).then(function (response) {
         if (response.data.status === 'success') {
           _this2.setState({
             datas: response.data.data
@@ -5378,16 +5379,35 @@ var DataIzinPulang = /*#__PURE__*/function (_Component) {
                                 children: "Berakhir"
                               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("th", {
                                 scope: "col",
+                                children: "Status"
+                              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("th", {
+                                scope: "col",
                                 children: "Proses"
                               })]
                             })
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("tbody", {
                             children: data.map(function (perizinan) {
-                              var id = perizinan.id,
+                              var id_perizinan = perizinan.id_perizinan,
                                   nama_mhs = perizinan.nama_mhs,
                                   tanggal_pergi = perizinan.tanggal_pergi,
                                   tanggal_pulang = perizinan.tanggal_pulang,
                                   status_izin = perizinan.status_izin;
+                              var status;
+
+                              switch (perizinan.status_izin) {
+                                case 0:
+                                  status = "Mengajukan";
+                                  break;
+
+                                case 1:
+                                  status = "Disetujui Pengelola";
+                                  break;
+
+                                default:
+                                  status = "Error";
+                                  break;
+                              }
+
                               return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("tr", {
                                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("td", {
                                   children: perizinan.nama_mhs
@@ -5396,8 +5416,10 @@ var DataIzinPulang = /*#__PURE__*/function (_Component) {
                                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("td", {
                                   children: perizinan.tanggal_pulang
                                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("td", {
+                                  children: status
+                                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("td", {
                                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Link, {
-                                    to: "/form-approval-izin-pulang/" + perizinan.id,
+                                    to: "/form-approval-izin-pulang/" + perizinan.id_perizinan,
                                     className: "btn btn-outline-primary btn-sm",
                                     children: "Approve"
                                   })
@@ -6868,15 +6890,7 @@ var FormApprovalIzinPulang = /*#__PURE__*/function (_Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      role: "",
-      id_mhs: "",
-      nama_mhs: "",
-      tanggal_pergi: "",
-      tanggal_pulang: "",
-      keterangan_izin: "",
-      status_izin: "",
-      catatan_pengurus: "",
-      surat_pendukung: ""
+      role: ""
     };
     _this.handleFieldChange = _this.handleFieldChange.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
@@ -6899,9 +6913,10 @@ var FormApprovalIzinPulang = /*#__PURE__*/function (_Component) {
       e.preventDefault();
       console.log(this.state);
       (0,_service_perizinan__WEBPACK_IMPORTED_MODULE_6__.updatePerizinan)({
-        id: this.state.id,
+        id_mhs: this.state.id_mhs,
+        id_perizinan: this.state.id_perizinan,
         status_izin: this.state.status_izin,
-        catatan_pengurus: this.state.catatan_pengurus
+        catatan_approval: this.state.catatan_approval
       });
     }
   }, {
@@ -6912,22 +6927,39 @@ var FormApprovalIzinPulang = /*#__PURE__*/function (_Component) {
       this.setState({
         role: localStorage.getItem("user_role")
       });
+
+      if (localStorage.getItem("user_role") == 3) {
+        this.setState({
+          setuju: 3,
+          tolak: 4
+        });
+      } else if (localStorage.getItem("user_role") == 2) {
+        this.setState({
+          setuju: 1,
+          tolak: 2
+        });
+      }
+
       var id = this.props.match.params.id;
       (0,_service_api__WEBPACK_IMPORTED_MODULE_5__.default)().get('api/perizinan/detail/' + id).then(function (response) {
         if (response.data.status === 'success') {
+          console.log(response.data.data);
+
           _this2.setState({
-            id: id,
+            id_perizinan: id,
             id_mhs: response.data.data.id_mhs,
             nama_mhs: response.data.data.nama_mhs,
-            tanggal_pergi: response.data.data.tanggal_pergi,
-            tanggal_pulang: response.data.data.tanggal_pulang,
+            no_hp_mhs: response.data.data.no_hp_mhs,
+            nama_gedung: response.data.data.nama_gedung,
+            no_kamar: response.data.data.no_kamar,
+            kondisi_kesehatan: response.data.data.kondisi_kesehatan,
+            suhu_badan: response.data.data.suhu_badan,
+            alamat_izin: response.data.data.alamat_izin,
+            jenis_kendaraan: response.data.data.jenis_kendaraan,
             keterangan_izin: response.data.data.keterangan_izin,
-            status_izin: response.data.data.status_izin,
-            surat_pendukung: response.data.data.surat_pendukung,
-            catatan_pengurus: response.data.data.catatan_pengurus
+            tanggal_pergi: response.data.data.tanggal_pergi,
+            surat_pendukung: response.data.data.surat_pendukung
           });
-
-          console.log(response.data.data.tanggal_pergi);
         } else {
           alert(response.data.msg);
         }
@@ -6986,7 +7018,8 @@ var FormApprovalIzinPulang = /*#__PURE__*/function (_Component) {
                             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("input", {
                               type: "text",
                               className: "form-control-plaintext",
-                              disabled: true
+                              disabled: true,
+                              value: this.state.no_hp_mhs
                             })
                           })]
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
@@ -7000,6 +7033,7 @@ var FormApprovalIzinPulang = /*#__PURE__*/function (_Component) {
                             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("input", {
                               type: "text",
                               className: "form-control-plaintext",
+                              value: this.state.nama_gedung,
                               disabled: true
                             })
                           })]
@@ -7014,6 +7048,7 @@ var FormApprovalIzinPulang = /*#__PURE__*/function (_Component) {
                             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("input", {
                               type: "text",
                               className: "form-control-plaintext",
+                              value: this.state.no_kamar,
                               disabled: true
                             })
                           })]
@@ -7028,6 +7063,7 @@ var FormApprovalIzinPulang = /*#__PURE__*/function (_Component) {
                             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("input", {
                               type: "text",
                               className: "form-control-plaintext",
+                              value: this.state.kondisi_kesehatan,
                               disabled: true
                             })
                           })]
@@ -7038,11 +7074,23 @@ var FormApprovalIzinPulang = /*#__PURE__*/function (_Component) {
                             className: "col-md-3 col-form-label text-md-right",
                             children: "Suhu badan"
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-                            className: "col-md-8",
-                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("input", {
-                              type: "text",
-                              className: "form-control-plaintext",
-                              disabled: true
+                            className: "col-md-3",
+                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                              className: "input-group",
+                              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("input", {
+                                type: "number",
+                                className: "form-control-plaintext",
+                                disabled: true,
+                                value: this.state.suhu_badan,
+                                "aria-describedby": "temperature"
+                              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                                className: "input-group-append",
+                                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                                  className: "input-group-text",
+                                  id: "temperature",
+                                  children: "\xB0Celcius"
+                                })
+                              })]
                             })
                           })]
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
@@ -7056,7 +7104,8 @@ var FormApprovalIzinPulang = /*#__PURE__*/function (_Component) {
                             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("input", {
                               type: "text",
                               className: "form-control-plaintext",
-                              disabled: true
+                              disabled: true,
+                              value: this.state.alamat_izin
                             })
                           })]
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
@@ -7070,7 +7119,8 @@ var FormApprovalIzinPulang = /*#__PURE__*/function (_Component) {
                             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("input", {
                               type: "text",
                               className: "form-control-plaintext",
-                              disabled: true
+                              disabled: true,
+                              value: this.state.jenis_kendaraan
                             })
                           })]
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
@@ -7142,7 +7192,7 @@ var FormApprovalIzinPulang = /*#__PURE__*/function (_Component) {
                                 type: "radio",
                                 name: "status_izin",
                                 id: "setuju",
-                                value: "1"
+                                value: this.state.setuju
                               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("label", {
                                 className: "form-check-label",
                                 "for": "setuju",
@@ -7156,7 +7206,7 @@ var FormApprovalIzinPulang = /*#__PURE__*/function (_Component) {
                                 type: "radio",
                                 name: "status_izin",
                                 id: "tolak",
-                                value: "2"
+                                value: this.state.tolak
                               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("label", {
                                 className: "form-check-label",
                                 "for": "tolak",
@@ -7175,9 +7225,9 @@ var FormApprovalIzinPulang = /*#__PURE__*/function (_Component) {
                             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("textarea", {
                               className: "form-control",
                               rows: "3",
-                              name: "catatan_pengurus",
+                              name: "catatan_approval",
                               onChange: this.handleFieldChange,
-                              value: this.state.catatan_pengurus
+                              value: this.state.catatan_approval
                             })
                           })]
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
@@ -7274,7 +7324,8 @@ var FormIzinPulang = /*#__PURE__*/function (_Component) {
     _this = _super.call(this);
     _this.state = {
       id_mhs: localStorage.getItem('user_id'),
-      suhu_badan: 36
+      suhu_badan: 36,
+      file: null
     };
     _this.handleFieldChange = _this.handleFieldChange.bind(_assertThisInitialized(_this));
     _this.handleFileChange = _this.handleFileChange.bind(_assertThisInitialized(_this));
@@ -7311,6 +7362,7 @@ var FormIzinPulang = /*#__PURE__*/function (_Component) {
         data.append('file', this.state.file);
         data.append('id_mhs', this.state.id_mhs);
         data.append('tanggal_pergi', this.state.tanggal_pergi);
+        data.append('tanggal_pulang', this.state.tanggal_pulang);
         data.append('jenis_kendaraan', this.state.jenis_kendaraan);
         data.append('keterangan_izin', this.state.keterangan_izin);
         data.append('kondisi_kesehatan', this.state.kondisi_kesehatan);
@@ -7383,13 +7435,29 @@ var FormIzinPulang = /*#__PURE__*/function (_Component) {
                           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
                             "for": "startdate",
                             className: "col-md-3 col-form-label text-md-right",
-                            children: "Mulai pergi"
+                            children: "Tanggal pergi"
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                             className: "col-md-3",
                             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
                               type: "date",
                               className: "form-control",
                               name: "tanggal_pergi",
+                              onChange: this.handleFieldChange,
+                              required: true
+                            })
+                          })]
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                          className: "form-group row",
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                            "for": "endtdate",
+                            className: "col-md-3 col-form-label text-md-right",
+                            children: "Tanggal pulang"
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                            className: "col-md-3",
+                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+                              type: "date",
+                              className: "form-control",
+                              name: "tanggal_pulang",
                               onChange: this.handleFieldChange,
                               required: true
                             })
@@ -7987,9 +8055,13 @@ var FormResign = /*#__PURE__*/function (_Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      role: ""
+      role: "",
+      id_mhs: localStorage.getItem('user_id'),
+      suhu_badan: 36,
+      file: ""
     };
     _this.handleFieldChange = _this.handleFieldChange.bind(_assertThisInitialized(_this));
+    _this.handleFileChange = _this.handleFileChange.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
@@ -8011,15 +8083,28 @@ var FormResign = /*#__PURE__*/function (_Component) {
       this.setState(data);
     }
   }, {
+    key: "handleFileChange",
+    value: function handleFileChange(e) {
+      var files = e.target.files[0];
+      this.setState({
+        file: files
+      });
+    }
+  }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
+      var data = new FormData();
+      data.append('file', this.state.file);
+      data.append('id_mhs', this.state.id_mhs);
+      data.append('tanggal_resign', this.state.tanggal_resign);
+      data.append('jenis_kendaraan', this.state.jenis_kendaraan);
+      data.append('keterangan_resign', this.state.keterangan_resign);
+      data.append('kondisi_kesehatan', this.state.kondisi_kesehatan);
+      data.append('suhu_badan', this.state.suhu_badan); // console.warn(this.state.file);
+
       console.log(this.state);
-      (0,_service_resign__WEBPACK_IMPORTED_MODULE_5__.createResign)({
-        id_mhs: localStorage.getItem('user_id'),
-        tanggal_resign: this.state.tanggal_resign,
-        keterangan_resign: this.state.keterangan_resign
-      });
+      (0,_service_resign__WEBPACK_IMPORTED_MODULE_5__.createResign)(data);
     }
   }, {
     key: "render",
@@ -8056,7 +8141,9 @@ var FormResign = /*#__PURE__*/function (_Component) {
                             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
                               type: "text",
                               className: "form-control",
-                              placeholder: "contoh: Masa tinggal habis"
+                              placeholder: "contoh: Masa tinggal habis",
+                              name: "keterangan_resign",
+                              onChange: this.handleFieldChange
                             })
                           })]
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
@@ -8086,7 +8173,9 @@ var FormResign = /*#__PURE__*/function (_Component) {
                             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
                               type: "text",
                               className: "form-control",
-                              placeholder: "contoh: Sehat / Sakit"
+                              placeholder: "contoh: Sehat / Sakit",
+                              name: "kondisi_kesehatan",
+                              onChange: this.handleFieldChange
                             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("small", {
                               className: "text-muted",
                               children: "Jelaskan keluhan saudara, jika merasa sakit."
@@ -8105,7 +8194,10 @@ var FormResign = /*#__PURE__*/function (_Component) {
                               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
                                 type: "number",
                                 className: "form-control",
-                                "aria-describedby": "temperature"
+                                "aria-describedby": "temperature",
+                                name: "suhu_badan",
+                                onChange: this.handleFieldChange,
+                                value: this.state.suhu_badan
                               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                                 className: "input-group-append",
                                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
@@ -8130,6 +8222,8 @@ var FormResign = /*#__PURE__*/function (_Component) {
                             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("select", {
                               "class": "form-control",
                               id: "vehicle",
+                              name: "jenis_kendaraan",
+                              onChange: this.handleFieldChange,
                               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
                                 children: "Sepeda"
                               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {

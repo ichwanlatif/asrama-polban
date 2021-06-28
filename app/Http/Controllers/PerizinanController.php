@@ -22,6 +22,7 @@ class PerizinanController extends Controller
     public function store(Request $request){
         $validasi = \Validator::make($request->all(), [
             'tanggal_pergi' => 'required',
+            'tanggal_pulang' => 'required',
             'jenis_kendaraan' => 'required',
             'kondisi_kesehatan' => 'required',
             'suhu_badan' => 'required',
@@ -34,9 +35,11 @@ class PerizinanController extends Controller
             return response()->json(["status" => 422, "msg" => "Form Tidak Valid"]);
         }
         else{
-            // if($request->tanggal_pergi > $request->tanggal_pulang){
-            //     return response()->json(["status" => 422, "msg" => "Tanggal Pergi dan Pulang Tidak Benar"]);
-            // }
+            if($request->tanggal_pergi > $request->tanggal_pulang){
+                return response()->json(["status" => 422, "msg" => "Tanggal Pergi dan Pulang Tidak Benar"]);
+            }
+            $fileName = null;
+
             if($request->file('file')){
 
                 $fileName = time().'-'.Str::random(10). '.'.$request->file('file')->getClientOriginalExtension();
@@ -45,6 +48,7 @@ class PerizinanController extends Controller
             $insert = Perizinan::create([
                 'id_mhs' => $request->id_mhs,
                 'tanggal_pergi' => $request->tanggal_pergi,
+                'tanggal_pulang' => $request->tanggal_pulang,
                 'keterangan_izin' => $request->keterangan_izin,
                 'alamat_izin' => $request->alamat_izin,
                 'surat_pendukung' => $fileName,
@@ -57,20 +61,20 @@ class PerizinanController extends Controller
             if($insert){
 
                 $mahasiswa = Mahasiswa::where('id_mhs', $request->id_mhs)->first();
-                $pengurus = User::where('role', 2)->first();
+                $pengelola = User::where('role', 2)->first();
 
                 $details = [
                     'from' => $mahasiswa->nama_mhs,
                     'tanggal_pergi' => $request->tanggal_pergi,
+                    'tanggal_pulang' => $request->tanggal_pulang,
                     'keterangan_izin' => $request->keterangan_izin,
                     'alamat_izin' => $request->alamat_izin,
-                    'surat_pendukung' => $fileName,
                     'suhu_badan' => $request->suhu_badan,
                     'kondisi_kesehatan' => $request->kondisi_kesehatan,
                     'jenis_kendaraan' => $request->jenis_kendaraan,
                 ];
 
-                Mail::to($pengurus->email)->send(new PengajuanPerizinanMail($details));
+                Mail::to($pengelola->email)->send(new PengajuanPerizinanMail($details));
 
                 return response()->json([
                     'status' => 'success',
@@ -117,26 +121,37 @@ class PerizinanController extends Controller
             return response()->json(["status" => 422, "msg" => "Form Tidak Valid"]);
         }
         $perizinan = Perizinan::where([
-            ['id_perizinan', '=', $request->id],
-            ['status_izin', '=', 0],
-        ])->first();
-        
-        $perizinan->update([
+            ['id_perizinan', '=', $request->id_perizinan],
+        ])->update([
             'status_izin' => $request->status_izin,
-            'catatan_pengurus' => $request->catatan_pengurus
+            'catatan_approval' => $request->catatan_approval
         ]);
 
+        $detail = Perizinan::where([
+            ['id_perizinan', '=', $request->id_perizinan],
+        ])->first();
+
+        $mahasiswa = Mahasiswa::where('id_mhs', $request->id_mhs)->first();
+
         $details = [
-            'tanggal_pergi' => $perizinan->tanggal_pergi,
-            'tanggal_pulang' => $perizinan->tanggal_pulang,
-            'keterangan_izin' => $perizinan->keterangan_izin
+            'from' => $mahasiswa->nama_mhs,
+            'tanggal_pergi' => $detail->tanggal_pergi,
+            'tanggal_pulang' => $detail->tanggal_pulang,
+            'keterangan_izin' => $detail->keterangan_izin,
+            'alamat_izin' => $detail->alamat_izin,
+            'suhu_badan' => $detail->suhu_badan,
+            'kondisi_kesehatan' => $detail->kondisi_kesehatan,
+            'jenis_kendaraan' => $detail->jenis_kendaraan,
         ];
 
-        $mahasiswa = Mahasiswa::where('id_mhs', $perizinan->id_mhs)->first();
-        $akun = User::where('id_users', $mahasiswa->id_users)->first();
-
-        Mail::to($akun->email)->send(new ApprovalMail($details));
-
+        if($request->status_izin == 2 || $request->status_izin == 3 || $request->status_izin == 4){
+            $akun = User::where('id_users', $mahasiswa->id_users)->first();
+            Mail::to($akun->email)->send(new ApprovalMail($details));
+        }
+        else{
+            $akun = User::where('role', 3)->first();
+            Mail::to($akun->email)->send(new PengajuanPerizinanMail($details));
+        }
 
         if($perizinan){
             return response()->json([
@@ -153,12 +168,22 @@ class PerizinanController extends Controller
         }
     }
 
-    public function getAllPengajuanPerizinan(){
-        $perizinan = DB::table('perizinan')
+    public function getAllPengajuanPerizinan($role){
+        if($role == 2){
+            $perizinan = DB::table('perizinan')
             ->where('status_izin', '=', 0)
             ->join('mahasiswa', 'perizinan.id_mhs', '=', 'mahasiswa.id_mhs')
             ->select('perizinan.*', 'mahasiswa.nama_mhs')
             ->get();
+        }
+        else if($role == 3){
+            $perizinan = DB::table('perizinan')
+            ->where('status_izin', '=', 0)
+            ->orWhere('status_izin', '=', 1)
+            ->join('mahasiswa', 'perizinan.id_mhs', '=', 'mahasiswa.id_mhs')
+            ->select('perizinan.*', 'mahasiswa.nama_mhs')
+            ->get();
+        }
         
         if($perizinan){
             return response()->json([
@@ -197,8 +222,10 @@ class PerizinanController extends Controller
     public function getDetailPerizinan($id){  
         
         $perizinan = DB::table('perizinan')
-            ->join('mahasiswa', 'mahasiswa.id', '=', 'perizinan.id_mhs')
-            ->where('perizinan.id', $id)
+            ->join('mahasiswa', 'mahasiswa.id_mhs', '=', 'perizinan.id_mhs')
+            ->join('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
+            ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
+            ->where('perizinan.id_perizinan', $id)
             ->first();
         
         if($perizinan){

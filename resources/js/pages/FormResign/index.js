@@ -13,9 +13,13 @@ class FormResign extends Component {
         super(props);
         this.state = {
             role: "",
+            id_mhs: localStorage.getItem('user_id'),
+            suhu_badan: 36,
+            file: ""
         };
 
         this.handleFieldChange = this.handleFieldChange.bind(this)
+        this.handleFileChange = this.handleFileChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
@@ -33,14 +37,29 @@ class FormResign extends Component {
         this.setState(data);
     }
 
+    handleFileChange(e){
+        let files = e.target.files[0];
+        this.setState({
+            file: files
+        })
+    }
+
     handleSubmit(e){
         e.preventDefault()
-        console.log(this.state)
-        createResign({
-            id_mhs: localStorage.getItem('user_id'),
-            tanggal_resign: this.state.tanggal_resign,
-            keterangan_resign: this.state.keterangan_resign
-        })
+
+        const data = new FormData()
+        data.append('file', this.state.file)
+        data.append('id_mhs', this.state.id_mhs)
+        data.append('tanggal_resign', this.state.tanggal_resign)
+        data.append('jenis_kendaraan', this.state.jenis_kendaraan)
+        data.append('keterangan_resign', this.state.keterangan_resign)
+        data.append('kondisi_kesehatan', this.state.kondisi_kesehatan)
+        data.append('suhu_badan', this.state.suhu_badan)
+        
+        // console.warn(this.state.file);
+
+        console.log(this.state);
+        createResign(data);
     }
 
     render() {
@@ -70,6 +89,8 @@ class FormResign extends Component {
                                                         type="text" 
                                                         className="form-control"
                                                         placeholder="contoh: Masa tinggal habis"
+                                                        name="keterangan_resign"
+                                                        onChange={this.handleFieldChange}
                                                     />
                                                 </div>
                                             </div>
@@ -94,6 +115,8 @@ class FormResign extends Component {
                                                         type="text" 
                                                         className="form-control"
                                                         placeholder="contoh: Sehat / Sakit"
+                                                        name="kondisi_kesehatan"
+                                                        onChange={this.handleFieldChange}
                                                     />
                                                     <small className="text-muted">Jelaskan keluhan saudara, jika merasa sakit.</small>
                                                 </div>
@@ -107,6 +130,9 @@ class FormResign extends Component {
                                                             type="number"
                                                             className="form-control"
                                                             aria-describedby="temperature"
+                                                            name="suhu_badan"
+                                                            onChange={this.handleFieldChange}
+                                                            value={this.state.suhu_badan}
                                                         />
                                                         <div className="input-group-append">
                                                             <span className="input-group-text" id="temperature">&deg;Celcius</span>
@@ -119,7 +145,7 @@ class FormResign extends Component {
                                             <div className="form-group row">
                                                 <label for="description" className="col-md-3 col-form-label text-md-right">Kendaraan yang dibawa</label>
                                                 <div className="col-md-8">
-                                                    <select class="form-control" id="vehicle">
+                                                    <select class="form-control" id="vehicle" name="jenis_kendaraan" onChange={this.handleFieldChange}>
                                                         <option>Sepeda</option>
                                                         <option>Motor</option>
                                                         <option>Mobil</option>

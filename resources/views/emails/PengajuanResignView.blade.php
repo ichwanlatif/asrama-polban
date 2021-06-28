@@ -11,8 +11,10 @@
     <h4>{{$details['from']}}, mengajukan resign pada:</h4>
     <p>Tanggal: {{$details['tanggal_resign']}}</p>
     <p>Alasan: {{$details['keterangan_resign']}}</p>
-
-
+    <p>Suhu Badan: {{$details['suhu_badan']}} °C</p>
+    <p>Kondisi Badan: {{$details['kondisi_kesehatan']}}</p>
+    <p>Kendaraan digunakan: {{$details['jenis_kendaraan']}}</p>
+    <br>
     <p>Segera Approve dengan mengklik <a href="#">link ini.</a></p>
 
 </body>

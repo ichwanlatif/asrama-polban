@@ -14,6 +14,7 @@ class FormIzinPulang extends Component {
         this.state = {
             id_mhs: localStorage.getItem('user_id'),
             suhu_badan: 36,
+            file: null,
         };
         this.handleFieldChange = this.handleFieldChange.bind(this);
         this.handleFileChange = this.handleFileChange.bind(this)
@@ -47,6 +48,7 @@ class FormIzinPulang extends Component {
             data.append('file', this.state.file)
             data.append('id_mhs', this.state.id_mhs)
             data.append('tanggal_pergi', this.state.tanggal_pergi)
+            data.append('tanggal_pulang', this.state.tanggal_pulang)
             data.append('jenis_kendaraan', this.state.jenis_kendaraan)
             data.append('keterangan_izin', this.state.keterangan_izin)
             data.append('kondisi_kesehatan', this.state.kondisi_kesehatan)
@@ -108,12 +110,25 @@ class FormIzinPulang extends Component {
                                             </div>
 
                                             <div className="form-group row">
-                                                <label for="startdate" className="col-md-3 col-form-label text-md-right">Mulai pergi</label>
+                                                <label for="startdate" className="col-md-3 col-form-label text-md-right">Tanggal pergi</label>
                                                 <div className="col-md-3">
                                                     <input 
                                                         type="date" 
                                                         className="form-control"
                                                         name="tanggal_pergi"
+                                                        onChange={this.handleFieldChange}
+                                                        required
+                                                    />
+                                                </div>
+                                            </div>
+
+                                            <div className="form-group row">
+                                                <label for="endtdate" className="col-md-3 col-form-label text-md-right">Tanggal pulang</label>
+                                                <div className="col-md-3">
+                                                    <input 
+                                                        type="date" 
+                                                        className="form-control"
+                                                        name="tanggal_pulang"
                                                         onChange={this.handleFieldChange}
                                                         required
                                                     />

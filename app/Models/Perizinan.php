@@ -14,6 +14,7 @@ class Perizinan extends Model
         'id_mhs',
         'tanggal_pergi',
         'tanggal_pulang',
+        'pengajuan_tanggal_pulang',
         'keterangan_izin',
         'alamat_izin',
         'keterangan_kembali',
