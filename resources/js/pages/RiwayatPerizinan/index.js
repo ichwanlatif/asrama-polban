@@ -25,7 +25,7 @@ class RiwayatPerizinan extends Component {
         this.setState({
             role: localStorage.getItem("user_role")
         });
-        api().get('api/perizinan/' + localStorage.getItem('user_id')).then(response =>{
+        api().get('api/riwayatperizinan/' + localStorage.getItem('user_id')).then(response =>{
             if(response.data.status === 'success'){
                 this.setState({
                     datasIzin: response.data.data
@@ -36,7 +36,7 @@ class RiwayatPerizinan extends Component {
             }
         })
 
-        api().get('api/resign/' + localStorage.getItem('user_id')).then(resign => {
+        api().get('api/riwayatresign/' + localStorage.getItem('user_id')).then(resign => {
             if(resign.data.status === 'success'){
                 this.setState({
                     datasResign: resign.data.data
@@ -108,11 +108,25 @@ class RiwayatPerizinan extends Component {
                                                             status_resign
                                                         } = resign;
                                                         let statusResign;
-                                                        if(resign.status_resign === 0){
-                                                            statusResign = "Mengajukan"
-                                                        }
-                                                        else if(resign.status_resign === 5){
-                                                            statusResign = "Terkonfirmasi Resign"
+                                                        switch (resign.status_resign) {
+                                                            case 0:
+                                                                statusResign = "Mengajukan"
+                                                                break;
+                                                            case 1:
+                                                                statusResign = "Disetujui Pengelola"
+                                                                break;
+                                                            case 2:
+                                                                statusResign = "Ditolak Pengelola"
+                                                                break;
+                                                            case 3:
+                                                                statusResign = "Disetujui Wadir 3"
+                                                                break;
+                                                            case 4:
+                                                                statusResign = "Ditolak Wadir 3"
+                                                                break;
+                                                            default:
+                                                                statusResign = "Error"
+                                                                break;
                                                         }
                                                         return (
                                                             <tr>
@@ -132,25 +146,26 @@ class RiwayatPerizinan extends Component {
                                                             status_izin
                                                         } = perizinan;
                                                         let status, hidden;
-                                                        if(perizinan.status_izin === 0){
-                                                            status = "Mengajukan"
-                                                            hidden = true
-                                                        }
-                                                        else if(perizinan.status_izin === 1){
-                                                            status = "Disetujui Koordinator"
-                                                            hidden = false
-                                                        }
-                                                        else if(perizinan.status_izin === 2){
-                                                            status = "Ditolak"
-                                                            hidden = true
-                                                        }
-                                                        else if(perizinan.status_izin === 3){
-                                                            status = "Sudah Kembali"
-                                                            hidden = true
-                                                        }
-                                                        else if(perizinan.status_izin === 4){
-                                                            status = "Terkonfirmasi Kembali"
-                                                            hidden = true
+                                                        switch (perizinan.status_izin) {
+                                                            case 0:
+                                                                status = "Mengajukan"
+                                                                break;
+                                                            case 1:
+                                                                status = "Disetujui Pengelola"
+                                                                break;
+                                                            case 2:
+                                                                status = "Ditolak Pengelola"
+                                                                break;
+                                                            case 3:
+                                                                status = "Disetujui Wadir 3"
+                                                                document.getElementById('kembali').hidden = false;
+                                                                break;
+                                                            case 4:
+                                                                status = "Ditolak Wadir 3"
+                                                                break;
+                                                            default:
+                                                                status = "Error"
+                                                                break;
                                                         }
                                                         return (
                                                             <tr>
@@ -158,7 +173,7 @@ class RiwayatPerizinan extends Component {
                                                                 <td>{perizinan.tanggal_pulang}</td>
                                                                 <td>Pergi</td>
                                                                 <td>{status}</td>
-                                                                <td><button hidden={hidden} onClick={() => this.kembali(perizinan.id)} className="btn btn-outline-primary btn-sm">Kembali</button></td>
+                                                                <td><button id="kembali" hidden="true" onClick={() => this.kembali(perizinan.id)} className="btn btn-outline-primary btn-sm">Kembali</button></td>
                                                             </tr>
                                                         )
                                                     })}

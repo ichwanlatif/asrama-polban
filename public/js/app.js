@@ -9406,7 +9406,7 @@ var RiwayatPerizinan = /*#__PURE__*/function (_Component) {
       this.setState({
         role: localStorage.getItem("user_role")
       });
-      (0,_service_api__WEBPACK_IMPORTED_MODULE_5__.default)().get('api/perizinan/' + localStorage.getItem('user_id')).then(function (response) {
+      (0,_service_api__WEBPACK_IMPORTED_MODULE_5__.default)().get('api/riwayatperizinan/' + localStorage.getItem('user_id')).then(function (response) {
         if (response.data.status === 'success') {
           _this2.setState({
             datasIzin: response.data.data
@@ -9415,7 +9415,7 @@ var RiwayatPerizinan = /*#__PURE__*/function (_Component) {
           alert(response.data.msg);
         }
       });
-      (0,_service_api__WEBPACK_IMPORTED_MODULE_5__.default)().get('api/resign/' + localStorage.getItem('user_id')).then(function (resign) {
+      (0,_service_api__WEBPACK_IMPORTED_MODULE_5__.default)().get('api/riwayatresign/' + localStorage.getItem('user_id')).then(function (resign) {
         if (resign.data.status === 'success') {
           _this2.setState({
             datasResign: resign.data.data
@@ -9511,10 +9511,30 @@ var RiwayatPerizinan = /*#__PURE__*/function (_Component) {
                                   status_resign = resign.status_resign;
                               var statusResign;
 
-                              if (resign.status_resign === 0) {
-                                statusResign = "Mengajukan";
-                              } else if (resign.status_resign === 5) {
-                                statusResign = "Terkonfirmasi Resign";
+                              switch (resign.status_resign) {
+                                case 0:
+                                  statusResign = "Mengajukan";
+                                  break;
+
+                                case 1:
+                                  statusResign = "Disetujui Pengelola";
+                                  break;
+
+                                case 2:
+                                  statusResign = "Ditolak Pengelola";
+                                  break;
+
+                                case 3:
+                                  statusResign = "Disetujui Wadir 3";
+                                  break;
+
+                                case 4:
+                                  statusResign = "Ditolak Wadir 3";
+                                  break;
+
+                                default:
+                                  statusResign = "Error";
+                                  break;
                               }
 
                               return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("tr", {
@@ -9537,21 +9557,31 @@ var RiwayatPerizinan = /*#__PURE__*/function (_Component) {
                                   status_izin = perizinan.status_izin;
                               var status, hidden;
 
-                              if (perizinan.status_izin === 0) {
-                                status = "Mengajukan";
-                                hidden = true;
-                              } else if (perizinan.status_izin === 1) {
-                                status = "Disetujui Koordinator";
-                                hidden = false;
-                              } else if (perizinan.status_izin === 2) {
-                                status = "Ditolak";
-                                hidden = true;
-                              } else if (perizinan.status_izin === 3) {
-                                status = "Sudah Kembali";
-                                hidden = true;
-                              } else if (perizinan.status_izin === 4) {
-                                status = "Terkonfirmasi Kembali";
-                                hidden = true;
+                              switch (perizinan.status_izin) {
+                                case 0:
+                                  status = "Mengajukan";
+                                  break;
+
+                                case 1:
+                                  status = "Disetujui Pengelola";
+                                  break;
+
+                                case 2:
+                                  status = "Ditolak Pengelola";
+                                  break;
+
+                                case 3:
+                                  status = "Disetujui Wadir 3";
+                                  document.getElementById('kembali').hidden = false;
+                                  break;
+
+                                case 4:
+                                  status = "Ditolak Wadir 3";
+                                  break;
+
+                                default:
+                                  status = "Error";
+                                  break;
                               }
 
                               return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("tr", {
@@ -9565,7 +9595,8 @@ var RiwayatPerizinan = /*#__PURE__*/function (_Component) {
                                   children: status
                                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("td", {
                                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
-                                    hidden: hidden,
+                                    id: "kembali",
+                                    hidden: "true",
                                     onClick: function onClick() {
                                       return _this3.kembali(perizinan.id);
                                     },
