@@ -145,7 +145,7 @@ class RiwayatPerizinan extends Component {
                                                             tanggal_pulang,
                                                             status_izin
                                                         } = perizinan;
-                                                        let status, hidden;
+                                                        let status, hiddenKembali = true, hiddenKonfirmasi = true;
                                                         switch (perizinan.status_izin) {
                                                             case 0:
                                                                 status = "Mengajukan"
@@ -158,10 +158,29 @@ class RiwayatPerizinan extends Component {
                                                                 break;
                                                             case 3:
                                                                 status = "Disetujui Wadir 3"
-                                                                document.getElementById('kembali').hidden = false;
+                                                                hiddenKembali = false;
                                                                 break;
                                                             case 4:
                                                                 status = "Ditolak Wadir 3"
+                                                                break;
+                                                            case 5:
+                                                                status = "Mengajukan Kembali"
+                                                                break;
+                                                            case 6:
+                                                                status = "Disetujui Kembali oleh Pengelola"
+                                                                break;
+                                                            case 7:
+                                                                status = "Ditolak Kembali oleh Pengelola"
+                                                                break;
+                                                            case 8:
+                                                                status = "Disetujui Kembali oleh Wadir 3"
+                                                                hiddenKonfirmasi = false;
+                                                                break;
+                                                            case 9:
+                                                                status = "Ditolak Kembali oleh Wadir 3"
+                                                                break;
+                                                            case 10:
+                                                                status = "Terkonfirmasi Kembali"
                                                                 break;
                                                             default:
                                                                 status = "Error"
@@ -173,7 +192,10 @@ class RiwayatPerizinan extends Component {
                                                                 <td>{perizinan.tanggal_pulang}</td>
                                                                 <td>Pergi</td>
                                                                 <td>{status}</td>
-                                                                <td><button id="kembali" hidden="true" onClick={() => this.kembali(perizinan.id)} className="btn btn-outline-primary btn-sm">Kembali</button></td>
+                                                                <td>
+                                                                    <button hidden={hiddenKembali} onClick={() => this.kembali(perizinan.id)} className="btn btn-outline-primary btn-sm">Ajukan Perizinan Kembali</button>
+                                                                    <button hidden={hiddenKonfirmasi} onClick={() => this.kembali(perizinan.id)} className="btn btn-outline-primary btn-sm">Konfirmasi Kembali</button>
+                                                                </td>
                                                             </tr>
                                                         )
                                                     })}

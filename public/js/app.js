@@ -9555,7 +9555,9 @@ var RiwayatPerizinan = /*#__PURE__*/function (_Component) {
                                   tanggal_pergi = perizinan.tanggal_pergi,
                                   tanggal_pulang = perizinan.tanggal_pulang,
                                   status_izin = perizinan.status_izin;
-                              var status, hidden;
+                              var status,
+                                  hiddenKembali = true,
+                                  hiddenKonfirmasi = true;
 
                               switch (perizinan.status_izin) {
                                 case 0:
@@ -9572,11 +9574,36 @@ var RiwayatPerizinan = /*#__PURE__*/function (_Component) {
 
                                 case 3:
                                   status = "Disetujui Wadir 3";
-                                  document.getElementById('kembali').hidden = false;
+                                  hiddenKembali = false;
                                   break;
 
                                 case 4:
                                   status = "Ditolak Wadir 3";
+                                  break;
+
+                                case 5:
+                                  status = "Mengajukan Kembali";
+                                  break;
+
+                                case 6:
+                                  status = "Disetujui Kembali oleh Pengelola";
+                                  break;
+
+                                case 7:
+                                  status = "Ditolak Kembali oleh Pengelola";
+                                  break;
+
+                                case 8:
+                                  status = "Disetujui Kembali oleh Wadir 3";
+                                  hiddenKonfirmasi = false;
+                                  break;
+
+                                case 9:
+                                  status = "Ditolak Kembali oleh Wadir 3";
+                                  break;
+
+                                case 10:
+                                  status = "Terkonfirmasi Kembali";
                                   break;
 
                                 default:
@@ -9593,16 +9620,22 @@ var RiwayatPerizinan = /*#__PURE__*/function (_Component) {
                                   children: "Pergi"
                                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("td", {
                                   children: status
-                                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("td", {
-                                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
-                                    id: "kembali",
-                                    hidden: "true",
+                                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("td", {
+                                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
+                                    hidden: hiddenKembali,
                                     onClick: function onClick() {
                                       return _this3.kembali(perizinan.id);
                                     },
                                     className: "btn btn-outline-primary btn-sm",
-                                    children: "Kembali"
-                                  })
+                                    children: "Ajukan Perizinan Kembali"
+                                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
+                                    hidden: hiddenKonfirmasi,
+                                    onClick: function onClick() {
+                                      return _this3.kembali(perizinan.id);
+                                    },
+                                    className: "btn btn-outline-primary btn-sm",
+                                    children: "Konfirmasi Kembali"
+                                  })]
                                 })]
                               });
                             })]
