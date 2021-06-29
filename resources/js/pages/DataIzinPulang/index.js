@@ -21,7 +21,7 @@ class DataIzinPulang extends Component {
     componentDidMount(){
         var role = localStorage.getItem("user_role")
         this.setState({
-            role: localStorage.getItem("user_role")
+            role: role
         });
 
         api().get('api/perizinan/' + role).then(response =>{
@@ -99,13 +99,22 @@ class DataIzinPulang extends Component {
                                                         let status;
                                                         switch (perizinan.status_izin) {
                                                             case 0:
-                                                                status = "Mengajukan"
+                                                                statusResign = "Mengajukan"
                                                                 break;
                                                             case 1:
-                                                                status = "Disetujui Pengelola"
+                                                                statusResign = "Disetujui Pengelola"
+                                                                break;
+                                                            case 2:
+                                                                statusResign = "Ditolak Pengelola"
+                                                                break;
+                                                            case 3:
+                                                                statusResign = "Disetujui Wadir 3"
+                                                                break;
+                                                            case 4:
+                                                                statusResign = "Ditolak Wadir 3"
                                                                 break;
                                                             default:
-                                                                status = "Error"
+                                                                statusResign = "Error"
                                                                 break;
                                                         }
                                                         return (

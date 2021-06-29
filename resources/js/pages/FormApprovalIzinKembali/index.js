@@ -8,21 +8,13 @@ import Footer from '../../components/Navigation/Footer';
 
 import PageHeading from '../../components/PageHeading';
 import api from '../../service/api';
-import { updatePerizinan } from '../../service/perizinan';
+import { approvalPerizinanKembali } from '../../service/perizinan';
 
 class FormApprovalIzinKembali extends Component {
     constructor(props){
         super(props);
         this.state = {
             role: "",
-            id_mhs: "",
-            nama_mhs: "",
-            tanggal_pergi: "",
-            tanggal_pulang: "",
-            keterangan_izin: "",
-            status_izin: "",
-            catatan_pengurus: "",
-            surat_pendukung: "",
         };
 
         this.handleFieldChange = this.handleFieldChange.bind(this);
@@ -41,10 +33,12 @@ class FormApprovalIzinKembali extends Component {
     handleSubmit(e){
         e.preventDefault()
         console.log(this.state)
-        updatePerizinan({
-            id: this.state.id,
+        approvalPerizinanKembali({
+            id_mhs: this.state.id_mhs,
+            id_perizinan: this.state.id_perizinan,
             status_izin: this.state.status_izin,
-            catatan_pengurus: this.state.catatan_pengurus
+            pengajuan_tanggal_pulang: this.state.pengajuan_tanggal_pulang,
+            catatan_approval: this.state.catatan_approval
         })
 
     }
@@ -55,18 +49,36 @@ class FormApprovalIzinKembali extends Component {
         });
         const { id } = this.props.match.params
 
+        if(localStorage.getItem("user_role") == 3){
+            this.setState({
+                setuju: 8,
+                tolak: 9
+            })
+        }
+        else if((localStorage.getItem("user_role") == 2)){
+            this.setState({
+                setuju: 6,
+                tolak: 7
+            })
+        }
+
         api().get('api/perizinan/detail/' + id).then(response => {
             if(response.data.status === 'success'){
                 this.setState({
-                    id: id,
+                    id_perizinan: id,
                     id_mhs: response.data.data.id_mhs,
                     nama_mhs: response.data.data.nama_mhs,
+                    no_hp_mhs: response.data.data.no_hp_mhs,
+                    nama_gedung: response.data.data.nama_gedung,
+                    no_kamar: response.data.data.no_kamar,
+                    kondisi_kesehatan: response.data.data.kondisi_kesehatan,
+                    suhu_badan: response.data.data.suhu_badan,
+                    jenis_kendaraan: response.data.data.jenis_kendaraan,
+                    keterangan_kembali: response.data.data.keterangan_kembali,
                     tanggal_pergi: response.data.data.tanggal_pergi,
-                    tanggal_pulang: response.data.data.tanggal_pulang,
-                    keterangan_izin: response.data.data.keterangan_izin,
+                    pengajuan_tanggal_pulang: response.data.data.pengajuan_tanggal_pulang,
                     status_izin: response.data.data.status_izin,
-                    surat_pendukung: response.data.data.surat_pendukung,
-                    catatan_pengurus: response.data.data.catatan_pengurus,
+                    catatan_approval: response.data.data.catatan_approval,
                 })
                 console.log(response.data.data.tanggal_pergi)
             }
@@ -117,6 +129,7 @@ class FormApprovalIzinKembali extends Component {
                                                         type="text" 
                                                         className="form-control-plaintext"
                                                         disabled
+                                                        value={this.state.no_hp_mhs}
                                                     />
                                                 </div>
                                             </div>
@@ -127,6 +140,7 @@ class FormApprovalIzinKembali extends Component {
                                                         type="text" 
                                                         className="form-control-plaintext"
                                                         disabled
+                                                        value={this.state.nama_gedung}
                                                     />
                                                 </div>
                                             </div>
@@ -137,6 +151,7 @@ class FormApprovalIzinKembali extends Component {
                                                         type="text" 
                                                         className="form-control-plaintext"
                                                         disabled
+                                                        value={this.state.no_kamar}
                                                     />
                                                 </div>
                                             </div>
@@ -147,6 +162,7 @@ class FormApprovalIzinKembali extends Component {
                                                         type="text" 
                                                         className="form-control-plaintext"
                                                         disabled
+                                                        value={this.state.kondisi_kesehatan}
                                                     />
                                                 </div>
                                             </div>
@@ -157,17 +173,7 @@ class FormApprovalIzinKembali extends Component {
                                                         type="text" 
                                                         className="form-control-plaintext"
                                                         disabled
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div className="form-group row">
-                                                <label for="address" className="col-md-3 col-form-label text-md-right">Alamat tujuan</label>
-                                                <div className="col-md-8">
-                                                    <input 
-                                                        type="text" 
-                                                        className="form-control-plaintext"
-                                                        value="Asrama Polban"
-                                                        disabled
+                                                        value={this.state.suhu_badan}
                                                     />
                                                 </div>
                                             </div>
@@ -178,6 +184,7 @@ class FormApprovalIzinKembali extends Component {
                                                         type="text" 
                                                         className="form-control-plaintext"
                                                         disabled
+                                                        value={this.state.jenis_kendaraan}
                                                     />
                                                 </div>
                                             </div>
@@ -186,14 +193,14 @@ class FormApprovalIzinKembali extends Component {
                                                 <div className="col-md-8">
                                                     <textarea 
                                                         class="form-control-plaintext"
-                                                        value={this.state.keterangan_izin}
+                                                        value={this.state.keterangan_kembali}
                                                         disabled
                                                         rows="3">
                                                     </textarea>
                                                 </div>
                                             </div>
                                             <div className="form-group row">
-                                                <label for="startdate" className="col-md-3 col-form-label text-md-right">Mulai kembali</label>
+                                                <label for="startdate" className="col-md-3 col-form-label text-md-right">Tanggal Pergi</label>
                                                 <div className="col-md-8">
                                                     <input 
                                                         type="text" 
@@ -204,27 +211,27 @@ class FormApprovalIzinKembali extends Component {
                                                 </div>
                                             </div>
                                             <div className="form-group row">
-                                                <label for="formfile" className="col-md-3 col-form-label text-md-right">Surat pendukung</label>
+                                                <label for="startdate" className="col-md-3 col-form-label text-md-right">Pengajuan Tanggal Kembali</label>
                                                 <div className="col-md-8">
-                                                    <a href={'/storage/file_perizinan/' + this.state.surat_pendukung} download={this.state.surat_pendukung} class="btn btn-light btn-icon-split">
-                                                        <span class="icon text-gray-600">
-                                                            <i class="fas fa-file-download"></i>
-                                                        </span>
-                                                        <span class="text">Unduh file</span>
-                                                    </a>
+                                                    <input 
+                                                        type="text" 
+                                                        className="form-control-plaintext"
+                                                        disabled 
+                                                        value={this.state.pengajuan_tanggal_pulang}
+                                                    />
                                                 </div>
                                             </div>
                                             <div className="form-group row">
                                                 <label for="statusApproval" className="col-md-3 col-form-label text-md-right">Status</label>
                                                 <div className="col-md-8">
                                                     <div className="form-check form-check-inline">
-                                                        <input className="form-check-input" onChange={this.handleFieldChange} type="radio" name="status_izin" id="setuju" value="1"/>
+                                                        <input className="form-check-input" onChange={this.handleFieldChange} type="radio" name="status_izin" id="setuju" value={this.state.setuju}/>
                                                         <label className="form-check-label" for="setuju">
                                                             Setuju
                                                         </label>
                                                     </div>
                                                     <div className="form-check form-check-inline">
-                                                        <input className="form-check-input" onChange={this.handleFieldChange} type="radio" name="status_izin" id="tolak" value="2"/>
+                                                        <input className="form-check-input" onChange={this.handleFieldChange} type="radio" name="status_izin" id="tolak" value={this.state.tolak}/>
                                                         <label className="form-check-label" for="tolak">
                                                             Tolak
                                                         </label>
@@ -237,9 +244,9 @@ class FormApprovalIzinKembali extends Component {
                                                     <textarea 
                                                         className="form-control"
                                                         rows="3"
-                                                        name="catatan_pengurus"
+                                                        name="catatan_approval"
                                                         onChange={this.handleFieldChange}
-                                                        value={this.state.catatan_pengurus}
+                                                        value={this.state.catatan_approval}
                                                     >
                                                     </textarea>
                                                 </div>

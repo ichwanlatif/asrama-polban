@@ -8,7 +8,7 @@ import Footer from '../../components/Navigation/Footer';
 
 import PageHeading from '../../components/PageHeading';
 import api from '../../service/api';
-import { updatePerizinan } from '../../service/perizinan';
+import { approvalPerizinan } from '../../service/perizinan';
 
 class FormApprovalIzinPulang extends Component {
     constructor(props){
@@ -33,7 +33,7 @@ class FormApprovalIzinPulang extends Component {
     handleSubmit(e){
         e.preventDefault()
         console.log(this.state)
-        updatePerizinan({
+        approvalPerizinan({
             id_mhs: this.state.id_mhs,
             id_perizinan: this.state.id_perizinan,
             status_izin: this.state.status_izin,

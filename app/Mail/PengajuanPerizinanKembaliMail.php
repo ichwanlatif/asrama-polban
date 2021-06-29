@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class ApprovalMail extends Mailable
+class PengajuanPerizinanKembaliMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -31,6 +31,6 @@ class ApprovalMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Approval Perizinan Pulang Asrama')->view('emails.ApprovalView');
+        return $this->subject('Pengajuan Izin Kembali Asrama')->view('emails.PengajuanPerizinanKembaliView');
     }
 }

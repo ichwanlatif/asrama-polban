@@ -10,6 +10,7 @@ import Profile from './pages/Profile';
 import FormPresensi from './pages/FormPresensi';
 import FormIzinPulang from './pages/FormIzinPulang';
 import FormResign from './pages/FormResign';
+import FormIzinKembali from "./pages/FormIzinKembali";
 import RiwayatPresensi from './pages/RiwayatPresensi';
 import RiwayatPerizinan from './pages/RiwayatPerizinan';
 
@@ -33,6 +34,7 @@ import Rekapitulasi from './pages/Rekapitulasi';
 import ChangePassword from './pages/ChangePassword';
 
 import NotFound from './pages/NotFound';
+import FormApprovalIzinKembali from "./pages/FormApprovalIzinKembali";
 
 const Main = props =>(
     <Switch>
@@ -43,6 +45,7 @@ const Main = props =>(
         <PrivateRoute exact path="/form-presensi" component={FormPresensi} />
         <PrivateRoute exact path="/form-izin-pulang" component={FormIzinPulang} />
         <PrivateRoute exact path="/form-resign" component={FormResign} />
+        <PrivateRoute exact path="/form-izin-kembali/:id" component={FormIzinKembali} />
         <PrivateRoute exact path="/riwayat-presensi" component={RiwayatPresensi} />
         <PrivateRoute exact path="/riwayat-perizinan" component={RiwayatPerizinan} />
 
@@ -50,6 +53,7 @@ const Main = props =>(
         <PrivateRoute exact path="/form-approval-izin-pulang/:id" component={FormApprovalIzinPulang} />
 
         <PrivateRoute exact path="/data-izin-kembali" component={DataIzinKembali} />
+        <PrivateRoute exact path="/form-approval-izin-kembali/:id" component={FormApprovalIzinKembali} />
 
         <PrivateRoute exact path="/data-resign" component={DataResign} />
 

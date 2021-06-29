@@ -41,16 +41,19 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
 
     //Perizinan
     Route::post('/perizinan/create', [PerizinanController::class, 'store']);
+    Route::put('/perizinan/izinKembali', [PerizinanController::class, 'izinKembali']);
     Route::get('/perizinan/checkPerizinan/{id}', [PerizinanController::class, 'checkPerizinanToPresensi']);
     Route::put('/perizinan/approval', [PerizinanController::class, 'approvalPerizinan']);
+    Route::put('/perizinan/approval/kembali', [PerizinanController::class, 'approvalPerizinanKembali']);
     Route::get('/perizinan/{role}', [PerizinanController::class, 'getAllPengajuanPerizinan']);
-    Route::get('/riwayatperizinan/{id}', [PerizinanController::class, 'getRiwayatPerizinan']);
+    Route::get('/perizinan/riwayatperizinan/{id}', [PerizinanController::class, 'getRiwayatPerizinan']);
     Route::get('/perizinan/detail/{id}', [PerizinanController::class, 'getDetailPerizinan']);
+    Route::get('/perizinan/kembali/{role}', [PerizinanController::class, 'getAllPengajuanPerizinanKembali']);
     Route::put('/kembali', [PerizinanController::class, 'kembali']);
 
     //Resign
     Route::post('/resign/create', [ResignController::class, 'store']);
-    Route::get('/riwayatresign/{id}', [ResignController::class, 'getRiwayatResign']);
+    Route::get('/resign/riwayatresign/{id}', [ResignController::class, 'getRiwayatResign']);
     Route::get('/resign', [ResignController::class, 'getAllResign']);
     Route::put('/resign/approval', [ResignController::class, 'approveResign']);
 

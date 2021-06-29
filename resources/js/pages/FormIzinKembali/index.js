@@ -6,13 +6,15 @@ import Topbar from '../../components/Navigation/Topbar';
 import Footer from '../../components/Navigation/Footer';
 
 import PageHeading from '../../components/PageHeading';
-import { createResign } from '../../service/resign';
+import api from '../../service/api';
+import { izinKembaliPerizinan } from '../../service/perizinan';
 
 class FormIzinKembali extends Component {
     constructor(props){
         super(props);
         this.state = {
             role: "",
+            suhu_badan: 36
         };
 
         this.handleFieldChange = this.handleFieldChange.bind(this)
@@ -20,9 +22,26 @@ class FormIzinKembali extends Component {
     }
 
     componentDidMount(){
+        
+        const { id } = this.props.match.params
+
         this.setState({
-            role: localStorage.getItem("user_role")
+            role: localStorage.getItem("user_role"),
+            id_perizinan: id
         });
+
+        api().get('api/perizinan/detail/' + id).then(response => {
+            if(response.data.status === 'success'){
+                console.log(response.data.data)
+                this.setState({
+                    id_perizinan: id,
+                    tanggal_pergi: response.data.data.tanggal_pergi,
+                })
+            }
+            else{
+                alert(response.data.msg)
+            }
+        })
     }
 
     handleFieldChange(e){
@@ -36,11 +55,21 @@ class FormIzinKembali extends Component {
     handleSubmit(e){
         e.preventDefault()
         console.log(this.state)
-        createResign({
-            id_mhs: localStorage.getItem('user_id'),
-            tanggal_resign: this.state.tanggal_resign,
-            keterangan_resign: this.state.keterangan_resign
-        })
+
+        if(document.getElementById('aggrement').checked == false){
+            alert('Setujui Terlebih Dahulu')
+        }
+        else{
+            izinKembaliPerizinan({
+                id_mhs: localStorage.getItem("user_id"),
+                id_perizinan: this.state.id_perizinan,
+                keterangan_kembali: this.state.keterangan_kembali,
+                pengajuan_tanggal_pulang: this.state.pengajuan_tanggal_pulang,
+                suhu_badan: this.state.suhu_badan,
+                kondisi_kesehatan: this.state.kondisi_kesehatan,
+                jenis_kendaraan: this.state.jenis_kendaraan,
+            });
+        }
     }
 
     render() {
@@ -73,7 +102,7 @@ class FormIzinKembali extends Component {
                                                 <label for="description" className="col-md-3 col-form-label text-md-right">Alasan kembali ke asrama</label>
                                                 <div className="col-md-8">
                                                     <textarea 
-                                                        name="keterangan_izin"
+                                                        name="keterangan_kembali"
                                                         className="form-control"
                                                         placeholder="Beri penjelasan mengenai alasan kembali ke asrama"
                                                         rows="3"
@@ -84,12 +113,25 @@ class FormIzinKembali extends Component {
                                             </div>
 
                                             <div className="form-group row">
-                                                <label for="tanggal_resign" className="col-md-3 col-form-label text-md-right">Mulai kembali</label>
+                                                <label for="tanggal_pergi" className="col-md-3 col-form-label text-md-right">Mulai kembali</label>
                                                 <div className="col-md-3">
                                                     <input 
                                                         type="date" 
                                                         className="form-control"
-                                                        name="tanggal_resign"
+                                                        name="tanggal_pergi"
+                                                        value={this.state.tanggal_pergi}
+                                                        readOnly="true"
+                                                    />
+                                                </div>
+                                            </div>
+
+                                            <div className="form-group row">
+                                                <label for="tanggal_pulang" className="col-md-3 col-form-label text-md-right">Mulai kembali</label>
+                                                <div className="col-md-3">
+                                                    <input 
+                                                        type="date" 
+                                                        className="form-control"
+                                                        name="pengajuan_tanggal_pulang"
                                                         onChange={this.handleFieldChange}
                                                         required
                                                     />
@@ -100,8 +142,10 @@ class FormIzinKembali extends Component {
                                                 <label for="coordinat" className="col-md-3 col-form-label text-md-right">Kondisi kesehatan</label>
                                                 <div className="col-md-8">
                                                     <input 
-                                                        type="text" 
+                                                        type="text"
+                                                        name="kondisi_kesehatan" 
                                                         className="form-control"
+                                                        onChange={this.handleFieldChange}
                                                         placeholder="contoh: Sehat / Sakit"
                                                     />
                                                     <small className="text-muted">Jelaskan keluhan saudara, jika merasa sakit.</small>
@@ -116,6 +160,9 @@ class FormIzinKembali extends Component {
                                                             type="number"
                                                             className="form-control"
                                                             aria-describedby="temperature"
+                                                            name="suhu_badan"
+                                                            value={this.state.suhu_badan}
+                                                            onChange={this.handleFieldChange}
                                                         />
                                                         <div className="input-group-append">
                                                             <span className="input-group-text" id="temperature">&deg;Celcius</span>
@@ -126,28 +173,9 @@ class FormIzinKembali extends Component {
                                             </div>
 
                                             <div className="form-group row">
-                                                <label for="formfile" className="col-md-3 col-form-label text-md-right">Surat pendukung (opsional)</label>
-                                                <div className="col-md-8">
-                                                    <input 
-                                                        className="form-control-file" 
-                                                        type="file"
-                                                        onChange={this.handleFileChange}
-                                                    />
-                                                    <small className="text-muted">Format yang didukung: *.jpg, *.png, *.pdf</small>
-                                                </div>
-                                            </div>
-
-                                            <div className="form-group row">
-                                                <label for="address" className="col-md-3 col-form-label text-md-right">Alamat tujuan pergi</label>
-                                                <div className="col-md-8">
-                                                    <input type="text" className="form-control"/>
-                                                </div>
-                                            </div>
-
-                                            <div className="form-group row">
                                                 <label for="description" className="col-md-3 col-form-label text-md-right">Transportasi yang digunakan</label>
                                                 <div className="col-md-8">
-                                                    <select class="form-control" id="vehicle">
+                                                    <select class="form-control" id="vehicle" name="jenis_kendaraan" onChange={this.handleFieldChange}>
                                                         <option>Sepeda</option>
                                                         <option>Motor</option>
                                                         <option>Mobil</option>

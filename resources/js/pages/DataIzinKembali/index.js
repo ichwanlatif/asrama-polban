@@ -7,22 +7,46 @@ import Topbar from '../../components/Navigation/Topbar';
 import Footer from '../../components/Navigation/Footer';
 
 import PageHeading from '../../components/PageHeading';
+import api from '../../service/api';
 
 class DataIzinKembali extends Component {
     constructor(){
         super();
         this.state = {
-            role: ""
+            role: "",
+            datas: []
         };
     }
 
     componentDidMount(){
+        var role = localStorage.getItem("user_role")
         this.setState({
-            role: localStorage.getItem("user_role")
+            role: role
         });
+
+        api().get('api/perizinan/kembali/' + role).then(response =>{
+            if(response.data.status === 'success'){
+                this.setState({
+                    datas: response.data.data
+                })
+                console.log(this.state.datas)
+            }
+            else{
+                alert(response.data.msg);
+            }
+        })
+
     }
 
     render() {
+        const data = this.state.datas
+        let TableStatus;
+
+        if (this.state.datas.length == 0) {
+            TableStatus = <h6 className="text-center">Tidak ada izin yang perlu diproses</h6>;
+          } else {
+            TableStatus = <h6 className="text-center"></h6>;
+        }
         return (
             <div>
                 <div id="wrapper">
@@ -58,20 +82,56 @@ class DataIzinKembali extends Component {
                                                     <tr>
                                                     <th scope="col">Nama</th>
                                                     <th scope="col">Mulai</th>
-                                                    <th scope="col">Berakhir</th>
+                                                    <th scope="col">Pengajuan Kembali</th>
                                                     <th scope="col">Proses</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>Rizqa Nabila</td>
-                                                        <td>25 Mei 2021</td>
-                                                        <td>5 Juni 2021</td>
-                                                        <td><Link to="#" className="btn btn-outline-primary btn-sm">Approve</Link></td>
-                                                    </tr>
+                                                {data.map(perizinan => {
+                                                        const {
+                                                            id_perizinan,
+                                                            nama_mhs,
+                                                            tanggal_pergi,
+                                                            pengajuan_tanggal_pulang,
+                                                            status_izin
+                                                        } = perizinan;
+                                                        let status;
+                                                        switch (perizinan.status_izin) {
+                                                            case 5:
+                                                                status = "Mengajukan Kembali"
+                                                                break;
+                                                            case 6:
+                                                                status = "Disetujui Kembali oleh Pengelola"
+                                                                break;
+                                                            case 7:
+                                                                status = "Ditolak Kembali oleh Pengelola"
+                                                                break;
+                                                            case 8:
+                                                                status = "Disetujui Kembali oleh Wadir 3"
+                                                                hiddenKonfirmasi = false;
+                                                                break;
+                                                            case 9:
+                                                                status = "Ditolak Kembali oleh Wadir 3"
+                                                                break;
+                                                            default:
+                                                                status = "Error"
+                                                                break;
+                                                        }
+                                                        return (
+                                                            <tr>
+                                                                <td>{perizinan.nama_mhs}</td>
+                                                                <td>{perizinan.tanggal_pergi}</td>
+                                                                <td>{perizinan.pengajuan_tanggal_pulang}</td>
+                                                                <td>{status}</td>
+                                                                <td><Link to={"/form-approval-izin-kembali/" + perizinan.id_perizinan} className="btn btn-outline-primary btn-sm">Approve</Link></td>
+                                                            </tr>
+                                                        )
+                                                    })}
                                                 </tbody>
                                             </table>
                                         </div>
+
+                                        {TableStatus}
 
                                         {/* pagination */}
                                         <nav aria-label="Page navigation example">

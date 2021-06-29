@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+import HaversineGeolocation from 'haversine-geolocation';
+
 //Navigation
 import Sidebar from '../../components/Navigation/Sidebar';
 import Topbar from '../../components/Navigation/Topbar';
@@ -25,7 +27,7 @@ class RiwayatPerizinan extends Component {
         this.setState({
             role: localStorage.getItem("user_role")
         });
-        api().get('api/riwayatperizinan/' + localStorage.getItem('user_id')).then(response =>{
+        api().get('api/perizinan/riwayatperizinan/' + localStorage.getItem('user_id')).then(response =>{
             if(response.data.status === 'success'){
                 this.setState({
                     datasIzin: response.data.data
@@ -36,7 +38,7 @@ class RiwayatPerizinan extends Component {
             }
         })
 
-        api().get('api/riwayatresign/' + localStorage.getItem('user_id')).then(resign => {
+        api().get('api/resign/riwayatresign/' + localStorage.getItem('user_id')).then(resign => {
             if(resign.data.status === 'success'){
                 this.setState({
                     datasResign: resign.data.data
@@ -50,9 +52,45 @@ class RiwayatPerizinan extends Component {
 
     kembali(id){
         console.log(id)
-        kembali({
-            id: id
-        })
+        if(navigator.geolocation){
+            navigator.geolocation.getCurrentPosition((position => {
+                this.setState({
+                    lat: -6.872161,
+                    long: 107.570858
+
+                    // lat: position.coords.latitude,
+                    // long: position.coords.longitude,
+                })
+                console.log("Lat: " + this.state.lat)
+                console.log("Long: " + this.state.long)
+                const points = [
+                    {
+                        latitude: this.state.lat,
+                        longitude: this.state.long
+                    },
+                    {
+                        latitude: -6.871925383063508, 
+                        longitude: 107.57102532659914,
+                    }
+                ]
+                let hasil = HaversineGeolocation.getDistanceBetween(points[0], points[1], 'm');
+                console.log(hasil);
+                if(hasil > 50){
+                    alert('Anda Sedang Berada di Luar Asrama');
+                }
+                else{
+                    kembali({
+                        id: id,
+                        id_mhs: localStorage.getItem('user_id')
+                    })
+                }
+            }))
+
+            
+        }
+        else{
+            alert('Browser anda tidak support')
+        }
 
     }
 
@@ -140,7 +178,7 @@ class RiwayatPerizinan extends Component {
                                                     })}
                                                     {dataIzin.map(perizinan => {
                                                         const {
-                                                            id,
+                                                            id_perizinan,
                                                             tanggal_pergi,
                                                             tanggal_pulang,
                                                             status_izin
@@ -193,8 +231,8 @@ class RiwayatPerizinan extends Component {
                                                                 <td>Pergi</td>
                                                                 <td>{status}</td>
                                                                 <td>
-                                                                    <button hidden={hiddenKembali} onClick={() => this.kembali(perizinan.id)} className="btn btn-outline-primary btn-sm">Ajukan Perizinan Kembali</button>
-                                                                    <button hidden={hiddenKonfirmasi} onClick={() => this.kembali(perizinan.id)} className="btn btn-outline-primary btn-sm">Konfirmasi Kembali</button>
+                                                                    <Link hidden={hiddenKembali} to={"/form-izin-kembali/" + perizinan.id_perizinan} className="btn btn-outline-primary btn-sm">Ajukan Perizinan Kembali</Link>
+                                                                    <button hidden={hiddenKonfirmasi} onClick={() => this.kembali(perizinan.id_perizinan)} className="btn btn-outline-primary btn-sm">Konfirmasi Kembali</button>
                                                                 </td>
                                                             </tr>
                                                         )

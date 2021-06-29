@@ -8,6 +8,9 @@ use App\Models\User;
 
 use App\Mail\PengajuanPerizinanMail;
 use App\Mail\ApprovalMail;
+use App\Mail\PengajuanPerizinanKembaliMail;
+use App\Mail\ApprovalKembaliMail;
+use App\Mail\KonfirmasiKembaliMail;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -148,9 +151,76 @@ class PerizinanController extends Controller
             $akun = User::where('id_users', $mahasiswa->id_users)->first();
             Mail::to($akun->email)->send(new ApprovalMail($details));
         }
-        else{
+        else if($request->status_izin == 1){
             $akun = User::where('role', 3)->first();
             Mail::to($akun->email)->send(new PengajuanPerizinanMail($details));
+        }
+
+        if($perizinan){
+            return response()->json([
+                'status' => 'success',
+                'msg' => 'Success approv',
+                'data' => $perizinan
+            ]);
+        }
+        else{
+            return response()->json([
+                'status' => 'error',
+                'msg' => 'Failed to approv'
+            ]);
+        }
+    }
+
+    public function approvalPerizinanKembali(Request $request){
+        $validasi = \Validator::make($request->all(), [
+            'status_izin' => 'required',
+        ]);
+
+        if($validasi->fails()){
+            return response()->json(["status" => 422, "msg" => "Form Tidak Valid"]);
+        }
+        if($request->status_izin == 8){
+            $perizinan = Perizinan::where([
+                ['id_perizinan', '=', $request->id_perizinan],
+            ])->update([
+                'status_izin' => $request->status_izin,
+                'tanggal_pulang' => $request->pengajuan_tanggal_pulang,
+                'catatan_approval' => $request->catatan_approval
+            ]);
+        }
+        else{
+            $perizinan = Perizinan::where([
+                ['id_perizinan', '=', $request->id_perizinan],
+            ])->update([
+                'status_izin' => $request->status_izin,
+                'catatan_approval' => $request->catatan_approval
+            ]);
+        }
+
+        $detail = Perizinan::where([
+            ['id_perizinan', '=', $request->id_perizinan],
+        ])->first();
+
+        $mahasiswa = Mahasiswa::where('id_mhs', $request->id_mhs)->first();
+
+        $details = [
+            'from' => $mahasiswa->nama_mhs,
+            'tanggal_pergi' => $detail->tanggal_pergi,
+            'pengajuan_tanggal_pulang' => $detail->pengajuan_tanggal_pulang,
+            'keterangan_kembali' => $detail->keterangan_kembali,
+            'alamat_izin' => $detail->alamat_izin,
+            'suhu_badan' => $detail->suhu_badan,
+            'kondisi_kesehatan' => $detail->kondisi_kesehatan,
+            'jenis_kendaraan' => $detail->jenis_kendaraan,
+        ];
+
+        if($request->status_izin == 7 || $request->status_izin == 8 || $request->status_izin == 9){
+            $akun = User::where('id_users', $mahasiswa->id_users)->first();
+            Mail::to($akun->email)->send(new ApprovalKembaliMail($details));
+        }
+        else if($request->status_izin == 6){
+            $akun = User::where('role', 3)->first();
+            Mail::to($akun->email)->send(new PengajuanPerizinanKembaliMail($details));
         }
 
         if($perizinan){
@@ -180,6 +250,40 @@ class PerizinanController extends Controller
             $perizinan = DB::table('perizinan')
             ->where('status_izin', '=', 0)
             ->orWhere('status_izin', '=', 1)
+            ->join('mahasiswa', 'perizinan.id_mhs', '=', 'mahasiswa.id_mhs')
+            ->select('perizinan.*', 'mahasiswa.nama_mhs')
+            ->get();
+        }
+        
+        if($perizinan){
+            return response()->json([
+                'status' => 'success',
+                'msg' => 'Success get data',
+                'data' => $perizinan
+            ]);
+        }
+        else{
+            return response()->json([
+                'status' => 'error',
+                'msg' => 'Failed to get data'
+            ]);
+        }
+    }
+
+    public function getAllPengajuanPerizinanKembali($role){
+        $perizinan = "";
+        
+        if($role == 2){
+            $perizinan = DB::table('perizinan')
+            ->where('status_izin', '=', 5)
+            ->join('mahasiswa', 'perizinan.id_mhs', '=', 'mahasiswa.id_mhs')
+            ->select('perizinan.*', 'mahasiswa.nama_mhs')
+            ->get();
+        }
+        else if($role == 3){
+            $perizinan = DB::table('perizinan')
+            ->where('status_izin', '=', 5)
+            ->orWhere('status_izin', '=', 6)
             ->join('mahasiswa', 'perizinan.id_mhs', '=', 'mahasiswa.id_mhs')
             ->select('perizinan.*', 'mahasiswa.nama_mhs')
             ->get();
@@ -245,15 +349,32 @@ class PerizinanController extends Controller
 
     public function kembali(Request $request){
         $perizinan = Perizinan::where([
-            ['id', '=', $request->id],
-            ['status_izin', '=', 1],
-        ])->first();
-
-        $perizinan->update([
-            'status_izin' => 3
+            ['id_perizinan', '=', $request->id],
+            ['status_izin', '=', 8],
+        ])->update([
+            'status_izin' => 10
         ]);
 
         if($perizinan){
+            $detail = Perizinan::where([
+                ['id_perizinan', '=', $request->id],
+            ])->first();
+            $mahasiswa = Mahasiswa::where('id_mhs', $request->id_mhs)->first();
+
+            $details = [
+                'from' => $mahasiswa->nama_mhs,
+                'tanggal_pergi' => $detail->tanggal_pergi,
+                'tanggal_pulang' => $detail->tanggal_pulang,
+                'keterangan_kembali' => $detail->keterangan_kembali,
+                'alamat_izin' => $detail->alamat_izin,
+                'suhu_badan' => $detail->suhu_badan,
+                'kondisi_kesehatan' => $detail->kondisi_kesehatan,
+                'jenis_kendaraan' => $detail->jenis_kendaraan,
+            ];
+
+            $akun = User::where('id_users', $mahasiswa->id_users)->first();
+            Mail::to($akun->email)->send(new KonfirmasiKembaliMail($details));
+
             return response()->json([
                 'status' => 'success',
                 'msg' => 'Success kembali',
@@ -264,6 +385,63 @@ class PerizinanController extends Controller
             return response()->json([
                 'status' => 'error',
                 'msg' => 'Failed to kembali'
+            ]);
+        }
+    }
+
+    public function izinKembali(Request $request){
+        $validasi = \Validator::make($request->all(), [
+            'id_perizinan' => 'required',
+            'keterangan_kembali' => 'required',
+            'pengajuan_tanggal_pulang' => 'required',
+            'suhu_badan' => 'required',
+            'kondisi_kesehatan' => 'required',
+            'jenis_kendaraan' => 'required',
+        ]);
+
+        if($validasi->fails()){
+            return response()->json(["status" => 422, "msg" => "Form Tidak Valid"]);
+        }
+        
+        $perizinan = Perizinan::where([
+            ['id_perizinan', '=', $request->id_perizinan],
+            ['status_izin', '=', 3],
+        ])->update([
+            'status_izin' => 5,
+            'keterangan_kembali' => $request->keterangan_kembali,
+            'pengajuan_tanggal_pulang' => $request->pengajuan_tanggal_pulang,
+            'suhu_badan' => $request->suhu_badan,
+            'kondisi_kesehatan' => $request->kondisi_kesehatan,
+            'jenis_kendaraan' => $request->jenis_kendaraan,
+        ]);
+
+        if($perizinan){
+            $mahasiswa = Mahasiswa::where('id_mhs', $request->id_mhs)->first();
+            $pengelola = User::where('role', 2)->first();
+
+            $details = [
+                'from' => $mahasiswa->nama_mhs,
+                'tanggal_pergi' => $request->tanggal_pergi,
+                'pengajuan_tanggal_pulang' => $request->pengajuan_tanggal_pulang,
+                'keterangan_kembali' => $request->keterangan_kembali,
+                'alamat_izin' => $request->alamat_izin,
+                'suhu_badan' => $request->suhu_badan,
+                'kondisi_kesehatan' => $request->kondisi_kesehatan,
+                'jenis_kendaraan' => $request->jenis_kendaraan,
+            ];
+
+            Mail::to($pengelola->email)->send(new PengajuanPerizinanKembaliMail($details));
+
+            return response()->json([
+                'status' => 'success',
+                'msg' => 'Success mengajukan kembali',
+                'data' => $perizinan
+            ]);
+        }
+        else{
+            return response()->json([
+                'status' => 'error',
+                'msg' => 'Failed to mengajukan kembali'
             ]);
         }
     }
