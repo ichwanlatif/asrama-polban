@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Presensi;
+use App\Models\RekapPresensi;
+use App\Models\MahasiswaGedung;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -89,6 +91,161 @@ class PresensiController extends Controller
                 'msg' => 'Kehadiran not found'
             ]);
         }
+    }
+
+    public function getRekapitulasiById($id){
+        $alfa = Presensi::where([
+            ['id_mhs', '=', $id],
+            ['status_presensi', '=', 0]
+            ])
+            ->whereMonth('created_at', date('n'))
+            ->whereYear('created_at', date('Y'))
+            ->count();
+        
+        $hadir = Presensi::where([
+            ['id_mhs', '=', $id],
+            ['status_presensi', '=', 1]
+            ])
+            ->whereMonth('created_at', date('n'))
+            ->whereYear('created_at', date('Y'))
+            ->count();
+        
+        $izin = Presensi::where([
+            ['id_mhs', '=', $id],
+            ['status_presensi', '=', 2]
+            ])
+            ->whereMonth('created_at', date('n'))
+            ->whereYear('created_at', date('Y'))
+            ->count();
+        
+        $mahasiswa = DB::table('mahasiswa')
+            ->where('id_mhs', '=', $id)
+            ->join('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
+            ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
+            ->first();
+
+        return response()->json([
+            'status' => 'success',
+            'alfa' => $alfa,
+            'hadir' => $hadir,
+            'izin' => $izin,
+            'mahasiswa' => $mahasiswa
+        ]);
+    }
+
+    public function getRekapitulasi(){
+        
+        $alfaA = RekapPresensi::where([
+            ['status_presensi', '=', 0],
+            ['nama_gedung', '=', 'A']
+        ])
+        ->whereMonth('created_at', date('n'))
+            ->whereYear('created_at', date('Y'))
+            ->count();
+
+        $alfaB = RekapPresensi::where([
+            ['status_presensi', '=', 0],
+            ['nama_gedung', '=', 'B']
+        ])
+        ->whereMonth('created_at', date('n'))
+            ->whereYear('created_at', date('Y'))
+            ->count();
+
+        $alfaC = RekapPresensi::where([
+            ['status_presensi', '=', 0],
+            ['nama_gedung', '=', 'C']
+        ])
+        ->whereMonth('created_at', date('n'))
+            ->whereYear('created_at', date('Y'))
+            ->count();
+
+        $hadirA = RekapPresensi::where([
+            ['status_presensi', '=', 1],
+            ['nama_gedung', '=', 'A']
+        ])
+        ->whereMonth('created_at', date('n'))
+            ->whereYear('created_at', date('Y'))
+            ->count();
+
+        $hadirB = RekapPresensi::where([
+            ['status_presensi', '=', 1],
+            ['nama_gedung', '=', 'B']
+        ])
+        ->whereMonth('created_at', date('n'))
+            ->whereYear('created_at', date('Y'))
+            ->count();
+
+        $hadirC = RekapPresensi::where([
+            ['status_presensi', '=', 1],
+            ['nama_gedung', '=', 'C']
+        ])
+        ->whereMonth('created_at', date('n'))
+            ->whereYear('created_at', date('Y'))
+            ->count();
+
+        $izinA = RekapPresensi::where([
+            ['status_presensi', '=', 2],
+            ['nama_gedung', '=', 'A']
+        ])
+        ->whereMonth('created_at', date('n'))
+            ->whereYear('created_at', date('Y'))
+            ->count();
+
+        $izinB = RekapPresensi::where([
+            ['status_presensi', '=', 2],
+            ['nama_gedung', '=', 'B']
+        ])
+        ->whereMonth('created_at', date('n'))
+            ->whereYear('created_at', date('Y'))
+            ->count();
+
+        $izinC = RekapPresensi::where([
+            ['status_presensi', '=', 2],
+            ['nama_gedung', '=', 'C']
+        ])
+        ->whereMonth('created_at', date('n'))
+            ->whereYear('created_at', date('Y'))
+            ->count();
+
+        $mhsA = MahasiswaGedung::where([
+            ['nama_gedung', '=', 'A']
+        ])
+        ->count();
+
+        $pengurusA = MahasiswaGedung::where([
+            ['nama_gedung', '=', 'A'],
+            ['role_mhs', '=', 'Pengurus'],
+        ])
+        ->count();
+
+        $mhsB = MahasiswaGedung::where([
+            ['nama_gedung', '=', 'B']
+        ])
+        ->count();
+
+        $pengurusB = MahasiswaGedung::where([
+            ['nama_gedung', '=', 'B'],
+            ['role_mhs', '=', 'Pengurus'],
+        ])
+        ->count();
+
+        $mhsC = MahasiswaGedung::where([
+            ['nama_gedung', '=', 'C']
+        ])
+        ->count();
+
+        $pengurusC = MahasiswaGedung::where([
+            ['nama_gedung', '=', 'C'],
+            ['role_mhs', '=', 'Pengurus'],
+        ])
+        ->count();
+
+        return response()->json([
+            'status' => 'success',
+            'gedungA' => array($alfaA, $hadirA, $izinA, $mhsA, $pengurusA),
+            'gedungB' => array($alfaB, $hadirB, $izinB, $mhsB, $pengurusB),
+            'gedungC' => array($alfaC, $hadirC, $izinC, $mhsC, $pengurusC),
+        ]);
     }
 
 }

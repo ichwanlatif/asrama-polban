@@ -38,8 +38,12 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::post('/presensi/create', [PresensiController::class, 'store']);
     Route::get('/presensi/user/{id}', [PresensiController::class, 'getKehadiranByUser']);
     Route::get('/presensi/kehadiranToday/{id}', [PresensiController::class, 'checkKehadiranToday']);
+    Route::get('/presensi/getRekapitulasiById/{id}', [PresensiController::class, 'getRekapitulasiById']);
+    Route::get('/presensi/getRekapitulasi', [PresensiController::class, 'getRekapitulasi']);
+
 
     //Perizinan
+    Route::get('/perizinan/getRekapitulasiPerizinan', [PerizinanController::class, 'getRekapitulasiPerizinan']);
     Route::post('/perizinan/create', [PerizinanController::class, 'store']);
     Route::put('/perizinan/izinKembali', [PerizinanController::class, 'izinKembali']);
     Route::get('/perizinan/checkPerizinan/{id}', [PerizinanController::class, 'checkPerizinanToPresensi']);

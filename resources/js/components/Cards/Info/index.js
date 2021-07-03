@@ -4,7 +4,7 @@ class CardInfo extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            value: this.props.value,
+            value: '',
             title: this.props.title,
             icon: 'fas fa-calendar fa-2x text-gray-300',
             color: 'primary',
@@ -17,6 +17,15 @@ class CardInfo extends Component {
         this.setState({cardClass: `card border-left-${this.props.color} shadow h-100 py-2`})
         this.setState({icon: `fas fa-${this.props.icon} fa-2x text-gray-300`})
         this.setState({titleClass: `text-xs font-weight-bold text-${this.props.color} text-uppercase mb-1`})
+        this.setState({value: this.props.value})
+    }
+
+    componentWillReceiveProps(nextProps){
+        if(nextProps.value !== this.props.value){
+            this.setState({
+                value: nextProps.value
+            })
+        }
     }
 
     render() {

@@ -2,8 +2,38 @@ import React, { Component } from 'react';
 
 import CardInfo from '../../components/Cards/Info';
 import PageHeading from '../../components/PageHeading';
+import api from '../../service/api';
 
 class DashboardMahasiswa extends Component {
+    constructor(){
+        super();
+        this.state = {
+            alfa: "",
+            hadir: "",
+            izin: "",
+            gedung: ""
+        };
+    }
+
+    componentDidMount(){
+        
+        api().get('api/presensi/getRekapitulasiById/' + localStorage.getItem('user_id')).then(response =>{
+            if(response.data.status === 'success'){
+                this.setState({
+                    alfa: response.data.alfa,
+                    hadir: response.data.hadir,
+                    izin: response.data.izin,
+                    gedung: response.data.mahasiswa.nama_gedung
+                })
+                console.log(this.state)
+            }
+            else{
+                alert(response.data.msg);
+            }
+        })
+
+    }
+    
     render() {
         return (
             <div className="container-fluid">
@@ -12,22 +42,22 @@ class DashboardMahasiswa extends Component {
                     <CardInfo title="Gedung Asrama"
                         icon="house-user"
                         color="primary"
-                        value="A" />
+                        value={this.state.gedung} />
 
                     <CardInfo title="Jumlah Hadir"
                         icon="calendar-check"
                         color="success"
-                        value="60" />
+                        value={this.state.hadir} />
 
                     <CardInfo title="Jumlah Alfa"
                         icon="calendar-times"
                         color="danger"
-                        value="5" />
+                        value={this.state.alfa} />
 
                     <CardInfo title="Jumlah Izin"
                         icon="address-book"
                         color="info"
-                        value="2" />
+                        value={this.state.izin} />
                 </div>
             </div>
         );

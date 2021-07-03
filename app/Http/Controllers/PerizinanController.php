@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Perizinan;
 use App\Models\Mahasiswa;
 use App\Models\User;
+use App\Models\RekapPerizinan;
 
 use App\Mail\PengajuanPerizinanMail;
 use App\Mail\ApprovalMail;
@@ -239,6 +240,7 @@ class PerizinanController extends Controller
     }
 
     public function getAllPengajuanPerizinan($role){
+        $perizinan = false;
         if($role == 2){
             $perizinan = DB::table('perizinan')
             ->where('status_izin', '=', 0)
@@ -444,5 +446,91 @@ class PerizinanController extends Controller
                 'msg' => 'Failed to mengajukan kembali'
             ]);
         }
+    }
+
+    public function getRekapitulasiPerizinan(){
+        $mengajukanA = RekapPerizinan::where([
+            ['status_izin', '=', 0],
+            ['nama_gedung', '=', 'A']
+        ])
+        ->whereMonth('created_at', date('n'))
+            ->whereYear('created_at', date('Y'))
+            ->count();
+
+        $mengajukanB = RekapPerizinan::where([
+                ['status_izin', '=', 0],
+                ['nama_gedung', '=', 'B']
+        ])
+        ->whereMonth('created_at', date('n'))
+                ->whereYear('created_at', date('Y'))
+                ->count();
+
+
+        $mengajukanC = RekapPerizinan::where([
+            ['status_izin', '=', 0],
+            ['nama_gedung', '=', 'C']
+        ])
+        ->whereMonth('created_at', date('n'))
+        ->whereYear('created_at', date('Y'))
+        ->count();
+
+        $disetujuiA = RekapPerizinan::where([
+            ['status_izin', '=', 3],
+            ['nama_gedung', '=', 'A']
+        ])
+        ->whereMonth('created_at', date('n'))
+        ->whereYear('created_at', date('Y'))
+        ->count();
+
+        $disetujuiB = RekapPerizinan::where([
+            ['status_izin', '=', 3],
+            ['nama_gedung', '=', 'B']
+        ])
+        ->whereMonth('created_at', date('n'))
+        ->whereYear('created_at', date('Y'))
+        ->count();
+
+        $disetujuiC = RekapPerizinan::where([
+            ['status_izin', '=', 3],
+            ['nama_gedung', '=', 'C']
+        ])
+        ->whereMonth('created_at', date('n'))
+        ->whereYear('created_at', date('Y'))
+        ->count();
+
+        $ditolakA = RekapPerizinan::where([
+            ['status_izin', '=', 2],
+            ['status_izin', '=', 4],
+            ['nama_gedung', '=', 'A']
+        ])
+        ->whereMonth('created_at', date('n'))
+        ->whereYear('created_at', date('Y'))
+        ->count();
+
+        $ditolakB = RekapPerizinan::where([
+            ['status_izin', '=', 2],
+            ['status_izin', '=', 4],
+            ['nama_gedung', '=', 'B']
+        ])
+        ->whereMonth('created_at', date('n'))
+        ->whereYear('created_at', date('Y'))
+        ->count();
+
+        $ditolakC = RekapPerizinan::where([
+            ['status_izin', '=', 2],
+            ['status_izin', '=', 4],
+            ['nama_gedung', '=', 'C']
+        ])
+        ->whereMonth('created_at', date('n'))
+        ->whereYear('created_at', date('Y'))
+        ->count();
+
+        return response()->json([
+            'status' => 'success',
+            'gedungA' => array($mengajukanA, $disetujuiA, $ditolakA),
+            'gedungB' => array($mengajukanB, $disetujuiB, $ditolakB),
+            'gedungC' => array($mengajukanC, $disetujuiC, $ditolakC),
+        ]);
+    
     }
 }
