@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 
 //Navigation
 import Sidebar from '../../components/Navigation/Sidebar';
@@ -18,9 +17,11 @@ class RiwayatPresensi extends Component {
         this.state = {
             role: '',
             datas: [],
+
+            // pagination
             currentData: [],
             activePage: 1,
-            itemPerPage : 5
+            itemPerPage : 10
         };
     }
 
@@ -54,11 +55,12 @@ class RiwayatPresensi extends Component {
 
     render() {
         const data = this.state.datas;
+
+        // pagination
         const offset = (this.state.activePage - 1) * this.state.itemPerPage;
         const currentData = data.slice(offset, offset + this.state.itemPerPage);
 
         let TableStatus;
-
         if (this.state.datas.length == 0) {
             TableStatus = <h6 className="text-center">Tidak ada presensi</h6>;
           } else {
@@ -135,7 +137,8 @@ class RiwayatPresensi extends Component {
                                         </div>
 
                                         {TableStatus}
-
+                                        <h6>Menampilkan {this.state.itemPerPage * (this.state.activePage - 1) +1} sampai {this.state.itemPerPage * (this.state.activePage - 1) +currentData.length} dari {data.length}</h6>
+                                        <div className="d-flex justify-content-end">
                                         <Pagination
                                             itemClass="page-item"
                                             linkClass="page-link"
@@ -145,7 +148,7 @@ class RiwayatPresensi extends Component {
                                             pageRangeDisplayed={3}
                                             onChange={this.handlePageChange.bind(this)}
                                         />
-
+                                        </div>
                                     </div>
                                 </div>
                             </div>
