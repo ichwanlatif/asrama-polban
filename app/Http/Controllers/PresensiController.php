@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Presensi;
+use App\Models\Mahasiswa;
 use App\Models\RekapPresensi;
 use App\Models\MahasiswaGedung;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Response;
+use PDF;
 
 class PresensiController extends Controller
 {
@@ -133,7 +137,7 @@ class PresensiController extends Controller
         ]);
     }
 
-    public function getRekapitulasi(){
+    public function dashboard(){
         
         $alfaA = RekapPresensi::where([
             ['status_presensi', '=', 0],
@@ -248,4 +252,60 @@ class PresensiController extends Controller
         ]);
     }
 
+    public function getRekapitulasi($date_from, $date_to){
+        $rekap_mahasiswas = new Collection;
+        $rekap_mahasiswa = new Collection;
+        $mahasiswas = DB::table('mahasiswa')
+        ->join('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
+        ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
+        ->get();
+        foreach($mahasiswas as $mahasiswa){
+            $presensi = Presensi::where([
+                ['id_mhs', '=', $mahasiswa->id_mhs],
+            ])
+            ->where([
+                ['created_at', '<=', $date_to],
+                ['created_at', '>=', $date_from]
+            ])
+            ->get();
+            
+            $alfa = $presensi->where('status_presensi', '=', 0)->count();
+            $hadir = $presensi->where('status_presensi', '=', 1)->count();
+            $izin = $presensi->where('status_presensi', '=', 2)->count();
+            
+            $resign = DB::table('resign')
+            ->where('id_mhs', '=', $mahasiswa->id_mhs)
+            ->where('status_resign', '=', 3)
+            ->first();
+
+            switch ($mahasiswa->status_keaktifan) {
+                case 1:
+                    $status = "Aktif";
+                    break;
+                
+                case 0:
+                    $status = "Tidak Aktif";
+                    break;
+            }
+
+            $rekap_mahasiswa = collect([
+                'nama_mhs' => $mahasiswa->nama_mhs, 
+                'nim' => $mahasiswa->nim, 
+                'nama_gedung' => $mahasiswa->nama_gedung,
+                'keterangan_asal' => $mahasiswa->keterangan_asal,
+                'role_mhs' => $mahasiswa->role_mhs, 
+                'alfa' => $alfa, 
+                'hadir' => $hadir, 
+                'izin' => $izin, 
+                'status_keaktifan' => $status,
+                'tanggal_resign' => $resign
+            ]);
+            $rekap_mahasiswas->push($rekap_mahasiswa);
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $rekap_mahasiswas
+        ]);
+    }
 }

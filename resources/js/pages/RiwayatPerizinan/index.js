@@ -209,6 +209,7 @@ class RiwayatPerizinan extends Component {
                                                                 break;
                                                             case 7:
                                                                 status = "Ditolak Kembali oleh Pengelola"
+                                                                hiddenKembali = false;
                                                                 break;
                                                             case 8:
                                                                 status = "Disetujui Kembali oleh Wadir 3"
@@ -216,6 +217,7 @@ class RiwayatPerizinan extends Component {
                                                                 break;
                                                             case 9:
                                                                 status = "Ditolak Kembali oleh Wadir 3"
+                                                                hiddenKembali = false;
                                                                 break;
                                                             case 10:
                                                                 status = "Terkonfirmasi Kembali"

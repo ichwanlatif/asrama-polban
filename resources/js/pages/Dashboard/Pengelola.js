@@ -30,7 +30,7 @@ class DashboardPengelola extends Component {
     }
 
     componentDidMount(){
-        api().get('api/presensi/getRekapitulasi').then(response =>{
+        api().get('api/presensi/dashboard').then(response =>{
             if(response.data.status === 'success'){
                 this.setState({
                     alfaA: response.data.gedungA[0],
@@ -70,7 +70,7 @@ class DashboardPengelola extends Component {
             }
         })
 
-        api().get('api/perizinan/getRekapitulasiPerizinan').then(response =>{
+        api().get('api/perizinan/dashboard').then(response =>{
             if(response.data.status === 'success'){
                 this.setState({
                     mengajukanA: response.data.gedungA[0],

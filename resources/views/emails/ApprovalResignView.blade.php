@@ -11,6 +11,9 @@
     <h4>Resign pada:</h4>
     <p>Tanggal: {{$details['tanggal_resign']}}</p>
     <p>Alasan: {{$details['keterangan_resign']}}</p>
+    <p>Suhu Badan: {{$details['suhu_badan']}}</p>
+    <p>Kondisi Kesehatan: {{$details['kondisi_kesehatan']}}</p>
+    <p>Kendaraan Yang di Bawa: {{$details['jenis_kendaraan']}}</p>
     <br>
     <h4>TELAH DI APPROVAL</h4>
 

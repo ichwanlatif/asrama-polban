@@ -406,8 +406,7 @@ class PerizinanController extends Controller
         }
         
         $perizinan = Perizinan::where([
-            ['id_perizinan', '=', $request->id_perizinan],
-            ['status_izin', '=', 3],
+            ['id_perizinan', '=', $request->id_perizinan]
         ])->update([
             'status_izin' => 5,
             'keterangan_kembali' => $request->keterangan_kembali,
@@ -448,7 +447,7 @@ class PerizinanController extends Controller
         }
     }
 
-    public function getRekapitulasiPerizinan(){
+    public function dashboard(){
         $mengajukanA = RekapPerizinan::where([
             ['status_izin', '=', 0],
             ['nama_gedung', '=', 'A']

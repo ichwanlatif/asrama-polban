@@ -102,7 +102,7 @@ class ResignController extends Controller
     public function getAllResign(){
         $resign = DB::table('resign')
             ->where('status_resign', '=', 0)
-            ->join('mahasiswa', 'resign.id_mhs', '=', 'mahasiswa.id')
+            ->join('mahasiswa', 'resign.id_mhs', '=', 'mahasiswa.id_mhs')
             ->select('resign.*', 'mahasiswa.nama_mhs')
             ->get();
         
@@ -121,25 +121,69 @@ class ResignController extends Controller
         }
     }
 
+    public function getDetailResign($id){  
+        
+        $resign = DB::table('resign')
+            ->join('mahasiswa', 'mahasiswa.id_mhs', '=', 'resign.id_mhs')
+            ->join('prodi', 'mahasiswa.id_prodi', '=', 'prodi.id_prodi')
+            ->join('jurusan', 'prodi.id_jurusan', '=', 'jurusan.id_jurusan')
+            ->join('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
+            ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
+            ->where('resign.id_resign', $id)
+            ->first();
+        
+        if($resign){
+            return response()->json([
+                'status' => 'success',
+                'msg' => 'Success get data',
+                'data' => $resign
+            ]);
+        }
+        else{
+            return response()->json([
+                'status' => 'error',
+                'msg' => 'Failed to get data'
+            ]);
+        }
+    }
+
     public function approveResign(Request $request){
+        $validasi = \Validator::make($request->all(), [
+            'status_resign' => 'required',
+            'id_resign' => 'required'
+        ]);
+
+        if($validasi->fails()){
+            return response()->json(["status" => 422, "msg" => "Form Tidak Valid"]);
+        }
+        
         $resign = Resign::where([
-            ['id', '=', $request->id],
+            ['id_resign', '=', $request->id_resign],
             ['status_resign', '=', 0],
+        ])->update([
+            'status_resign' => $request->status_resign
+        ]);
+
+        $detail = Resign::where([
+            ['id_resign', '=', $request->id_resign],
         ])->first();
 
-        $resign->update([
-            'status_resign' => 5
+        Mahasiswa::where('id_mhs', $detail->id_mhs)
+        ->update([
+            'status_keaktifan' => 0
         ]);
 
         if($resign){
             $details = [
-                
-                'tanggal_resign' => $resign->tanggal_resign,
-                'keterangan_resign' => $resign->keterangan_resign
+                'tanggal_resign' => $detail->tanggal_resign,
+                'keterangan_resign' => $detail->keterangan_resign,
+                'suhu_badan' => $detail->suhu_badan,
+                'kondisi_kesehatan' => $detail->kondisi_kesehatan,
+                'jenis_kendaraan' => $detail->jenis_kendaraan,
             ];
     
-            $mahasiswa = Mahasiswa::where('id', $resign->id_mhs)->first();
-            $akun = User::where('id', $mahasiswa->id_users)->first();
+            $mahasiswa = Mahasiswa::where('id_mhs', $detail->id_mhs)->first();
+            $akun = User::where('id_users', $mahasiswa->id_users)->first();
     
             Mail::to($akun->email)->send(new ApprovalResignMail($details));
             return response()->json([

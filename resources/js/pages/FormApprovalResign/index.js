@@ -8,7 +8,7 @@ import Footer from '../../components/Navigation/Footer';
 
 import PageHeading from '../../components/PageHeading';
 import api from '../../service/api';
-import { updatePerizinan } from '../../service/perizinan';
+import { approve } from '../../service/resign';
 
 class FormApprovalResign extends Component {
     constructor(props){
@@ -17,12 +17,6 @@ class FormApprovalResign extends Component {
             role: "",
             id_mhs: "",
             nama_mhs: "",
-            tanggal_pergi: "",
-            tanggal_pulang: "",
-            keterangan_izin: "",
-            status_izin: "",
-            catatan_pengurus: "",
-            surat_pendukung: "",
         };
 
         this.handleFieldChange = this.handleFieldChange.bind(this);
@@ -41,10 +35,9 @@ class FormApprovalResign extends Component {
     handleSubmit(e){
         e.preventDefault()
         console.log(this.state)
-        updatePerizinan({
-            id: this.state.id,
-            status_izin: this.state.status_izin,
-            catatan_pengurus: this.state.catatan_pengurus
+        approve({
+            id_resign: this.state.id,
+            status_resign: this.state.status_resign
         })
 
     }
@@ -53,30 +46,59 @@ class FormApprovalResign extends Component {
         this.setState({
             role: localStorage.getItem("user_role")
         });
+
+        if(localStorage.getItem("user_role") == 3){
+            this.setState({
+                setuju: 3,
+                tolak: 4
+            })
+        }
+        else if((localStorage.getItem("user_role") == 2)){
+            this.setState({
+                setuju: 1,
+                tolak: 2
+            })
+        }
+
         const { id } = this.props.match.params
 
-        api().get('api/perizinan/detail/' + id).then(response => {
+        api().get('api/resign/detail/' + id).then(response => {
             if(response.data.status === 'success'){
                 this.setState({
                     id: id,
                     id_mhs: response.data.data.id_mhs,
                     nama_mhs: response.data.data.nama_mhs,
-                    tanggal_pergi: response.data.data.tanggal_pergi,
-                    tanggal_pulang: response.data.data.tanggal_pulang,
-                    keterangan_izin: response.data.data.keterangan_izin,
-                    status_izin: response.data.data.status_izin,
-                    surat_pendukung: response.data.data.surat_pendukung,
-                    catatan_pengurus: response.data.data.catatan_pengurus,
+                    nim: response.data.data.nim,
+                    prodi: response.data.data.nama_prodi,
+                    jurusan: response.data.data.nama_jurusan,
+                    gedung: response.data.data.nama_gedung,
+                    kamar: response.data.data.no_kamar,
+                    kondisi_kesehatan: response.data.data.kondisi_kesehatan,
+                    suhu_badan: response.data.data.suhu_badan,
+                    nama_ortu: response.data.data.nama_ortu,
+                    alamat: response.data.data.alamat,
+                    jenis_kendaraan: response.data.data.jenis_kendaraan,
+                    keterangan_resign: response.data.data.keterangan_resign,
+                    tanggal_resign: response.data.data.tanggal_resign,
+                    keterangan_stnk: response.data.data.keterangan_stnk
                 })
-                console.log(response.data.data.tanggal_pergi)
             }
             else{
                 alert(response.data.msg)
             }
+
+
         })
     }
 
     render() {
+        var hidden;
+        if(this.state.keterangan_stnk === null){
+            hidden = true;
+        }
+        else{
+            hidden = false;
+        }
         return (
             <div>
                 <div id="wrapper">
@@ -115,6 +137,7 @@ class FormApprovalResign extends Component {
                                                 <div className="col-md-8">
                                                     <input 
                                                         type="text" 
+                                                        value={this.state.nim}
                                                         className="form-control-plaintext"
                                                         disabled
                                                     />
@@ -124,7 +147,8 @@ class FormApprovalResign extends Component {
                                                 <label for="prodi" className="col-md-3 col-form-label text-md-right">Prodi</label>
                                                 <div className="col-md-8">
                                                     <input 
-                                                        type="text" 
+                                                        type="text"
+                                                        value={this.state.prodi} 
                                                         className="form-control-plaintext"
                                                         disabled
                                                     />
@@ -135,6 +159,7 @@ class FormApprovalResign extends Component {
                                                 <div className="col-md-8">
                                                     <input 
                                                         type="text" 
+                                                        value={this.state.jurusan}
                                                         className="form-control-plaintext"
                                                         disabled
                                                     />
@@ -145,6 +170,7 @@ class FormApprovalResign extends Component {
                                                 <div className="col-md-8">
                                                     <input 
                                                         type="text" 
+                                                        value={this.state.gedung}
                                                         className="form-control-plaintext"
                                                         disabled
                                                     />
@@ -155,6 +181,7 @@ class FormApprovalResign extends Component {
                                                 <div className="col-md-8">
                                                     <input 
                                                         type="text" 
+                                                        value={this.state.kamar}
                                                         className="form-control-plaintext"
                                                         disabled
                                                     />
@@ -165,6 +192,7 @@ class FormApprovalResign extends Component {
                                                 <div className="col-md-8">
                                                     <input 
                                                         type="text" 
+                                                        value={this.state.kondisi_kesehatan}
                                                         className="form-control-plaintext"
                                                         disabled
                                                     />
@@ -175,6 +203,7 @@ class FormApprovalResign extends Component {
                                                 <div className="col-md-8">
                                                     <input 
                                                         type="text" 
+                                                        value={this.state.suhu_badan}
                                                         className="form-control-plaintext"
                                                         disabled
                                                     />
@@ -185,6 +214,7 @@ class FormApprovalResign extends Component {
                                                 <div className="col-md-8">
                                                     <input 
                                                         type="text" 
+                                                        value={this.state.nama_ortu}
                                                         className="form-control-plaintext"
                                                         disabled
                                                     />
@@ -195,6 +225,7 @@ class FormApprovalResign extends Component {
                                                 <div className="col-md-8">
                                                     <input 
                                                         type="text" 
+                                                        value={this.state.alamat}
                                                         className="form-control-plaintext"
                                                         disabled
                                                     />
@@ -205,6 +236,7 @@ class FormApprovalResign extends Component {
                                                 <div className="col-md-8">
                                                     <input 
                                                         type="text" 
+                                                        value={this.state.jenis_kendaraan}
                                                         className="form-control-plaintext"
                                                         disabled
                                                     />
@@ -213,7 +245,7 @@ class FormApprovalResign extends Component {
                                             <div className="form-group row">
                                                 <label for="formfile" className="col-md-3 col-form-label text-md-right">STNK</label>
                                                 <div className="col-md-8">
-                                                    <a href={'/storage/file_perizinan/' + this.state.surat_pendukung} download={this.state.surat_pendukung} class="btn btn-light btn-icon-split">
+                                                    <a href={'/storage/stnk_kendaraan/' + this.state.keterangan_stnk} download={this.state.surat_pendukung} class="btn btn-light btn-icon-split" hidden={hidden} >
                                                         <span class="icon text-gray-600">
                                                             <i class="fas fa-file-download"></i>
                                                         </span>
@@ -226,7 +258,7 @@ class FormApprovalResign extends Component {
                                                 <div className="col-md-8">
                                                     <textarea 
                                                         class="form-control-plaintext"
-                                                        value={this.state.keterangan_izin}
+                                                        value={this.state.keterangan_resign}
                                                         disabled
                                                         rows="3">
                                                     </textarea>
@@ -239,7 +271,7 @@ class FormApprovalResign extends Component {
                                                         type="text" 
                                                         className="form-control-plaintext"
                                                         disabled 
-                                                        value={this.state.tanggal_pergi}
+                                                        value={this.state.tanggal_resign}
                                                     />
                                                 </div>
                                             </div>
@@ -247,13 +279,13 @@ class FormApprovalResign extends Component {
                                                 <label for="statusApproval" className="col-md-3 col-form-label text-md-right">Status</label>
                                                 <div className="col-md-8">
                                                     <div className="form-check form-check-inline">
-                                                        <input className="form-check-input" onChange={this.handleFieldChange} type="radio" name="status_izin" id="setuju" value="1"/>
+                                                        <input className="form-check-input" onChange={this.handleFieldChange} type="radio" name="status_resign" id="setuju" value={this.state.setuju} />
                                                         <label className="form-check-label" for="setuju">
                                                             Setuju
                                                         </label>
                                                     </div>
                                                     <div className="form-check form-check-inline">
-                                                        <input className="form-check-input" onChange={this.handleFieldChange} type="radio" name="status_izin" id="tolak" value="2"/>
+                                                        <input className="form-check-input" onChange={this.handleFieldChange} type="radio" name="status_resign" id="tolak" value={this.state.tolak} />
                                                         <label className="form-check-label" for="tolak">
                                                             Tolak
                                                         </label>

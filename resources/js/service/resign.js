@@ -18,7 +18,7 @@ export const approve = (props) => {
     api().put('api/resign/approval', props).then(response => {
         if(response.data.status === 'success'){
             console.log(response.data.msg)
-            window.location.reload()
+            window.location.assign('/#/data-resign')
         }
         else{
             alert(response.data.msg)

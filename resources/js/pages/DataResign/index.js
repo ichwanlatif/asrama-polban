@@ -17,8 +17,6 @@ class DataResign extends Component {
             role: "",
             datas: []
         };
-
-        this.approve = this.approve.bind(this)
     }
 
     componentDidMount(){
@@ -39,15 +37,15 @@ class DataResign extends Component {
         })
     }
 
-    approve(id){
-        console.log(id)
-        approve({
-            id: id
-        })
-    }
-
     render() {
         const data = this.state.datas
+        let TableStatus;
+        if (this.state.datas.length == 0) {
+            TableStatus = <h6 className="text-center">Tidak ada izin yang perlu diproses</h6>;
+          } else {
+            TableStatus = <h6 className="text-center"></h6>;
+        }
+
         return (
             <div>
                 <div id="wrapper">
@@ -89,15 +87,16 @@ class DataResign extends Component {
                                                 <tbody>
                                                     {data.map(resign => {
                                                         const {
-                                                            id,
+                                                            id_resign,
                                                             nama_mhs,
                                                             taggal_resign,
+                                                            status_resign
                                                         } = resign;
                                                         return (
                                                             <tr>
                                                                 <td>{resign.nama_mhs}</td>
                                                                 <td>{resign.tanggal_resign}</td>
-                                                                <td><button onClick={() => this.approve(resign.id)} className="btn btn-outline-primary btn-sm">Approve</button></td>
+                                                                <td><Link to={"/form-approval-resign/" + resign.id_resign} className="btn btn-outline-primary btn-sm">Approve</Link></td>
                                                             </tr>
                                                         )
                                                     })}
