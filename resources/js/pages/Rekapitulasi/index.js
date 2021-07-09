@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Sidebar from '../../components/Navigation/Sidebar';
 import Topbar from '../../components/Navigation/Topbar';
 import Footer from '../../components/Navigation/Footer';
+import Pagination from "react-js-pagination";
 
 import PageHeading from '../../components/PageHeading';
 
@@ -20,7 +21,12 @@ class Rekapitulasi extends Component {
             role: localStorage.getItem("user_role"),
             datas: [],
             date_from: moment().format('YYYY-MM-DD'),
-            date_to: moment().add(1,'days').format('YYYY-MM-DD')
+            date_to: moment().add(1,'days').format('YYYY-MM-DD'),
+
+            // pagination
+            currentData: [],
+            activePage: 1,
+            itemPerPage : 10
         };
         this.handleGetDataByRange = this.handleGetDataByRange.bind(this)
         this.getDataRekap = this.getDataRekap.bind(this)
@@ -81,14 +87,29 @@ class Rekapitulasi extends Component {
 
     }
 
-    render() {
-        const data = this.state.datas
-        let TableStatus;
+    handlePageChange(pageNumber) {
+        console.log(`active page is ${pageNumber}`);
+        this.setState({activePage: pageNumber});
 
+        const data = this.state.datas;
+        const offset = (this.state.activePage - 1) * this.state.itemPerPage;
+        const currentData = data.slice(offset, offset + this.state.itemPerPage);
+
+        this.setState({ currentData });
+    }
+
+    render() {
+        const data = this.state.datas;
+
+        // pagination
+        const offset = (this.state.activePage - 1) * this.state.itemPerPage;
+        const currentData = data.slice(offset, offset + this.state.itemPerPage);
+
+        let TableStatus;
         if (this.state.datas.length == 0) {
-            TableStatus = <h6 className="text-center">Tidak ada izin yang perlu diproses</h6>;
+            TableStatus = <h6 className="text-center">Tidak ada data mahasiswa</h6>;
           } else {
-            TableStatus = <h6 className="text-center"></h6>;
+            TableStatus = <h6>Menampilkan {this.state.itemPerPage * (this.state.activePage - 1) +1} sampai {this.state.itemPerPage * (this.state.activePage - 1) +currentData.length} dari {data.length}</h6>;
         }
 
         return (
@@ -111,20 +132,6 @@ class Rekapitulasi extends Component {
                                     </div>
                                     <div className="card-body">
 
-                                        {/* Search Bar */}
-                                        <div className="input-group mb-2 border rounded-pill p-1 col-lg-4 col-md-8 col-sm-12">
-                                            <input type="text" placeholder="Cari mahasiswa.." className="form-control bg-none border-0 font-italic"/>
-                                            <div className="input-group-append border-0">
-                                                <button type="submit" className="btn btn-link text-primary"><i className="fa fa-search"></i></button>
-                                            </div>
-                                        </div>
-                                        <div className="d-flex justify-content-end">
-                                            {/* range tanggal */}
-                                            <input onChange={this.handleFieldChange} name="date_from" type="date" className="form-control bg-none border-0 font-italic" value={this.state.date_from} />
-                                             - 
-                                            <input onChange={this.handleFieldChange} name="date_to" type="date" className="form-control bg-none border-0 font-italic" value={this.state.date_to} />
-                                            <button onClick={this.handleGetDataByRange} className="btn btn-link text-primary">GET</button>
-                                        </div>
                                         <div className="d-flex justify-content-end">
                                             {/* Unduh file */}
                                             <button onClick={this.unduhRekapitulasi} className="btn btn-light btn-icon-split mb-2 justify-content-end">
@@ -133,6 +140,36 @@ class Rekapitulasi extends Component {
                                                 </span>
                                                 <span className="text">Unduh rekap</span>
                                             </button>
+                                        </div>
+
+                                        {/* Search Bar */}
+                                        <div className="input-group mb-2 border rounded-pill p-1 col-lg-4 col-md-8 col-sm-12">
+                                            <input type="text" placeholder="Cari mahasiswa.." className="form-control bg-none border-0 font-italic"/>
+                                            <div className="input-group-append border-0">
+                                                <button type="submit" className="btn btn-link text-primary"><i className="fa fa-search"></i></button>
+                                            </div>
+                                        </div>
+
+                                        <div className="row">
+                                            {/* range tanggal */}
+                                            <label for="startdate" className="col-lg-2 col-form-label">Tanggal mulai</label>
+                                            <div className="col-lg-3 mb-2">
+                                                <input onChange={this.handleFieldChange} name="date_from" type="date" className="form-control" value={this.state.date_from} />
+                                            </div>
+
+                                            <label for="startdate" className="col-lg-2 col-form-label">Tanggal akhir</label>
+                                            <div className="col-lg-3 mb-2">
+                                                <input onChange={this.handleFieldChange} name="date_to" type="date" className="form-control" value={this.state.date_to} />
+                                            </div>
+
+                                            <div className="col-lg-2 mb-2">
+                                                <button onClick={this.handleGetDataByRange} className="btn btn-primary btn-icon-split">
+                                                    <span className="icon text-white-50">
+                                                        <i className="fas fa-filter"></i>
+                                                    </span>
+                                                    <span className="text">Filter</span>
+                                                </button>
+                                            </div>
                                         </div>
 
                                         {/* Tabel Rekap */}
@@ -153,7 +190,7 @@ class Rekapitulasi extends Component {
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    {data.map(rekap =>{
+                                                    {currentData.map(rekap =>{
                                                         const {
                                                             nama_mhs,
                                                             nim,
@@ -189,26 +226,20 @@ class Rekapitulasi extends Component {
                                             </table>
                                         </div>
 
+                                        {TableStatus}
+                                        
                                         {/* pagination */}
-                                        <nav aria-label="Page navigation example">
-                                            <ul className="pagination justify-content-end">
-                                                <li className="page-item">
-                                                <Link className="page-link" to="#" aria-label="Previous">
-                                                    <span aria-hidden="true">&laquo;</span>
-                                                    <span className="sr-only">Previous</span>
-                                                </Link>
-                                                </li>
-                                                <li className="page-item"><Link className="page-link" to="#">1</Link></li>
-                                                <li className="page-item"><Link className="page-link" to="#">2</Link></li>
-                                                <li className="page-item"><Link className="page-link" to="#">3</Link></li>
-                                                <li className="page-item">
-                                                <Link className="page-link" to="#" aria-label="Next">
-                                                    <span aria-hidden="true">&raquo;</span>
-                                                    <span className="sr-only">Next</span>
-                                                </Link>
-                                                </li>
-                                            </ul>
-                                        </nav>
+                                        <div className="d-flex justify-content-end">
+                                            <Pagination
+                                                itemClass="page-item"
+                                                linkClass="page-link"
+                                                activePage={this.state.activePage}
+                                                itemsCountPerPage={this.state.itemPerPage}
+                                                totalItemsCount={data.length}
+                                                pageRangeDisplayed={3}
+                                                onChange={this.handlePageChange.bind(this)}
+                                            />
+                                        </div>
 
                                     </div>
                                 </div>

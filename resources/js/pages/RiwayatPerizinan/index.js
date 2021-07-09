@@ -124,7 +124,7 @@ class RiwayatPerizinan extends Component {
         if (this.state.datasIzin.length == 0 && this.state.datasResign.length == 0) {
             TableStatus = <h6 className="text-center">Tidak ada perizinan</h6>;
           } else {
-            TableStatus = <h6 className="text-center"></h6>;
+            TableStatus = <h6>Menampilkan {this.state.itemPerPage * (this.state.activePage - 1) +1} sampai {this.state.itemPerPage * (this.state.activePage - 1) +currentData.length} dari {data.length}</h6>;
         }
 
         return (
@@ -266,7 +266,8 @@ class RiwayatPerizinan extends Component {
                                         </div>
 
                                         {TableStatus}
-                                        <h6>Menampilkan {this.state.itemPerPage * (this.state.activePage - 1) +1} sampai {this.state.itemPerPage * (this.state.activePage - 1) +currentData.length} dari {data.length}</h6>
+                                        
+                                        {/* pagination */}
                                         <div className="d-flex justify-content-end">
                                         <Pagination
                                             itemClass="page-item"
@@ -278,6 +279,7 @@ class RiwayatPerizinan extends Component {
                                             onChange={this.handlePageChange.bind(this)}
                                         />
                                         </div>
+                                        
                                     </div>
                                 </div>
                             </div>

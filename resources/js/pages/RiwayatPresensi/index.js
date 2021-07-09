@@ -8,7 +8,6 @@ import Pagination from "react-js-pagination";
 
 import PageHeading from '../../components/PageHeading';
 import api from '../../service/api';
-import { Tab } from 'bootstrap';
 // import { getRiwayatPresensi } from '../../service/presensi';
 
 class RiwayatPresensi extends Component {
@@ -64,7 +63,7 @@ class RiwayatPresensi extends Component {
         if (this.state.datas.length == 0) {
             TableStatus = <h6 className="text-center">Tidak ada presensi</h6>;
           } else {
-            TableStatus = <h6 className="text-center"></h6>;
+            TableStatus = <h6>Menampilkan {this.state.itemPerPage * (this.state.activePage - 1) +1} sampai {this.state.itemPerPage * (this.state.activePage - 1) +currentData.length} dari {data.length}</h6>;
         }
 
         return (
@@ -137,18 +136,20 @@ class RiwayatPresensi extends Component {
                                         </div>
 
                                         {TableStatus}
-                                        <h6>Menampilkan {this.state.itemPerPage * (this.state.activePage - 1) +1} sampai {this.state.itemPerPage * (this.state.activePage - 1) +currentData.length} dari {data.length}</h6>
+                                        
+                                        {/* pagination */}
                                         <div className="d-flex justify-content-end">
-                                        <Pagination
-                                            itemClass="page-item"
-                                            linkClass="page-link"
-                                            activePage={this.state.activePage}
-                                            itemsCountPerPage={this.state.itemPerPage}
-                                            totalItemsCount={data.length}
-                                            pageRangeDisplayed={3}
-                                            onChange={this.handlePageChange.bind(this)}
-                                        />
+                                            <Pagination
+                                                itemClass="page-item"
+                                                linkClass="page-link"
+                                                activePage={this.state.activePage}
+                                                itemsCountPerPage={this.state.itemPerPage}
+                                                totalItemsCount={data.length}
+                                                pageRangeDisplayed={3}
+                                                onChange={this.handlePageChange.bind(this)}
+                                            />
                                         </div>
+
                                     </div>
                                 </div>
                             </div>

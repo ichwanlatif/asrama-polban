@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Sidebar from '../../components/Navigation/Sidebar';
 import Topbar from '../../components/Navigation/Topbar';
 import Footer from '../../components/Navigation/Footer';
+import Pagination from "react-js-pagination";
 
 import PageHeading from '../../components/PageHeading';
 import api from '../../service/api';
@@ -15,7 +16,12 @@ class DataResign extends Component {
         super();
         this.state = {
             role: "",
-            datas: []
+            datas: [],
+
+            // pagination
+            currentData: [],
+            activePage: 1,
+            itemPerPage : 10
         };
     }
 
@@ -37,13 +43,29 @@ class DataResign extends Component {
         })
     }
 
+    handlePageChange(pageNumber) {
+        console.log(`active page is ${pageNumber}`);
+        this.setState({activePage: pageNumber});
+
+        const data = this.state.datas;
+        const offset = (this.state.activePage - 1) * this.state.itemPerPage;
+        const currentData = data.slice(offset, offset + this.state.itemPerPage);
+
+        this.setState({ currentData });
+    }
+
     render() {
-        const data = this.state.datas
+        const data = this.state.datas;
+
+        // pagination
+        const offset = (this.state.activePage - 1) * this.state.itemPerPage;
+        const currentData = data.slice(offset, offset + this.state.itemPerPage);
+
         let TableStatus;
         if (this.state.datas.length == 0) {
-            TableStatus = <h6 className="text-center">Tidak ada izin yang perlu diproses</h6>;
+            TableStatus = <h6 className="text-center">Tidak ada resign yang perlu diproses</h6>;
           } else {
-            TableStatus = <h6 className="text-center"></h6>;
+            TableStatus = <h6>Menampilkan {this.state.itemPerPage * (this.state.activePage - 1) +1} sampai {this.state.itemPerPage * (this.state.activePage - 1) +currentData.length} dari {data.length}</h6>;
         }
 
         return (
@@ -104,26 +126,20 @@ class DataResign extends Component {
                                             </table>
                                         </div>
 
+                                        {TableStatus}
+
                                         {/* pagination */}
-                                        <nav aria-label="Page navigation example">
-                                            <ul className="pagination justify-content-end">
-                                                <li className="page-item">
-                                                <Link className="page-link" to="#" aria-label="Previous">
-                                                    <span aria-hidden="true">&laquo;</span>
-                                                    <span className="sr-only">Previous</span>
-                                                </Link>
-                                                </li>
-                                                <li className="page-item"><Link className="page-link" to="#">1</Link></li>
-                                                <li className="page-item"><Link className="page-link" to="#">2</Link></li>
-                                                <li className="page-item"><Link className="page-link" to="#">3</Link></li>
-                                                <li className="page-item">
-                                                <Link className="page-link" to="#" aria-label="Next">
-                                                    <span aria-hidden="true">&raquo;</span>
-                                                    <span className="sr-only">Next</span>
-                                                </Link>
-                                                </li>
-                                            </ul>
-                                        </nav>
+                                        <div className="d-flex justify-content-end">
+                                            <Pagination
+                                                itemClass="page-item"
+                                                linkClass="page-link"
+                                                activePage={this.state.activePage}
+                                                itemsCountPerPage={this.state.itemPerPage}
+                                                totalItemsCount={data.length}
+                                                pageRangeDisplayed={3}
+                                                onChange={this.handlePageChange.bind(this)}
+                                            />
+                                        </div>
 
                                     </div>
                                 </div>

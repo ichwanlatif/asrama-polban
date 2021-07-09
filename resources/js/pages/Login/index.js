@@ -1,5 +1,6 @@
 import Cookies from 'js-cookie';
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { loginAuth } from '../../service/auth';
 
 function loadingAnimation() {
@@ -104,6 +105,10 @@ class Login extends Component {
                                             {this.state.isLoading ? <i className="fas fa-spinner fa-pulse"></i> : <i className="fas fa-sign-in-alt"></i>} Masuk
                                         </button>
                                     </form>
+
+                                    <div className="text-center">
+                                        <Link className="small" to="reset-password">Lupa Password?</Link>
+                                    </div>
                                     
                                 </div>
                             </div>

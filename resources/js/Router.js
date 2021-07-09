@@ -31,7 +31,7 @@ import FormApprovalResign from "./pages/FormApprovalResign";
 import Rekapitulasi from './pages/Rekapitulasi';
 
 
-import ChangePassword from './pages/ChangePassword';
+import ResetPassword from './pages/ResetPassword';
 
 import NotFound from './pages/NotFound';
 import FormApprovalIzinKembali from "./pages/FormApprovalIzinKembali";
@@ -66,7 +66,7 @@ const Main = props =>(
 
         <PrivateRoute exact path="/rekapitulasi" component={Rekapitulasi} />
         
-        <PrivateRoute exact path="/ganti-password" component={ChangePassword} />
+        <PrivateRoute exact path="/reset-password" component={ResetPassword} />
         <Route path="*" component={NotFound} />
     </Switch>
 )

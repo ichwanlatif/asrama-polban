@@ -200,13 +200,18 @@ class FormApprovalResign extends Component {
                                             </div>
                                             <div className="form-group row">
                                                 <label for="temperature" className="col-md-3 col-form-label text-md-right">Suhu badan</label>
-                                                <div className="col-md-8">
-                                                    <input 
-                                                        type="text" 
-                                                        value={this.state.suhu_badan}
-                                                        className="form-control-plaintext"
-                                                        disabled
-                                                    />
+                                                <div className="col-md-3">
+                                                    <div className="input-group">
+                                                        <input 
+                                                            type="text" 
+                                                            value={this.state.suhu_badan}
+                                                            className="form-control-plaintext"
+                                                            disabled
+                                                        />
+                                                        <div className="input-group-append">
+                                                            <span className="input-group" id="temperature">&deg;Celcius</span>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div className="form-group row">

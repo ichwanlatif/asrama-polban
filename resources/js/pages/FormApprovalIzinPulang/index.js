@@ -176,7 +176,7 @@ class FormApprovalIzinPulang extends Component {
                                                             aria-describedby="temperature"
                                                         />
                                                         <div className="input-group-append">
-                                                            <span className="input-group-text" id="temperature">&deg;Celcius</span>
+                                                            <span className="input-group" id="temperature">&deg;Celcius</span>
                                                         </div>
                                                     </div>
                                                 </div>

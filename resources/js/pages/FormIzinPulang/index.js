@@ -110,7 +110,7 @@ class FormIzinPulang extends Component {
                                             </div>
 
                                             <div className="form-group row">
-                                                <label for="startdate" className="col-md-3 col-form-label text-md-right">Tanggal pergi</label>
+                                                <label for="tanggal_pergi" className="col-md-3 col-form-label text-md-right">Tanggal pergi</label>
                                                 <div className="col-md-3">
                                                     <input 
                                                         type="date" 
@@ -123,7 +123,7 @@ class FormIzinPulang extends Component {
                                             </div>
 
                                             <div className="form-group row">
-                                                <label for="endtdate" className="col-md-3 col-form-label text-md-right">Tanggal pulang</label>
+                                                <label for="tanggal_pulang" className="col-md-3 col-form-label text-md-right">Tanggal pulang</label>
                                                 <div className="col-md-3">
                                                     <input 
                                                         type="date" 

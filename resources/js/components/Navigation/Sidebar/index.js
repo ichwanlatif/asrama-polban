@@ -50,28 +50,7 @@ class Sidebar extends Component {
                 {/* Dynamic role item */}
                 {this.sidebarSwitch(this.props.role)}
 
-                {/* Kelola Akun */}
-                <div className="sidebar-heading">
-                    KELOLA AKUN
-                </div>
-
-                {/* Password */}
-                <li className="nav-item">
-                    <Link className="nav-link collapsed" data-toggle="collapse" data-target="#collapsePassword" aria-expanded="true" aria-controls="collapsePassword">
-                        <i className="fas fa-key"></i>
-                        <span>Password</span>
-                    </Link>
-                    <div id="collapsePassword" className="collapse" aria-labelledby="headingPresensi" data-parent="#accordionSidebar">
-                        <div className="bg-white py-2 collapse-inner rounded">
-                            <h6 className="collapse-header">Atur Password:</h6>
-                            <Link className="collapse-item" to="/ganti-password">Ganti Password</Link>
-                        </div>
-                    </div>
-                </li>
                 
-                {/* <!-- Divider --> */}
-                <hr className="sidebar-divider d-none d-md-block" />
-
                 {/* <!-- Sidebar Toggler (Sidebar) --> */}
                 <div className="text-center d-none d-md-inline">
                     <button onClick={() => { clickMenuOpen() }} className="rounded-circle border-0" id="sidebarToggle"></button>
