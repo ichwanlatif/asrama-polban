@@ -99,22 +99,22 @@ class DataIzinPulang extends Component {
                                                         let status;
                                                         switch (perizinan.status_izin) {
                                                             case 0:
-                                                                statusResign = "Mengajukan"
+                                                                status = "Mengajukan"
                                                                 break;
                                                             case 1:
-                                                                statusResign = "Disetujui Pengelola"
+                                                                status = "Disetujui Pengelola"
                                                                 break;
                                                             case 2:
-                                                                statusResign = "Ditolak Pengelola"
+                                                                status = "Ditolak Pengelola"
                                                                 break;
                                                             case 3:
-                                                                statusResign = "Disetujui Wadir 3"
+                                                                status = "Disetujui Wadir 3"
                                                                 break;
                                                             case 4:
-                                                                statusResign = "Ditolak Wadir 3"
+                                                                status = "Ditolak Wadir 3"
                                                                 break;
                                                             default:
-                                                                statusResign = "Error"
+                                                                status = "Error"
                                                                 break;
                                                         }
                                                         return (
