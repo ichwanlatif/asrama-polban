@@ -11,6 +11,12 @@ import PageHeading from '../../components/PageHeading';
 
 import MapView from '../../components/Map/MapView';
 
+function loadingAnimation() {
+    return new Promise(function(resolve) {
+      setTimeout(() => resolve([1, 2, 3]), 1000);
+    });
+}
+
 class FormPresensi extends Component {
     constructor(props) {
         super(props);
@@ -24,6 +30,10 @@ class FormPresensi extends Component {
             currentDateTime: new Date().toLocaleString(),
             status_location: "Belum mendapatkan lokasi",
             text_color : "text-warning",
+
+            //loading
+            isLoading:false,
+            list: []
         };
         this.onClickGetLocation = this.onClickGetLocation.bind(this);
         this.handleFieldChange = this.handleFieldChange.bind(this);
@@ -37,26 +47,26 @@ class FormPresensi extends Component {
                 role: localStorage.getItem("user_role")
             })
         }, 1000)
-        // if(new Date().toLocaleTimeString() < "12.59.00" || new Date().toLocaleTimeString() > "22.01.00"){
-        //     alert("Tidak Dalam Waktu Presensi")
-        //     window.location.assign('/#/dashboard')
-        // }
-        // else{
-        //     api().get('api/perizinan/checkPerizinan/' + localStorage.getItem('user_id')).then(response =>{
-        //         if(response.data.status === 'success'){
-        //             alert('Anda Sedang Izin')
-        //             window.location.assign('/#/dashboard')
-        //         }
-        //     })
+        if(new Date().toLocaleTimeString() < "12.59.00" || new Date().toLocaleTimeString() > "22.01.00"){
+            alert("Tidak Dalam Waktu Presensi")
+            window.location.assign('/#/dashboard')
+        }
+        else{
+            api().get('api/perizinan/checkPerizinan/' + localStorage.getItem('user_id')).then(response =>{
+                if(response.data.status === 'success'){
+                    alert('Anda Sedang Izin')
+                    window.location.assign('/#/dashboard')
+                }
+            })
 
-        //     api().get('api/presensi/kehadiranToday/' + localStorage.getItem('user_id')).then(today =>{
-        //         if(today.data.status === 'success'){
-        //             alert('Anda Telah Melakukan Presensi');
-        //             document.getElementById("submit").disabled = true;
-        //             document.getElementById("submit").className = "btn btn-success"
-        //         }
-        //     })
-        // }
+            api().get('api/presensi/kehadiranToday/' + localStorage.getItem('user_id')).then(today =>{
+                if(today.data.status === 'success'){
+                    alert('Anda Telah Melakukan Presensi');
+                    document.getElementById("submit").disabled = true;
+                    document.getElementById("submit").className = "btn btn-success"
+                }
+            })
+        }
     }
 
     onClickGetLocation() {
@@ -116,12 +126,15 @@ class FormPresensi extends Component {
     }
 
     submitPresensi(e){
+        
         e.preventDefault()
         console.log(this.state.lat)
         if(this.state.status === 10){
             alert('Silahkan Get Location Terlebih Dahulu')
         }
         else{
+            this.setState({ isLoading: true });
+            
             // console.log(this.state)
             createPresensi({
                 status: this.state.status,
@@ -131,7 +144,16 @@ class FormPresensi extends Component {
                 kondisi_kesehatan: this.state.kondisi_kesehatan,
                 id_mhs: localStorage.getItem('user_id')
             })
+
+            // Set status animasi loading
+            loadingAnimation().then(list => {
+                this.setState({
+                isLoading: false,
+                list,
+                });
+            });
         }
+        
     }
 
     render() {
@@ -237,7 +259,9 @@ class FormPresensi extends Component {
                                             
                                             <div className="form-group row">
                                                 <div className="col-md-8 offset-md-3 mb-2">
-                                                    <button id="submit" onClick={this.submitPresensi} type='submit' className='btn btn-success'>Submit</button>
+                                                    <button id="submit" onClick={this.submitPresensi} type='submit' className='btn btn-success' disabled={this.state.isLoading}>
+                                                        {this.state.isLoading ? <i className="fas fa-spinner fa-pulse"></i> : <i className="fas fa-check"></i>} Submit
+                                                    </button>
                                                 </div>
                                             </div>
                                         </form>

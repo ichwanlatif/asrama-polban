@@ -8,6 +8,12 @@ import Footer from '../../components/Navigation/Footer';
 import PageHeading from '../../components/PageHeading';
 import { createPerizinan } from '../../service/perizinan';
 
+function loadingAnimation() {
+    return new Promise(function(resolve) {
+      setTimeout(() => resolve([1, 2, 3]), 1000);
+    });
+}
+
 class FormIzinPulang extends Component {
     constructor(){
         super();
@@ -15,6 +21,10 @@ class FormIzinPulang extends Component {
             id_mhs: localStorage.getItem('user_id'),
             suhu_badan: 36,
             file: null,
+
+            //loading
+            isLoading:false,
+            list: []
         };
         this.handleFieldChange = this.handleFieldChange.bind(this);
         this.handleFileChange = this.handleFileChange.bind(this)
@@ -40,10 +50,12 @@ class FormIzinPulang extends Component {
         e.preventDefault()
 
         if(document.getElementById('aggrement').checked == false){
-            alert('Setujui Terlebih Dahulu');
+            alert('Klik centang pada box');
 
         }
         else{
+            this.setState({ isLoading: true });
+
             const data = new FormData()
             data.append('file', this.state.file)
             data.append('id_mhs', this.state.id_mhs)
@@ -60,6 +72,14 @@ class FormIzinPulang extends Component {
             console.log(this.state);
 
             createPerizinan(data);
+
+            // Set status animasi loading
+            loadingAnimation().then(list => {
+                this.setState({
+                isLoading: false,
+                list,
+                });
+            });
         }
     }
 
@@ -218,8 +238,8 @@ class FormIzinPulang extends Component {
 
                                             <div className="form-group row">
                                                 <div className="col-md-8 offset-md-3 mb-2">
-                                                    <button type="submit" className="btn btn-success" onClick={this.handleSubmit}>
-                                                        Submit
+                                                    <button type="submit" className="btn btn-success" onClick={this.handleSubmit} disabled={this.state.isLoading}>
+                                                        {this.state.isLoading ? <i className="fas fa-spinner fa-pulse"></i> : <i className="fas fa-check"></i>} Submit
                                                     </button>
                                                 </div>
                                             </div>

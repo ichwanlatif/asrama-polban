@@ -8,6 +8,12 @@ import Footer from '../../components/Navigation/Footer';
 import PageHeading from '../../components/PageHeading';
 import { createResign } from '../../service/resign';
 
+function loadingAnimation() {
+    return new Promise(function(resolve) {
+      setTimeout(() => resolve([1, 2, 3]), 1000);
+    });
+}
+
 class FormResign extends Component {
     constructor(props){
         super(props);
@@ -15,7 +21,11 @@ class FormResign extends Component {
             role: "",
             id_mhs: localStorage.getItem('user_id'),
             suhu_badan: 36,
-            file: ""
+            file: "",
+
+            //loading
+            isLoading:false,
+            list: []
         };
 
         this.handleFieldChange = this.handleFieldChange.bind(this)
@@ -45,6 +55,8 @@ class FormResign extends Component {
     }
 
     handleSubmit(e){
+        this.setState({ isLoading: true });
+
         e.preventDefault()
 
         const data = new FormData()
@@ -60,6 +72,14 @@ class FormResign extends Component {
 
         console.log(this.state);
         createResign(data);
+
+        // Set status animasi loading
+        loadingAnimation().then(list => {
+            this.setState({
+            isLoading: false,
+            list,
+            });
+        });
     }
 
     render() {
@@ -168,8 +188,8 @@ class FormResign extends Component {
 
                                             <div className="form-group row">
                                                 <div className="col-md-8 offset-md-3 mb-2">
-                                                    <button type="submit" className="btn btn-success" onClick={this.handleSubmit}>
-                                                        Submit
+                                                    <button type="submit" className="btn btn-success" onClick={this.handleSubmit} disabled={this.state.isLoading}>
+                                                        {this.state.isLoading ? <i className="fas fa-spinner fa-pulse"></i> : <i className="fas fa-check"></i>} Submit
                                                     </button>
                                                 </div>
                                             </div>

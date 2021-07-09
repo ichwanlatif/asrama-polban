@@ -31,8 +31,16 @@ class SidebarPengelola extends Component {
                 
                 {/* Rekapitulasi */}
                 <div className="sidebar-heading">
-                    Rekapitulasi
+                    KELOLA DATA
                 </div>
+
+                {/* Presensi Harian*/}
+                <li className="nav-item">
+                    <Link className="nav-link" to="/data-presensi">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span>Data Presensi Asrama</span>
+                    </Link>
+                </li>
 
                 {/* Rekap presensi dan perizinan */}
                 <li className="nav-item">
@@ -40,29 +48,6 @@ class SidebarPengelola extends Component {
                         <i class="fas fa-clipboard-list"></i>
                         <span>Rekap Data Mahasiswa</span>
                     </Link>
-                </li>
-                
-                {/* <!-- Divider --> */}
-                <hr className="sidebar-divider" />
-
-                {/* Kelola data mahasiswa */}
-                <div className="sidebar-heading">
-                    KELOLA DATA MAHASISWA
-                </div>
-
-                {/* Data Mahasiswa */}
-                <li className="nav-item">
-                    <Link className="nav-link collapsed" data-toggle="collapse" data-target="#collapseDataMahasiswa" aria-expanded="true" aria-controls="collapseDataMahasiswa">
-                        <i class="fas fa-id-card"></i>
-                        <span>Data Mahasiswa</span>
-                    </Link>
-                    <div id="collapseDataMahasiswa" className="collapse" aria-labelledby="headingDataMahasiswa" data-parent="#accordionSidebar">
-                        <div className="bg-white py-2 collapse-inner rounded">
-                            <h6 className="collapse-header">Menu:</h6>
-                            <Link className="collapse-item" to="/import-mahasiswa">Import Data</Link>
-                            <Link className="collapse-item" to="/data-mahasiswa">Daftar Mahasiswa</Link>
-                        </div>
-                    </div>
                 </li>
 
                 {/* <!-- Divider --> */}

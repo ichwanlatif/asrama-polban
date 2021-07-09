@@ -10,11 +10,21 @@ import PageHeading from '../../components/PageHeading';
 import api from '../../service/api';
 import { approvalPerizinan } from '../../service/perizinan';
 
+function loadingAnimation() {
+    return new Promise(function(resolve) {
+      setTimeout(() => resolve([1, 2, 3]), 1000);
+    });
+}
+
 class FormApprovalIzinPulang extends Component {
     constructor(props){
         super(props);
         this.state = {
             role: "",
+
+            //loading
+            isLoading:false,
+            list: []
         };
 
         this.handleFieldChange = this.handleFieldChange.bind(this);
@@ -31,6 +41,8 @@ class FormApprovalIzinPulang extends Component {
     }
 
     handleSubmit(e){
+        this.setState({ isLoading: true });
+
         e.preventDefault()
         console.log(this.state)
         approvalPerizinan({
@@ -39,6 +51,14 @@ class FormApprovalIzinPulang extends Component {
             status_izin: this.state.status_izin,
             catatan_approval: this.state.catatan_approval
         })
+
+        // Set status animasi loading
+        loadingAnimation().then(list => {
+            this.setState({
+            isLoading: false,
+            list,
+            });
+        });
 
     }
 
@@ -268,8 +288,8 @@ class FormApprovalIzinPulang extends Component {
                                             </div>
                                             <div className="form-group row">
                                                 <div className="col-md-8 offset-md-3 mb-2">
-                                                    <button type="submit" onClick={this.handleSubmit} className="btn btn-success">
-                                                        Submit
+                                                    <button type="submit" onClick={this.handleSubmit} className="btn btn-success" disabled={this.state.isLoading}>
+                                                        {this.state.isLoading ? <i className="fas fa-spinner fa-pulse"></i> : <i className="fas fa-check"></i>} Submit
                                                     </button>
                                                 </div>
                                             </div>

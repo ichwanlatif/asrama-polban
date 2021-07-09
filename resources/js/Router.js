@@ -6,6 +6,10 @@ import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Profile from './pages/Profile';
 
+import ResetPassword from './pages/ResetPassword';
+
+import NotFound from './pages/NotFound';
+
 //Mahasiswa
 import FormPresensi from './pages/FormPresensi';
 import FormIzinPulang from './pages/FormIzinPulang';
@@ -14,27 +18,26 @@ import FormIzinKembali from "./pages/FormIzinKembali";
 import RiwayatPresensi from './pages/RiwayatPresensi';
 import RiwayatPerizinan from './pages/RiwayatPerizinan';
 
-//Pengurus dan Manajemen
+//Pengelola dan Wadir
 import DataIzinPulang from './pages/DataIzinPulang';
 import FormApprovalIzinPulang from './pages/FormApprovalIzinPulang';
 
 import DataIzinKembali from './pages/DataIzinKembali';
+import FormApprovalIzinKembali from "./pages/FormApprovalIzinKembali";
 
 import DataResign from './pages/DataResign';
+import FormApprovalResign from "./pages/FormApprovalResign";
 
+import DataPresensi from './pages/DataPresensi';
+
+import Rekapitulasi from './pages/Rekapitulasi';
+
+//Wadir
 import ImportMahasiswa from './pages/ImportMahasiswa';
 import DataMahasiswa from './pages/DataMahasiswa';
 import DetailMahasiswa from './pages/DetailMahasiswa';
 import EditMahasiswa from './pages/EditMahasiswa';
 import TambahMahasiswa from './pages/TambahMahasiswa';
-import FormApprovalResign from "./pages/FormApprovalResign";
-import Rekapitulasi from './pages/Rekapitulasi';
-
-
-import ResetPassword from './pages/ResetPassword';
-
-import NotFound from './pages/NotFound';
-import FormApprovalIzinKembali from "./pages/FormApprovalIzinKembali";
 
 const Main = props =>(
     <Switch>
@@ -57,14 +60,16 @@ const Main = props =>(
 
         <PrivateRoute exact path="/data-resign" component={DataResign} />
         <PrivateRoute exact path="/form-approval-resign/:id" component={FormApprovalResign} />
+        
+        <PrivateRoute exact path="/data-presensi" component={DataPresensi} />
+
+        <PrivateRoute exact path="/rekapitulasi" component={Rekapitulasi} />
 
         <PrivateRoute exact path="/import-mahasiswa" component={ImportMahasiswa} />
         <PrivateRoute exact path="/data-mahasiswa" component={DataMahasiswa} />
         <PrivateRoute exact path="/detail-mahasiswa" component={DetailMahasiswa} />
         <PrivateRoute exact path="/edit-mahasiswa" component={EditMahasiswa} />
         <PrivateRoute exact path="/tambah-mahasiswa" component={TambahMahasiswa} />
-
-        <PrivateRoute exact path="/rekapitulasi" component={Rekapitulasi} />
         
         <PrivateRoute exact path="/reset-password" component={ResetPassword} />
         <Route path="*" component={NotFound} />

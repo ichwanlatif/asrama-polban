@@ -9,12 +9,22 @@ import PageHeading from '../../components/PageHeading';
 import api from '../../service/api';
 import { izinKembaliPerizinan } from '../../service/perizinan';
 
+function loadingAnimation() {
+    return new Promise(function(resolve) {
+      setTimeout(() => resolve([1, 2, 3]), 1000);
+    });
+}
+
 class FormIzinKembali extends Component {
     constructor(props){
         super(props);
         this.state = {
             role: "",
-            suhu_badan: 36
+            suhu_badan: 36,
+
+            //loading
+            isLoading:false,
+            list: []
         };
 
         this.handleFieldChange = this.handleFieldChange.bind(this)
@@ -57,9 +67,11 @@ class FormIzinKembali extends Component {
         console.log(this.state)
 
         if(document.getElementById('aggrement').checked == false){
-            alert('Setujui Terlebih Dahulu')
+            alert('Klik centang pada box')
         }
         else{
+            this.setState({ isLoading: true });
+
             izinKembaliPerizinan({
                 id_mhs: localStorage.getItem("user_id"),
                 id_perizinan: this.state.id_perizinan,
@@ -68,6 +80,14 @@ class FormIzinKembali extends Component {
                 suhu_badan: this.state.suhu_badan,
                 kondisi_kesehatan: this.state.kondisi_kesehatan,
                 jenis_kendaraan: this.state.jenis_kendaraan,
+            });
+
+            // Set status animasi loading
+            loadingAnimation().then(list => {
+                this.setState({
+                isLoading: false,
+                list,
+                });
             });
         }
     }
@@ -202,8 +222,8 @@ class FormIzinKembali extends Component {
 
                                             <div className="form-group row">
                                                 <div className="col-md-8 offset-md-3 mb-2">
-                                                    <button type="submit" className="btn btn-success" onClick={this.handleSubmit}>
-                                                        Submit
+                                                    <button type="submit" className="btn btn-success" onClick={this.handleSubmit} disabled={this.state.isLoading}>
+                                                        {this.state.isLoading ? <i className="fas fa-spinner fa-pulse"></i> : <i className="fas fa-check"></i>} Submit
                                                     </button>
                                                 </div>
                                             </div>
