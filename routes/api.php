@@ -38,9 +38,10 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::post('/presensi/create', [PresensiController::class, 'store']);
     Route::get('/presensi/user/{id}', [PresensiController::class, 'getKehadiranByUser']);
     Route::get('/presensi/kehadiranToday/{id}', [PresensiController::class, 'checkKehadiranToday']);
+    Route::get('/presensi/kehadiranToday', [PresensiController::class, 'getPresensiToday']);
     Route::get('/presensi/getRekapitulasiById/{id}', [PresensiController::class, 'getRekapitulasiById']);
     Route::get('/presensi/dashboard', [PresensiController::class, 'dashboard']);
-    
+    Route::get('/presensi/getRekapitulasi/{date_from}/{date_to}', [PresensiController::class, 'getRekapitulasi']);
 
     //Perizinan
     Route::get('/perizinan/dashboard', [PerizinanController::class, 'dashboard']);
@@ -63,5 +64,3 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::get('/resign/detail/{id}', [ResignController::class, 'getDetailResign']);
 
 });
-
-Route::get('/presensi/getRekapitulasi/{date_from}/{date_to}', [PresensiController::class, 'getRekapitulasi']);

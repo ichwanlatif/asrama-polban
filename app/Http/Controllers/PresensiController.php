@@ -308,4 +308,26 @@ class PresensiController extends Controller
             'data' => $rekap_mahasiswas
         ]);
     }
+
+    public function getPresensiToday(){
+        $presensis = DB::table('presensi')
+        ->join('mahasiswa', 'presensi.id_mhs', '=', 'mahasiswa.id_mhs')
+        ->join('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
+        ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
+        ->whereDate('presensi.created_at', date("Y-m-d"))
+        ->get();
+
+        if($presensis){
+            return response()->json([
+                'status' => 'success',
+                'data' => $presensis
+            ]);
+        }
+        else{
+            return response()->json([
+                'status' => 'error',
+                'msg' => 'Kehadiran not found'
+            ]);
+        }
+    }
 }

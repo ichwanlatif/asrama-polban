@@ -28,7 +28,7 @@ class DataPresensi extends Component {
         this.setState({
             role: localStorage.getItem("user_role")
         });
-        api().get('api/presensi/user/' + localStorage.getItem('user_id')).then(response =>{
+        api().get('api/presensi/kehadiranToday').then(response =>{
             if(response.data.status === 'success'){
                 this.setState({
                     datas: response.data.data
@@ -110,15 +110,17 @@ class DataPresensi extends Component {
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    {/* {currentData.map(presensi => {
+                                                    {currentData.map(presensi => {
                                                         const {
                                                             id,
                                                             status_presensi,
-                                                            latitude,
-                                                            longitude,
                                                             kondisi_kesehatan,
                                                             suhu_badan,
                                                             created_at,
+                                                            nama_mhs,
+                                                            nim,
+                                                            nama_gedung,
+                                                            keterangan_asal
                                                         } = presensi;
                                                         let status, color;
                                                         if(presensi.status_presensi === 0){
@@ -135,9 +137,11 @@ class DataPresensi extends Component {
                                                         }
                                                         return (
                                                             <tr>
-                                                                <td>{new Date(presensi.created_at).toDateString()}</td>
+                                                                <td>{presensi.nama_mhs}</td>
+                                                                <td>{presensi.nim}</td>
+                                                                <td>{presensi.nama_gedung}</td>
+                                                                <td>{presensi.keterangan_asal}</td>
                                                                 <td>{new Date(presensi.created_at).toTimeString()}</td>
-                                                                <td>{presensi.latitude + ', ' + presensi.longitude}</td>
                                                                 <td>
                                                                     <span className={color}>{status}
                                                                     </span>
@@ -146,7 +150,7 @@ class DataPresensi extends Component {
                                                                 <td>{presensi.suhu_badan}&deg;C</td>
                                                             </tr>
                                                         )
-                                                    })} */}
+                                                    })}
                                                 </tbody>
                                             </table>
                                         </div>
