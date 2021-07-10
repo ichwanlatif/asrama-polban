@@ -124,11 +124,11 @@ class Rekapitulasi extends Component {
                         <Topbar />
                         {/* <!-- End of Topbar --> */}
                         <div className="container-fluid">
-                            <PageHeading title="Rekapitulasi Presensi Kehadiran" />
+                            <PageHeading title="Rekapitulasi Data Mahasiswa" />
                             <div className="col-lg-12 col-md-12">
                                 <div className="card my-5">
                                     <div className="card-header">
-                                        <h6 className="text-primary">Rekapitulasi Presensi Kehadiran</h6>
+                                        <h6 className="text-primary">Rekapitulasi Presensi Dan Perizinan Mahasiswa</h6>
                                     </div>
                                     <div className="card-body">
 

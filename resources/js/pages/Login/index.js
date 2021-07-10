@@ -16,6 +16,7 @@ class Login extends Component {
             email: '',
             password: '',
             
+            //loading
             isLoading:false,
             list: []
         }

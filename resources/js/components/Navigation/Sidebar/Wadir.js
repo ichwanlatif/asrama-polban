@@ -31,30 +31,22 @@ class SidebarWadir extends Component {
                 
                 {/* Rekapitulasi */}
                 <div className="sidebar-heading">
-                    Rekapitulasi
+                    KELOLA DATA
                 </div>
 
-                {/* Rekap presensi dan perizinan */}
+                {/* Presensi Harian*/}
                 <li className="nav-item">
-                    <Link className="nav-link" to="/rekapitulasi">
+                    <Link className="nav-link" to="/data-presensi">
                         <i class="fas fa-clipboard-list"></i>
-                        <span>Rekap Data Mahasiswa</span>
+                        <span>Data Presensi Asrama</span>
                     </Link>
                 </li>
                 
-                {/* <!-- Divider --> */}
-                <hr className="sidebar-divider" />
-
-                {/* Kelola data mahasiswa */}
-                <div className="sidebar-heading">
-                    KELOLA DATA MAHASISWA
-                </div>
-
                 {/* Data Mahasiswa */}
                 <li className="nav-item">
                     <Link className="nav-link collapsed" data-toggle="collapse" data-target="#collapseDataMahasiswa" aria-expanded="true" aria-controls="collapseDataMahasiswa">
                         <i class="fas fa-id-card"></i>
-                        <span>Data Mahasiswa</span>
+                        <span>Data Mahasiswa Asrama</span>
                     </Link>
                     <div id="collapseDataMahasiswa" className="collapse" aria-labelledby="headingDataMahasiswa" data-parent="#accordionSidebar">
                         <div className="bg-white py-2 collapse-inner rounded">
@@ -63,6 +55,14 @@ class SidebarWadir extends Component {
                             <Link className="collapse-item" to="/data-mahasiswa">Daftar Mahasiswa</Link>
                         </div>
                     </div>
+                </li>
+
+                {/* Rekap presensi dan perizinan */}
+                <li className="nav-item">
+                    <Link className="nav-link" to="/rekapitulasi">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span>Rekap Data Mahasiswa</span>
+                    </Link>
                 </li>
 
                 {/* <!-- Divider --> */}

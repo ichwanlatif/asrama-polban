@@ -35,11 +35,11 @@ class DataMahasiswa extends Component {
                         <Topbar />
                         {/* <!-- End of Topbar --> */}
                         <div className="container-fluid">
-                            <PageHeading title="Data Mahasiswa" />
+                            <PageHeading title="Data Mahasiswa Asrama" />
                             <div className="col-lg-12 col-md-12">
                                 <div className="card my-5">
                                     <div className="card-header">
-                                        <h6 className="text-primary">Data Mahasiswa</h6>
+                                        <h6 className="text-primary">Data Mahasiswa Asrama</h6>
                                     </div>
                                     <div className="card-body">
 

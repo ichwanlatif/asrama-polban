@@ -95,6 +95,8 @@ class RiwayatPresensi extends Component {
                                                     <th scope="col">Waktu presensi</th>
                                                     <th scope="col">Koordinat GPS</th>
                                                     <th scope="col">Status</th>
+                                                    <th scope="col">Kondisi</th>
+                                                    <th scope="col">Suhu badan</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -104,6 +106,8 @@ class RiwayatPresensi extends Component {
                                                             status_presensi,
                                                             latitude,
                                                             longitude,
+                                                            kondisi_kesehatan,
+                                                            suhu_badan,
                                                             created_at,
                                                         } = presensi;
                                                         let status, color;
@@ -128,6 +132,8 @@ class RiwayatPresensi extends Component {
                                                                     <span className={color}>{status}
                                                                     </span>
                                                                 </td>
+                                                                <td>{presensi.kondisi_kesehatan}</td>
+                                                                <td>{presensi.suhu_badan}&deg;C</td>
                                                             </tr>
                                                         )
                                                     })}
