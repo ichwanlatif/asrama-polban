@@ -52,20 +52,21 @@ class FormPresensi extends Component {
             window.location.assign('/#/dashboard')
         }
         else{
-            api().get('api/perizinan/checkPerizinan/' + localStorage.getItem('user_id')).then(response =>{
-                if(response.data.status === 'success'){
-                    alert('Anda Sedang Izin')
-                    window.location.assign('/#/dashboard')
-                }
-            })
-
-            api().get('api/presensi/kehadiranToday/' + localStorage.getItem('user_id')).then(today =>{
-                if(today.data.status === 'success'){
-                    alert('Anda Telah Melakukan Presensi');
-                    document.getElementById("submit").disabled = true;
-                    document.getElementById("submit").className = "btn btn-success"
-                }
-            })
+            // api().get('api/perizinan/checkPerizinan/' + localStorage.getItem('user_id')).then(response =>{
+            //     if(response.data.status === 'success'){
+            //         alert('Anda Sedang Izin')
+            //         window.location.assign('/#/dashboard')
+            //     }
+            //     else{
+            //         api().get('api/presensi/kehadiranToday/' + localStorage.getItem('user_id')).then(today =>{
+            //             if(today.data.status === 'success'){
+            //                 alert('Anda Telah Melakukan Presensi');
+            //                 document.getElementById("submit").disabled = true;
+            //                 document.getElementById("submit").className = "btn btn-success"
+            //             }
+            //         })
+            //     }
+            // })
         }
     }
 

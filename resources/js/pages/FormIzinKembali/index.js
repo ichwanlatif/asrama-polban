@@ -133,7 +133,7 @@ class FormIzinKembali extends Component {
                                             </div>
 
                                             <div className="form-group row">
-                                                <label for="tanggal_pergi" className="col-md-3 col-form-label text-md-right">Mulai kembali</label>
+                                                <label for="tanggal_pergi" className="col-md-3 col-form-label text-md-right">Mulai Izin</label>
                                                 <div className="col-md-3">
                                                     <input 
                                                         type="date" 

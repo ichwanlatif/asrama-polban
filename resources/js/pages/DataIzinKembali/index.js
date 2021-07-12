@@ -116,34 +116,11 @@ class DataIzinKembali extends Component {
                                                             pengajuan_tanggal_pulang,
                                                             status_izin
                                                         } = perizinan;
-                                                        let status;
-                                                        switch (perizinan.status_izin) {
-                                                            case 5:
-                                                                status = "Mengajukan Kembali"
-                                                                break;
-                                                            case 6:
-                                                                status = "Disetujui Kembali oleh Pengelola"
-                                                                break;
-                                                            case 7:
-                                                                status = "Ditolak Kembali oleh Pengelola"
-                                                                break;
-                                                            case 8:
-                                                                status = "Disetujui Kembali oleh Wadir 3"
-                                                                hiddenKonfirmasi = false;
-                                                                break;
-                                                            case 9:
-                                                                status = "Ditolak Kembali oleh Wadir 3"
-                                                                break;
-                                                            default:
-                                                                status = "Error"
-                                                                break;
-                                                        }
                                                         return (
                                                             <tr>
                                                                 <td>{perizinan.nama_mhs}</td>
                                                                 <td>{perizinan.tanggal_pergi}</td>
                                                                 <td>{perizinan.pengajuan_tanggal_pulang}</td>
-                                                                <td>{status}</td>
                                                                 <td><Link to={"/form-approval-izin-kembali/" + perizinan.id_perizinan} className="btn btn-outline-primary btn-sm">Approve</Link></td>
                                                             </tr>
                                                         )
