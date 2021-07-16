@@ -17,9 +17,9 @@ class CreatePresensi extends Migration
             $table->bigIncrements('id_presensi');
             $table->unsignedBigInteger('id_mhs');
             $table->integer('status_presensi');
-            $table->string('latitude');
-            $table->string('longitude');
-            $table->integer('suhu_badan');
+            $table->double('latitude');
+            $table->double('longitude');
+            $table->float('suhu_badan', 8, 2);
             $table->string('kondisi_kesehatan', 50);
             $table->timestamps();
 

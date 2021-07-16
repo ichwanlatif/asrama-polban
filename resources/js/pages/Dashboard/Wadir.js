@@ -29,8 +29,8 @@ class DashboardWadir extends Component {
         }
     }
 
-    componentDidMount(){
-        api().get('api/presensi/dashboard').then(response =>{
+    async componentDidMount(){
+        await api().get('api/presensi/dashboard').then(response =>{
             if(response.data.status === 'success'){
                 this.setState({
                     alfaA: response.data.gedungA[0],

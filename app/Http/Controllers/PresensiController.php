@@ -21,13 +21,13 @@ class PresensiController extends Controller
             'latitude' => 'required',
             'longitude' => 'required',
             'id_mhs' => 'required',
-            'suhu_badan' => 'required',
-            'kondisi_kesehatan' => 'required',
+            'suhu_badan' => 'required|numeric|between:30,50',
+            'kondisi_kesehatan' => 'required|max:50',
             'status' => 'required'
         ]);
 
         if($validasi->fails()){
-            return response()->json(["status" => $validasi->errors()], 422);
+            return response()->json(["message" => $validasi->errors()]);
         }
         else{
             $insert = Presensi::create([
@@ -42,14 +42,14 @@ class PresensiController extends Controller
             if($insert){
                 return response()->json([
                     'status' => 'success',
-                    'msg' => 'Presensi berhasil diinput',
+                    'message' => 'Presensi berhasil diinput',
                     'data' => $insert
                 ], 201);
             }
             else{
                 return response()->json([
                     'status' => 'error',
-                    'msg' => 'Presensi gagal diinput',
+                    'message' => 'Presensi gagal diinput',
                 ]);
             }
         }
@@ -71,7 +71,7 @@ class PresensiController extends Controller
         else{
             return response()->json([
                 'status' => 'error',
-                'msg' => "Kehadiran Not Found"
+                'message' => "Kehadiran Not Found"
             ]);
         }
     }
@@ -92,7 +92,7 @@ class PresensiController extends Controller
         else{
             return response()->json([
                 'status' => 'error',
-                'msg' => 'Kehadiran not found'
+                'message' => 'Kehadiran not found'
             ]);
         }
     }
@@ -326,7 +326,7 @@ class PresensiController extends Controller
         else{
             return response()->json([
                 'status' => 'error',
-                'msg' => 'Kehadiran not found'
+                'message' => 'Kehadiran not found'
             ]);
         }
     }

@@ -1,7 +1,8 @@
 import Cookies from 'js-cookie';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { loginAuth } from '../../service/auth';
+import api from '../../service/api';
+import { logIn, notLoggedIn } from '../../service/token';
 
 function loadingAnimation() {
     return new Promise(function(resolve) {
@@ -15,6 +16,7 @@ class Login extends Component {
         this.state = {
             email: '',
             password: '',
+            errList: [],
             
             //loading
             isLoading:false,
@@ -38,14 +40,45 @@ class Login extends Component {
     }
 
 
-    handleSubmit(e){
+    async handleSubmit(e){
         this.setState({ isLoading: true });
 
         e.preventDefault();
-        loginAuth({
-            email: this.state.email,
-            password: this.state.password
-        });
+        await api().get('/sanctum/csrf-cookie').then(() => {
+            api().post('api/login', ({
+                email: this.state.email,
+                password: this.state.password
+            })).then(response => {
+                if(response.data.status !== 'success'){
+                    console.log(response.data.message)
+                    this.setState({
+                        errList: response.data.message
+                    })
+                    notLoggedIn();
+                }
+                else{
+                    localStorage.setItem('user_role', response.data.data.role);
+                    // alert(response.data.data.id_users)
+                    if(response.data.data.role == 1){
+                        var endPoint = "api/mahasiswaByUser/" + response.data.data.id_users;
+                        api().get(endPoint).then(User => {
+                            if(User.data.status !== 'success'){
+                                alert(User.data.message)
+                            }
+                            else{
+                                localStorage.setItem('user_id', User.data.data.id_mhs);
+                                logIn(response.data.token);
+                                window.location.assign('/#/Dashboard')
+                            }
+                        })
+                    }
+                    else{
+                        logIn(response.data.token);
+                        window.location.assign('/#/Dashboard')
+                    }
+                }
+            })
+        })
 
         // Set status animasi loading
         loadingAnimation().then(list => {
@@ -90,6 +123,7 @@ class Login extends Component {
                                                 onChange={this.handleFieldChange}
                                                 required
                                             />
+                                            <span className="text-danger">*{this.state.errList.email}</span>
                                         </div>
                                         <div className="form-group">
                                             <input 
@@ -101,6 +135,7 @@ class Login extends Component {
                                                 onChange={this.handleFieldChange}
                                                 required
                                             />
+                                            <span className="text-danger">*{this.state.errList.password}</span>
                                         </div>
                                         <button  onClick={this.handleSubmit} className="btn btn-primary btn-user btn-block" disabled={this.state.isLoading}>
                                             {this.state.isLoading ? <i className="fas fa-spinner fa-pulse"></i> : <i className="fas fa-sign-in-alt"></i>} Masuk

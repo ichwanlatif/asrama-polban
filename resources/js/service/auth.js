@@ -1,36 +1,6 @@
 import api from './api';
-import {logIn, logOut, notLoggedIn} from './token'
+import {logOut} from './token'
 
-
-
-export const loginAuth = (props) => {
-    api().get('/sanctum/csrf-cookie').then(() => {
-        api().post('api/login', props).then(response => {
-            if(response.data.status !== 'success'){
-                console.log(response.data.message)
-                alert('Failed To Login')
-                notLoggedIn;
-            }
-            else{
-                localStorage.setItem('user_role', response.data.data.role);
-                logIn(response.data.token);
-                // alert(response.data.data.id_users)
-                if(response.data.data.role == 1){
-                    var endPoint = "api/mahasiswaByUser/" + response.data.data.id_users;
-                    api().get(endPoint).then(User => {
-                        if(User.data.status !== 'success'){
-                            alert(User.data.message)
-                        }
-                        else{
-                            localStorage.setItem('user_id', User.data.data.id_mhs);
-                        }
-                    })
-                }
-                window.location.assign('/#/dashboard');
-            }
-        })
-    })
-}
 
 export const logoutAuth = () => {
     api().post('api/logoutall').then(response => {

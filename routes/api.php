@@ -25,6 +25,7 @@ use App\Http\Controllers\ResignController;
 // });
 
 Route::post('/login', [AuthController::class, 'login']);
+Route::get('/mahasiswaByUser/{id}', [MahasiswaController::class, 'getMahasiswaByUserId']);
 Route::group(['middleware' => ['auth:sanctum']], function() {
     // manggil controller sesuai bawaan laravel 8
     Route::post('logout', [AuthController::class, 'logout']);
@@ -32,7 +33,6 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::post('logoutall', [AuthController::class, 'logoutall']);
 
     //Mahasiswa
-    Route::get('/mahasiswaByUser/{id}', [MahasiswaController::class, 'getMahasiswaByUserId']);
 
     //Presensi
     Route::post('/presensi/create', [PresensiController::class, 'store']);
@@ -59,7 +59,7 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     //Resign
     Route::post('/resign/create', [ResignController::class, 'store']);
     Route::get('/resign/riwayatresign/{id}', [ResignController::class, 'getRiwayatResign']);
-    Route::get('/resign', [ResignController::class, 'getAllResign']);
+    Route::get('/resign/{role}', [ResignController::class, 'getAllResign']);
     Route::put('/resign/approval', [ResignController::class, 'approveResign']);
     Route::get('/resign/detail/{id}', [ResignController::class, 'getDetailResign']);
 

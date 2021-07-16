@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { createPresensi } from '../../service/presensi';
 import api from '../../service/api';
 import HaversineGeolocation from 'haversine-geolocation';
 //Navigation
@@ -25,11 +24,14 @@ class FormPresensi extends Component {
             lat: 0,
             long: 0,
             status: 10,
-            suhu_badan: 36,
+            suhu_badan: 36.0,
             kondisi_kesehatan: "",
             currentDateTime: new Date().toLocaleString(),
             status_location: "Belum mendapatkan lokasi",
             text_color : "text-warning",
+            
+            //Err List
+            errList: [],
 
             //loading
             isLoading:false,
@@ -47,38 +49,38 @@ class FormPresensi extends Component {
                 role: localStorage.getItem("user_role")
             })
         }, 1000)
-        if(new Date().toLocaleTimeString() < "12.59.00" || new Date().toLocaleTimeString() > "22.01.00"){
-            alert("Tidak Dalam Waktu Presensi")
-            window.location.assign('/#/dashboard')
-        }
-        else{
-            // api().get('api/perizinan/checkPerizinan/' + localStorage.getItem('user_id')).then(response =>{
-            //     if(response.data.status === 'success'){
-            //         alert('Anda Sedang Izin')
-            //         window.location.assign('/#/dashboard')
-            //     }
-            //     else{
-            //         api().get('api/presensi/kehadiranToday/' + localStorage.getItem('user_id')).then(today =>{
-            //             if(today.data.status === 'success'){
-            //                 alert('Anda Telah Melakukan Presensi');
-            //                 document.getElementById("submit").disabled = true;
-            //                 document.getElementById("submit").className = "btn btn-success"
-            //             }
-            //         })
-            //     }
-            // })
-        }
+        // if(new Date().toLocaleTimeString() < "15.59.00" || new Date().toLocaleTimeString() > "20.01.00"){
+        //     alert("Tidak Dalam Waktu Presensi")
+        //     window.location.assign('/#/dashboard')
+        // }
+        // else{
+        //     api().get('api/perizinan/checkPerizinan/' + localStorage.getItem('user_id')).then(response =>{
+        //         if(response.data.status === 'success'){
+        //             alert('Anda Sedang Izin')
+        //             window.location.assign('/#/dashboard')
+        //         }
+        //         else{
+        //             api().get('api/presensi/kehadiranToday/' + localStorage.getItem('user_id')).then(today =>{
+        //                 if(today.data.status === 'success'){
+        //                     alert('Anda Telah Melakukan Presensi');
+        //                     document.getElementById("submit").disabled = true;
+        //                     document.getElementById("submit").className = "btn btn-success"
+        //                 }
+        //             })
+        //         }
+        //     })
+        // }
     }
 
     onClickGetLocation() {
         if(navigator.geolocation){
             navigator.geolocation.getCurrentPosition((position => {
                 this.setState({
-                    lat: -6.872161,
-                    long: 107.570858
+                    // lat: -6.872161,
+                    // long: 107.570858
 
-                    // lat: position.coords.latitude,
-                    // long: position.coords.longitude,
+                    lat: position.coords.latitude,
+                    long: position.coords.longitude,
                 })
                 console.log("Lat: " + this.state.lat)
                 console.log("Long: " + this.state.long)
@@ -88,8 +90,8 @@ class FormPresensi extends Component {
                         longitude: this.state.long
                     },
                     {
-                        latitude: -6.871925383063508, 
-                        longitude: 107.57102532659914,
+                        latitude: -6.8719714, 
+                        longitude: 107.5711026,
                     }
                 ]
                 let hasil = HaversineGeolocation.getDistanceBetween(points[0], points[1], 'm');
@@ -137,13 +139,22 @@ class FormPresensi extends Component {
             this.setState({ isLoading: true });
             
             // console.log(this.state)
-            createPresensi({
+            api().post('api/presensi/create', ({
                 status: this.state.status,
                 latitude: this.state.lat,
                 longitude: this.state.long,
                 suhu_badan: this.state.suhu_badan,
                 kondisi_kesehatan: this.state.kondisi_kesehatan,
                 id_mhs: localStorage.getItem('user_id')
+            })).then(response => {
+                if(response.data.status === 'success'){
+                    window.location.assign('/#/riwayat-presensi')
+                }
+                else{
+                    this.setState({
+                        errList: response.data.message
+                    })
+                }
             })
 
             // Set status animasi loading
@@ -234,6 +245,8 @@ class FormPresensi extends Component {
                                                         required
                                                     />
                                                     <small className="text-muted">Jelaskan keluhan saudara, jika merasa sakit.</small>
+                                                    <br></br>
+                                                    <span className="text-danger">*{this.state.errList.kondisi_kesehatan}</span>
                                                 </div>
                                             </div>
 
@@ -249,12 +262,15 @@ class FormPresensi extends Component {
                                                             onChange={this.handleFieldChange}
                                                             value={this.state.suhu_badan}
                                                             required
+                                                            step="0.1"
                                                         />
                                                         <div className="input-group-append">
                                                             <span className="input-group-text" id="temperature">&deg;Celcius</span>
                                                         </div>
                                                     </div>
                                                     <small className="text-muted">Dapat dilakukan sendiri atau di pos keamanan pintu masuk 1 Polban.</small>
+                                                    <br></br>
+                                                    <span className="text-danger">*{this.state.errList.suhu_badan}</span>
                                                 </div>
                                             </div>
                                             

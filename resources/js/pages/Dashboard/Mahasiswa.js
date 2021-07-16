@@ -8,6 +8,7 @@ class DashboardMahasiswa extends Component {
     constructor(){
         super();
         this.state = {
+            id_mhs: localStorage.getItem('user_id'),
             alfa: "",
             hadir: "",
             izin: "",
@@ -15,9 +16,8 @@ class DashboardMahasiswa extends Component {
         };
     }
 
-    componentDidMount(){
-        
-        api().get('api/presensi/getRekapitulasiById/' + localStorage.getItem('user_id')).then(response =>{
+    async componentDidMount(){
+        await api().get('api/presensi/getRekapitulasiById/' + this.state.id_mhs).then(response =>{
             if(response.data.status === 'success'){
                 this.setState({
                     alfa: response.data.alfa,

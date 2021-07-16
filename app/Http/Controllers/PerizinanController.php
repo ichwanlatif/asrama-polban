@@ -28,19 +28,19 @@ class PerizinanController extends Controller
             'tanggal_pergi' => 'required',
             'tanggal_pulang' => 'required',
             'jenis_kendaraan' => 'required',
-            'kondisi_kesehatan' => 'required',
-            'suhu_badan' => 'required',
-            'alamat_izin' => 'required',
-            'keterangan_izin' => 'required',
+            'suhu_badan' => 'required|numeric|between:30,50',
+            'kondisi_kesehatan' => 'required|max:50',
+            'alamat_izin' => 'required|max:125',
+            'keterangan_izin' => 'required|max:125',
             'id_mhs' => 'required',
         ]);
 
         if($validasi->fails()){
-            return response()->json(["status" => 422, "msg" => "Form Tidak Valid"]);
+            return response()->json(["status" => "error", "message" => $validasi->errors()]);
         }
         else{
             if($request->tanggal_pergi > $request->tanggal_pulang){
-                return response()->json(["status" => 422, "msg" => "Tanggal Pergi dan Pulang Tidak Benar"]);
+                return response()->json(["status" => "error", "message" => "Tanggal Pergi dan Pulang Tidak Benar"]);
             }
             $fileName = null;
 
@@ -82,14 +82,14 @@ class PerizinanController extends Controller
 
                 return response()->json([
                     'status' => 'success',
-                    'msg' => 'Perizinan berhasil diinput',
+                    'message' => 'Perizinan berhasil diinput',
                     'data' => $insert
                 ], 201);
             }
             else{
                 return response()->json([
                     'status' => 'error',
-                    'msg' => 'Perizinan gagal diinput',
+                    'message' => 'Perizinan gagal diinput',
                 ]);
             }
 
@@ -101,18 +101,19 @@ class PerizinanController extends Controller
         $perizinan = Perizinan::where([
             ['id_mhs', '=', $id],
             ['tanggal_pergi', '<=', Carbon::now()],
-            ['tanggal_pulang', '>=', Carbon::now()]
+            ['tanggal_pulang', '>=', Carbon::now()],
+            ['status_izin', '!=', 10]
         ])->first();
 
         if($perizinan){
             return response()->json([
                 'status' => 'success',
-                'msg' => 'Sedang Izin'
+                'message' => 'Sedang Izin'
             ]);
         }
         return response()->json([
             'status' => 'error',
-            'msg' => 'Sedang Tidak Izin'
+            'message' => 'Sedang Tidak Izin'
         ]);
     }
 
@@ -122,7 +123,7 @@ class PerizinanController extends Controller
         ]);
 
         if($validasi->fails()){
-            return response()->json(["status" => 422, "msg" => "Form Tidak Valid"]);
+            return response()->json(["status" => 422, "message" => "Form Tidak Valid"]);
         }
         $perizinan = Perizinan::where([
             ['id_perizinan', '=', $request->id_perizinan],
@@ -160,14 +161,14 @@ class PerizinanController extends Controller
         if($perizinan){
             return response()->json([
                 'status' => 'success',
-                'msg' => 'Success approv',
+                'message' => 'Success approv',
                 'data' => $perizinan
             ]);
         }
         else{
             return response()->json([
                 'status' => 'error',
-                'msg' => 'Failed to approv'
+                'message' => 'Failed to approv'
             ]);
         }
     }
@@ -178,7 +179,7 @@ class PerizinanController extends Controller
         ]);
 
         if($validasi->fails()){
-            return response()->json(["status" => 422, "msg" => "Form Tidak Valid"]);
+            return response()->json(["status" => 422, "message" => "Form Tidak Boleh Kosong"]);
         }
         if($request->status_izin == 8){
             $perizinan = Perizinan::where([
@@ -227,14 +228,14 @@ class PerizinanController extends Controller
         if($perizinan){
             return response()->json([
                 'status' => 'success',
-                'msg' => 'Success approv',
+                'message' => 'Success approv',
                 'data' => $perizinan
             ]);
         }
         else{
             return response()->json([
                 'status' => 'error',
-                'msg' => 'Failed to approv'
+                'message' => 'Failed to approv'
             ]);
         }
     }
@@ -260,14 +261,14 @@ class PerizinanController extends Controller
         if($perizinan){
             return response()->json([
                 'status' => 'success',
-                'msg' => 'Success get data',
+                'message' => 'Success get data',
                 'data' => $perizinan
             ]);
         }
         else{
             return response()->json([
                 'status' => 'error',
-                'msg' => 'Failed to get data'
+                'message' => 'Failed to get data'
             ]);
         }
     }
@@ -294,14 +295,14 @@ class PerizinanController extends Controller
         if($perizinan){
             return response()->json([
                 'status' => 'success',
-                'msg' => 'Success get data',
+                'message' => 'Success get data',
                 'data' => $perizinan
             ]);
         }
         else{
             return response()->json([
                 'status' => 'error',
-                'msg' => 'Failed to get data'
+                'message' => 'Failed to get data'
             ]);
         }
     }
@@ -313,14 +314,14 @@ class PerizinanController extends Controller
         if($perizinan){
             return response()->json([
                 'status' => 'success',
-                'msg' => 'Success get data',
+                'message' => 'Success get data',
                 'data' => $perizinan
             ]);
         }
         else{
             return response()->json([
                 'status' => 'error',
-                'msg' => 'Failed to get data'
+                'message' => 'Failed to get data'
             ]);
         }
     }
@@ -337,14 +338,14 @@ class PerizinanController extends Controller
         if($perizinan){
             return response()->json([
                 'status' => 'success',
-                'msg' => 'Success get data',
+                'message' => 'Success get data',
                 'data' => $perizinan
             ]);
         }
         else{
             return response()->json([
                 'status' => 'error',
-                'msg' => 'Failed to get data'
+                'message' => 'Failed to get data'
             ]);
         }
     }
@@ -379,14 +380,14 @@ class PerizinanController extends Controller
 
             return response()->json([
                 'status' => 'success',
-                'msg' => 'Success kembali',
+                'message' => 'Success kembali',
                 'data' => $perizinan
             ]);
         }
         else{
             return response()->json([
                 'status' => 'error',
-                'msg' => 'Failed to kembali'
+                'message' => 'Failed to kembali'
             ]);
         }
     }
@@ -402,7 +403,7 @@ class PerizinanController extends Controller
         ]);
 
         if($validasi->fails()){
-            return response()->json(["status" => 422, "msg" => "Form Tidak Valid"]);
+            return response()->json(["status" => 422, "message" => "Form Tidak Valid"]);
         }
         
         $perizinan = Perizinan::where([
@@ -435,14 +436,14 @@ class PerizinanController extends Controller
 
             return response()->json([
                 'status' => 'success',
-                'msg' => 'Success mengajukan kembali',
+                'message' => 'Success mengajukan kembali',
                 'data' => $perizinan
             ]);
         }
         else{
             return response()->json([
                 'status' => 'error',
-                'msg' => 'Failed to mengajukan kembali'
+                'message' => 'Failed to mengajukan kembali'
             ]);
         }
     }

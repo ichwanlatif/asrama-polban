@@ -6,7 +6,7 @@ import Topbar from '../../components/Navigation/Topbar';
 import Footer from '../../components/Navigation/Footer';
 
 import PageHeading from '../../components/PageHeading';
-import { createPerizinan } from '../../service/perizinan';
+import api from '../../service/api';
 
 function loadingAnimation() {
     return new Promise(function(resolve) {
@@ -21,10 +21,17 @@ class FormIzinPulang extends Component {
             id_mhs: localStorage.getItem('user_id'),
             suhu_badan: 36,
             file: null,
+            tanggal_pergi: null,
+            tanggal_pulang: null,
+            jenis_kendaraan: null,
+            keterangan_izin: null,
+            kondisi_kesehatan: null,
+            alamat_izin: null,
 
             //loading
             isLoading:false,
-            list: []
+            list: [],
+            errList: []
         };
         this.handleFieldChange = this.handleFieldChange.bind(this);
         this.handleFileChange = this.handleFileChange.bind(this)
@@ -69,9 +76,21 @@ class FormIzinPulang extends Component {
             
             // console.warn(this.state.file);
 
-            console.log(this.state);
+            console.log(data);
 
-            createPerizinan(data);
+            api().post('api/perizinan/create', data).then(response => {
+                if(response.data.status === 'success'){
+                    console.log(response.data.msg)
+                    window.location.assign('/#/riwayat-perizinan')
+                }
+                else{
+                    this.setState({
+                        errList: response.data.message
+                    })
+
+                    alert("Gagal Mengajukan Perizinan")
+                }
+            })
 
             // Set status animasi loading
             loadingAnimation().then(list => {
@@ -126,6 +145,7 @@ class FormIzinPulang extends Component {
                                                         onChange={this.handleFieldChange}
                                                         required>
                                                     </textarea>
+                                                    <span className="text-danger">{this.state.errList.keterangan_izin}</span>
                                                 </div>
                                             </div>
 
@@ -139,6 +159,7 @@ class FormIzinPulang extends Component {
                                                         onChange={this.handleFieldChange}
                                                         required
                                                     />
+                                                    <span className="text-danger">{this.state.errList.tanggal_pergi}</span>
                                                 </div>
                                             </div>
 
@@ -152,6 +173,7 @@ class FormIzinPulang extends Component {
                                                         onChange={this.handleFieldChange}
                                                         required
                                                     />
+                                                    <span className="text-danger">{this.state.errList.tanggal_pulang}</span>
                                                 </div>
                                             </div>
 
@@ -166,6 +188,7 @@ class FormIzinPulang extends Component {
                                                         placeholder="contoh: Sehat / Sakit"
                                                     />
                                                     <small className="text-muted">Jelaskan keluhan saudara, jika merasa sakit.</small>
+                                                    <span className="text-danger">{this.state.errList.kondisi_kesehatan}</span>
                                                 </div>
                                             </div>
 
@@ -186,6 +209,7 @@ class FormIzinPulang extends Component {
                                                         </div>
                                                     </div>
                                                     <small className="text-muted">Dapat dilakukan sendiri atau di pos keamanan pintu masuk 1 Polban.</small>
+                                                    <span className="text-danger">{this.state.errList.suhu_badan}</span>
                                                 </div>
                                             </div>
 
@@ -205,6 +229,7 @@ class FormIzinPulang extends Component {
                                                 <label for="address" className="col-md-3 col-form-label text-md-right">Alamat tujuan pergi</label>
                                                 <div className="col-md-8">
                                                     <input type="text" name="alamat_izin" onChange={this.handleFieldChange} className="form-control"/>
+                                                    <span className="text-danger">{this.state.errList.alamat_izin}</span>
                                                 </div>
                                             </div>
 
@@ -212,7 +237,7 @@ class FormIzinPulang extends Component {
                                                 <label for="description" className="col-md-3 col-form-label text-md-right">Transportasi yang digunakan</label>
                                                 <div className="col-md-8">
                                                     <select class="form-control" onChange={this.handleFieldChange} name="jenis_kendaraan" id="vehicle">
-                                                        <option>Sepeda</option>
+                                                        <option selected >Sepeda</option>
                                                         <option>Motor</option>
                                                         <option>Mobil</option>
                                                         <option>Angkutan Kota</option>
@@ -223,6 +248,7 @@ class FormIzinPulang extends Component {
                                                         <option>Kapal Laut</option>
                                                     </select>
                                                 </div>
+                                                <span className="text-danger">{this.state.errList.jenis_kendaraan}</span>
                                             </div>
 
                                             <div className="form-group row my-4">

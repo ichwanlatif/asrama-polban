@@ -18,7 +18,7 @@ class CreateResign extends Migration
             $table->unsignedBigInteger('id_mhs');
             $table->date('tanggal_resign');
             $table->string('keterangan_resign', 125);
-            $table->integer('suhu_badan');
+            $table->float('suhu_badan', 8, 2);
             $table->string('kondisi_kesehatan', 50);
             $table->string('jenis_kendaraan', 10);
             $table->string('keterangan_stnk')->nullable();

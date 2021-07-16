@@ -10,21 +10,24 @@ class AuthController extends Controller
 {
     public function login(Request $request) {
         $validate = \Validator::make($request->all(), [
-            'email' => 'required',
-            'password' => 'required',
+            'email' => 'required|email|ends_with:polban.ac.id',
+            'password' => 'required|alpha_num|min:5',
         ]);
 
         if($validate->fails()) {
-            return response()->json(["status" => "failed", "validation_error" => $validate->errors()]);
+            return response()->json(["status" => "failed", "message" => $validate->errors()]);
         } else {
             $user = User::where('email', $request->email)->first();
-            if($user){
+            if($user != null || $user != ""){
                 if (! \Hash::check($request->password, $user->password, [])) {
-                    return response()->json(["status" => 'error', "message" => "Failed To Login"]);
+                    return response()->json(["status" => 'error', "message" => "Password Tidak Sesuai!"]);
                 }
     
                 $tokenResult = $user->createToken('token-auth')->plainTextToken;
                 return response()->json(["status" => 'success', "message" => "You have logged in successfully", "token" => $tokenResult, "data" => $user]);
+            }
+            else {
+                return response()->json(["status" => 'error', "message" => "Akun Tidak Terdaftar!"]);
             }
         }
     }

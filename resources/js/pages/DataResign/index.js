@@ -26,11 +26,12 @@ class DataResign extends Component {
     }
 
     componentDidMount(){
+        let role = localStorage.getItem("user_role")
         this.setState({
-            role: localStorage.getItem("user_role")
+            role: role
         });
 
-        api().get('api/resign').then(response =>{
+        api().get('api/resign/' + role).then(response =>{
             if(response.data.status === 'success'){
                 this.setState({
                     datas: response.data.data

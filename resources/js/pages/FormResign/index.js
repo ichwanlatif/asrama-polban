@@ -166,7 +166,7 @@ class FormResign extends Component {
                                                 <label for="description" className="col-md-3 col-form-label text-md-right">Kendaraan yang dibawa</label>
                                                 <div className="col-md-8">
                                                     <select class="form-control" id="vehicle" name="jenis_kendaraan" onChange={this.handleFieldChange}>
-                                                        <option>Sepeda</option>
+                                                        <option selected >Sepeda</option>
                                                         <option>Motor</option>
                                                         <option>Mobil</option>
                                                         <option>Tidak ada</option>
