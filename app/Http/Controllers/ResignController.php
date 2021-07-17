@@ -25,7 +25,7 @@ class ResignController extends Controller
             'suhu_badan' => 'required|numeric|between:30,50',
             'kondisi_kesehatan' => 'required|max:50',
             'id_mhs' => 'required',
-
+            'file' => 'file|max:10000|mimes:pdf,png,jpg',
         ]);
         if($validasi->fails()){
             return response()->json(["status" => 'error', "message" => $validasi->errors()]);

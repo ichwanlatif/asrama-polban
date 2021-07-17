@@ -49,11 +49,11 @@ class FormPresensi extends Component {
                 role: localStorage.getItem("user_role")
             })
         }, 1000)
-        if(new Date().toLocaleTimeString() < "15.59.00" || new Date().toLocaleTimeString() > "20.01.00"){
-            alert("Tidak Dalam Waktu Presensi")
-            window.location.assign('/#/dashboard')
-        }
-        else{
+        // if(new Date().toLocaleTimeString() < "15.59.00" || new Date().toLocaleTimeString() > "20.01.00"){
+        //     alert("Tidak Dalam Waktu Presensi")
+        //     window.location.assign('/#/dashboard')
+        // }
+        // else{
             api().get('api/perizinan/checkPerizinan/' + localStorage.getItem('user_id')).then(response =>{
                 if(response.data.status === 'success'){
                     alert('Anda Sedang Izin')
@@ -69,7 +69,7 @@ class FormPresensi extends Component {
                     })
                 }
             })
-        }
+        // }
     }
 
     onClickGetLocation() {
@@ -128,7 +128,7 @@ class FormPresensi extends Component {
         console.log(name, value);
     }
 
-    async submitPresensi(e){
+    submitPresensi(e){
         
         e.preventDefault()
         console.log(this.state.lat)
@@ -139,7 +139,7 @@ class FormPresensi extends Component {
             this.setState({ isLoading: true });
             
             // console.log(this.state)
-            await api().post('api/presensi/create', ({
+            api().post('api/presensi/create', ({
                 status: this.state.status,
                 latitude: this.state.lat,
                 longitude: this.state.long,

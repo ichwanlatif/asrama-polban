@@ -9,7 +9,6 @@ import Pagination from "react-js-pagination";
 
 import PageHeading from '../../components/PageHeading';
 import api from '../../service/api';
-import { approve } from '../../service/resign';
 
 class DataResign extends Component {
     constructor(){

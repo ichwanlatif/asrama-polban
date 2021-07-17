@@ -6,7 +6,7 @@ import Topbar from '../../components/Navigation/Topbar';
 import Footer from '../../components/Navigation/Footer';
 
 import PageHeading from '../../components/PageHeading';
-import { createResign } from '../../service/resign';
+import api from '../../service/api';
 
 function loadingAnimation() {
     return new Promise(function(resolve) {
@@ -21,11 +21,13 @@ class FormResign extends Component {
             role: "",
             id_mhs: localStorage.getItem('user_id'),
             suhu_badan: 36,
+            jenis_kendaraan: "Sepeda",
             file: "",
 
             //loading
             isLoading:false,
-            list: []
+            list: [],
+            errList: [],
         };
 
         this.handleFieldChange = this.handleFieldChange.bind(this)
@@ -60,18 +62,45 @@ class FormResign extends Component {
         e.preventDefault()
 
         const data = new FormData()
-        data.append('file', this.state.file)
+
         data.append('id_mhs', this.state.id_mhs)
-        data.append('tanggal_resign', this.state.tanggal_resign)
-        data.append('jenis_kendaraan', this.state.jenis_kendaraan)
-        data.append('keterangan_resign', this.state.keterangan_resign)
-        data.append('kondisi_kesehatan', this.state.kondisi_kesehatan)
-        data.append('suhu_badan', this.state.suhu_badan)
+
+        if(this.state.tanggal_resign != undefined){
+            data.append('tanggal_resign', this.state.tanggal_resign)
+        }
+
+        if(this.state.jenis_kendaraan != undefined){
+            data.append('jenis_kendaraan', this.state.jenis_kendaraan)
+        }
+
+        if(this.state.keterangan_resign != undefined){
+            data.append('keterangan_resign', this.state.keterangan_resign)
+        }
+
+        if(this.state.kondisi_kesehatan != undefined){
+            data.append('kondisi_kesehatan', this.state.kondisi_kesehatan)
+        }
+
+        if(this.state.suhu_badan != undefined){
+            data.append('suhu_badan', this.state.suhu_badan)
+        }
+
+        api().post('api/resign/create', data).then(response => {
+            if(response.data.status === 'success'){
+                console.log(response.data.message)
+                window.location.assign('/#/riwayat-perizinan')
+            }
+            else{
+                this.setState({
+                    errList: response.data.message
+                })
+            }
+        })
+        
         
         // console.warn(this.state.file);
 
         console.log(this.state);
-        await createResign(data);
 
         // Set status animasi loading
         loadingAnimation().then(list => {
@@ -112,6 +141,7 @@ class FormResign extends Component {
                                                         name="keterangan_resign"
                                                         onChange={this.handleFieldChange}
                                                     />
+                                                    <span className="text-danger">*{this.state.errList.keterangan_resign}</span>
                                                 </div>
                                             </div>
 
@@ -126,6 +156,7 @@ class FormResign extends Component {
                                                         required
                                                     />
                                                 </div>
+                                                <br></br><span className="text-danger">*{this.state.errList.tanggal_resign}</span>
                                             </div>
 
                                             <div className="form-group row">
@@ -139,6 +170,7 @@ class FormResign extends Component {
                                                         onChange={this.handleFieldChange}
                                                     />
                                                     <small className="text-muted">Jelaskan keluhan saudara, jika merasa sakit.</small>
+                                                    <br></br><span className="text-danger">*{this.state.errList.kondisi_kesehatan}</span>
                                                 </div>
                                             </div>
 
@@ -159,6 +191,7 @@ class FormResign extends Component {
                                                         </div>
                                                     </div>
                                                     <small className="text-muted">Dapat dilakukan sendiri atau di pos keamanan pintu masuk 1 Polban.</small>
+                                                    <br></br><span className="text-danger">*{this.state.errList.suhu_badan}</span>
                                                 </div>
                                             </div>
 
@@ -171,6 +204,7 @@ class FormResign extends Component {
                                                         <option>Mobil</option>
                                                         <option>Tidak ada</option>
                                                     </select>
+                                                    <br></br><span className="text-danger">*{this.state.errList.jenis_kendaraan}</span>
                                                 </div>
                                             </div>
                                             

@@ -20,7 +20,7 @@ class FormIzinKembali extends Component {
         this.state = {
             role: "",
             suhu_badan: 36,
-
+            jenis_kendaraan: "Sepeda",
             //loading
             isLoading:false,
             list: [],

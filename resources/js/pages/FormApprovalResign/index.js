@@ -7,7 +7,6 @@ import Footer from '../../components/Navigation/Footer';
 
 import PageHeading from '../../components/PageHeading';
 import api from '../../service/api';
-import { approve } from '../../service/resign';
 
 function loadingAnimation() {
     return new Promise(function(resolve) {

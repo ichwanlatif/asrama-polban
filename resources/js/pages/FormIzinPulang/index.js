@@ -20,8 +20,7 @@ class FormIzinPulang extends Component {
         this.state = {
             id_mhs: localStorage.getItem('user_id'),
             suhu_badan: 36,
-            jenis_kendaraan: "sepeda",
-            file: null,
+            jenis_kendaraan: "Sepeda",
 
             //loading
             isLoading:false,
@@ -60,16 +59,38 @@ class FormIzinPulang extends Component {
             this.setState({ isLoading: true });
 
             const data = new FormData()
-            data.append('file', this.state.file)
             data.append('id_mhs', this.state.id_mhs)
-            data.append('tanggal_pergi', this.state.tanggal_pergi)
-            data.append('tanggal_pulang', this.state.tanggal_pulang)
-            data.append('jenis_kendaraan', this.state.jenis_kendaraan)
-            data.append('keterangan_izin', this.state.keterangan_izin)
-            data.append('kondisi_kesehatan', this.state.kondisi_kesehatan)
-            data.append('suhu_badan', this.state.suhu_badan)
-            data.append('alamat_izin', this.state.alamat_izin)
-            
+
+            if(this.state.file != undefined){
+                data.append('file', this.state.file)
+            }
+
+            if(this.state.tanggal_pergi != undefined){
+                data.append('tanggal_pergi', this.state.tanggal_pergi)
+            }
+            if(this.state.tanggal_pulang != undefined){
+                data.append('tanggal_pulang', this.state.tanggal_pulang)
+            }
+
+            if(this.state.jenis_kendaraan != undefined){
+                data.append('jenis_kendaraan', this.state.jenis_kendaraan)
+            }
+
+            if(this.state.keterangan_izin != undefined){
+                data.append('keterangan_izin', this.state.keterangan_izin)
+            }
+
+            if(this.state.kondisi_kesehatan != undefined){
+                data.append('kondisi_kesehatan', this.state.kondisi_kesehatan)
+            }
+
+            if(this.state.suhu_badan != undefined){
+                data.append('suhu_badan', this.state.suhu_badan)
+            }
+
+            if(this.state.alamat_izin != undefined){
+                data.append('alamat_izin', this.state.alamat_izin)
+            }
             // console.warn(this.state.file);
 
             console.log(this.state);
@@ -80,7 +101,9 @@ class FormIzinPulang extends Component {
                     window.location.assign('/#/riwayat-perizinan')
                 }
                 else{
-                    alert(response.data.message)
+                    this.setState({
+                        errList: response.data.message
+                    })
                 }
             })
 
@@ -137,6 +160,7 @@ class FormIzinPulang extends Component {
                                                         onChange={this.handleFieldChange}
                                                         required>
                                                     </textarea>
+                                                    <span className="text-danger">*{this.state.errList.keterangan_izin}</span>
                                                 </div>
                                             </div>
 
@@ -151,6 +175,7 @@ class FormIzinPulang extends Component {
                                                         required
                                                     />
                                                 </div>
+                                                <br></br><span className="text-danger">*{this.state.errList.tanggal_pergi}</span>
                                             </div>
 
                                             <div className="form-group row">
@@ -164,6 +189,7 @@ class FormIzinPulang extends Component {
                                                         required
                                                     />
                                                 </div>
+                                                <br></br><span className="text-danger">*{this.state.errList.tanggal_pulang}</span>
                                             </div>
 
                                             <div className="form-group row">
@@ -177,6 +203,7 @@ class FormIzinPulang extends Component {
                                                         placeholder="contoh: Sehat / Sakit"
                                                     />
                                                     <small className="text-muted">Jelaskan keluhan saudara, jika merasa sakit.</small>
+                                                    <br></br><span className="text-danger">*{this.state.errList.kondisi_kesehatan}</span>
                                                 </div>
                                             </div>
 
@@ -185,6 +212,7 @@ class FormIzinPulang extends Component {
                                                 <div className="col-md-8">
                                                     <div className="input-group">
                                                         <input
+                                                            step="0.1"
                                                             type="number"
                                                             name="suhu_badan"
                                                             className="form-control"
@@ -197,6 +225,7 @@ class FormIzinPulang extends Component {
                                                         </div>
                                                     </div>
                                                     <small className="text-muted">Dapat dilakukan sendiri atau di pos keamanan pintu masuk 1 Polban.</small>
+                                                    <br></br><span className="text-danger">*{this.state.errList.suhu_badan}</span>
                                                 </div>
                                             </div>
 
@@ -209,6 +238,7 @@ class FormIzinPulang extends Component {
                                                         onChange={this.handleFileChange}
                                                     />
                                                     <small className="text-muted">Format yang didukung: *.jpg, *.png, *.pdf</small>
+                                                    <br></br><span className="text-danger">*{this.state.errList.file}</span>
                                                 </div>
                                             </div>
 
@@ -216,6 +246,7 @@ class FormIzinPulang extends Component {
                                                 <label for="address" className="col-md-3 col-form-label text-md-right">Alamat tujuan pergi</label>
                                                 <div className="col-md-8">
                                                     <input type="text" name="alamat_izin" onChange={this.handleFieldChange} className="form-control"/>
+                                                    <br></br><span className="text-danger">*{this.state.errList.alamat_izin}</span>
                                                 </div>
                                             </div>
 
@@ -233,6 +264,7 @@ class FormIzinPulang extends Component {
                                                         <option>Kereta Api</option>
                                                         <option>Kapal Laut</option>
                                                     </select>
+                                                    <br></br><span className="text-danger">*{this.state.errList.jenis_kendaraan}</span>
                                                 </div>
                                             </div>
 
