@@ -22,13 +22,13 @@ class ResignController extends Controller
             'tanggal_resign' => 'required',
             'keterangan_resign' => 'required',
             'jenis_kendaraan' => 'required',
-            'kondisi_kesehatan' => 'required',
-            'suhu_badan' => 'required',
+            'suhu_badan' => 'required|numeric|between:30,50',
+            'kondisi_kesehatan' => 'required|max:50',
             'id_mhs' => 'required',
 
         ]);
         if($validasi->fails()){
-            return response()->json(["status" => 'error', "message" => "Form Tidak Boleh Kosong"]);
+            return response()->json(["status" => 'error', "message" => $validasi->errors()]);
         }
         else{
             
@@ -159,12 +159,12 @@ class ResignController extends Controller
 
     public function approveResign(Request $request){
         $validasi = \Validator::make($request->all(), [
-            'status_resign' => 'required',
+            'status_resign' => 'required|numeric',
             'id_resign' => 'required'
         ]);
 
         if($validasi->fails()){
-            return response()->json(["status" => 422, "message" => "Form Tidak Valid"]);
+            return response()->json(["status" => 422, "message" => $validasi->errors()]);
         }
         
         $resign = Resign::where([

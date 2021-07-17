@@ -395,10 +395,10 @@ class PerizinanController extends Controller
     public function izinKembali(Request $request){
         $validasi = \Validator::make($request->all(), [
             'id_perizinan' => 'required',
-            'keterangan_kembali' => 'required',
+            'keterangan_kembali' => 'required|max:125',
             'pengajuan_tanggal_pulang' => 'required',
-            'suhu_badan' => 'required',
-            'kondisi_kesehatan' => 'required',
+            'suhu_badan' => 'required|numeric|between:30,50',
+            'kondisi_kesehatan' => 'required|max:50',
             'jenis_kendaraan' => 'required',
         ]);
 
