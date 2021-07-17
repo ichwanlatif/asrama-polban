@@ -8,7 +8,6 @@ import Footer from '../../components/Navigation/Footer';
 
 import PageHeading from '../../components/PageHeading';
 import api from '../../service/api';
-import { approvalPerizinan } from '../../service/perizinan';
 
 function loadingAnimation() {
     return new Promise(function(resolve) {
@@ -24,7 +23,9 @@ class FormApprovalIzinPulang extends Component {
 
             //loading
             isLoading:false,
-            list: []
+            list: [],
+
+            errList: [],
         };
 
         this.handleFieldChange = this.handleFieldChange.bind(this);
@@ -45,11 +46,22 @@ class FormApprovalIzinPulang extends Component {
 
         e.preventDefault()
         console.log(this.state)
-        approvalPerizinan({
+        
+        api().put('api/perizinan/approval', ({
             id_mhs: this.state.id_mhs,
             id_perizinan: this.state.id_perizinan,
             status_izin: this.state.status_izin,
             catatan_approval: this.state.catatan_approval
+        })).then(response => {
+            if(response.data.status === 'success'){
+                console.log(response.data.message)
+                window.location.assign('/#/data-izin-pulang')
+            }
+            else{
+                this.setState({
+                    errList: response.data.message
+                })
+            }
         })
 
         // Set status animasi loading
@@ -101,7 +113,7 @@ class FormApprovalIzinPulang extends Component {
                 })
             }
             else{
-                alert(response.data.msg)
+                alert(response.data.message)
             }
         })
     }
@@ -271,6 +283,8 @@ class FormApprovalIzinPulang extends Component {
                                                             Tolak
                                                         </label>
                                                     </div>
+                                                    <br></br>
+                                                    <span className="text-danger">*{this.state.errList.status_izin}</span>
                                                 </div>
                                             </div>
                                             <div className="form-group row">

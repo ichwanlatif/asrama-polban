@@ -8,7 +8,6 @@ import Footer from '../../components/Navigation/Footer';
 
 import PageHeading from '../../components/PageHeading';
 import api from '../../service/api';
-import { approvalPerizinanKembali } from '../../service/perizinan';
 
 function loadingAnimation() {
     return new Promise(function(resolve) {
@@ -21,10 +20,10 @@ class FormApprovalIzinKembali extends Component {
         super(props);
         this.state = {
             role: "",
-
             //loading
             isLoading:false,
-            list: []
+            list: [],
+            errList: [],
         };
 
         this.handleFieldChange = this.handleFieldChange.bind(this);
@@ -40,17 +39,27 @@ class FormApprovalIzinKembali extends Component {
         console.log(e.target)
     }
 
-    handleSubmit(e){
+    async handleSubmit(e){
         this.setState({ isLoading: true });
 
         e.preventDefault()
         console.log(this.state)
-        approvalPerizinanKembali({
+        await api().put('api/perizinan/approval/kembali', ({
             id_mhs: this.state.id_mhs,
             id_perizinan: this.state.id_perizinan,
             status_izin: this.state.status_izin,
             pengajuan_tanggal_pulang: this.state.pengajuan_tanggal_pulang,
             catatan_approval: this.state.catatan_approval
+        })).then(response => {
+            if(response.data.status === 'success'){
+                console.log(response.data.message)
+                window.location.assign('/#/data-izin-kembali')
+            }
+            else{
+                this.setState({
+                    errList: response.data.message
+                })
+            }
         })
 
         // Set status animasi loading
@@ -97,13 +106,12 @@ class FormApprovalIzinKembali extends Component {
                     keterangan_kembali: response.data.data.keterangan_kembali,
                     tanggal_pergi: response.data.data.tanggal_pergi,
                     pengajuan_tanggal_pulang: response.data.data.pengajuan_tanggal_pulang,
-                    status_izin: response.data.data.status_izin,
                     catatan_approval: response.data.data.catatan_approval,
                 })
                 console.log(response.data.data.tanggal_pergi)
             }
             else{
-                alert(response.data.msg)
+                alert(response.data.message)
             }
         })
     }
@@ -262,6 +270,8 @@ class FormApprovalIzinKembali extends Component {
                                                         </label>
                                                     </div>
                                                 </div>
+                                                <br></br>
+                                                <span className="text-danger">*{this.state.errList.status_izin}</span>
                                             </div>
                                             <div className="form-group row">
                                                 <label for="note" className="col-md-3 col-form-label text-md-right">Catatan persetujuan (opsional)</label>

@@ -40,7 +40,7 @@ class RiwayatPerizinan extends Component {
                 })
             }
             else{
-                alert(response.data.msg);
+                alert(response.data.message);
             }
         })
 
@@ -51,7 +51,7 @@ class RiwayatPerizinan extends Component {
                 })
             }
             else{
-                alert(resign.data.msg);
+                alert(resign.data.message);
             }
         })
     }

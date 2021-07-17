@@ -119,11 +119,11 @@ class PerizinanController extends Controller
 
     public function approvalPerizinan(Request $request){
         $validasi = \Validator::make($request->all(), [
-            'status_izin' => 'required',
+            'status_izin' => 'required|numeric',
         ]);
 
         if($validasi->fails()){
-            return response()->json(["status" => 422, "message" => "Form Tidak Valid"]);
+            return response()->json(["status" => "error", "message" => $validasi->errors()]);
         }
         $perizinan = Perizinan::where([
             ['id_perizinan', '=', $request->id_perizinan],
@@ -175,11 +175,11 @@ class PerizinanController extends Controller
 
     public function approvalPerizinanKembali(Request $request){
         $validasi = \Validator::make($request->all(), [
-            'status_izin' => 'required',
+            'status_izin' => 'required|numeric',
         ]);
 
         if($validasi->fails()){
-            return response()->json(["status" => 422, "message" => "Form Tidak Boleh Kosong"]);
+            return response()->json(["status" => "error", "message" => $validasi->errors()]);
         }
         if($request->status_izin == 8){
             $perizinan = Perizinan::where([
@@ -403,7 +403,7 @@ class PerizinanController extends Controller
         ]);
 
         if($validasi->fails()){
-            return response()->json(["status" => 422, "message" => "Form Tidak Valid"]);
+            return response()->json(["status" => "error", "message" => $validasi->errors()]);
         }
         
         $perizinan = Perizinan::where([

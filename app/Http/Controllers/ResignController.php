@@ -28,7 +28,7 @@ class ResignController extends Controller
 
         ]);
         if($validasi->fails()){
-            return response()->json(["status" => 'error', "msg" => "Form Tidak Boleh Kosong"]);
+            return response()->json(["status" => 'error', "message" => "Form Tidak Boleh Kosong"]);
         }
         else{
             
@@ -67,14 +67,14 @@ class ResignController extends Controller
 
                 return response()->json([
                     'status' => 'success',
-                    'msg' => 'Perizinan berhasil diinput',
+                    'message' => 'Perizinan berhasil diinput',
                     'data' => $insert
                 ], 201);
             }
             else{
                 return response()->json([
                     'status' => 'error',
-                    'msg' => 'Perizinan gagal diinput',
+                    'message' => 'Perizinan gagal diinput',
                 ]);
             }
         }
@@ -87,14 +87,14 @@ class ResignController extends Controller
         if($resign){
             return response()->json([
                 'status' => 'success',
-                'msg' => 'Success get data',
+                'message' => 'Success get data',
                 'data' => $resign
             ]);
         }
         else{
             return response()->json([
                 'status' => 'error',
-                'msg' => 'Failed to get data'
+                'message' => 'Failed to get data'
             ]);
         }
     }
@@ -119,14 +119,14 @@ class ResignController extends Controller
         if($resign){
             return response()->json([
                 'status' => 'success',
-                'msg' => 'Success get data',
+                'message' => 'Success get data',
                 'data' => $resign
             ]);
         }
         else{
             return response()->json([
                 'status' => 'error',
-                'msg' => 'Failed to get data'
+                'message' => 'Failed to get data'
             ]);
         }
     }
@@ -145,14 +145,14 @@ class ResignController extends Controller
         if($resign){
             return response()->json([
                 'status' => 'success',
-                'msg' => 'Success get data',
+                'message' => 'Success get data',
                 'data' => $resign
             ]);
         }
         else{
             return response()->json([
                 'status' => 'error',
-                'msg' => 'Failed to get data'
+                'message' => 'Failed to get data'
             ]);
         }
     }
@@ -164,7 +164,7 @@ class ResignController extends Controller
         ]);
 
         if($validasi->fails()){
-            return response()->json(["status" => 422, "msg" => "Form Tidak Valid"]);
+            return response()->json(["status" => 422, "message" => "Form Tidak Valid"]);
         }
         
         $resign = Resign::where([
@@ -198,14 +198,14 @@ class ResignController extends Controller
             Mail::to($akun->email)->send(new ApprovalResignMail($details));
             return response()->json([
                 'status' => 'success',
-                'msg' => 'Success approve',
+                'message' => 'Success approve',
                 'data' => $resign
             ]);
         }
         else{
             return response()->json([
                 'status' => 'error',
-                'msg' => 'Failed to approve'
+                'message' => 'Failed to approve'
             ]);
         }
     }

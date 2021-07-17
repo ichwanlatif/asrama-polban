@@ -28,7 +28,7 @@ class DashboardMahasiswa extends Component {
                 console.log(this.state)
             }
             else{
-                alert(response.data.msg);
+                alert(response.data.message);
             }
         })
 

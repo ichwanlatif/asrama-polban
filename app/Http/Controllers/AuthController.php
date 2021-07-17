@@ -37,7 +37,7 @@ class AuthController extends Controller
         $user->currentAccessToken()->delete();
         $respon = [
             'status' => 'success',
-            'msg' => 'Logout successfully',
+            'message' => 'Logout successfully',
             'errors' => null,
             'content' => null,
         ];
@@ -49,7 +49,7 @@ class AuthController extends Controller
         $user->tokens()->delete();
         $respon = [
             'status' => 'success',
-            'msg' => 'Logout successfully',
+            'message' => 'Logout successfully',
             'errors' => null,
             'content' => null,
         ];

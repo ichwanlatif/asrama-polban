@@ -38,7 +38,7 @@ class DataIzinKembali extends Component {
                 console.log(this.state.datas)
             }
             else{
-                alert(response.data.msg);
+                alert(response.data.message);
             }
         })
 

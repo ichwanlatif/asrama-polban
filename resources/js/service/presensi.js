@@ -7,7 +7,7 @@ export const getRiwayatPresensi = () => {
             return response.data.data;
         }
         else{
-            alert(response.data.msg);
+            alert(response.data.message);
         }
     })
 }

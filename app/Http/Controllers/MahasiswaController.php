@@ -13,14 +13,14 @@ class MahasiswaController extends Controller
         if($mahasiswa){
             return response()->json([
                 "status" => 'success',
-                "msg" => "Success get mahasiswa",
+                "message" => "Success get mahasiswa",
                 "data" => $mahasiswa
             ]);
         }
         else{
             return response()->json([
                 "status" => 'error',
-                "msg" => "Mahasiswa Not Found"
+                "message" => "Mahasiswa Not Found"
             ]);
         }
         

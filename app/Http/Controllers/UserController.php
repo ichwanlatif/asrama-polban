@@ -61,13 +61,13 @@ class UserController extends Controller
     //         if($insert){
     //             return response()->json([
     //                 'status' => 'success',
-    //                 'msg' => 'Data mahasiswa berhasil diinput',
+    //                 'message' => 'Data mahasiswa berhasil diinput',
     //             ], 201);
     //         }
     //         else{
     //             return response()->json([
     //                 'status' => 'error',
-    //                 'msg' => 'Data mahasiswa gagal diinput',
+    //                 'message' => 'Data mahasiswa gagal diinput',
     //             ], 500);
     //         }
     //     }
@@ -121,13 +121,13 @@ class UserController extends Controller
     //         if($update){
     //             return response()->json([
     //                 'status' => 'success',
-    //                 'msg' => 'Data mahasiswa berhasil diupdate',
+    //                 'message' => 'Data mahasiswa berhasil diupdate',
     //             ], 201);
     //         }
     //         else{
     //             return response()->json([
     //                 'status' => 'error',
-    //                 'msg' => 'Data mahasiswa gagal diupdate',
+    //                 'message' => 'Data mahasiswa gagal diupdate',
     //             ], 500);
     //         }
     //     }
@@ -145,14 +145,14 @@ class UserController extends Controller
     //     if($update){
     //         return response()->json([
     //             'status' => 'success',
-    //             'msg' => 'Data mahasiswa berhasil didelete',
+    //             'message' => 'Data mahasiswa berhasil didelete',
     //             'data' => $update
     //         ], 201);
     //     }
     //     else{
     //         return response()->json([
     //             'status' => 'error',
-    //             'msg' => 'Data mahasiswa gagal didelete',
+    //             'message' => 'Data mahasiswa gagal didelete',
     //         ], 500);
     //     }
     // }
@@ -162,13 +162,13 @@ class UserController extends Controller
         // if($import){
         //     return response()->json([
         //         'status' => 'success',
-        //         'msg' => 'Data mahasiswa berhasil diimport',
+        //         'message' => 'Data mahasiswa berhasil diimport',
         //     ], 201);
         // }
         // else{
         //     return response()->json([
         //         'status' => 'error',
-        //         'msg' => 'Data mahasiswa gagal diimport',
+        //         'message' => 'Data mahasiswa gagal diimport',
         //     ], 500);
         // }
         return back();

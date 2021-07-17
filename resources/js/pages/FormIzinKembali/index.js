@@ -7,7 +7,6 @@ import Footer from '../../components/Navigation/Footer';
 
 import PageHeading from '../../components/PageHeading';
 import api from '../../service/api';
-import { izinKembaliPerizinan } from '../../service/perizinan';
 
 function loadingAnimation() {
     return new Promise(function(resolve) {
@@ -24,7 +23,8 @@ class FormIzinKembali extends Component {
 
             //loading
             isLoading:false,
-            list: []
+            list: [],
+            errList: [],
         };
 
         this.handleFieldChange = this.handleFieldChange.bind(this)
@@ -49,7 +49,7 @@ class FormIzinKembali extends Component {
                 })
             }
             else{
-                alert(response.data.msg)
+                alert(response.data.message)
             }
         })
     }
@@ -71,16 +71,26 @@ class FormIzinKembali extends Component {
         }
         else{
             this.setState({ isLoading: true });
-
-            izinKembaliPerizinan({
+            
+            api().put('api/perizinan/izinKembali', ({
                 id_mhs: localStorage.getItem("user_id"),
                 id_perizinan: this.state.id_perizinan,
                 keterangan_kembali: this.state.keterangan_kembali,
                 pengajuan_tanggal_pulang: this.state.pengajuan_tanggal_pulang,
                 suhu_badan: this.state.suhu_badan,
                 kondisi_kesehatan: this.state.kondisi_kesehatan,
-                jenis_kendaraan: this.state.jenis_kendaraan,
-            });
+                jenis_kendaraan: this.state.jenis_kendaraan
+            })).then(response => {
+                if(response.data.status === 'success'){
+                    console.log(response.data.message)
+                    window.location.assign('/#/riwayat-perizinan')
+                }
+                else{
+                    this.setState({
+                        errList: response.data.message
+                    })
+                }
+            })
 
             // Set status animasi loading
             loadingAnimation().then(list => {
@@ -129,6 +139,7 @@ class FormIzinKembali extends Component {
                                                         onChange={this.handleFieldChange}
                                                         required>
                                                     </textarea>
+                                                    <span className="text-danger">*{this.state.errList.keterangan_kembali}</span>
                                                 </div>
                                             </div>
 
@@ -155,6 +166,7 @@ class FormIzinKembali extends Component {
                                                         onChange={this.handleFieldChange}
                                                         required
                                                     />
+                                                    <span className="text-danger">*{this.state.errList.pengajuan_tanggal_pulang}</span>
                                                 </div>
                                             </div>
 
@@ -169,6 +181,7 @@ class FormIzinKembali extends Component {
                                                         placeholder="contoh: Sehat / Sakit"
                                                     />
                                                     <small className="text-muted">Jelaskan keluhan saudara, jika merasa sakit.</small>
+                                                    <span className="text-danger">*{this.state.errList.kondisi_kesehatan}</span>
                                                 </div>
                                             </div>
 
@@ -189,6 +202,7 @@ class FormIzinKembali extends Component {
                                                         </div>
                                                     </div>
                                                     <small className="text-muted">Dapat dilakukan sendiri atau di pos keamanan pintu masuk 1 Polban.</small>
+                                                    <span className="text-danger">*{this.state.errList.suhu_badan}</span>
                                                 </div>
                                             </div>
 
@@ -206,6 +220,7 @@ class FormIzinKembali extends Component {
                                                         <option>Kereta Api</option>
                                                         <option>Kapal Laut</option>
                                                     </select>
+                                                    <span className="text-danger">*{this.state.errList.jenis_kendaraan}</span>
                                                 </div>
                                             </div>
 

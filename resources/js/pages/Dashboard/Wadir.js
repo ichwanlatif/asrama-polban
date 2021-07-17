@@ -66,7 +66,7 @@ class DashboardWadir extends Component {
                 console.log(response.data)
             }
             else{
-                alert(response.data.msg);
+                alert(response.data.message);
             }
         })
 
@@ -88,7 +88,7 @@ class DashboardWadir extends Component {
                 console.log(response.data)
             }
             else{
-                alert(response.data.msg);
+                alert(response.data.message);
             }
         })
     }

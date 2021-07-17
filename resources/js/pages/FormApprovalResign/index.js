@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 
 //Navigation
 import Sidebar from '../../components/Navigation/Sidebar';
@@ -26,7 +25,9 @@ class FormApprovalResign extends Component {
 
             //loading
             isLoading:false,
-            list: []
+            list: [],
+
+            errList: [],
         };
 
         this.handleFieldChange = this.handleFieldChange.bind(this);
@@ -47,9 +48,20 @@ class FormApprovalResign extends Component {
 
         e.preventDefault()
         console.log(this.state)
-        approve({
+        
+        api().put('api/resign/approval', ({
             id_resign: this.state.id,
             status_resign: this.state.status_resign
+        })).then(response => {
+            if(response.data.status === 'success'){
+                console.log(response.data.message)
+                window.location.assign('/#/data-resign')
+            }
+            else{
+                this.setState({
+                    errList: response.data.message
+                })
+            }
         })
 
         // Set status animasi loading
@@ -104,7 +116,7 @@ class FormApprovalResign extends Component {
                 })
             }
             else{
-                alert(response.data.msg)
+                alert(response.data.message)
             }
 
 
@@ -316,6 +328,8 @@ class FormApprovalResign extends Component {
                                                         </label>
                                                     </div>
                                                 </div>
+                                                <br></br>
+                                                <span className="text-danger">*{this.state.errList.status_resign}</span>
                                             </div>
                                             <div className="form-group row">
                                                 <label for="note" className="col-md-3 col-form-label text-md-right">Catatan persetujuan (opsional)</label>
