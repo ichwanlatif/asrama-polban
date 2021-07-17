@@ -49,7 +49,7 @@ class FormIzinPulang extends Component {
         })
     }
 
-    handleSubmit(e){
+    async handleSubmit(e){
         e.preventDefault()
 
         if(document.getElementById('aggrement').checked == false){
@@ -74,7 +74,7 @@ class FormIzinPulang extends Component {
 
             console.log(this.state);
 
-            api().post('api/perizinan/create', data).then(response => {
+            await api().post('api/perizinan/create', data).then(response => {
                 if(response.data.status === 'success'){
                     console.log(response.data.msg)
                     window.location.assign('/#/riwayat-perizinan')

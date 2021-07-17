@@ -43,13 +43,13 @@ class FormApprovalResign extends Component {
         console.log(e.target)
     }
 
-    handleSubmit(e){
+    async handleSubmit(e){
         this.setState({ isLoading: true });
 
         e.preventDefault()
         console.log(this.state)
         
-        api().put('api/resign/approval', ({
+        await api().put('api/resign/approval', ({
             id_resign: this.state.id,
             status_resign: this.state.status_resign
         })).then(response => {

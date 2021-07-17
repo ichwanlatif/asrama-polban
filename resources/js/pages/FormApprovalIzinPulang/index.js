@@ -41,13 +41,13 @@ class FormApprovalIzinPulang extends Component {
         console.log(e.target)
     }
 
-    handleSubmit(e){
+    async handleSubmit(e){
         this.setState({ isLoading: true });
 
         e.preventDefault()
         console.log(this.state)
         
-        api().put('api/perizinan/approval', ({
+        await api().put('api/perizinan/approval', ({
             id_mhs: this.state.id_mhs,
             id_perizinan: this.state.id_perizinan,
             status_izin: this.state.status_izin,

@@ -62,7 +62,7 @@ class FormIzinKembali extends Component {
         this.setState(data);
     }
 
-    handleSubmit(e){
+    async handleSubmit(e){
         e.preventDefault()
         console.log(this.state)
 
@@ -72,7 +72,7 @@ class FormIzinKembali extends Component {
         else{
             this.setState({ isLoading: true });
             
-            api().put('api/perizinan/izinKembali', ({
+            await api().put('api/perizinan/izinKembali', ({
                 id_mhs: localStorage.getItem("user_id"),
                 id_perizinan: this.state.id_perizinan,
                 keterangan_kembali: this.state.keterangan_kembali,

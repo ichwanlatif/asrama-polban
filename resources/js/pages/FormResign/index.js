@@ -54,7 +54,7 @@ class FormResign extends Component {
         })
     }
 
-    handleSubmit(e){
+    async handleSubmit(e){
         this.setState({ isLoading: true });
 
         e.preventDefault()
@@ -71,7 +71,7 @@ class FormResign extends Component {
         // console.warn(this.state.file);
 
         console.log(this.state);
-        createResign(data);
+        await createResign(data);
 
         // Set status animasi loading
         loadingAnimation().then(list => {
