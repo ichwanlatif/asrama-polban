@@ -70,7 +70,7 @@ class Rekapitulasi extends Component {
     unduhRekapitulasi(){
         const doc = new jsPDF('portrait', 'cm', 'a4')
         const headers = [["NAMA", "NIM", "GEDUNG", "JENIS", "JABATAN", "ALFA", "IZIN", "HADIR", "STATUS", "TANGGAL RESIGN"]];
-        const data = this.state.datas.map(rekap=> [rekap.nama_mhs, rekap.nim, rekap.nama_gedung, rekap.keterangan_asal, rekap.role_mhs, rekap.alfa, rekap.izin, rekap.hadir, rekap.status_keaktifan, rekap.tanggal_resign]);
+        const data = this.state.datas.map(rekap=> [rekap.nama_mhs, rekap.nim, rekap.nama_gedung, rekap.keterangan_asal, rekap.role_mhs, rekap.alfa, rekap.izin, rekap.hadir, rekap.status_keaktifan, rekap.tanggal_resign ? moment(rekap.tanggal_resign).format("YYYY-MM-DD") : "-"]);
 
         let content = {
             startY: 5,

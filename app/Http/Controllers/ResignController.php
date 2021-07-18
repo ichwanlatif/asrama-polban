@@ -31,6 +31,9 @@ class ResignController extends Controller
             return response()->json(["status" => 'error', "message" => $validasi->errors()]);
         }
         else{
+            if($request->tanggal_resign < date('Y-m-d')){
+                return response()->json(["status" => "invalid", "message" => "Tanggal Resign Tidak Benar"]);
+            }
             
             if($request->file('file')){
                 $fileName = time().'-'.Str::random(10). '.'.$request->file('file')->getClientOriginalExtension();

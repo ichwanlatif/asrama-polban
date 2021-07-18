@@ -49,11 +49,11 @@ class FormPresensi extends Component {
                 role: localStorage.getItem("user_role")
             })
         }, 1000)
-        // if(new Date().toLocaleTimeString() < "15.59.00" || new Date().toLocaleTimeString() > "20.01.00"){
-        //     alert("Tidak Dalam Waktu Presensi")
-        //     window.location.assign('/#/dashboard')
-        // }
-        // else{
+        if(new Date().toLocaleTimeString() < "15.59.00" || new Date().toLocaleTimeString() > "20.01.00"){
+            alert("Tidak Dalam Waktu Presensi")
+            window.location.assign('/#/dashboard')
+        }
+        else{
             api().get('api/perizinan/checkPerizinan/' + localStorage.getItem('user_id')).then(response =>{
                 if(response.data.status === 'success'){
                     alert('Anda Sedang Izin')
@@ -63,13 +63,12 @@ class FormPresensi extends Component {
                     api().get('api/presensi/kehadiranToday/' + localStorage.getItem('user_id')).then(today =>{
                         if(today.data.status === 'success'){
                             alert('Anda Telah Melakukan Presensi');
-                            document.getElementById("submit").disabled = true;
-                            document.getElementById("submit").className = "btn btn-success"
+                            window.location.assign('/#/dashboard')
                         }
                     })
                 }
             })
-        // }
+        }
     }
 
     onClickGetLocation() {

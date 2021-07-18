@@ -275,7 +275,7 @@ class PresensiController extends Controller
             
             $resign = DB::table('resign')
             ->where('id_mhs', '=', $mahasiswa->id_mhs)
-            ->where('status_resign', '=', 3)
+            ->where('status_resign', '=', 1)
             ->first();
 
             switch ($mahasiswa->status_keaktifan) {

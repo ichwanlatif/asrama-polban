@@ -91,9 +91,14 @@ class FormResign extends Component {
                 window.location.assign('/#/riwayat-perizinan')
             }
             else{
-                this.setState({
-                    errList: response.data.message
-                })
+                if(response.data.status == 'invalid'){
+                    alert(response.data.message)
+                }
+                else{
+                    this.setState({
+                        errList: response.data.message
+                    })
+                }
             }
         })
         

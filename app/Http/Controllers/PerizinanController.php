@@ -40,8 +40,8 @@ class PerizinanController extends Controller
             return response()->json(["status" => "error", "message" => $validasi->errors()]);
         }
         else{
-            if($request->tanggal_pergi > $request->tanggal_pulang){
-                return response()->json(["status" => "error", "message" => "Tanggal Pergi dan Pulang Tidak Benar"]);
+            if($request->tanggal_pergi > $request->tanggal_pulang || $request->tanggal_pergi < date('Y-m-d')){
+                return response()->json(["status" => "invalid", "message" => "Tanggal Pergi dan Pulang Tidak Benar"]);
             }
             $fileName = null;
 
@@ -406,6 +406,10 @@ class PerizinanController extends Controller
 
         if($validasi->fails()){
             return response()->json(["status" => "error", "message" => $validasi->errors()]);
+        }
+
+        if($request->pengajuan_tanggal_pulang < date('Y-m-d')){
+            return response()->json(["status" => "invalid", "message" => "Tanggal Pengajuan Pulang Tidak Benar"]);
         }
         
         $perizinan = Perizinan::where([
