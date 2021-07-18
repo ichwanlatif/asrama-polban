@@ -20,14 +20,14 @@ class AuthController extends Controller
             $user = User::where('email', $request->email)->first();
             if($user != null || $user != ""){
                 if (! \Hash::check($request->password, $user->password, [])) {
-                    return response()->json(["status" => 'error', "message" => "Password Tidak Sesuai!"]);
+                    return response()->json(["status" => 'error', "message" => "incorrect"]);
                 }
     
                 $tokenResult = $user->createToken('token-auth')->plainTextToken;
                 return response()->json(["status" => 'success', "message" => "You have logged in successfully", "token" => $tokenResult, "data" => $user]);
             }
             else {
-                return response()->json(["status" => 'error', "message" => "Akun Tidak Terdaftar!"]);
+                return response()->json(["status" => 'error', "message" => "unregist"]);
             }
         }
     }

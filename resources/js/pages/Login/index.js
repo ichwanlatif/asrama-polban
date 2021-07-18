@@ -50,10 +50,17 @@ class Login extends Component {
                 password: this.state.password
             })).then(response => {
                 if(response.data.status !== 'success'){
-                    console.log(response.data.message)
-                    this.setState({
-                        errList: response.data.message
-                    })
+                    if(response.data.message === 'incorrect'){
+                        alert("Incorrect Email or Password!")
+                    }
+                    else if(response.data.message === 'unregist'){
+                        alert("Account not registered");
+                    }
+                    else{
+                        this.setState({
+                            errList: response.data.message
+                        })
+                    }
                     notLoggedIn();
                 }
                 else{

@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class MahasiswaController extends Controller
 {
     public function getMahasiswaByUserId($id){
-        $mahasiswa = Mahasiswa::where('id_users', $id)->first();
+        $mahasiswa = Mahasiswa::where([['id_users', '=', $id], ['status_keaktifan', '=', 1]])->first();
         
         if($mahasiswa){
             return response()->json([
