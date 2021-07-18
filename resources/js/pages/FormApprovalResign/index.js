@@ -123,8 +123,8 @@ class FormApprovalResign extends Component {
     }
 
     render() {
-        var hidden;
-        if(this.state.keterangan_stnk === null){
+        let hidden;
+        if(this.state.keterangan_stnk == null){
             hidden = true;
         }
         else{

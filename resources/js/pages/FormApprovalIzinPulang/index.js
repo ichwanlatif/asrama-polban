@@ -119,6 +119,13 @@ class FormApprovalIzinPulang extends Component {
     }
 
     render() {
+        let hidden;
+        if(this.state.surat_pendukung == null){
+            hidden = true;
+        }
+        else{
+            hidden = false;
+        }
         return (
             <div>
                 <div id="wrapper">
@@ -260,7 +267,7 @@ class FormApprovalIzinPulang extends Component {
                                             <div className="form-group row">
                                                 <label for="formfile" className="col-md-3 col-form-label text-md-right">Surat pendukung</label>
                                                 <div className="col-md-8">
-                                                    <a href={'/storage/file_perizinan/' + this.state.surat_pendukung} download={this.state.surat_pendukung} class="btn btn-light btn-icon-split">
+                                                    <a href={'/storage/file_perizinan/' + this.state.surat_pendukung} download={this.state.surat_pendukung} class="btn btn-light btn-icon-split" hidden={hidden}>
                                                         <span class="icon text-gray-600">
                                                             <i class="fas fa-file-download"></i>
                                                         </span>
