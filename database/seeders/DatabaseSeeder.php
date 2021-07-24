@@ -20,7 +20,11 @@ class DatabaseSeeder extends Seeder
             KamarSeeder::class,
             MahasiswaSeeder::class,
             ManajemenSeeder::class,
-            PengelolaSeeder::class
+            PengelolaSeeder::class,
+            IzinPulangSeeder::class,
+            IzinKembaliSeeder::class,
+            ResignSeeder::class,
+            PresensiSeeder::class,
         ]);
     }
 }
