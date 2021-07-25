@@ -114,7 +114,7 @@ class RiwayatPerizinan extends Component {
     render() {
         const dataIzin = this.state.datasIzin
         const dataResign = this.state.datasResign
-        const data = [...dataIzin, ...dataResign];
+        const data = [...dataResign, ...dataIzin];
 
         // pagination
         const offset = (this.state.activePage - 1) * this.state.itemPerPage;
@@ -160,15 +160,22 @@ class RiwayatPerizinan extends Component {
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    {dataResign.map(resign => {
+
+                                                    {/* Resign */}
+                                                    {currentData.map(perizinan => {
                                                         const {
                                                             id,
                                                             tanggal_resign,
                                                             keterangan_resign,
-                                                            status_resign
-                                                        } = resign;
+                                                            status_resign,
+
+                                                            id_perizinan,
+                                                            tanggal_pergi,
+                                                            tanggal_pulang,
+                                                            status_izin,
+                                                        } = perizinan;
                                                         let statusResign;
-                                                        switch (resign.status_resign) {
+                                                        switch (perizinan.status_resign) {
                                                             case 0:
                                                                 statusResign = "Mengajukan"
                                                                 break;
@@ -185,26 +192,9 @@ class RiwayatPerizinan extends Component {
                                                                 statusResign = "Ditolak Wadir 3"
                                                                 break;
                                                             default:
-                                                                statusResign = "Error"
+                                                                statusResign = ""
                                                                 break;
                                                         }
-                                                        return (
-                                                            <tr>
-                                                                <td>{resign.tanggal_resign}</td>
-                                                                <td> - </td>
-                                                                <td>Resign</td>
-                                                                <td>{statusResign}</td>
-                                                                <td> - </td>
-                                                            </tr>
-                                                        )
-                                                    })}
-                                                    {dataIzin.map(perizinan => {
-                                                        const {
-                                                            id_perizinan,
-                                                            tanggal_pergi,
-                                                            tanggal_pulang,
-                                                            status_izin
-                                                        } = perizinan;
                                                         let status, hiddenKembali = true, hiddenKonfirmasi = true;
                                                         switch (perizinan.status_izin) {
                                                             case 0:
@@ -245,15 +235,22 @@ class RiwayatPerizinan extends Component {
                                                                 status = "Terkonfirmasi Kembali"
                                                                 break;
                                                             default:
-                                                                status = "Error"
+                                                                status = ""
                                                                 break;
                                                         }
+                                                        let jenis;
+                                                        if(perizinan.tanggal_resign){
+                                                            jenis = "Resign"
+                                                        }else if(perizinan.tanggal_pulang){
+                                                            jenis = "Pulang"
+                                                        }
+
                                                         return (
                                                             <tr>
-                                                                <td>{perizinan.tanggal_pergi}</td>
+                                                                <td>{perizinan.tanggal_resign}{perizinan.tanggal_pergi}</td>
                                                                 <td>{perizinan.tanggal_pulang}</td>
-                                                                <td>Pergi</td>
-                                                                <td>{status}</td>
+                                                                <td>{jenis}</td>
+                                                                <td>{statusResign}{status}</td>
                                                                 <td>
                                                                     <Link hidden={hiddenKembali} to={"/form-izin-kembali/" + perizinan.id_perizinan} className="btn btn-outline-primary btn-sm">Ajukan Perizinan Kembali</Link>
                                                                     <button hidden={hiddenKonfirmasi} onClick={() => this.kembali(perizinan.id_perizinan)} className="btn btn-outline-primary btn-sm">Konfirmasi Kembali</button>
@@ -261,6 +258,7 @@ class RiwayatPerizinan extends Component {
                                                             </tr>
                                                         )
                                                     })}
+
                                                 </tbody>
                                             </table>
                                         </div>

@@ -75,6 +75,7 @@ class DataIzinPulang extends Component {
     render() {
         const data = this.state.datas
 
+        //search
         const searchData =
             this.state.datas.filter(mhs => {
                     return mhs.nama_mhs.toLowerCase().includes(this.state.searchValue.toLowerCase())

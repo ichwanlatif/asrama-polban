@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
             ProdiSeeder::class,
             GedungSeeder::class,
             KamarSeeder::class,
+            
+            //Dummy
             MahasiswaSeeder::class,
             ManajemenSeeder::class,
             PengelolaSeeder::class,
