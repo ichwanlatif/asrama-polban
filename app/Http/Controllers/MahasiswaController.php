@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mahasiswa;
+
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class MahasiswaController extends Controller
@@ -27,7 +29,11 @@ class MahasiswaController extends Controller
     }
 
     public function getAllMahasiswa(){
-        $mahasiswa = Mahasiswa::all();
+        $mahasiswa = DB::table('mahasiswa')
+        ->join('users', 'mahasiswa.id_users', '=', 'users.id_users')
+        ->join('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
+        ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
+        ->get();
 
         if($mahasiswa){
             return response()->json([

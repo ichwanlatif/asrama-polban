@@ -8,11 +8,14 @@ import Footer from '../../components/Navigation/Footer';
 
 import PageHeading from '../../components/PageHeading';
 
+import api from '../../service/api';
+
 class DataMahasiswa extends Component {
     constructor(){
         super();
         this.state = {
-            role: ""
+            role: "",
+            datas: [],
         };
     }
 
@@ -20,9 +23,30 @@ class DataMahasiswa extends Component {
         this.setState({
             role: localStorage.getItem("user_role")
         });
+
+        api().get('api/mahasiswa').then(response =>{
+            if(response.data.status === 'success'){
+                this.setState({
+                    datas: response.data.data
+                })
+                console.log(this.state.datas)
+            }
+            else{
+                alert(response.data.message);
+            }
+        })
     }
 
     render() {
+
+        const data = this.state.datas
+        // let TableStatus;
+        // if (this.state.datas.length == 0) {
+        //     TableStatus = <h6 className="text-center">Tidak ada data Mahasiswa</h6>;
+        //   } else {
+        //     TableStatus = <h6>Menampilkan {this.state.itemPerPage * (this.state.activePage - 1) +1} sampai {this.state.itemPerPage * (this.state.activePage - 1) +currentData.length} dari {data.length}</h6>;
+        // }
+
         return (
             <div>
                 <div id="wrapper">
@@ -68,30 +92,45 @@ class DataMahasiswa extends Component {
                                                     <tr>
                                                     <th scope="col">Nama</th>
                                                     <th scope="col">Email</th>
-                                                    <th scope="col">Password</th>
-                                                    <th scope="col">Kamar</th>
+                                                    <th scope="col">Jenis</th>
+                                                    <th scope="col">Gedung</th>
                                                     <th scope="col">Jabatan</th>
                                                     <th scope="col">Status</th>
                                                     <th scope="col"></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>Rizqa Nabila</td>
-                                                        <td>rizqa.fauziyyah.tif18@polban.ac.id</td>
-                                                        <td>******</td>
-                                                        <td>A2</td>
-                                                        <td>Mahasiswa</td>
-                                                        <td>Aktif</td>
-                                                        <td>
-                                                            <Link to="/edit-mahasiswa" className="text-success mx-1">
-                                                                <i className="fas fa-edit"></i>
-                                                            </Link>
-                                                            <Link to="/detail-mahasiswa" className="text-primary mx-1">
-                                                                <i className="fas fa-info-circle"></i>
-                                                            </Link>
-                                                        </td>
-                                                    </tr>
+                                                    {data.map(mahasiswa => {
+                                                        const {
+                                                            id_mhs,
+                                                            nama_mhs,
+                                                            nim,
+                                                            email,
+                                                            keterangan_asal,
+                                                            nama_gedung,
+                                                            role_mhs,
+                                                            status_keaktifan
+                                                        } = mahasiswa;
+                                                        let status;
+                                                        if(mahasiswa.status_keaktifan == 1){
+                                                            status = "Aktif"
+                                                        }
+                                                        else{
+                                                            status = "Tidak Aktif"
+                                                        }
+
+                                                        return (
+                                                            <tr>
+                                                                <td>{mahasiswa.nama_mhs}</td>
+                                                                <td>{mahasiswa.nim}</td>
+                                                                <td>{mahasiswa.email}</td>
+                                                                <td>{mahasiswa.keterangan_asal}</td>
+                                                                <td>{mahasiswa.nama_gedung}</td>
+                                                                <td>{mahasiswa.role_mhs}</td>
+                                                                <td>{status}</td>
+                                                            </tr>
+                                                        )
+                                                    })}
                                                 </tbody>
                                             </table>
                                         </div>
