@@ -85,7 +85,7 @@ class FormResign extends Component {
             data.append('suhu_badan', this.state.suhu_badan)
         }
 
-        api().post('api/resign/create', data).then(response => {
+        await api().post('api/resign/create', data).then(response => {
             if(response.data.status === 'success'){
                 console.log(response.data.message)
                 window.location.assign('/#/riwayat-perizinan')
@@ -188,6 +188,7 @@ class FormResign extends Component {
                                                             className="form-control"
                                                             aria-describedby="temperature"
                                                             name="suhu_badan"
+                                                            step="0.1"
                                                             onChange={this.handleFieldChange}
                                                             value={this.state.suhu_badan}
                                                         />

@@ -25,4 +25,164 @@ class MahasiswaController extends Controller
         }
         
     }
+
+    public function getAllMahasiswa(){
+        $mahasiswa = Mahasiswa::all();
+
+        if($mahasiswa){
+            return response()->json([
+                "status" => 'success',
+                "message" => "Success get mahasiswa",
+                "data" => $mahasiswa
+            ]);
+        }
+        else{
+            return response()->json([
+                "status" => 'error',
+                "message" => "Mahasiswa Not Found"
+            ]);
+        }
+    }
+
+    public function store(Request $request){
+        $validasi = \Validasi::make($request->all(), [
+            'email' => 'required|email|ends_with:polban.ac.id',
+            'password' => 'required|alpha_num|min:8',
+            'nama_mhs' => 'required|max:50', 
+            'nim' => 'required|max:10',
+            'alamat' => 'required|max:125',
+            'no_hp_mhs' => 'required|max:13',
+            'nama_ortu' => 'required|max:50',
+            'no_hp_ortu' => 'required|max:13',
+            'jenis_kelamin' => 'required',
+            'status_keaktifan' => 'required',
+            'tanggal_lahir' => 'required',
+            'agama' => 'required|max:10',
+            'keterangan_asal' => 'required|max:10',
+            'role_mhs' => 'required'
+        ]);
+
+        if($validasi->fails()){
+            return response()->json(["status" => "error", "message" => $validasi->errors()]);
+        }
+        $user = User::create([
+            'email' => $request->email,
+            'password' => \Hash::make($request->password),
+            'role' => 1,
+        ]);
+
+        $insert = Mahasiswa::create([
+            'id_users' => $user->id_users,
+            'nama_mhs' => $request->nama_mhs, 
+            'nim' => $request->nim,
+            'alamat' => $request->alamat,
+            'no_hp_mhs' => $request->no_hp_mhs,
+            'nama_ortu' => $request->nama_ortu,
+            'no_hp_ortu' => $request->no_hp_ortu,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'status_keaktifan' => $request->status_keaktifan,
+            'tanggal_lahir' => $request->tanggal_lahir,
+            'agama' => $request->agama,
+            'keterangan_asal' => $request->keterangan_asal,
+            'role_mhs' => $request->role_mhs
+        ]);
+
+        if($insert){
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Mahasiswa berhasil diinput',
+                'data' => $insert
+            ], 201);
+        }
+        else{
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Mahasiswa gagal diinput',
+            ]);
+        }
+    }
+
+    public function update(Request $request){
+        $validasi = \Validasi::make($request->all(), [
+            'email' => 'required|email|ends_with:polban.ac.id',
+            'password' => 'required|alpha_num|min:8',
+            'nama_mhs' => 'required|max:50', 
+            'nim' => 'required|max:10',
+            'alamat' => 'required|max:125',
+            'no_hp_mhs' => 'required|max:13',
+            'nama_ortu' => 'required|max:50',
+            'no_hp_ortu' => 'required|max:13',
+            'jenis_kelamin' => 'required',
+            'status_keaktifan' => 'required',
+            'tanggal_lahir' => 'required',
+            'agama' => 'required|max:10',
+            'keterangan_asal' => 'required|max:10',
+            'role_mhs' => 'required'
+        ]);
+
+        if($validasi->fails()){
+            return response()->json(["status" => "error", "message" => $validasi->errors()]);
+        }
+        
+        $mahasiswa = Mahasiswa::where([
+            ['id_mhs', '=', $request->id_mhs],
+        ]);
+
+        $user = User::where('id_users', $mahasiswa->id_users)
+        ->update([
+            'email' => $request->email,
+            'password' => \Hash::make($request->password),
+            'role' => 1,
+        ]);
+
+        $update = $mahasiswa->update([
+            'nama_mhs' => $request->nama_mhs, 
+            'nim' => $request->nim,
+            'alamat' => $request->alamat,
+            'no_hp_mhs' => $request->no_hp_mhs,
+            'nama_ortu' => $request->nama_ortu,
+            'no_hp_ortu' => $request->no_hp_ortu,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'status_keaktifan' => $request->status_keaktifan,
+            'tanggal_lahir' => $request->tanggal_lahir,
+            'agama' => $request->agama,
+            'keterangan_asal' => $request->keterangan_asal,
+            'role_mhs' => $request->role_mhs
+        ]);
+
+        if($update){
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Mahasiswa berhasil diupdate',
+                'data' => $update
+            ], 201);
+        }
+        else{
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Mahasiswa gagal diiupdate',
+            ]);
+        }
+    }
+
+    public function delete($id){
+        $delete = Mahasiswa::where([
+            ['id_mhs', '=', $request->id_mhs],
+        ])
+        ->delete();
+
+        if($delete){
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Mahasiswa berhasil dihapus',
+                'data' => $delete
+            ], 201);
+        }
+        else{
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Mahasiswa gagal dihapus',
+            ]);
+        }
+    }
 }
