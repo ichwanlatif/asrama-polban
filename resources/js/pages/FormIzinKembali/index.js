@@ -199,6 +199,7 @@ class FormIzinKembali extends Component {
                                                             className="form-control"
                                                             aria-describedby="temperature"
                                                             name="suhu_badan"
+                                                            step="0.1"
                                                             value={this.state.suhu_badan}
                                                             onChange={this.handleFieldChange}
                                                         />
