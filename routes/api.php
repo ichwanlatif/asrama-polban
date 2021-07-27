@@ -38,6 +38,8 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::put('/mahasiswa/update', [MahasiswaController::class, 'update']);
     Route::delete('/mahasiswa/delete/{id}', [MahasiswaController::class, 'delete']);
     Route::post('/mahasiswa/import', [UserController::class, 'importUser']);
+    Route::get('/prodi', [MahasiswaController::class, 'getAllProdi']);
+    Route::get('/kamar', [MahasiswaController::class, 'getAllKamar']);
 
     //Presensi
     Route::post('/presensi/create', [PresensiController::class, 'store']);

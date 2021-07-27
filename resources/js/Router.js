@@ -67,8 +67,8 @@ const Main = props =>(
 
         <PrivateRoute exact path="/import-mahasiswa" component={ImportMahasiswa} />
         <PrivateRoute exact path="/data-mahasiswa" component={DataMahasiswa} />
-        <PrivateRoute exact path="/detail-mahasiswa" component={DetailMahasiswa} />
-        <PrivateRoute exact path="/edit-mahasiswa" component={EditMahasiswa} />
+        <PrivateRoute exact path="/detail-mahasiswa/:id" component={DetailMahasiswa} />
+        <PrivateRoute exact path="/edit-mahasiswa/:id" component={EditMahasiswa} />
         <PrivateRoute exact path="/tambah-mahasiswa" component={TambahMahasiswa} />
         
         <PrivateRoute exact path="/reset-password" component={ResetPassword} />

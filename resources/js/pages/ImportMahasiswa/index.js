@@ -91,8 +91,7 @@ class ImportMahasiswa extends Component {
                             <div className="col-lg-12 col-md-12">
                                 <div className="card my-5">
                                     <div className="card-body">
-                                        <h4 className="text-primary text-center">Formulir import data mahasiswa</h4>
-                                        <h6 className="text-center text-muted">Upload file mahasiswa pada formulir dibawah ini</h6>
+                                        <h6 className="text-muted">Upload file mahasiswa pada formulir dibawah ini</h6>
                                         <hr></hr>
 
                                         {/* Form perizinan*/}

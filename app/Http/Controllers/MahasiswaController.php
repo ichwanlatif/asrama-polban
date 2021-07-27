@@ -50,6 +50,46 @@ class MahasiswaController extends Controller
         }
     }
 
+    public function getAllProdi(){
+        $prodi = DB::table('prodi')
+        ->join('jurusan', 'prodi.id_jurusan', '=', 'jurusan.id_jurusan')
+        ->get();
+
+        if($prodi){
+            return response()->json([
+                "status" => 'success',
+                "message" => "Success get prodi",
+                "data" => $prodi
+            ]);
+        }
+        else{
+            return response()->json([
+                "status" => 'error',
+                "message" => "Prodi Not Found"
+            ]);
+        }
+    }
+
+    public function getAllKamar(){
+        $kamar = DB::table('kamar')
+        ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
+        ->get();
+
+        if($kamar){
+            return response()->json([
+                "status" => 'success',
+                "message" => "Success get kamar",
+                "data" => $kamar
+            ]);
+        }
+        else{
+            return response()->json([
+                "status" => 'error',
+                "message" => "Kamar Not Found"
+            ]);
+        }
+    }
+
     public function store(Request $request){
         $validasi = \Validasi::make($request->all(), [
             'email' => 'required|email|ends_with:polban.ac.id',

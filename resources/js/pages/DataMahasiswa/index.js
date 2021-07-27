@@ -138,8 +138,9 @@ class DataMahasiswa extends Component {
                                                 <thead>
                                                     <tr>
                                                     <th scope="col">Nama</th>
+                                                    <th scope="col">NIM</th>
                                                     <th scope="col">Email</th>
-                                                    <th scope="col">Jenis</th>
+                                                    <th scope="col">Asal</th>
                                                     <th scope="col">Gedung</th>
                                                     <th scope="col">Jabatan</th>
                                                     <th scope="col">Status</th>
@@ -175,6 +176,14 @@ class DataMahasiswa extends Component {
                                                                 <td>{mahasiswa.nama_gedung}</td>
                                                                 <td>{mahasiswa.role_mhs}</td>
                                                                 <td>{status}</td>
+                                                                <td>
+                                                                    <Link to={"/detail-mahasiswa/" + mahasiswa.id_mhs} className="text-primary mx-1">
+                                                                        <i className="fas fa-info-circle"></i>
+                                                                    </Link>
+                                                                    <Link to={"/edit-mahasiswa/" + mahasiswa.id_mhs} className="text-success mx-1">
+                                                                        <i className="fas fa-edit"></i>
+                                                                    </Link>
+                                                                </td>
                                                             </tr>
                                                         )
                                                     })}
