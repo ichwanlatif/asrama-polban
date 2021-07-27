@@ -85,7 +85,7 @@ class FormResign extends Component {
             data.append('suhu_badan', this.state.suhu_badan)
         }
 
-        api().post('api/resign/create', data).then(response => {
+        await api().post('api/resign/create', data).then(response => {
             if(response.data.status === 'success'){
                 console.log(response.data.message)
                 window.location.assign('/#/riwayat-perizinan')
@@ -152,7 +152,7 @@ class FormResign extends Component {
 
                                             <div className="form-group row">
                                                 <label for="tanggal_resign" className="col-md-3 col-form-label text-md-right">Mulai resign</label>
-                                                <div className="col-md-3">
+                                                <div className="col-md-8">
                                                     <input 
                                                         type="date" 
                                                         className="form-control"
@@ -160,8 +160,8 @@ class FormResign extends Component {
                                                         onChange={this.handleFieldChange}
                                                         required
                                                     />
+                                                    <span className="text-danger">*{this.state.errList.tanggal_resign}</span>
                                                 </div>
-                                                <br></br><span className="text-danger">*{this.state.errList.tanggal_resign}</span>
                                             </div>
 
                                             <div className="form-group row">
@@ -188,6 +188,7 @@ class FormResign extends Component {
                                                             className="form-control"
                                                             aria-describedby="temperature"
                                                             name="suhu_badan"
+                                                            step="0.1"
                                                             onChange={this.handleFieldChange}
                                                             value={this.state.suhu_badan}
                                                         />
@@ -209,7 +210,7 @@ class FormResign extends Component {
                                                         <option>Mobil</option>
                                                         <option>Tidak ada</option>
                                                     </select>
-                                                    <br></br><span className="text-danger">*{this.state.errList.jenis_kendaraan}</span>
+                                                    <span className="text-danger">*{this.state.errList.jenis_kendaraan}</span>
                                                 </div>
                                             </div>
                                             

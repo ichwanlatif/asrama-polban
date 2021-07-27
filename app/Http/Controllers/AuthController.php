@@ -11,7 +11,7 @@ class AuthController extends Controller
     public function login(Request $request) {
         $validate = \Validator::make($request->all(), [
             'email' => 'required|email|ends_with:polban.ac.id',
-            'password' => 'required|alpha_num|min:5',
+            'password' => 'required|alpha_num|min:6',
         ]);
 
         if($validate->fails()) {

@@ -171,7 +171,7 @@ class FormIzinPulang extends Component {
 
                                             <div className="form-group row">
                                                 <label for="tanggal_pergi" className="col-md-3 col-form-label text-md-right">Tanggal pergi</label>
-                                                <div className="col-md-3">
+                                                <div className="col-md-8">
                                                     <input 
                                                         type="date" 
                                                         className="form-control"
@@ -179,13 +179,13 @@ class FormIzinPulang extends Component {
                                                         onChange={this.handleFieldChange}
                                                         required
                                                     />
+                                                    <span className="text-danger">*{this.state.errList.tanggal_pergi}</span>
                                                 </div>
-                                                <br></br><span className="text-danger">*{this.state.errList.tanggal_pergi}</span>
                                             </div>
 
                                             <div className="form-group row">
                                                 <label for="tanggal_pulang" className="col-md-3 col-form-label text-md-right">Tanggal pulang</label>
-                                                <div className="col-md-3">
+                                                <div className="col-md-8">
                                                     <input 
                                                         type="date" 
                                                         className="form-control"
@@ -193,8 +193,8 @@ class FormIzinPulang extends Component {
                                                         onChange={this.handleFieldChange}
                                                         required
                                                     />
+                                                    <span className="text-danger">*{this.state.errList.tanggal_pulang}</span>
                                                 </div>
-                                                <br></br><span className="text-danger">*{this.state.errList.tanggal_pulang}</span>
                                             </div>
 
                                             <div className="form-group row">
@@ -251,7 +251,7 @@ class FormIzinPulang extends Component {
                                                 <label for="address" className="col-md-3 col-form-label text-md-right">Alamat tujuan pergi</label>
                                                 <div className="col-md-8">
                                                     <input type="text" name="alamat_izin" onChange={this.handleFieldChange} className="form-control"/>
-                                                    <br></br><span className="text-danger">*{this.state.errList.alamat_izin}</span>
+                                                    <span className="text-danger">*{this.state.errList.alamat_izin}</span>
                                                 </div>
                                             </div>
 
@@ -269,12 +269,12 @@ class FormIzinPulang extends Component {
                                                         <option>Kereta Api</option>
                                                         <option>Kapal Laut</option>
                                                     </select>
-                                                    <br></br><span className="text-danger">*{this.state.errList.jenis_kendaraan}</span>
+                                                    <span className="text-danger">*{this.state.errList.jenis_kendaraan}</span>
                                                 </div>
                                             </div>
 
                                             <div className="form-group row my-4">
-                                                <div className="col-md-11">
+                                                <div className="col-md-12">
                                                     <label className="col-form-label text-justify"><span className="text-danger">*</span> Saya akan menanggung segala bentuk kerugian yang timbul dan tidak akan menuntut pihak Manajemen Polban. Demikian keterangan ini dibuat tanpa paksaan dan untuk dipergunakan sesuai dengan kepentingannya.</label>
                                                     <small className="text-muted">Silakan tunggu respon dari Kantor PD3. Saudara belum di ijinkan untuk meninggalkan Asrama sebelum ada surat ijin resmi dari Kantor PD3.</small>
                                                     <div class="custom-control custom-checkbox">

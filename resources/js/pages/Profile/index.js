@@ -39,8 +39,6 @@ class Profile extends Component {
                             <div className="col-lg-12 col-md-12">
                                 <div className="card my-5">
                                     <div className="card-body">
-                                        <h4 className="text-primary text-center">Profile</h4>
-                                        <hr></hr>
 
                                         {/* Data mahasiswa*/}
                                         <div className="form-group row">
