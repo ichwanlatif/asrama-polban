@@ -33,6 +33,13 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::post('logoutall', [AuthController::class, 'logoutall']);
 
     //Mahasiswa
+    Route::get('/mahasiswa', [MahasiswaController::class, 'getAllMahasiswa']);
+    Route::post('/mahasiswa/store', [MahasiswaController::class, 'store']);
+    Route::put('/mahasiswa/update', [MahasiswaController::class, 'update']);
+    Route::delete('/mahasiswa/delete/{id}', [MahasiswaController::class, 'delete']);
+    Route::post('/mahasiswa/import', [UserController::class, 'importUser']);
+    Route::get('/prodi', [MahasiswaController::class, 'getAllProdi']);
+    Route::get('/kamar', [MahasiswaController::class, 'getAllKamar']);
 
     //Presensi
     Route::post('/presensi/create', [PresensiController::class, 'store']);

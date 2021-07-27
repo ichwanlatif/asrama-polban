@@ -7,11 +7,15 @@ import Footer from '../../components/Navigation/Footer';
 
 import PageHeading from '../../components/PageHeading';
 
+import api from '../../service/api';
+
 class TambahMahasiswa extends Component {
     constructor(){
         super();
         this.state = {
-            role: ""
+            role: "",
+            dataProdi: [],
+            dataKamar: [],
         };
     }
 
@@ -19,9 +23,36 @@ class TambahMahasiswa extends Component {
         this.setState({
             role: localStorage.getItem("user_role")
         });
+
+        api().get('api/prodi').then(responseProdi =>{
+            if(responseProdi.data.status === 'success'){
+                this.setState({
+                    dataProdi: responseProdi.data.data
+                })
+                console.log(this.state.dataProdi)
+            }
+            else{
+                alert(responseProdi.data.message);
+            }
+        })
+
+        api().get('api/kamar').then(responseKamar =>{
+            if(responseKamar.data.status === 'success'){
+                this.setState({
+                    dataKamar: responseKamar.data.data
+                })
+                console.log(this.state.dataKamar)
+            }
+            else{
+                alert(responseKamar.data.message);
+            }
+        })
     }
 
     render() {
+        const dataProdi = this.state.dataProdi;
+        const dataKamar = this.state.dataKamar;
+
         return (
             <div>
                 <div id="wrapper">
@@ -38,11 +69,10 @@ class TambahMahasiswa extends Component {
                             <div className="col-lg-12 col-md-12">
                                 <div className="card my-5">
                                     <div className="card-body">
-                                        <h4 className="text-primary text-center">Tambah Mahasiswa</h4>
-                                        <h6 className="text-center text-muted">Isi data mahasiswa dibawah ini</h6>
+                                        <h6 className="text-muted">Isi data mahasiswa dibawah ini</h6>
                                         <hr></hr>
 
-                                        {/* Edit mahasiswa*/}
+                                        {/* Tambah mahasiswa*/}
                                         <form>
                                             <div className="form-group row">
                                                 <label for="email" className="col-md-3 col-form-label text-md-right">Email</label>
@@ -55,17 +85,7 @@ class TambahMahasiswa extends Component {
                                                 </div>
                                             </div>
                                             <div className="form-group row">
-                                                <label for="password" className="col-md-3 col-form-label text-md-right">Password</label>
-                                                <div className="col-md-8">
-                                                    <input 
-                                                        type="password" 
-                                                        className="form-control"
-                                                        placeholder="Masukan password"
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div className="form-group row">
-                                                <label for="name" className="col-md-3 col-form-label text-md-right">Nama</label>
+                                                <label for="nama" className="col-md-3 col-form-label text-md-right">Nama lengkap</label>
                                                 <div className="col-md-8">
                                                     <input 
                                                         type="text" 
@@ -75,25 +95,17 @@ class TambahMahasiswa extends Component {
                                                 </div>
                                             </div>
                                             <div className="form-group row">
-                                                <label for="nim" className="col-md-3 col-form-label text-md-right">NIM</label>
+                                                <label for="alamat" className="col-md-3 col-form-label text-md-right">Alamat</label>
                                                 <div className="col-md-8">
                                                     <input 
                                                         type="text" 
                                                         className="form-control"
-                                                        placeholder="Masukan NIM"
+                                                        placeholder="Masukan alamat saat ini"
                                                     />
                                                 </div>
                                             </div>
                                             <div className="form-group row">
-                                                <label for="prodijurusan" className="col-md-3 col-form-label text-md-right">Prodi / Jurusan</label>
-                                                <div className="col-md-8">
-                                                    <select className="custom-select mr-sm-2" id="prodijurusan" name="prodijurusan">
-                                                        <option value="1">D-3 Teknik Informatika / Teknik Komputer dan Informatika</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div className="form-group row">
-                                                <label for="gender" className="col-md-3 col-form-label text-md-right">Jenis kelamin</label>
+                                                <label for="jenis_kelamin" className="col-md-3 col-form-label text-md-right">Jenis kelamin</label>
                                                 <div className="col-md-8">
                                                     <div className="form-check form-check-inline">
                                                         <input className="form-check-input" type="radio" name="status" id="laki-laki" value="laki-laki"/>
@@ -110,8 +122,21 @@ class TambahMahasiswa extends Component {
                                                 </div>
                                             </div>
                                             <div className="form-group row">
-                                                <label for="birth" className="col-md-3 col-form-label text-md-right">Tanggal lahir</label>
-                                                <div className="col-md-3">
+                                                <label for="agama" className="col-md-3 col-form-label text-md-right">Agama</label>
+                                                <div className="col-md-8">
+                                                    <select className="custom-select mr-sm-2" id="agama" name="agama">
+                                                        <option value="Islam">Islam</option>
+                                                        <option value="Kristen">Kristen</option>
+                                                        <option value="Katolik">Katolik</option>
+                                                        <option value="Hindu">Hindu</option>
+                                                        <option value="Budha">Budha</option>
+                                                        <option value="Konghucu">Konghucu</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div className="form-group row">
+                                                <label for="tanggal_lahir" className="col-md-3 col-form-label text-md-right">Tanggal lahir</label>
+                                                <div className="col-md-8">
                                                     <input 
                                                         type="date" 
                                                         className="form-control"
@@ -119,27 +144,7 @@ class TambahMahasiswa extends Component {
                                                 </div>
                                             </div>
                                             <div className="form-group row">
-                                                <label for="region" className="col-md-3 col-form-label text-md-right">Agama</label>
-                                                <div className="col-md-8">
-                                                    <input 
-                                                        type="text" 
-                                                        className="form-control"
-                                                        placeholder="Masukan agama"
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div className="form-group row">
-                                                <label for="address" className="col-md-3 col-form-label text-md-right">Alamat</label>
-                                                <div className="col-md-8">
-                                                    <input 
-                                                        type="text" 
-                                                        className="form-control"
-                                                        placeholder="Masukan alamat"
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div className="form-group row">
-                                                <label for="hp" className="col-md-3 col-form-label text-md-right">Nomor hp</label>
+                                                <label for="no_hp_mhs" className="col-md-3 col-form-label text-md-right">Nomor hp</label>
                                                 <div className="col-md-8">
                                                     <div className="input-group">
                                                         <div className="input-group-prepend">
@@ -155,7 +160,7 @@ class TambahMahasiswa extends Component {
                                                 </div>
                                             </div>
                                             <div className="form-group row">
-                                                <label for="namaortu" className="col-md-3 col-form-label text-md-right">Nama orangtua / wali</label>
+                                                <label for="nama_ortu" className="col-md-3 col-form-label text-md-right">Nama orangtua / wali</label>
                                                 <div className="col-md-8">
                                                     <input 
                                                         type="text" 
@@ -165,7 +170,7 @@ class TambahMahasiswa extends Component {
                                                 </div>
                                             </div>
                                             <div className="form-group row">
-                                                <label for="hportu" className="col-md-3 col-form-label text-md-right">Nomor hp orangtua / wali</label>
+                                                <label for="no_hp_ortu" className="col-md-3 col-form-label text-md-right">Nomor hp orangtua / wali</label>
                                                 <div className="col-md-8">
                                                     <div className="input-group">
                                                         <div className="input-group-prepend">
@@ -181,31 +186,64 @@ class TambahMahasiswa extends Component {
                                                 </div>
                                             </div>
                                             <div className="form-group row">
-                                                <label for="ukt" className="col-md-3 col-form-label text-md-right">Golongan UKT</label>
-                                                <div className="col-md-1">
-                                                    <input 
-                                                        type="number" 
-                                                        className="form-control"
-                                                        min="1" max="8"
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div className="form-group row">
-                                                <label for="kamar" className="col-md-3 col-form-label text-md-right">Kamar</label>
-                                                <div className="col-md-2">
+                                                <label for="nim" className="col-md-3 col-form-label text-md-right">NIM</label>
+                                                <div className="col-md-8">
                                                     <input 
                                                         type="text" 
                                                         className="form-control"
+                                                        placeholder="Masukan Nomor induk mahasiswa"
                                                     />
                                                 </div>
                                             </div>
                                             <div className="form-group row">
-                                                <label for="jabatan" className="col-md-3 col-form-label text-md-right">Jabatan</label>
+                                                <label for="id_prodi" className="col-md-3 col-form-label text-md-right">Jurusan / Program studi</label>
                                                 <div className="col-md-8">
-                                                    <select className="custom-select mr-sm-2" id="jabatan" name="jabatan">
-                                                        <option value="1">Mahasiswa</option>
-                                                        <option value="2">Pengurus Koordinator</option>
-                                                        <option value="3">Pengurus Komisi disiplin</option>
+                                                    <select className="custom-select mr-sm-2" id="id_prodi" name="id_prodi">
+                                                        {dataProdi.map(prodi => {
+                                                        const {
+                                                            id_prodi,
+                                                            nama_prodi,
+                                                            nama_jurusan,
+                                                        } = prodi;
+                                                        return (
+                                                            <option value={prodi.id_prodi}>{prodi.nama_jurusan} / {prodi.nama_prodi}</option>
+                                                        )
+                                                    })}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div className="form-group row">
+                                                <label for="keterangan_asal" className="col-md-3 col-form-label text-md-right">keterangan asal</label>
+                                                <div className="col-md-8">
+                                                    <select className="custom-select mr-sm-2" id="keterangan_asal" name="keterangan_asal">
+                                                        <option value="ADIK">ADIK</option>
+                                                        <option value="Bidikmisi">Bidikmisi</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div className="form-group row">
+                                                <label for="id_kamar" className="col-md-3 col-form-label text-md-right">Kamar asrama</label>
+                                                <div className="col-md-8">
+                                                    <select className="custom-select mr-sm-2" id="id_kamar" name="id_kamar">
+                                                        {dataKamar.map(kamar => {
+                                                        const {
+                                                            id_kamar,
+                                                            no_kamar,
+                                                            nama_gedung,
+                                                        } = kamar;
+                                                        return (
+                                                            <option value={kamar.id_kamar}>{kamar.nama_gedung} - {kamar.no_kamar}</option>
+                                                        )
+                                                    })}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div className="form-group row">
+                                                <label for="role_mhs" className="col-md-3 col-form-label text-md-right">Jabatan</label>
+                                                <div className="col-md-8">
+                                                    <select className="custom-select mr-sm-2" id="role_mhs" name="role_mhs">
+                                                        <option value="Mahasiswa">Mahasiswa</option>
+                                                        <option value="Pengurus">Pengurus</option>
                                                     </select>
                                                 </div>
                                             </div>

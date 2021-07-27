@@ -158,19 +158,28 @@ class UserController extends Controller
     // }
 
     public function importUser(Request $request){
-        $import = Excel::import(new UserImport, $request->file('file')->store('temp'));
-        // if($import){
-        //     return response()->json([
-        //         'status' => 'success',
-        //         'message' => 'Data mahasiswa berhasil diimport',
-        //     ], 201);
-        // }
-        // else{
-        //     return response()->json([
-        //         'status' => 'error',
-        //         'message' => 'Data mahasiswa gagal diimport',
-        //     ], 500);
-        // }
-        return back();
+
+        $validasi = \Validator::make($request->all(), [
+            'file' => 'file|mimes:xls,xlsx',
+        ]);
+
+        if($validasi->fails()){
+            return response()->json(["status" => "error", "message" => $validasi->errors()]);
+        }
+        else{
+            $import = Excel::import(new UserImport, $request->file('file')->store('temp'));
+            if($import){
+                return response()->json([
+                    'status' => 'success',
+                    'message' => 'Data mahasiswa berhasil diimport',
+                ], 201);
+            }
+            else{
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Data mahasiswa gagal diimport',
+                ], 500);
+            }
+        }
     }
 }

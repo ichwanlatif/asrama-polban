@@ -24,7 +24,6 @@ class UserImport implements ToCollection
                 'email' => $row[0],
                 'password' => \Hash::make($row[1]),
                 'role' => 1,
-                'deleted' => 0
             ]);
             
             // dd(date(\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[7])->format('Y-m-d')));
@@ -34,16 +33,17 @@ class UserImport implements ToCollection
                 'id_prodi' => $row[2],
                 'id_kamar' => $row[3],
                 'nama_mhs' => $row[4],
-                'nim_mhs' => $row[5],
-                'jenis_kelamin' => $row[6],
-                'tanggal_lahir' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[7])->format('Y-m-d'),
-                'agama' => $row[8],
-                'alamat_mhs' => $row[9],
-                'no_hp_mhs' => $row[10],
-                'nama_ortu' => $row[11],
-                'no_hp_ortu' => $row[12],
-                'status_keaktifan' => $row[13],
-                'golongan_ukt' => $row[14]
+                'nim' => $row[5],
+                'alamat' => $row[6],
+                'no_hp_mhs' => $row[7],
+                'nama_ortu' => $row[8],
+                'no_hp_ortu' => $row[9],
+                'jenis_kelamin' => $row[10],
+                'status_keaktifan' => 1,
+                'tanggal_lahir' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[11])->format('Y-m-d'),
+                'agama' => $row[12],
+                'keterangan_asal' => $row[13],
+                'role_mhs' => $row[14],
             ]);
         }
     }

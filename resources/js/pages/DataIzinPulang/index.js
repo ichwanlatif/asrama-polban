@@ -20,8 +20,13 @@ class DataIzinPulang extends Component {
             // pagination
             currentData: [],
             activePage: 1,
-            itemPerPage : 10
+            itemPerPage : 10,
+            
+            // search
+            searchData: [],
+            searchValue :"",
         };
+        this.handleSearchChange = this.handleSearchChange.bind(this);
     }
 
     componentDidMount(){
@@ -43,11 +48,24 @@ class DataIzinPulang extends Component {
         })
     }
 
+    handleSearchChange(e){
+        console.log(`search key is ${e.target.value}`);
+        this.setState({searchValue: e.target.value});
+
+        const searchData =
+            this.state.datas.filter(mhs => {
+                    return mhs.nama_mhs.toLowerCase().includes(this.state.searchValue.toLowerCase())
+            }
+        )
+        this.setState( {searchData} );
+        this.setState({activePage: 1});
+    }
+
     handlePageChange(pageNumber) {
         console.log(`active page is ${pageNumber}`);
         this.setState({activePage: pageNumber});
 
-        const data = this.state.datas;
+        const data = this.state.searchData;
         const offset = (this.state.activePage - 1) * this.state.itemPerPage;
         const currentData = data.slice(offset, offset + this.state.itemPerPage);
 
@@ -57,16 +75,23 @@ class DataIzinPulang extends Component {
     render() {
         const data = this.state.datas
 
+        //search
+        const searchData =
+            this.state.datas.filter(mhs => {
+                    return mhs.nama_mhs.toLowerCase().includes(this.state.searchValue.toLowerCase())
+            }
+        )
+
         // pagination
         const offset = (this.state.activePage - 1) * this.state.itemPerPage;
-        const currentData = data.slice(offset, offset + this.state.itemPerPage);
+        const currentData = searchData.slice(offset, offset + this.state.itemPerPage);
 
         let TableStatus;
 
         if (this.state.datas.length == 0) {
             TableStatus = <h6 className="text-center">Tidak ada izin yang perlu diproses</h6>;
           } else {
-            TableStatus = <h6>Menampilkan {this.state.itemPerPage * (this.state.activePage - 1) +1} sampai {this.state.itemPerPage * (this.state.activePage - 1) +currentData.length} dari {data.length}</h6>;
+            TableStatus = <h6>Menampilkan {this.state.itemPerPage * (this.state.activePage - 1) +1} sampai {this.state.itemPerPage * (this.state.activePage - 1) +currentData.length} dari {searchData.length}</h6>;
         }
 
         return (
@@ -91,7 +116,7 @@ class DataIzinPulang extends Component {
 
                                         {/* Search Bar */}
                                         <div className="input-group mb-2 border rounded-pill p-1 col-lg-4 col-md-8 col-sm-12">
-                                            <input type="text" placeholder="Cari mahasiswa.." className="form-control bg-none border-0 font-italic"/>
+                                            <input type="text" name="searchValue" placeholder="Cari mahasiswa.." className="form-control bg-none border-0" onChange={this.handleSearchChange}/>
                                             <div className="input-group-append border-0">
                                                 <button type="submit" className="btn btn-link text-primary"><i className="fa fa-search"></i></button>
                                             </div>
@@ -162,7 +187,7 @@ class DataIzinPulang extends Component {
                                                 linkClass="page-link"
                                                 activePage={this.state.activePage}
                                                 itemsCountPerPage={this.state.itemPerPage}
-                                                totalItemsCount={data.length}
+                                                totalItemsCount={searchData.length}
                                                 pageRangeDisplayed={3}
                                                 onChange={this.handlePageChange.bind(this)}
                                             />

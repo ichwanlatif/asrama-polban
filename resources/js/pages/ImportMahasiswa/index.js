@@ -6,19 +6,72 @@ import Topbar from '../../components/Navigation/Topbar';
 import Footer from '../../components/Navigation/Footer';
 
 import PageHeading from '../../components/PageHeading';
+import api from '../../service/api';
+
+// function loadingAnimation() {
+//     return new Promise(function(resolve) {
+//       setTimeout(() => resolve([1, 2, 3]), 1000);
+//     });
+// }
 
 class ImportMahasiswa extends Component {
     constructor(){
         super();
         this.state = {
-            role: ""
+            role: "",
+            isLoading: false,
         };
+
+        this.handleFileChange = this.handleFileChange.bind(this)
     }
 
     componentDidMount(){
         this.setState({
             role: localStorage.getItem("user_role")
         });
+    }
+
+    async handleSubmit(e){
+        e.preventDefault()
+
+        // this.setState({ isLoading: true });
+
+        const data = new FormData()
+
+        if(this.state.file != undefined){
+            data.append('file', this.state.file)
+        }
+
+        // console.warn(this.state.file);
+
+        console.log(this.state);
+
+        await api().post('api/mahasiswa/import', data).then(response => {
+            if(response.data.status === 'success'){
+                console.log(response.data.msg)
+                window.location.assign('/#/dashboard')
+            }
+            else{
+                this.setState({
+                    errList: response.data.message
+                })
+            }
+        })
+
+        // Set status animasi loading
+        // loadingAnimation().then(list => {
+        //     this.setState({
+        //     isLoading: false,
+        //     list,
+        //     });
+        // });
+    }
+
+    handleFileChange(e){
+        let files = e.target.files[0];
+        this.setState({
+            file: files
+        })
     }
 
     render() {
@@ -38,8 +91,7 @@ class ImportMahasiswa extends Component {
                             <div className="col-lg-12 col-md-12">
                                 <div className="card my-5">
                                     <div className="card-body">
-                                        <h4 className="text-primary text-center">Formulir import data mahasiswa</h4>
-                                        <h6 className="text-center text-muted">Upload file mahasiswa pada formulir dibawah ini</h6>
+                                        <h6 className="text-muted">Upload file mahasiswa pada formulir dibawah ini</h6>
                                         <hr></hr>
 
                                         {/* Form perizinan*/}
@@ -50,6 +102,7 @@ class ImportMahasiswa extends Component {
                                                     <input 
                                                         className="form-control-file" 
                                                         type="file"
+                                                        onChange={this.handleFileChange}
                                                     />
                                                     <small className="text-muted">Format yang didukung: *.xls, *.xlsx</small>
                                                 </div>
