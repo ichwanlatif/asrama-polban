@@ -150,7 +150,7 @@ class FormIzinKembali extends Component {
 
                                             <div className="form-group row">
                                                 <label for="tanggal_pergi" className="col-md-3 col-form-label text-md-right">Mulai Izin</label>
-                                                <div className="col-md-3">
+                                                <div className="col-md-8">
                                                     <input 
                                                         type="date" 
                                                         className="form-control"
@@ -163,7 +163,7 @@ class FormIzinKembali extends Component {
 
                                             <div className="form-group row">
                                                 <label for="tanggal_pulang" className="col-md-3 col-form-label text-md-right">Mulai kembali</label>
-                                                <div className="col-md-3">
+                                                <div className="col-md-8">
                                                     <input 
                                                         type="date" 
                                                         className="form-control"
@@ -186,7 +186,7 @@ class FormIzinKembali extends Component {
                                                         placeholder="contoh: Sehat / Sakit"
                                                     />
                                                     <small className="text-muted">Jelaskan keluhan saudara, jika merasa sakit.</small>
-                                                    <span className="text-danger">*{this.state.errList.kondisi_kesehatan}</span>
+                                                    <br></br><span className="text-danger">*{this.state.errList.kondisi_kesehatan}</span>
                                                 </div>
                                             </div>
 
@@ -208,7 +208,7 @@ class FormIzinKembali extends Component {
                                                         </div>
                                                     </div>
                                                     <small className="text-muted">Dapat dilakukan sendiri atau di pos keamanan pintu masuk 1 Polban.</small>
-                                                    <span className="text-danger">*{this.state.errList.suhu_badan}</span>
+                                                    <br></br><span className="text-danger">*{this.state.errList.suhu_badan}</span>
                                                 </div>
                                             </div>
 
@@ -231,7 +231,7 @@ class FormIzinKembali extends Component {
                                             </div>
 
                                             <div className="form-group row my-4">
-                                                <div className="col-md-11">
+                                                <div className="col-md-12">
                                                     <label className="col-form-label text-justify"><span className="text-danger">*</span> Saya akan menanggung segala bentuk kerugian yang timbul dan tidak akan menuntut pihak Manajemen Polban. Demikian keterangan ini dibuat tanpa paksaan dan untuk dipergunakan sesuai dengan kepentingannya.</label>
                                                     <small className="text-muted">Silakan tunggu respon dari Kantor PD3. Saudara belum di ijinkan untuk memasuki Asrama sebelum ada surat ijin resmi dari Kantor PD3.</small>
                                                     <div class="custom-control custom-checkbox">

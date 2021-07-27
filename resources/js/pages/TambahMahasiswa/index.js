@@ -55,17 +55,7 @@ class TambahMahasiswa extends Component {
                                                 </div>
                                             </div>
                                             <div className="form-group row">
-                                                <label for="password" className="col-md-3 col-form-label text-md-right">Password</label>
-                                                <div className="col-md-8">
-                                                    <input 
-                                                        type="password" 
-                                                        className="form-control"
-                                                        placeholder="Masukan password"
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div className="form-group row">
-                                                <label for="name" className="col-md-3 col-form-label text-md-right">Nama</label>
+                                                <label for="name" className="col-md-3 col-form-label text-md-right">Nama lengkap</label>
                                                 <div className="col-md-8">
                                                     <input 
                                                         type="text" 
@@ -80,7 +70,7 @@ class TambahMahasiswa extends Component {
                                                     <input 
                                                         type="text" 
                                                         className="form-control"
-                                                        placeholder="Masukan NIM"
+                                                        placeholder="Masukan Nomor induk mahasiswa"
                                                     />
                                                 </div>
                                             </div>
