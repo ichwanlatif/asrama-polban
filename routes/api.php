@@ -40,6 +40,7 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::post('/mahasiswa/import', [UserController::class, 'importUser']);
     Route::get('/prodi', [MahasiswaController::class, 'getAllProdi']);
     Route::get('/kamar', [MahasiswaController::class, 'getAllKamar']);
+    Route::get('/mahasiswa/{id}', [MahasiswaController::class, 'getMahasiswaById']);
 
     //Presensi
     Route::post('/presensi/create', [PresensiController::class, 'store']);

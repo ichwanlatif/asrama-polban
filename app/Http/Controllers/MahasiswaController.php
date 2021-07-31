@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mahasiswa;
+use App\Models\User;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -11,6 +12,30 @@ class MahasiswaController extends Controller
 {
     public function getMahasiswaByUserId($id){
         $mahasiswa = Mahasiswa::where([['id_users', '=', $id], ['status_keaktifan', '=', 1]])->first();
+        
+        if($mahasiswa){
+            return response()->json([
+                "status" => 'success',
+                "message" => "Success get mahasiswa",
+                "data" => $mahasiswa
+            ]);
+        }
+        else{
+            return response()->json([
+                "status" => 'error',
+                "message" => "Mahasiswa Not Found"
+            ]);
+        }
+        
+    }
+
+    public function getMahasiswaById($id){
+        $mahasiswa = DB::table('mahasiswa')
+        ->where([['id_mhs', '=', $id]])
+        ->join('users', 'mahasiswa.id_users', '=', 'users.id_users')
+        ->join('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
+        ->join('prodi', 'mahasiswa.id_prodi', '=', 'prodi.id_prodi')
+        ->first();
         
         if($mahasiswa){
             return response()->json([
@@ -91,7 +116,7 @@ class MahasiswaController extends Controller
     }
 
     public function store(Request $request){
-        $validasi = \Validasi::make($request->all(), [
+        $validasi = \Validator::make($request->all(), [
             'email' => 'required|email|ends_with:polban.ac.id',
             'password' => 'required|alpha_num|min:8',
             'nama_mhs' => 'required|max:50', 
@@ -119,12 +144,14 @@ class MahasiswaController extends Controller
 
         $insert = Mahasiswa::create([
             'id_users' => $user->id_users,
+            'id_prodi' => $request->id_prodi,
+            'id_kamar' => $request->id_kamar,
             'nama_mhs' => $request->nama_mhs, 
             'nim' => $request->nim,
             'alamat' => $request->alamat,
-            'no_hp_mhs' => $request->no_hp_mhs,
+            'no_hp_mhs' => '0' + $request->no_hp_mhs,
             'nama_ortu' => $request->nama_ortu,
-            'no_hp_ortu' => $request->no_hp_ortu,
+            'no_hp_ortu' => '0' + $request->no_hp_ortu,
             'jenis_kelamin' => $request->jenis_kelamin,
             'status_keaktifan' => $request->status_keaktifan,
             'tanggal_lahir' => $request->tanggal_lahir,
@@ -149,22 +176,41 @@ class MahasiswaController extends Controller
     }
 
     public function update(Request $request){
-        $validasi = \Validasi::make($request->all(), [
-            'email' => 'required|email|ends_with:polban.ac.id',
-            'password' => 'required|alpha_num|min:8',
-            'nama_mhs' => 'required|max:50', 
-            'nim' => 'required|max:10',
-            'alamat' => 'required|max:125',
-            'no_hp_mhs' => 'required|max:13',
-            'nama_ortu' => 'required|max:50',
-            'no_hp_ortu' => 'required|max:13',
-            'jenis_kelamin' => 'required',
-            'status_keaktifan' => 'required',
-            'tanggal_lahir' => 'required',
-            'agama' => 'required|max:10',
-            'keterangan_asal' => 'required|max:10',
-            'role_mhs' => 'required'
-        ]);
+        if($request->password == "" || $request->password == null){
+            $validasi = \Validator::make($request->all(), [
+                'email' => 'required|email|ends_with:polban.ac.id',
+                'nama_mhs' => 'required|max:50', 
+                'nim' => 'required|max:10',
+                'alamat' => 'required|max:125',
+                'no_hp_mhs' => 'required|max:13',
+                'nama_ortu' => 'required|max:50',
+                'no_hp_ortu' => 'required|max:13',
+                'jenis_kelamin' => 'required',
+                'status_keaktifan' => 'required',
+                'tanggal_lahir' => 'required',
+                'agama' => 'required|max:10',
+                'keterangan_asal' => 'required|max:10',
+                'role_mhs' => 'required'
+            ]);
+        }
+        else{
+            $validasi = \Validator::make($request->all(), [
+                'email' => 'required|email|ends_with:polban.ac.id',
+                'password' => 'required|alpha_num|min:8',
+                'nama_mhs' => 'required|max:50', 
+                'nim' => 'required|max:10',
+                'alamat' => 'required|max:125',
+                'no_hp_mhs' => 'required|max:13',
+                'nama_ortu' => 'required|max:50',
+                'no_hp_ortu' => 'required|max:13',
+                'jenis_kelamin' => 'required',
+                'status_keaktifan' => 'required',
+                'tanggal_lahir' => 'required',
+                'agama' => 'required|max:10',
+                'keterangan_asal' => 'required|max:10',
+                'role_mhs' => 'required'
+            ]);
+        }
 
         if($validasi->fails()){
             return response()->json(["status" => "error", "message" => $validasi->errors()]);
@@ -174,20 +220,31 @@ class MahasiswaController extends Controller
             ['id_mhs', '=', $request->id_mhs],
         ]);
 
-        $user = User::where('id_users', $mahasiswa->id_users)
-        ->update([
-            'email' => $request->email,
-            'password' => \Hash::make($request->password),
-            'role' => 1,
-        ]);
+        if($request->password == "" || $request->password == null){
+            $user = User::where('id_users', '=',$request->id_users)
+            ->update([
+                'email' => $request->email,
+                'role' => 1,
+            ]);
+        }
+        else{
+            $user = User::where('id_users', $request->id_users)
+            ->update([
+                'email' => $request->email,
+                'password' => \Hash::make($request->password),
+                'role' => 1,
+            ]);
+        }
 
         $update = $mahasiswa->update([
+            'id_prodi' => $request->id_prodi,
+            'id_kamar' => $request->id_kamar,
             'nama_mhs' => $request->nama_mhs, 
             'nim' => $request->nim,
             'alamat' => $request->alamat,
-            'no_hp_mhs' => $request->no_hp_mhs,
+            'no_hp_mhs' => '0' + $request->no_hp_mhs,
             'nama_ortu' => $request->nama_ortu,
-            'no_hp_ortu' => $request->no_hp_ortu,
+            'no_hp_ortu' => '0' + $request->no_hp_ortu,
             'jenis_kelamin' => $request->jenis_kelamin,
             'status_keaktifan' => $request->status_keaktifan,
             'tanggal_lahir' => $request->tanggal_lahir,

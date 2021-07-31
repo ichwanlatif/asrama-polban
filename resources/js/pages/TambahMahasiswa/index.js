@@ -16,7 +16,49 @@ class TambahMahasiswa extends Component {
             role: "",
             dataProdi: [],
             dataKamar: [],
+            errList: [],
         };
+        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleFieldChange = this.handleFieldChange.bind(this);
+    }
+
+    handleFieldChange(e){
+        let name = e.target.name;
+        let value = e.target.value;
+        let data = {};
+        data[name] = value;
+        this.setState(data);
+    }
+
+    async handleSubmit(e){
+        e.preventDefault();
+        await api().post('api/mahasiswa/store', ({
+            email: this.state.email,
+            password: this.state.password,
+            id_prodi: this.state.id_prodi,
+            id_kamar: this.state.id_kamar,
+            nama_mhs: this.state.nama_mhs,
+            nim: this.state.nim,
+            alamat: this.state.alamat,
+            no_hp_mhs: this.state.no_hp_mhs,
+            nama_ortu: this.state.nama_ortu,
+            no_hp_ortu: this.state.no_hp_ortu,
+            jenis_kelamin: this.state.jenis_kelamin,
+            status_keaktifan: 1,
+            tanggal_lahir: this.state.tanggal_lahir,
+            agama: this.state.agama,
+            keterangan_asal: this.state.keterangan_asal,
+            role_mhs: this.state.role_mhs
+        })).then(response => {
+            if(response.data.status === 'success'){
+                window.location.assign('/#/data-mahasiswa')
+            }
+            else{
+                this.setState({
+                    errList: response.data.message
+                })
+            }
+        })
     }
 
     componentDidMount(){
@@ -78,10 +120,28 @@ class TambahMahasiswa extends Component {
                                                 <label for="email" className="col-md-3 col-form-label text-md-right">Email</label>
                                                 <div className="col-md-8">
                                                     <input 
-                                                        type="email" 
+                                                        type="email"
+                                                        name="email"
+                                                        onChange={this.handleFieldChange} 
                                                         className="form-control"
                                                         placeholder="Masukan email polban"
                                                     />
+                                                    <br></br>
+                                                    <span className="text-danger">*{this.state.errList.email}</span>
+                                                </div>
+                                            </div>
+                                            <div className="form-group row">
+                                                <label for="password" className="col-md-3 col-form-label text-md-right">Password</label>
+                                                <div className="col-md-8">
+                                                    <input 
+                                                        type="password"
+                                                        name="password"
+                                                        onChange={this.handleFieldChange} 
+                                                        className="form-control"
+                                                        placeholder="Masukan password"
+                                                    />
+                                                    <br></br>
+                                                    <span className="text-danger">*{this.state.errList.email}</span>
                                                 </div>
                                             </div>
                                             <div className="form-group row">
@@ -89,42 +149,52 @@ class TambahMahasiswa extends Component {
                                                 <div className="col-md-8">
                                                     <input 
                                                         type="text" 
+                                                        name="nama_mhs"
+                                                        onChange={this.handleFieldChange}
                                                         className="form-control"
                                                         placeholder="Masukan nama mahasiswa"
                                                     />
+                                                    <br></br>
+                                                    <span className="text-danger">*{this.state.errList.nama_mhs}</span>
                                                 </div>
                                             </div>
                                             <div className="form-group row">
                                                 <label for="alamat" className="col-md-3 col-form-label text-md-right">Alamat</label>
                                                 <div className="col-md-8">
                                                     <input 
-                                                        type="text" 
+                                                        type="text"
+                                                        name="alamat"
+                                                        onChange={this.handleFieldChange} 
                                                         className="form-control"
                                                         placeholder="Masukan alamat saat ini"
                                                     />
+                                                    <br></br>
+                                                    <span className="text-danger">*{this.state.errList.alamat}</span>
                                                 </div>
                                             </div>
                                             <div className="form-group row">
                                                 <label for="jenis_kelamin" className="col-md-3 col-form-label text-md-right">Jenis kelamin</label>
                                                 <div className="col-md-8">
                                                     <div className="form-check form-check-inline">
-                                                        <input className="form-check-input" type="radio" name="status" id="laki-laki" value="laki-laki"/>
+                                                        <input className="form-check-input" type="radio" name="jenis_kelamin" id="laki-laki" value="1" onChange={this.handleFieldChange} />
                                                         <label className="form-check-label" for="laki-laki">
                                                             Laki-laki
                                                         </label>
                                                     </div>
                                                     <div className="form-check form-check-inline">
-                                                        <input className="form-check-input" type="radio" name="status" id="perempuan" value="perempuan"/>
+                                                        <input className="form-check-input" type="radio" name="jenis_kelamin" id="perempuan" value="0" onChange={this.handleFieldChange}/>
                                                         <label className="form-check-label" for="perempuan">
                                                             Perempuan
                                                         </label>
                                                     </div>
                                                 </div>
+                                                <br></br>
+                                                    <span className="text-danger">*{this.state.errList.jenis_kelamin}</span>
                                             </div>
                                             <div className="form-group row">
                                                 <label for="agama" className="col-md-3 col-form-label text-md-right">Agama</label>
                                                 <div className="col-md-8">
-                                                    <select className="custom-select mr-sm-2" id="agama" name="agama">
+                                                    <select className="custom-select mr-sm-2" id="agama" name="agama" onChange={this.handleFieldChange}>
                                                         <option value="Islam">Islam</option>
                                                         <option value="Kristen">Kristen</option>
                                                         <option value="Katolik">Katolik</option>
@@ -133,14 +203,20 @@ class TambahMahasiswa extends Component {
                                                         <option value="Konghucu">Konghucu</option>
                                                     </select>
                                                 </div>
+                                                <br></br>
+                                                <span className="text-danger">*{this.state.errList.agama}</span>
                                             </div>
                                             <div className="form-group row">
                                                 <label for="tanggal_lahir" className="col-md-3 col-form-label text-md-right">Tanggal lahir</label>
                                                 <div className="col-md-8">
                                                     <input 
-                                                        type="date" 
+                                                        type="date"
+                                                        name="tanggal_lahir"
+                                                        onChange={this.handleFieldChange} 
                                                         className="form-control"
                                                     />
+                                                    <br></br>
+                                                    <span className="text-danger">*{this.state.errList.tanggal_lahir}</span>
                                                 </div>
                                             </div>
                                             <div className="form-group row">
@@ -152,10 +228,14 @@ class TambahMahasiswa extends Component {
                                                         </div>
                                                         <input 
                                                             type="number" 
+                                                            name="no_hp_mhs"
+                                                            onChange={this.handleFieldChange}
                                                             className="form-control"
                                                             min="1"
                                                             placeholder="8xx.."
                                                         />
+                                                        <br></br>
+                                                    <span className="text-danger">*{this.state.errList.no_hp_mhs}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -165,8 +245,12 @@ class TambahMahasiswa extends Component {
                                                     <input 
                                                         type="text" 
                                                         className="form-control"
+                                                        name="nama_ortu"
+                                                        onChange={this.handleFieldChange}
                                                         placeholder="Masukan nama orangtua / wali mahasiswa"
                                                     />
+                                                    <br></br>
+                                                    <span className="text-danger">*{this.state.errList.nama_ortu}</span>
                                                 </div>
                                             </div>
                                             <div className="form-group row">
@@ -178,10 +262,14 @@ class TambahMahasiswa extends Component {
                                                         </div>
                                                         <input 
                                                             type="number" 
+                                                            name="no_hp_ortu"
+                                                            onChange={this.handleFieldChange}
                                                             className="form-control"
                                                             min="1"
                                                             placeholder="8xx.."
                                                         />
+                                                        <br></br>
+                                                    <span className="text-danger">*{this.state.errList.no_hp_ortu}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -189,16 +277,20 @@ class TambahMahasiswa extends Component {
                                                 <label for="nim" className="col-md-3 col-form-label text-md-right">NIM</label>
                                                 <div className="col-md-8">
                                                     <input 
-                                                        type="text" 
+                                                        type="text"
+                                                        name="nim"
+                                                        onChange={this.handleFieldChange} 
                                                         className="form-control"
                                                         placeholder="Masukan Nomor induk mahasiswa"
                                                     />
+                                                    <br></br>
+                                                    <span className="text-danger">*{this.state.errList.nim}</span>
                                                 </div>
                                             </div>
                                             <div className="form-group row">
                                                 <label for="id_prodi" className="col-md-3 col-form-label text-md-right">Jurusan / Program studi</label>
                                                 <div className="col-md-8">
-                                                    <select className="custom-select mr-sm-2" id="id_prodi" name="id_prodi">
+                                                    <select className="custom-select mr-sm-2" id="id_prodi" name="id_prodi" onChange={this.handleFieldChange}>
                                                         {dataProdi.map(prodi => {
                                                         const {
                                                             id_prodi,
@@ -210,21 +302,25 @@ class TambahMahasiswa extends Component {
                                                         )
                                                     })}
                                                     </select>
+                                                    <br></br>
+                                                    <span className="text-danger">*{this.state.errList.id_prodi}</span>
                                                 </div>
                                             </div>
                                             <div className="form-group row">
                                                 <label for="keterangan_asal" className="col-md-3 col-form-label text-md-right">keterangan asal</label>
                                                 <div className="col-md-8">
-                                                    <select className="custom-select mr-sm-2" id="keterangan_asal" name="keterangan_asal">
+                                                    <select className="custom-select mr-sm-2" id="keterangan_asal" name="keterangan_asal" onChange={this.handleFieldChange}>
                                                         <option value="ADIK">ADIK</option>
                                                         <option value="Bidikmisi">Bidikmisi</option>
                                                     </select>
+                                                    <br></br>
+                                                    <span className="text-danger">*{this.state.errList.keterangan_asal}</span>
                                                 </div>
                                             </div>
                                             <div className="form-group row">
                                                 <label for="id_kamar" className="col-md-3 col-form-label text-md-right">Kamar asrama</label>
                                                 <div className="col-md-8">
-                                                    <select className="custom-select mr-sm-2" id="id_kamar" name="id_kamar">
+                                                    <select className="custom-select mr-sm-2" id="id_kamar" name="id_kamar" onChange={this.handleFieldChange}>
                                                         {dataKamar.map(kamar => {
                                                         const {
                                                             id_kamar,
@@ -236,21 +332,25 @@ class TambahMahasiswa extends Component {
                                                         )
                                                     })}
                                                     </select>
+                                                    <br></br>
+                                                    <span className="text-danger">*{this.state.errList.id_kamar}</span>
                                                 </div>
                                             </div>
                                             <div className="form-group row">
                                                 <label for="role_mhs" className="col-md-3 col-form-label text-md-right">Jabatan</label>
                                                 <div className="col-md-8">
-                                                    <select className="custom-select mr-sm-2" id="role_mhs" name="role_mhs">
+                                                    <select className="custom-select mr-sm-2" id="role_mhs" name="role_mhs" onChange={this.handleFieldChange}>
                                                         <option value="Mahasiswa">Mahasiswa</option>
                                                         <option value="Pengurus">Pengurus</option>
                                                     </select>
+                                                    <br></br>
+                                                    <span className="text-danger">*{this.state.errList.role_mhs}</span>
                                                 </div>
                                             </div>
                                             
                                             <div className="form-group row">
                                                 <div className="col-md-8 offset-md-3 mb-2">
-                                                    <button type="submit" className="btn btn-success">
+                                                    <button type="submit" className="btn btn-success" onClick={this.handleSubmit}>
                                                         Submit
                                                     </button>
                                                 </div>
