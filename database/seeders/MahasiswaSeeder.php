@@ -108,7 +108,7 @@ class MahasiswaSeeder extends Seeder
                 'no_hp_mhs' => "0812345678",
                 'nama_ortu' => $faker->name,
                 'no_hp_ortu' => "0812345678",
-                'jenis_kelamin' => $faker->numberBetween(1,2),
+                'jenis_kelamin' => $faker->numberBetween(0,1),
                 'status_keaktifan' => 1,
                 'tanggal_lahir' => $faker->date($format = 'Y-m-d', $max = 'now'),
                 'agama' => "Islam",

@@ -223,16 +223,13 @@ class TambahMahasiswa extends Component {
                                                 <label for="no_hp_mhs" className="col-md-3 col-form-label text-md-right">Nomor hp</label>
                                                 <div className="col-md-8">
                                                     <div className="input-group">
-                                                        <div className="input-group-prepend">
-                                                            <div className="input-group-text">+62 </div>
-                                                        </div>
                                                         <input 
-                                                            type="number" 
+                                                            type="text" 
                                                             name="no_hp_mhs"
                                                             onChange={this.handleFieldChange}
                                                             className="form-control"
                                                             min="1"
-                                                            placeholder="8xx.."
+                                                            placeholder="08xx.."
                                                         />
                                                         <br></br>
                                                     <span className="text-danger">*{this.state.errList.no_hp_mhs}</span>
@@ -257,16 +254,13 @@ class TambahMahasiswa extends Component {
                                                 <label for="no_hp_ortu" className="col-md-3 col-form-label text-md-right">Nomor hp orangtua / wali</label>
                                                 <div className="col-md-8">
                                                     <div className="input-group">
-                                                        <div className="input-group-prepend">
-                                                            <div className="input-group-text">+62 </div>
-                                                        </div>
                                                         <input 
-                                                            type="number" 
+                                                            type="text" 
                                                             name="no_hp_ortu"
                                                             onChange={this.handleFieldChange}
                                                             className="form-control"
                                                             min="1"
-                                                            placeholder="8xx.."
+                                                            placeholder="08xx.."
                                                         />
                                                         <br></br>
                                                     <span className="text-danger">*{this.state.errList.no_hp_ortu}</span>
@@ -307,7 +301,7 @@ class TambahMahasiswa extends Component {
                                                 </div>
                                             </div>
                                             <div className="form-group row">
-                                                <label for="keterangan_asal" className="col-md-3 col-form-label text-md-right">keterangan asal</label>
+                                                <label for="keterangan_asal" className="col-md-3 col-form-label text-md-right">Keterangan asal</label>
                                                 <div className="col-md-8">
                                                     <select className="custom-select mr-sm-2" id="keterangan_asal" name="keterangan_asal" onChange={this.handleFieldChange}>
                                                         <option value="ADIK">ADIK</option>
