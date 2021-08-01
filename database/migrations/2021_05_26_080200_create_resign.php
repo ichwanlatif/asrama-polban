@@ -22,7 +22,7 @@ class CreateResign extends Migration
             $table->string('kondisi_kesehatan', 50);
             $table->string('jenis_kendaraan', 10);
             $table->string('keterangan_stnk')->nullable();
-            $table->integer('status_resign');
+            $table->tinyInteger('status_resign');
             $table->timestamps();
 
             $table->foreign('id_mhs')->references('id_mhs')->on('Mahasiswa')->onDelete('cascade');

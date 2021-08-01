@@ -16,7 +16,7 @@ class CreatePresensi extends Migration
         Schema::create('Presensi', function (Blueprint $table) {
             $table->bigIncrements('id_presensi');
             $table->unsignedBigInteger('id_mhs');
-            $table->integer('status_presensi');
+            $table->tinyInteger('status_presensi');
             $table->double('latitude');
             $table->double('longitude');
             $table->float('suhu_badan', 8, 2);

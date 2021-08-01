@@ -24,7 +24,7 @@ class CreatePerizinan extends Migration
             $table->string('keterangan_kembali', 125)->nullable();
             $table->string('surat_pendukung')->nullable();
             $table->string('catatan_approval', 125)->nullable();
-            $table->integer('status_izin');
+            $table->tinyInteger('status_izin');
             $table->float('suhu_badan', 8, 2);
             $table->string('kondisi_kesehatan', 50);
             $table->string('jenis_kendaraan', 10);

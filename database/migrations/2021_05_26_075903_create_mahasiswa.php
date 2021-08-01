@@ -24,8 +24,8 @@ class CreateMahasiswa extends Migration
             $table->string('no_hp_mhs', 13);
             $table->string('nama_ortu', 50);
             $table->string('no_hp_ortu', 13);
-            $table->integer('jenis_kelamin');
-            $table->integer('status_keaktifan')->default(1);
+            $table->tinyInteger('jenis_kelamin');
+            $table->tinyInteger('status_keaktifan')->default(1);
             $table->date('tanggal_lahir');
             $table->string('agama', 10);
             $table->string('keterangan_asal', 10);
