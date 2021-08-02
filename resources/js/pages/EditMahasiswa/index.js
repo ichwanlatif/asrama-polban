@@ -50,7 +50,7 @@ class EditMahasiswa extends Component {
             nama_ortu: this.state.nama_ortu,
             no_hp_ortu: this.state.no_hp_ortu,
             jenis_kelamin: this.state.jenis_kelamin,
-            status_keaktifan: 1,
+            status_keaktifan: this.state.status_keaktifan,
             tanggal_lahir: this.state.tanggal_lahir,
             agama: this.state.agama,
             keterangan_asal: this.state.keterangan_asal,
