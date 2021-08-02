@@ -55,4 +55,16 @@ class AuthController extends Controller
         ];
         return response()->json($respon);
     }
+
+    public function forgotPassword(){
+        $validate = \Validator::make($request->all(), [
+            'email' => 'required|email|ends_with:polban.ac.id',
+        ]);
+
+        if($validate->fails()) {
+            return response()->json(["status" => "failed", "message" => $validate->errors()]);
+        } else {
+            Password::sendResetLink($request->email);
+        }
+    }
 }

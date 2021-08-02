@@ -110,7 +110,7 @@ class EditMahasiswa extends Component {
                     nama_ortu: responseMahasiswa.data.data.nama_ortu,
                     no_hp_ortu: responseMahasiswa.data.data.no_hp_ortu,
                     jenis_kelamin: responseMahasiswa.data.data.jenis_kelamin,
-                    status_keaktifan: 1,
+                    status_keaktifan: responseMahasiswa.data.data.status_keaktifan,
                     tanggal_lahir: responseMahasiswa.data.data.tanggal_lahir,
                     agama: responseMahasiswa.data.data.agama,
                     keterangan_asal: responseMahasiswa.data.data.keterangan_asal,
@@ -413,13 +413,13 @@ class EditMahasiswa extends Component {
                                                 <label for="status_keaktifan" className="col-md-3 col-form-label text-md-right">Status keaktifan</label>
                                                 <div className="col-md-8">
                                                     <div className="form-check form-check-inline">
-                                                        <input className="form-check-input" type="radio" name="status_keaktifan" id="aktif" value="1"/>
+                                                        <input className="form-check-input" type="radio" name="status_keaktifan" id="aktif" value="1" onChange={this.handleFieldChange} />
                                                         <label className="form-check-label" for="aktif">
                                                             Aktif
                                                         </label>
                                                     </div>
                                                     <div className="form-check form-check-inline">
-                                                        <input className="form-check-input" type="radio" name="status_keaktifan" id="keluar" value="0"/>
+                                                        <input className="form-check-input" type="radio" name="status_keaktifan" id="keluar" value="0" onChange={this.handleFieldChange} />
                                                         <label className="form-check-label" for="keluar">
                                                             Keluar
                                                         </label>
