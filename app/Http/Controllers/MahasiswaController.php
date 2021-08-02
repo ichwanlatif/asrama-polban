@@ -34,7 +34,9 @@ class MahasiswaController extends Controller
         ->where([['id_mhs', '=', $id]])
         ->join('users', 'mahasiswa.id_users', '=', 'users.id_users')
         ->join('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
+        ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
         ->join('prodi', 'mahasiswa.id_prodi', '=', 'prodi.id_prodi')
+        ->join('jurusan', 'prodi.id_jurusan', '=', 'jurusan.id_jurusan')
         ->first();
         
         if($mahasiswa){

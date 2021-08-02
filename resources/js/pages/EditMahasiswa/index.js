@@ -98,8 +98,6 @@ class EditMahasiswa extends Component {
         const {id} = this.props.match.params
         api().get('api/mahasiswa/' + id).then(responseMahasiswa =>{
             if(responseMahasiswa.data.status === 'success'){
-                const no_hp_mhs = responseMahasiswa.data.data.no_hp_mhs;
-                const no_hp_ortu = responseMahasiswa.data.data.no_hp_ortu;
                 this.setState({
                     email: responseMahasiswa.data.data.email,
                     id_prodi: responseMahasiswa.data.data.id_prodi,
@@ -108,9 +106,9 @@ class EditMahasiswa extends Component {
                     nama_mhs: responseMahasiswa.data.data.nama_mhs,
                     nim: responseMahasiswa.data.data.nim,
                     alamat: responseMahasiswa.data.data.alamat,
-                    no_hp_mhs: no_hp_mhs.substring(1),
+                    no_hp_mhs: responseMahasiswa.data.data.no_hp_mhs,
                     nama_ortu: responseMahasiswa.data.data.nama_ortu,
-                    no_hp_ortu: no_hp_ortu.substring(1),
+                    no_hp_ortu: responseMahasiswa.data.data.no_hp_ortu,
                     jenis_kelamin: responseMahasiswa.data.data.jenis_kelamin,
                     status_keaktifan: 1,
                     tanggal_lahir: responseMahasiswa.data.data.tanggal_lahir,
@@ -275,17 +273,14 @@ class EditMahasiswa extends Component {
                                                 <label for="no_hp_mhs" className="col-md-3 col-form-label text-md-right">Nomor hp</label>
                                                 <div className="col-md-8">
                                                     <div className="input-group">
-                                                        <div className="input-group-prepend">
-                                                            <div className="input-group-text">+62 </div>
-                                                        </div>
                                                         <input 
-                                                            type="number" 
+                                                            type="text" 
                                                             name="no_hp_mhs"
                                                             onChange={this.handleFieldChange}
                                                             value={this.state.no_hp_mhs}
                                                             className="form-control"
                                                             min="1"
-                                                            placeholder="8xx.."
+                                                            placeholder="08xx.."
                                                         />
                                                         <br></br>
                                                     <span className="text-danger">*{this.state.errList.no_hp_mhs}</span>
@@ -311,17 +306,14 @@ class EditMahasiswa extends Component {
                                                 <label for="no_hp_ortu" className="col-md-3 col-form-label text-md-right">Nomor hp orangtua / wali</label>
                                                 <div className="col-md-8">
                                                     <div className="input-group">
-                                                        <div className="input-group-prepend">
-                                                            <div className="input-group-text">+62 </div>
-                                                        </div>
                                                         <input 
-                                                            type="number" 
+                                                            type="text" 
                                                             name="no_hp_ortu"
                                                             onChange={this.handleFieldChange}
                                                             value={this.state.no_hp_ortu}
                                                             className="form-control"
                                                             min="1"
-                                                            placeholder="8xx.."
+                                                            placeholder="08xx.."
                                                         />
                                                         <br></br>
                                                     <span className="text-danger">*{this.state.errList.no_hp_ortu}</span>
@@ -370,7 +362,7 @@ class EditMahasiswa extends Component {
                                                 </div>
                                             </div>
                                             <div className="form-group row">
-                                                <label for="keterangan_asal" className="col-md-3 col-form-label text-md-right">keterangan asal</label>
+                                                <label for="keterangan_asal" className="col-md-3 col-form-label text-md-right">Keterangan asal</label>
                                                 <div className="col-md-8">
                                                     <select className="custom-select mr-sm-2" id="keterangan_asal" name="keterangan_asal" onChange={this.handleFieldChange}>
                                                         <option value="ADIK">ADIK</option>
