@@ -244,21 +244,11 @@ class PerizinanController extends Controller
 
     public function getAllPengajuanPerizinan($role){
         $perizinan = false;
-        if($role == 2){
-            $perizinan = DB::table('perizinan')
-            ->where('status_izin', '=', 0)
+        $perizinan = DB::table('perizinan')
+            ->whereBetween('status_izin', '=', [0, 4])
             ->join('mahasiswa', 'perizinan.id_mhs', '=', 'mahasiswa.id_mhs')
             ->select('perizinan.*', 'mahasiswa.nama_mhs')
             ->get();
-        }
-        else if($role == 3){
-            $perizinan = DB::table('perizinan')
-            ->where('status_izin', '=', 0)
-            ->orWhere('status_izin', '=', 1)
-            ->join('mahasiswa', 'perizinan.id_mhs', '=', 'mahasiswa.id_mhs')
-            ->select('perizinan.*', 'mahasiswa.nama_mhs')
-            ->get();
-        }
         
         if($perizinan){
             return response()->json([
@@ -278,21 +268,11 @@ class PerizinanController extends Controller
     public function getAllPengajuanPerizinanKembali($role){
         $perizinan = "";
         
-        if($role == 2){
-            $perizinan = DB::table('perizinan')
-            ->where('status_izin', '=', 5)
+        $perizinan = DB::table('perizinan')
+            ->whereBetween('status_izin', '=', [5, 10])
             ->join('mahasiswa', 'perizinan.id_mhs', '=', 'mahasiswa.id_mhs')
             ->select('perizinan.*', 'mahasiswa.nama_mhs')
             ->get();
-        }
-        else if($role == 3){
-            $perizinan = DB::table('perizinan')
-            ->where('status_izin', '=', 5)
-            ->orWhere('status_izin', '=', 6)
-            ->join('mahasiswa', 'perizinan.id_mhs', '=', 'mahasiswa.id_mhs')
-            ->select('perizinan.*', 'mahasiswa.nama_mhs')
-            ->get();
-        }
         
         if($perizinan){
             return response()->json([

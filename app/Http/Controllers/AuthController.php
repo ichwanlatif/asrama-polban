@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Auth\Events\PasswordReset;
+
 use App\Models\User;
 
 class AuthController extends Controller
@@ -56,15 +59,55 @@ class AuthController extends Controller
         return response()->json($respon);
     }
 
-    public function forgotPassword(){
-        $validate = \Validator::make($request->all(), [
+    public function forgotPassword(Request $request){
+        $request->validate([
             'email' => 'required|email|ends_with:polban.ac.id',
         ]);
 
-        if($validate->fails()) {
-            return response()->json(["status" => "failed", "message" => $validate->errors()]);
-        } else {
-            Password::sendResetLink($request->email);
+        $status = Password::sendResetLink(
+            $request->only('email')
+        );
+
+        if($status == Password::RESET_LINK_SENT){
+            return [
+                'status' => __($status)
+            ];
         }
+
+        throw ValidationException::withMessage([
+            'email' => [trans($status)],
+        ]);
+    }
+
+    public function resetPassword(Request $request){
+        $request->validate([
+            'token' => 'required',
+            'email' => 'required|email|ends_with:polban.ac.id',
+            'password' => 'required|alpha_num|min:6'
+        ]);
+
+        $status = Password::reset(
+            $request->only('email', 'password', 'password_confirmation', 'token'),
+            function ($user) use ($request){
+                $user->forceFill([
+                    'password' => \Hash::make($request->password),
+                    'remember_token' => Str::random(60),
+                ])->save();
+
+                event(new PasswordReset($user));
+            }
+        );
+
+        if($status == Password::PASSWORD_RESET){
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Password reset successfully'
+            ]);
+        }
+
+        return response()->json([
+            'status' => 'error',
+            'message' => __($status)
+        ]);
     }
 }
