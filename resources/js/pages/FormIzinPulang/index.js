@@ -52,7 +52,7 @@ class FormIzinPulang extends Component {
         e.preventDefault()
 
         if(document.getElementById('aggrement').checked == false){
-            alert('Klik centang pada box');
+            alert('Klik centang pada kotak');
 
         }
         else{

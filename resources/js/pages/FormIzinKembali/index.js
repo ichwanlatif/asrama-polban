@@ -67,7 +67,7 @@ class FormIzinKembali extends Component {
         console.log(this.state)
 
         if(document.getElementById('aggrement').checked == false){
-            alert('Klik centang pada box')
+            alert('Klik centang pada kotak')
         }
         else{
             this.setState({ isLoading: true });

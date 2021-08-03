@@ -126,7 +126,6 @@ class TambahMahasiswa extends Component {
                                                         className="form-control"
                                                         placeholder="Masukan email polban"
                                                     />
-                                                    <br></br>
                                                     <span className="text-danger">*{this.state.errList.email}</span>
                                                 </div>
                                             </div>
@@ -140,7 +139,6 @@ class TambahMahasiswa extends Component {
                                                         className="form-control"
                                                         placeholder="Masukan password"
                                                     />
-                                                    <br></br>
                                                     <span className="text-danger">*{this.state.errList.email}</span>
                                                 </div>
                                             </div>
@@ -154,7 +152,6 @@ class TambahMahasiswa extends Component {
                                                         className="form-control"
                                                         placeholder="Masukan nama mahasiswa"
                                                     />
-                                                    <br></br>
                                                     <span className="text-danger">*{this.state.errList.nama_mhs}</span>
                                                 </div>
                                             </div>
@@ -168,7 +165,6 @@ class TambahMahasiswa extends Component {
                                                         className="form-control"
                                                         placeholder="Masukan alamat saat ini"
                                                     />
-                                                    <br></br>
                                                     <span className="text-danger">*{this.state.errList.alamat}</span>
                                                 </div>
                                             </div>
@@ -187,9 +183,9 @@ class TambahMahasiswa extends Component {
                                                             Perempuan
                                                         </label>
                                                     </div>
-                                                </div>
-                                                <br></br>
+                                                    <br></br>
                                                     <span className="text-danger">*{this.state.errList.jenis_kelamin}</span>
+                                                </div>
                                             </div>
                                             <div className="form-group row">
                                                 <label for="agama" className="col-md-3 col-form-label text-md-right">Agama</label>
@@ -202,9 +198,8 @@ class TambahMahasiswa extends Component {
                                                         <option value="Budha">Budha</option>
                                                         <option value="Konghucu">Konghucu</option>
                                                     </select>
+                                                    <span className="text-danger">*{this.state.errList.agama}</span>
                                                 </div>
-                                                <br></br>
-                                                <span className="text-danger">*{this.state.errList.agama}</span>
                                             </div>
                                             <div className="form-group row">
                                                 <label for="tanggal_lahir" className="col-md-3 col-form-label text-md-right">Tanggal lahir</label>
@@ -215,7 +210,6 @@ class TambahMahasiswa extends Component {
                                                         onChange={this.handleFieldChange} 
                                                         className="form-control"
                                                     />
-                                                    <br></br>
                                                     <span className="text-danger">*{this.state.errList.tanggal_lahir}</span>
                                                 </div>
                                             </div>
@@ -231,9 +225,8 @@ class TambahMahasiswa extends Component {
                                                             min="1"
                                                             placeholder="08xx.."
                                                         />
-                                                        <br></br>
-                                                    <span className="text-danger">*{this.state.errList.no_hp_mhs}</span>
                                                     </div>
+                                                    <span className="text-danger">*{this.state.errList.no_hp_mhs}</span>
                                                 </div>
                                             </div>
                                             <div className="form-group row">
@@ -246,7 +239,6 @@ class TambahMahasiswa extends Component {
                                                         onChange={this.handleFieldChange}
                                                         placeholder="Masukan nama orangtua / wali mahasiswa"
                                                     />
-                                                    <br></br>
                                                     <span className="text-danger">*{this.state.errList.nama_ortu}</span>
                                                 </div>
                                             </div>
@@ -262,9 +254,8 @@ class TambahMahasiswa extends Component {
                                                             min="1"
                                                             placeholder="08xx.."
                                                         />
-                                                        <br></br>
-                                                    <span className="text-danger">*{this.state.errList.no_hp_ortu}</span>
                                                     </div>
+                                                    <span className="text-danger">*{this.state.errList.no_hp_ortu}</span>
                                                 </div>
                                             </div>
                                             <div className="form-group row">
@@ -277,7 +268,6 @@ class TambahMahasiswa extends Component {
                                                         className="form-control"
                                                         placeholder="Masukan Nomor induk mahasiswa"
                                                     />
-                                                    <br></br>
                                                     <span className="text-danger">*{this.state.errList.nim}</span>
                                                 </div>
                                             </div>

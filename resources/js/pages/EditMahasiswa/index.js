@@ -153,7 +153,7 @@ class EditMahasiswa extends Component {
                         <Topbar />
                         {/* <!-- End of Topbar --> */}
                         <div className="container-fluid">
-                            <PageHeading title="Tambah Mahasiswa" />
+                            <PageHeading title="Sunting Mahasiswa" />
                             <div className="col-lg-12 col-md-12">
                                 <div className="card my-5">
                                     <div className="card-body">
@@ -173,7 +173,6 @@ class EditMahasiswa extends Component {
                                                         className="form-control"
                                                         placeholder="Masukan email polban"
                                                     />
-                                                    <br></br>
                                                     <span className="text-danger">*{this.state.errList.email}</span>
                                                 </div>
                                             </div>
@@ -187,7 +186,6 @@ class EditMahasiswa extends Component {
                                                         className="form-control"
                                                         placeholder="Masukan password"
                                                     />
-                                                    <br></br>
                                                     <span className="text-danger">*{this.state.errList.email}</span>
                                                 </div>
                                             </div>
@@ -202,7 +200,6 @@ class EditMahasiswa extends Component {
                                                         className="form-control"
                                                         placeholder="Masukan nama mahasiswa"
                                                     />
-                                                    <br></br>
                                                     <span className="text-danger">*{this.state.errList.nama_mhs}</span>
                                                 </div>
                                             </div>
@@ -217,7 +214,6 @@ class EditMahasiswa extends Component {
                                                         className="form-control"
                                                         placeholder="Masukan alamat saat ini"
                                                     />
-                                                    <br></br>
                                                     <span className="text-danger">*{this.state.errList.alamat}</span>
                                                 </div>
                                             </div>
@@ -236,9 +232,9 @@ class EditMahasiswa extends Component {
                                                             Perempuan
                                                         </label>
                                                     </div>
-                                                </div>
-                                                <br></br>
+                                                    <br></br>
                                                     <span className="text-danger">*{this.state.errList.jenis_kelamin}</span>
+                                                </div>
                                             </div>
                                             <div className="form-group row">
                                                 <label for="agama" className="col-md-3 col-form-label text-md-right">Agama</label>
@@ -251,9 +247,8 @@ class EditMahasiswa extends Component {
                                                         <option value="Budha">Budha</option>
                                                         <option value="Konghucu">Konghucu</option>
                                                     </select>
+                                                    <span className="text-danger">*{this.state.errList.agama}</span>
                                                 </div>
-                                                <br></br>
-                                                <span className="text-danger">*{this.state.errList.agama}</span>
                                             </div>
                                             <div className="form-group row">
                                                 <label for="tanggal_lahir" className="col-md-3 col-form-label text-md-right">Tanggal lahir</label>
@@ -265,7 +260,6 @@ class EditMahasiswa extends Component {
                                                         value={this.state.tanggal_lahir} 
                                                         className="form-control"
                                                     />
-                                                    <br></br>
                                                     <span className="text-danger">*{this.state.errList.tanggal_lahir}</span>
                                                 </div>
                                             </div>
@@ -282,9 +276,8 @@ class EditMahasiswa extends Component {
                                                             min="1"
                                                             placeholder="08xx.."
                                                         />
-                                                        <br></br>
-                                                    <span className="text-danger">*{this.state.errList.no_hp_mhs}</span>
                                                     </div>
+                                                    <span className="text-danger">*{this.state.errList.no_hp_mhs}</span>
                                                 </div>
                                             </div>
                                             <div className="form-group row">
@@ -298,7 +291,6 @@ class EditMahasiswa extends Component {
                                                         value={this.state.nama_ortu}
                                                         placeholder="Masukan nama orangtua / wali mahasiswa"
                                                     />
-                                                    <br></br>
                                                     <span className="text-danger">*{this.state.errList.nama_ortu}</span>
                                                 </div>
                                             </div>
@@ -315,9 +307,8 @@ class EditMahasiswa extends Component {
                                                             min="1"
                                                             placeholder="08xx.."
                                                         />
-                                                        <br></br>
-                                                    <span className="text-danger">*{this.state.errList.no_hp_ortu}</span>
                                                     </div>
+                                                    <span className="text-danger">*{this.state.errList.no_hp_ortu}</span>
                                                 </div>
                                             </div>
                                             <div className="form-group row">
@@ -331,7 +322,6 @@ class EditMahasiswa extends Component {
                                                         className="form-control"
                                                         placeholder="Masukan Nomor induk mahasiswa"
                                                     />
-                                                    <br></br>
                                                     <span className="text-danger">*{this.state.errList.nim}</span>
                                                 </div>
                                             </div>
