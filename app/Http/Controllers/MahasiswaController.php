@@ -284,12 +284,15 @@ class MahasiswaController extends Controller
         }
     }
 
-    public function delete($id){
-        $delete = Mahasiswa::where([
-            ['id_mhs', '=', $request->id_mhs],
-        ])
-        ->delete();
-
+    public function delete(Request $request){
+        $listMahasiswa = $request->listMhs;
+        // dd(count($listMahasiswa));
+        for($i=0; $i < count($listMahasiswa); $i++){
+            $delete = Mahasiswa::where([
+                ['id_mhs', '=', $listMahasiswa[$i]],
+            ])
+            ->delete();
+        }
         if($delete){
             return response()->json([
                 'status' => 'success',

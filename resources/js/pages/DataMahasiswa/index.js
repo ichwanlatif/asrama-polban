@@ -26,8 +26,10 @@ class DataMahasiswa extends Component {
             // search
             searchData: [],
             searchValue :"",
+            checkedBoxes: [],
         };
         this.handleSearchChange = this.handleSearchChange.bind(this);
+        this.handleDelete = this.handleDelete.bind(this)
     }
 
     componentDidMount(){
@@ -70,6 +72,38 @@ class DataMahasiswa extends Component {
         const currentData = data.slice(offset, offset + this.state.itemPerPage);
 
         this.setState({ currentData });
+    }
+
+    toggleCheckbox(e, item){		
+        if(e.target.checked) {
+            let arr = this.state.checkedBoxes;
+            arr.push(item.id_mhs);
+            
+            this.setState = { checkedBoxes: arr};
+        } else {			
+            let items = this.state.checkedBoxes.splice(this.state.checkedBoxes.indexOf(item.id_mhs), 1);
+            
+            this.setState = {
+                checkedBoxes: items
+            }
+        }		
+        console.log(this.state.checkedBoxes);
+    }
+
+    async handleDelete(e){
+        e.preventDefault();
+        console.log(this.state.checkedBoxes)
+        await api().post('api/mahasiswa/delete', ({
+            listMhs: this.state.checkedBoxes,
+        })).then(response => {
+            if(response.data.status == 'success'){
+                alert(response.data.message);
+                window.location.reload();
+            }
+            else{
+                alert(response.data.message);
+            }
+        })
     }
 
     render() {
@@ -124,12 +158,12 @@ class DataMahasiswa extends Component {
 
                                         <div className="d-flex justify-content-end">
                                             {/* Hapus mahasiswa */}
-                                            <Link to="#" className="btn btn-danger btn-icon-split mx-2 mb-2">
+                                            <button onClick={this.handleDelete} className="btn btn-danger btn-icon-split mx-2 mb-2">
                                                 <span className="icon text-white-50">
                                                     <i className="fas fa-trash-alt"></i>
                                                 </span>
-                                                <span className="text">Hapus mahasiswa(0)</span>
-                                            </Link>
+                                                <span className="text">Hapus mahasiswa({this.state.checkedBoxes.length})</span>
+                                            </button>
 
                                             {/* Tambah mahasiswa */}
                                             <Link to="/tambah-mahasiswa" className="btn btn-primary btn-icon-split mx-2 mb-2">
@@ -157,17 +191,7 @@ class DataMahasiswa extends Component {
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    {currentData.map(mahasiswa => {
-                                                        const {
-                                                            id_mhs,
-                                                            nama_mhs,
-                                                            nim,
-                                                            email,
-                                                            keterangan_asal,
-                                                            nama_gedung,
-                                                            role_mhs,
-                                                            status_keaktifan
-                                                        } = mahasiswa;
+                                                    {currentData.map(function(mahasiswa, index) {
                                                         let status;
                                                         if(mahasiswa.status_keaktifan == 1){
                                                             status = "Aktif"
@@ -177,8 +201,8 @@ class DataMahasiswa extends Component {
                                                         }
 
                                                         return (
-                                                            <tr>
-                                                                <td><input type="checkbox"></input></td>
+                                                            <tr key={index}>
+                                                                <td><input type="checkbox" value={mahasiswa.id_mhs} checked={this.state.checkedBoxes.find((p) => p.id_mhs === mahasiswa.id_mhs)} onChange={(e) => this.toggleCheckbox(e, mahasiswa)}></input></td>
                                                                 <td>{mahasiswa.nama_mhs}</td>
                                                                 <td>{mahasiswa.nim}</td>
                                                                 <td>{mahasiswa.email}</td>
@@ -195,8 +219,8 @@ class DataMahasiswa extends Component {
                                                                     </Link>
                                                                 </td>
                                                             </tr>
-                                                        )
-                                                    })}
+                                                        )}.bind(this))
+                                                    }
                                                 </tbody>
                                             </table>
                                         </div>
