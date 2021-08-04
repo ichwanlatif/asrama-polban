@@ -150,7 +150,7 @@ class Login extends Component {
                                     </form>
 
                                     <div className="text-center">
-                                        <Link className="small" to="reset-password">Lupa Password?</Link>
+                                        <Link className="small" to="forgot-password">Lupa Password?</Link>
                                     </div>
                                     
                                 </div>

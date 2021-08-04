@@ -168,7 +168,7 @@ class DetailMahasiswa extends Component {
                                                 <input 
                                                     type="text" 
                                                     className="form-control-plaintext"
-                                                    value={this.state.no_hp_mhs}
+                                                    value={"+62" + this.state.no_hp_mhs}
                                                 />
                                             </div>
                                         </div>
@@ -188,7 +188,7 @@ class DetailMahasiswa extends Component {
                                                 <input 
                                                     type="text" 
                                                     className="form-control-plaintext"
-                                                    value={this.state.no_hp_ortu}
+                                                    value={"+62" + this.state.no_hp_ortu}
                                                 />
                                             </div>
                                         </div>
