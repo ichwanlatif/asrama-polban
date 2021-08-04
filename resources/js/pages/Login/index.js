@@ -130,7 +130,7 @@ class Login extends Component {
                                                 onChange={this.handleFieldChange}
                                                 required
                                             />
-                                            <span className="text-danger">*{this.state.errList.email}</span>
+                                            <span className="text-danger">{this.state.errList.email}</span>
                                         </div>
                                         <div className="form-group">
                                             <input 
@@ -142,7 +142,7 @@ class Login extends Component {
                                                 onChange={this.handleFieldChange}
                                                 required
                                             />
-                                            <span className="text-danger">*{this.state.errList.password}</span>
+                                            <span className="text-danger">{this.state.errList.password}</span>
                                         </div>
                                         <button  onClick={this.handleSubmit} className="btn btn-primary btn-user btn-block" disabled={this.state.isLoading}>
                                             {this.state.isLoading ? <i className="fas fa-spinner fa-pulse"></i> : <i className="fas fa-sign-in-alt"></i>} Masuk

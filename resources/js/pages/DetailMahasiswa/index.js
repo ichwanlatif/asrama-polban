@@ -234,7 +234,7 @@ class DetailMahasiswa extends Component {
                                         </div>
                                         <div className="form-group row">
                                             <div className="col-md-8 offset-md-3 mb-2">
-                                                <Link to={"/edit-mahasiswa/"+ this.state.id_mhs} className="btn btn-success">Sunting</Link>
+                                                <Link to={"/edit-mahasiswa/"+ this.state.id_mhs} className="btn btn-success"><i className="fas fa-edit"></i> Sunting</Link>
                                             </div>
                                         </div>
                                     </div>

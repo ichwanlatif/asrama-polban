@@ -71,7 +71,7 @@ const Main = props =>(
         <PrivateRoute exact path="/edit-mahasiswa/:id" component={EditMahasiswa} />
         <PrivateRoute exact path="/tambah-mahasiswa" component={TambahMahasiswa} />
         
-        <PrivateRoute exact path="/reset-password" component={ResetPassword} />
+        <Route path="/reset-password" component={ResetPassword} />
         <Route path="*" component={NotFound} />
     </Switch>
 )
