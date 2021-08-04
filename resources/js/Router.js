@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Profile from './pages/Profile';
 
+import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
 
 import NotFound from './pages/NotFound';
@@ -42,6 +43,10 @@ import TambahMahasiswa from './pages/TambahMahasiswa';
 const Main = props =>(
     <Switch>
         <Route exact path="/" component={Login} />
+        <Route path="/forgot-password" component={ForgotPassword} />
+        <Route path="/reset-password" component={ResetPassword} />
+
+        
         <PrivateRoute exact path="/dashboard" component={Dashboard} />
         <PrivateRoute exact path="/profile" component={Profile} />
         
@@ -71,7 +76,6 @@ const Main = props =>(
         <PrivateRoute exact path="/edit-mahasiswa/:id" component={EditMahasiswa} />
         <PrivateRoute exact path="/tambah-mahasiswa" component={TambahMahasiswa} />
         
-        <PrivateRoute exact path="/reset-password" component={ResetPassword} />
         <Route path="*" component={NotFound} />
     </Switch>
 )

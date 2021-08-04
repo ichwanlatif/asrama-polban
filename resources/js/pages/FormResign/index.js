@@ -64,6 +64,10 @@ class FormResign extends Component {
         const data = new FormData()
 
         data.append('id_mhs', this.state.id_mhs)
+        
+        if(this.state.file != undefined){
+            data.append('file', this.state.file)
+        }
 
         if(this.state.tanggal_resign != undefined){
             data.append('tanggal_resign', this.state.tanggal_resign)
@@ -146,7 +150,7 @@ class FormResign extends Component {
                                                         name="keterangan_resign"
                                                         onChange={this.handleFieldChange}
                                                     />
-                                                    <span className="text-danger">*{this.state.errList.keterangan_resign}</span>
+                                                    <span className="text-danger">{this.state.errList.keterangan_resign}</span>
                                                 </div>
                                             </div>
 
@@ -160,7 +164,7 @@ class FormResign extends Component {
                                                         onChange={this.handleFieldChange}
                                                         required
                                                     />
-                                                    <span className="text-danger">*{this.state.errList.tanggal_resign}</span>
+                                                    <span className="text-danger">{this.state.errList.tanggal_resign}</span>
                                                 </div>
                                             </div>
 
@@ -175,7 +179,7 @@ class FormResign extends Component {
                                                         onChange={this.handleFieldChange}
                                                     />
                                                     <small className="text-muted">Jelaskan keluhan saudara, jika merasa sakit.</small>
-                                                    <br></br><span className="text-danger">*{this.state.errList.kondisi_kesehatan}</span>
+                                                    <br></br><span className="text-danger">{this.state.errList.kondisi_kesehatan}</span>
                                                 </div>
                                             </div>
 
@@ -197,7 +201,7 @@ class FormResign extends Component {
                                                         </div>
                                                     </div>
                                                     <small className="text-muted">Dapat dilakukan sendiri atau di pos keamanan pintu masuk 1 Polban.</small>
-                                                    <br></br><span className="text-danger">*{this.state.errList.suhu_badan}</span>
+                                                    <br></br><span className="text-danger">{this.state.errList.suhu_badan}</span>
                                                 </div>
                                             </div>
 
@@ -210,7 +214,7 @@ class FormResign extends Component {
                                                         <option>Mobil</option>
                                                         <option>Tidak ada</option>
                                                     </select>
-                                                    <span className="text-danger">*{this.state.errList.jenis_kendaraan}</span>
+                                                    <span className="text-danger">{this.state.errList.jenis_kendaraan}</span>
                                                 </div>
                                             </div>
                                             
@@ -223,6 +227,7 @@ class FormResign extends Component {
                                                         onChange={this.handleFileChange}
                                                     />
                                                     <small className="text-muted">Format yang didukung: *.jpg, *.png, *.pdf</small>
+                                                    <br></br><span className="text-danger">{this.state.errList.file}</span>
                                                 </div>
                                             </div>
 

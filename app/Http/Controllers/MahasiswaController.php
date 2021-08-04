@@ -118,9 +118,17 @@ class MahasiswaController extends Controller
     }
 
     public function store(Request $request){
+
+        $messages = [
+            'required'          => ':attribute harus diisi. ',
+            'email'             => ':attribute tidak valid. ',
+            'ends_with'         => 'harus menggunakan :attribute polban. ',
+            'max'               => ':attribute harus diisi maksimal :max. ',
+            'min'               => ':attribute harus diisi minimal :min. ',
+        ];
+
         $validasi = \Validator::make($request->all(), [
             'email' => 'required|email|ends_with:polban.ac.id',
-            'password' => 'required|alpha_num|min:8',
             'nama_mhs' => 'required|max:50', 
             'nim' => 'required|max:10',
             'alamat' => 'required|max:125',
@@ -129,18 +137,15 @@ class MahasiswaController extends Controller
             'no_hp_ortu' => 'required|max:13',
             'jenis_kelamin' => 'required',
             'status_keaktifan' => 'required',
-            'tanggal_lahir' => 'required',
-            'agama' => 'required|max:10',
-            'keterangan_asal' => 'required|max:10',
-            'role_mhs' => 'required'
-        ]);
+            'tanggal_lahir' => 'required'
+        ], $messages);
 
         if($validasi->fails()){
             return response()->json(["status" => "error", "message" => $validasi->errors()]);
         }
         $user = User::create([
             'email' => $request->email,
-            'password' => \Hash::make($request->password),
+            'password' => \Hash::make($request->nim),
             'role' => 1,
         ]);
 
@@ -178,6 +183,15 @@ class MahasiswaController extends Controller
     }
 
     public function update(Request $request){
+
+        $messages = [
+            'required'          => ':attribute harus diisi. ',
+            'email'             => ':attribute tidak valid. ',
+            'ends_with'         => 'harus menggunakan :attribute polban. ',
+            'max'               => ':attribute harus diisi maksimal :max. ',
+            'min'               => ':attribute harus diisi minimal :min. ',
+        ];
+
         if($request->password == "" || $request->password == null){
             $validasi = \Validator::make($request->all(), [
                 'email' => 'required|email|ends_with:polban.ac.id',
@@ -193,7 +207,7 @@ class MahasiswaController extends Controller
                 'agama' => 'required|max:10',
                 'keterangan_asal' => 'required|max:10',
                 'role_mhs' => 'required'
-            ]);
+            ], $messages);
         }
         else{
             $validasi = \Validator::make($request->all(), [
@@ -211,7 +225,7 @@ class MahasiswaController extends Controller
                 'agama' => 'required|max:10',
                 'keterangan_asal' => 'required|max:10',
                 'role_mhs' => 'required'
-            ]);
+            ], $messages);
         }
 
         if($validasi->fails()){

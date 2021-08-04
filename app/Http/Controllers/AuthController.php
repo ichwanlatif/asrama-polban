@@ -12,10 +12,19 @@ use App\Models\User;
 class AuthController extends Controller
 {
     public function login(Request $request) {
+
+        $messages = [
+            'required'                  => ':attribute harus diisi. ',
+            'email'               => 'email tidak valid. ',
+            'ends_with'           => 'gunakan email polban. ',
+            'alpha_num'               => ':attribute tidak valid. ',
+            'min'               => ':attribute harus diisi minimal :min. ',
+        ];
+
         $validate = \Validator::make($request->all(), [
             'email' => 'required|email|ends_with:polban.ac.id',
-            'password' => 'required|alpha_num|min:6',
-        ]);
+            'password' => 'required|alpha_num|min:8',
+        ],$messages);
 
         if($validate->fails()) {
             return response()->json(["status" => "failed", "message" => $validate->errors()]);

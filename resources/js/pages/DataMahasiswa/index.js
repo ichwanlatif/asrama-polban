@@ -123,8 +123,16 @@ class DataMahasiswa extends Component {
                                         </div>
 
                                         <div className="d-flex justify-content-end">
+                                            {/* Hapus mahasiswa */}
+                                            <Link to="#" className="btn btn-danger btn-icon-split mx-2 mb-2">
+                                                <span className="icon text-white-50">
+                                                    <i className="fas fa-trash-alt"></i>
+                                                </span>
+                                                <span className="text">Hapus mahasiswa(0)</span>
+                                            </Link>
+
                                             {/* Tambah mahasiswa */}
-                                            <Link to="/tambah-mahasiswa" className="btn btn-primary btn-icon-split mb-2">
+                                            <Link to="/tambah-mahasiswa" className="btn btn-primary btn-icon-split mx-2 mb-2">
                                                 <span className="icon text-white-50">
                                                     <i className="fas fa-user-plus"></i>
                                                 </span>
@@ -137,6 +145,7 @@ class DataMahasiswa extends Component {
                                             <table className="table table-hover">
                                                 <thead>
                                                     <tr>
+                                                    <th></th>
                                                     <th scope="col">Nama</th>
                                                     <th scope="col">NIM</th>
                                                     <th scope="col">Email</th>
@@ -169,6 +178,7 @@ class DataMahasiswa extends Component {
 
                                                         return (
                                                             <tr>
+                                                                <td><input type="checkbox"></input></td>
                                                                 <td>{mahasiswa.nama_mhs}</td>
                                                                 <td>{mahasiswa.nim}</td>
                                                                 <td>{mahasiswa.email}</td>

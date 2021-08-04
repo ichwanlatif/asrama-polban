@@ -98,6 +98,8 @@ class EditMahasiswa extends Component {
         const {id} = this.props.match.params
         api().get('api/mahasiswa/' + id).then(responseMahasiswa =>{
             if(responseMahasiswa.data.status === 'success'){
+                const no_hp_mhs = responseMahasiswa.data.data.no_hp_mhs;
+                const no_hp_ortu = responseMahasiswa.data.data.no_hp_ortu;
                 this.setState({
                     email: responseMahasiswa.data.data.email,
                     id_prodi: responseMahasiswa.data.data.id_prodi,
@@ -106,9 +108,9 @@ class EditMahasiswa extends Component {
                     nama_mhs: responseMahasiswa.data.data.nama_mhs,
                     nim: responseMahasiswa.data.data.nim,
                     alamat: responseMahasiswa.data.data.alamat,
-                    no_hp_mhs: responseMahasiswa.data.data.no_hp_mhs,
+                    no_hp_mhs: no_hp_mhs.substring(1),
                     nama_ortu: responseMahasiswa.data.data.nama_ortu,
-                    no_hp_ortu: responseMahasiswa.data.data.no_hp_ortu,
+                    no_hp_ortu: no_hp_ortu.substring(1),
                     jenis_kelamin: responseMahasiswa.data.data.jenis_kelamin,
                     status_keaktifan: responseMahasiswa.data.data.status_keaktifan,
                     tanggal_lahir: responseMahasiswa.data.data.tanggal_lahir,
@@ -153,12 +155,10 @@ class EditMahasiswa extends Component {
                         <Topbar />
                         {/* <!-- End of Topbar --> */}
                         <div className="container-fluid">
-                            <PageHeading title="Tambah Mahasiswa" />
+                            <PageHeading title="Sunting Mahasiswa" />
                             <div className="col-lg-12 col-md-12">
                                 <div className="card my-5">
                                     <div className="card-body">
-                                        <h6 className="text-muted">Isi data mahasiswa dibawah ini</h6>
-                                        <hr></hr>
 
                                         {/* Tambah mahasiswa*/}
                                         <form>
@@ -173,8 +173,7 @@ class EditMahasiswa extends Component {
                                                         className="form-control"
                                                         placeholder="Masukan email polban"
                                                     />
-                                                    <br></br>
-                                                    <span className="text-danger">*{this.state.errList.email}</span>
+                                                    <span className="text-danger">{this.state.errList.email}</span>
                                                 </div>
                                             </div>
                                             <div className="form-group row">
@@ -187,8 +186,7 @@ class EditMahasiswa extends Component {
                                                         className="form-control"
                                                         placeholder="Masukan password"
                                                     />
-                                                    <br></br>
-                                                    <span className="text-danger">*{this.state.errList.email}</span>
+                                                    <span className="text-danger">{this.state.errList.email}</span>
                                                 </div>
                                             </div>
                                             <div className="form-group row">
@@ -202,8 +200,7 @@ class EditMahasiswa extends Component {
                                                         className="form-control"
                                                         placeholder="Masukan nama mahasiswa"
                                                     />
-                                                    <br></br>
-                                                    <span className="text-danger">*{this.state.errList.nama_mhs}</span>
+                                                    <span className="text-danger">{this.state.errList.nama_mhs}</span>
                                                 </div>
                                             </div>
                                             <div className="form-group row">
@@ -217,8 +214,7 @@ class EditMahasiswa extends Component {
                                                         className="form-control"
                                                         placeholder="Masukan alamat saat ini"
                                                     />
-                                                    <br></br>
-                                                    <span className="text-danger">*{this.state.errList.alamat}</span>
+                                                    <span className="text-danger">{this.state.errList.alamat}</span>
                                                 </div>
                                             </div>
                                             <div className="form-group row">
@@ -236,9 +232,9 @@ class EditMahasiswa extends Component {
                                                             Perempuan
                                                         </label>
                                                     </div>
+                                                    <br></br>
+                                                    <span className="text-danger">{this.state.errList.jenis_kelamin}</span>
                                                 </div>
-                                                <br></br>
-                                                    <span className="text-danger">*{this.state.errList.jenis_kelamin}</span>
                                             </div>
                                             <div className="form-group row">
                                                 <label for="agama" className="col-md-3 col-form-label text-md-right">Agama</label>
@@ -251,9 +247,8 @@ class EditMahasiswa extends Component {
                                                         <option value="Budha">Budha</option>
                                                         <option value="Konghucu">Konghucu</option>
                                                     </select>
+                                                    <span className="text-danger">{this.state.errList.agama}</span>
                                                 </div>
-                                                <br></br>
-                                                <span className="text-danger">*{this.state.errList.agama}</span>
                                             </div>
                                             <div className="form-group row">
                                                 <label for="tanggal_lahir" className="col-md-3 col-form-label text-md-right">Tanggal lahir</label>
@@ -265,26 +260,27 @@ class EditMahasiswa extends Component {
                                                         value={this.state.tanggal_lahir} 
                                                         className="form-control"
                                                     />
-                                                    <br></br>
-                                                    <span className="text-danger">*{this.state.errList.tanggal_lahir}</span>
+                                                    <span className="text-danger">{this.state.errList.tanggal_lahir}</span>
                                                 </div>
                                             </div>
                                             <div className="form-group row">
                                                 <label for="no_hp_mhs" className="col-md-3 col-form-label text-md-right">Nomor hp</label>
                                                 <div className="col-md-8">
                                                     <div className="input-group">
+                                                        <div className="input-group-prepend">
+                                                            <div className="input-group-text">+62 </div>
+                                                        </div>
                                                         <input 
-                                                            type="text" 
+                                                            type="number" 
                                                             name="no_hp_mhs"
                                                             onChange={this.handleFieldChange}
                                                             value={this.state.no_hp_mhs}
                                                             className="form-control"
                                                             min="1"
-                                                            placeholder="08xx.."
+                                                            placeholder="8xx.."
                                                         />
-                                                        <br></br>
-                                                    <span className="text-danger">*{this.state.errList.no_hp_mhs}</span>
                                                     </div>
+                                                    <span className="text-danger">{this.state.errList.no_hp_mhs}</span>
                                                 </div>
                                             </div>
                                             <div className="form-group row">
@@ -298,26 +294,27 @@ class EditMahasiswa extends Component {
                                                         value={this.state.nama_ortu}
                                                         placeholder="Masukan nama orangtua / wali mahasiswa"
                                                     />
-                                                    <br></br>
-                                                    <span className="text-danger">*{this.state.errList.nama_ortu}</span>
+                                                    <span className="text-danger">{this.state.errList.nama_ortu}</span>
                                                 </div>
                                             </div>
                                             <div className="form-group row">
                                                 <label for="no_hp_ortu" className="col-md-3 col-form-label text-md-right">Nomor hp orangtua / wali</label>
                                                 <div className="col-md-8">
                                                     <div className="input-group">
+                                                        <div className="input-group-prepend">
+                                                            <div className="input-group-text">+62 </div>
+                                                        </div>
                                                         <input 
-                                                            type="text" 
+                                                            type="number" 
                                                             name="no_hp_ortu"
                                                             onChange={this.handleFieldChange}
                                                             value={this.state.no_hp_ortu}
                                                             className="form-control"
                                                             min="1"
-                                                            placeholder="08xx.."
+                                                            placeholder="8xx.."
                                                         />
-                                                        <br></br>
-                                                    <span className="text-danger">*{this.state.errList.no_hp_ortu}</span>
                                                     </div>
+                                                    <span className="text-danger">{this.state.errList.no_hp_ortu}</span>
                                                 </div>
                                             </div>
                                             <div className="form-group row">
@@ -331,8 +328,7 @@ class EditMahasiswa extends Component {
                                                         className="form-control"
                                                         placeholder="Masukan Nomor induk mahasiswa"
                                                     />
-                                                    <br></br>
-                                                    <span className="text-danger">*{this.state.errList.nim}</span>
+                                                    <span className="text-danger">{this.state.errList.nim}</span>
                                                 </div>
                                             </div>
                                             <div className="form-group row">
@@ -358,7 +354,7 @@ class EditMahasiswa extends Component {
                                                     })}
                                                     </select>
                                                     <br></br>
-                                                    <span className="text-danger">*{this.state.errList.id_prodi}</span>
+                                                    <span className="text-danger">{this.state.errList.id_prodi}</span>
                                                 </div>
                                             </div>
                                             <div className="form-group row">
@@ -369,7 +365,7 @@ class EditMahasiswa extends Component {
                                                         <option value="Bidikmisi">Bidikmisi</option>
                                                     </select>
                                                     <br></br>
-                                                    <span className="text-danger">*{this.state.errList.keterangan_asal}</span>
+                                                    <span className="text-danger">{this.state.errList.keterangan_asal}</span>
                                                 </div>
                                             </div>
                                             <div className="form-group row">
@@ -395,7 +391,7 @@ class EditMahasiswa extends Component {
                                                     })}
                                                     </select>
                                                     <br></br>
-                                                    <span className="text-danger">*{this.state.errList.id_kamar}</span>
+                                                    <span className="text-danger">{this.state.errList.id_kamar}</span>
                                                 </div>
                                             </div>
                                             <div className="form-group row">
@@ -406,7 +402,7 @@ class EditMahasiswa extends Component {
                                                         <option value="Pengurus">Pengurus</option>
                                                     </select>
                                                     <br></br>
-                                                    <span className="text-danger">*{this.state.errList.role_mhs}</span>
+                                                    <span className="text-danger">{this.state.errList.role_mhs}</span>
                                                 </div>
                                             </div>
                                             <div className="form-group row">

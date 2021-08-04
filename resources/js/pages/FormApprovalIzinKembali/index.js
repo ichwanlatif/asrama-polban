@@ -129,15 +129,12 @@ class FormApprovalIzinKembali extends Component {
                         <Topbar />
                         {/* <!-- End of Topbar --> */}
                         <div className="container-fluid">
-                            <PageHeading title="Approval Perizinan Asrama" />
+                            <PageHeading title="Approval Perizinan Kembali Asrama" />
                             <div className="col-lg-12 col-md-12">
                                 <div className="card my-5">
                                     <div className="card-body">
-                                        <h6 className="text-justify text-muted">Isi data formulir approval perizinan dibawah ini</h6>
-                                        <hr></hr>
-
                                         
-                                        {/* Form presensi*/}
+                                        {/* Form approval*/}
                                         <form>
                                             <div className="form-group row">
                                                 <label for="name" className="col-md-3 col-form-label text-md-right">Nama mahasiswa</label>
@@ -269,9 +266,9 @@ class FormApprovalIzinKembali extends Component {
                                                             Tolak
                                                         </label>
                                                     </div>
+                                                    <br></br>
+                                                    <span className="text-danger">{this.state.errList.status_izin}</span>
                                                 </div>
-                                                <br></br>
-                                                <span className="text-danger">*{this.state.errList.status_izin}</span>
                                             </div>
                                             <div className="form-group row">
                                                 <label for="note" className="col-md-3 col-form-label text-md-right">Catatan persetujuan (opsional)</label>

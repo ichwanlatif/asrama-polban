@@ -67,7 +67,7 @@ class FormIzinKembali extends Component {
         console.log(this.state)
 
         if(document.getElementById('aggrement').checked == false){
-            alert('Klik centang pada box')
+            alert('Klik centang pada kotak')
         }
         else{
             this.setState({ isLoading: true });
@@ -124,11 +124,6 @@ class FormIzinKembali extends Component {
                             <div className="col-lg-12 col-md-12">
                                 <div className="card my-5">
                                     <div className="card-body">
-                                        <h6 className="text-justify text-muted">
-                                            <span className="text-danger">*</span> Penghuni Asrama Mahasiswa Polban yang mau kembali masuk ke asrama diharuskan untuk mengisi formulir ini.<br/><br/>
-                                            <span className="text-danger">*</span> Silakan tunggu konfirmasi dari kantor PD3.
-                                        </h6>
-                                        <hr></hr>
 
                                         {/* Form izin kembali*/}
                                         <form>
@@ -144,7 +139,7 @@ class FormIzinKembali extends Component {
                                                         onChange={this.handleFieldChange}
                                                         required>
                                                     </textarea>
-                                                    <span className="text-danger">*{this.state.errList.keterangan_kembali}</span>
+                                                    <span className="text-danger">{this.state.errList.keterangan_kembali}</span>
                                                 </div>
                                             </div>
 
@@ -171,7 +166,7 @@ class FormIzinKembali extends Component {
                                                         onChange={this.handleFieldChange}
                                                         required
                                                     />
-                                                    <span className="text-danger">*{this.state.errList.pengajuan_tanggal_pulang}</span>
+                                                    <span className="text-danger">{this.state.errList.pengajuan_tanggal_pulang}</span>
                                                 </div>
                                             </div>
 
@@ -186,7 +181,7 @@ class FormIzinKembali extends Component {
                                                         placeholder="contoh: Sehat / Sakit"
                                                     />
                                                     <small className="text-muted">Jelaskan keluhan saudara, jika merasa sakit.</small>
-                                                    <br></br><span className="text-danger">*{this.state.errList.kondisi_kesehatan}</span>
+                                                    <br></br><span className="text-danger">{this.state.errList.kondisi_kesehatan}</span>
                                                 </div>
                                             </div>
 
@@ -208,7 +203,7 @@ class FormIzinKembali extends Component {
                                                         </div>
                                                     </div>
                                                     <small className="text-muted">Dapat dilakukan sendiri atau di pos keamanan pintu masuk 1 Polban.</small>
-                                                    <br></br><span className="text-danger">*{this.state.errList.suhu_badan}</span>
+                                                    <br></br><span className="text-danger">{this.state.errList.suhu_badan}</span>
                                                 </div>
                                             </div>
 
@@ -226,14 +221,14 @@ class FormIzinKembali extends Component {
                                                         <option>Kereta Api</option>
                                                         <option>Kapal Laut</option>
                                                     </select>
-                                                    <span className="text-danger">*{this.state.errList.jenis_kendaraan}</span>
+                                                    <span className="text-danger">{this.state.errList.jenis_kendaraan}</span>
                                                 </div>
                                             </div>
 
                                             <div className="form-group row my-4">
                                                 <div className="col-md-12">
                                                     <label className="col-form-label text-justify"><span className="text-danger">*</span> Saya akan menanggung segala bentuk kerugian yang timbul dan tidak akan menuntut pihak Manajemen Polban. Demikian keterangan ini dibuat tanpa paksaan dan untuk dipergunakan sesuai dengan kepentingannya.</label>
-                                                    <small className="text-muted">Silakan tunggu respon dari Kantor PD3. Saudara belum di ijinkan untuk memasuki Asrama sebelum ada surat ijin resmi dari Kantor PD3.</small>
+                                                    <label className="col-form-label text-justify"><span className="text-danger">*</span>Silakan tunggu respon dari Kantor PD3. Saudara belum di ijinkan untuk memasuki Asrama sebelum ada surat ijin resmi dari Kantor PD3.</label>
                                                     <div class="custom-control custom-checkbox">
                                                         <input type="checkbox" class="custom-control-input" id="aggrement" required/>
                                                         <label class="custom-control-label" for="aggrement">Saya memahami dan setuju</label>

@@ -24,6 +24,14 @@ use Carbon\Carbon;
 class PerizinanController extends Controller
 {
     public function store(Request $request){
+        
+        $messages = [
+            'required'            => ':attribute harus diisi. ',
+            'numeric'            => ':attribute harus diisi angka. ',
+            'max'               => ':attribute harus diisi maksimal :max. ',
+            'mimes'               => 'format :attribute tidak didukung. ',
+        ];
+
         $validasi = \Validator::make($request->all(), [
             'tanggal_pergi' => 'required',
             'tanggal_pulang' => 'required',
@@ -34,7 +42,7 @@ class PerizinanController extends Controller
             'file' => 'file|max:10000|mimes:pdf,png,jpg',
             'keterangan_izin' => 'required|max:125',
             'id_mhs' => 'required',
-        ]);
+        ], $messages);
 
         if($validasi->fails()){
             return response()->json(["status" => "error", "message" => $validasi->errors()]);
@@ -120,9 +128,14 @@ class PerizinanController extends Controller
     }
 
     public function approvalPerizinan(Request $request){
+
+        $messages = [
+            'required'            => ':attribute harus diisi. ',
+        ];
+
         $validasi = \Validator::make($request->all(), [
             'status_izin' => 'required|numeric',
-        ]);
+        ], $messages);
 
         if($validasi->fails()){
             return response()->json(["status" => "error", "message" => $validasi->errors()]);
@@ -176,9 +189,14 @@ class PerizinanController extends Controller
     }
 
     public function approvalPerizinanKembali(Request $request){
+        
+        $messages = [
+            'required'            => ':attribute harus diisi. ',
+        ];
+        
         $validasi = \Validator::make($request->all(), [
             'status_izin' => 'required|numeric',
-        ]);
+        ], $messages);
 
         if($validasi->fails()){
             return response()->json(["status" => "error", "message" => $validasi->errors()]);
@@ -375,6 +393,13 @@ class PerizinanController extends Controller
     }
 
     public function izinKembali(Request $request){
+        
+        $messages = [
+            'required'            => ':attribute harus diisi. ',
+            'numeric'            => ':attribute harus diisi angka. ',
+            'max'               => ':attribute harus diisi maksimal :max. ',
+        ];
+
         $validasi = \Validator::make($request->all(), [
             'id_perizinan' => 'required',
             'keterangan_kembali' => 'required|max:125',
@@ -382,7 +407,7 @@ class PerizinanController extends Controller
             'suhu_badan' => 'required|numeric|between:30,50',
             'kondisi_kesehatan' => 'required|max:50',
             'jenis_kendaraan' => 'required',
-        ]);
+        ], $messages);
 
         if($validasi->fails()){
             return response()->json(["status" => "error", "message" => $validasi->errors()]);
