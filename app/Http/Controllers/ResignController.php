@@ -18,6 +18,14 @@ use Illuminate\Support\Facades\DB;
 class ResignController extends Controller
 {
     public function store(Request $request){
+
+        $messages = [
+            'required'          => ':attribute harus diisi. ',
+            'numeric'           => ':attribute harus diisi angka. ',
+            'max'               => ':attribute harus diisi maksimal :max. ',
+            'mimes'             => 'format :attribute tidak didukung. ',
+        ];
+
         $validasi = \Validator::make($request->all(), [
             'tanggal_resign' => 'required',
             'keterangan_resign' => 'required',
@@ -26,7 +34,7 @@ class ResignController extends Controller
             'kondisi_kesehatan' => 'required|max:50',
             'id_mhs' => 'required',
             'file' => 'file|max:10000|mimes:pdf,png,jpg',
-        ]);
+        ], $messages);
         if($validasi->fails()){
             return response()->json(["status" => 'error', "message" => $validasi->errors()]);
         }
@@ -161,10 +169,15 @@ class ResignController extends Controller
     }
 
     public function approveResign(Request $request){
+
+        $messages = [
+            'required'          => ':attribute harus diisi. ',
+        ];
+
         $validasi = \Validator::make($request->all(), [
             'status_resign' => 'required|numeric',
             'id_resign' => 'required'
-        ]);
+        ], $messages);
 
         if($validasi->fails()){
             return response()->json(["status" => 422, "message" => $validasi->errors()]);

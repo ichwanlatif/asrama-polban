@@ -245,7 +245,7 @@ class FormPresensi extends Component {
                                                     />
                                                     <small className="text-muted">Jelaskan keluhan saudara, jika merasa sakit.</small>
                                                     <br></br>
-                                                    <span className="text-danger">*{this.state.errList.kondisi_kesehatan}</span>
+                                                    <span className="text-danger">{this.state.errList.kondisi_kesehatan}</span>
                                                 </div>
                                             </div>
 
@@ -269,7 +269,7 @@ class FormPresensi extends Component {
                                                     </div>
                                                     <small className="text-muted">Dapat dilakukan sendiri atau di pos keamanan pintu masuk 1 Polban.</small>
                                                     <br></br>
-                                                    <span className="text-danger">*{this.state.errList.suhu_badan}</span>
+                                                    <span className="text-danger">{this.state.errList.suhu_badan}</span>
                                                 </div>
                                             </div>
                                             
