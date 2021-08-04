@@ -26,6 +26,7 @@ use App\Http\Controllers\ResignController;
 
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/forgot-password', [AuthController::class, 'forgotPassword']);
+Route::post('/reset-password', [AuthController::class, 'resetPassword']);
 Route::get('/mahasiswaByUser/{id}', [MahasiswaController::class, 'getMahasiswaByUserId']);
 Route::group(['middleware' => ['auth:sanctum']], function() {
     // manggil controller sesuai bawaan laravel 8
