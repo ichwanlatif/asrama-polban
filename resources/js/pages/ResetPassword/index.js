@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import api from '../../service/api';
 
 //Navigation
 
@@ -6,7 +7,43 @@ class ResetPassword extends Component {
     constructor(){
         super();
         this.state = {
+            errList: [],
         };
+
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleFieldChange = this.handleFieldChange.bind(this);
+    }
+
+    handleFieldChange(e){
+        let name = e.target.name;
+        let value = e.target.value;
+        let data = {};
+        data[name] = value;
+        this.setState(data);
+        console.log(e.target)
+    }
+
+    async handleSubmit(e){
+        e.preventDefault();
+        const { token } = this.props.match.params;
+
+        await api().post('api/reset-password', ({
+            email: this.state.email,
+            password: this.state.password,
+            password_confirmation: this.state.password_confirmation,
+            token: token,
+        })).then(response => {
+            if(response.data.status == 'success'){
+                alert(response.data.message);
+                window.location.assign('/#/');
+            }
+        }).catch(error => {
+            alert(error.response.data.message)
+            this.setState({
+                errList: error.response.data.errors
+            });
+        })
+
     }
 
     render() {
@@ -30,8 +67,11 @@ class ResetPassword extends Component {
                                                 type="password" 
                                                 className="form-control"
                                                 placeholder="Masukan password baru"
+                                                name="password"
+                                                onChange={this.handleFieldChange}
                                                 required
                                                 />
+                                                <span className="text-danger">*{this.state.errList.password}</span>
                                         </div>
                                     </div>
                                     <div className="form-group row">
@@ -41,14 +81,17 @@ class ResetPassword extends Component {
                                                 id="password" 
                                                 type="password" 
                                                 className="form-control"
+                                                name="password_confirmation"
                                                 placeholder="Masukan kembali password baru"
+                                                onChange={this.handleFieldChange}
                                                 required
                                                 />
+                                                <span className="text-danger">*{this.state.errList.password_confirmation}</span>
                                         </div>
                                     </div>
                                     <div className="form-group row">
                                         <div className="col-md-8 offset-md-3 mb-2">
-                                            <button type="submit" className="btn btn-success">
+                                            <button type="submit" className="btn btn-success" onClick={this.handleSubmit}>
                                                 Submit
                                             </button>
                                         </div>

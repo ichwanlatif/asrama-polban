@@ -80,7 +80,8 @@ class AuthController extends Controller
 
         if($status == Password::RESET_LINK_SENT){
             return [
-                'status' => __($status)
+                'status' => 'success',
+                'message' => __($status)
             ];
         }
 
@@ -92,12 +93,11 @@ class AuthController extends Controller
     public function resetPassword(Request $request){
         $request->validate([
             'token' => 'required',
-            'email' => 'required|email|ends_with:polban.ac.id',
             'password' => 'required|alpha_num|min:6'
         ]);
 
         $status = Password::reset(
-            $request->only('email', 'password', 'password_confirmation', 'token'),
+            $request->only('password', 'password_confirmation', 'token'),
             function ($user) use ($request){
                 $user->forceFill([
                     'password' => \Hash::make($request->password),

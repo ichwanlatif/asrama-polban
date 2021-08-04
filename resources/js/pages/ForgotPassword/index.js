@@ -1,10 +1,41 @@
 import React, { Component } from 'react';
+import api from '../../service/api';
 
 class ForgotPassword extends Component {
     constructor(){
         super();
         this.state = {
+            errList: [],
         };
+
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleFieldChange = this.handleFieldChange.bind(this);
+    }
+
+    handleFieldChange(e){
+        let name = e.target.name;
+        let value = e.target.value;
+        let data = {};
+        data[name] = value;
+        this.setState(data);
+        console.log(name, value);
+    }
+
+    async handleSubmit(e){
+        e.preventDefault();
+        await api().post('api/forgot-password', ({
+            email: this.state.email,
+        })).then(response => {
+            if(response.data.status == 'success'){
+                alert(response.data.message);
+                window.location.assign('/#/');
+            }
+        }).catch(error => {
+            alert(error.response.data.message)
+            this.setState({
+                errList: error.response.data.errors
+            });
+        })
     }
 
     render() {
@@ -30,12 +61,14 @@ class ForgotPassword extends Component {
                                                 name="email"
                                                 placeholder="Masukan email Polban anda"
                                                 required
+                                                onChange={this.handleFieldChange}
                                             />
+                                            <span className="text-danger">*{this.state.errList.email}</span>
                                         </div>
                                     </div>
                                     <div className="form-group row">
                                         <div className="col-md-8 offset-md-3 mb-2">
-                                            <button type="submit" className="btn btn-success">
+                                            <button type="submit" className="btn btn-success" onClick={this.handleSubmit}>
                                                 Submit
                                             </button>
                                         </div>

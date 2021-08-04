@@ -44,7 +44,7 @@ const Main = props =>(
     <Switch>
         <Route exact path="/" component={Login} />
         <Route path="/forgot-password" component={ForgotPassword} />
-        <Route path="/reset-password" component={ResetPassword} />
+        <Route path="/reset-password/:token" component={ResetPassword} />
 
         
         <PrivateRoute exact path="/dashboard" component={Dashboard} />
