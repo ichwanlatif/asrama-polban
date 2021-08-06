@@ -263,7 +263,7 @@ class PerizinanController extends Controller
     public function getAllPengajuanPerizinan($role){
         $perizinan = false;
         $perizinan = DB::table('perizinan')
-            ->whereBetween('status_izin', '=', [0, 4])
+            ->whereBetween('status_izin', [0, 4])
             ->join('mahasiswa', 'perizinan.id_mhs', '=', 'mahasiswa.id_mhs')
             ->select('perizinan.*', 'mahasiswa.nama_mhs')
             ->get();
@@ -287,7 +287,7 @@ class PerizinanController extends Controller
         $perizinan = "";
         
         $perizinan = DB::table('perizinan')
-            ->whereBetween('status_izin', '=', [5, 10])
+            ->whereBetween('status_izin', [5, 9])
             ->join('mahasiswa', 'perizinan.id_mhs', '=', 'mahasiswa.id_mhs')
             ->select('perizinan.*', 'mahasiswa.nama_mhs')
             ->get();

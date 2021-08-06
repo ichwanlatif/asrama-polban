@@ -112,21 +112,11 @@ class ResignController extends Controller
 
     public function getAllResign($role){
         $resign = false;
-        if($role == 2){
-            $resign = DB::table('resign')
-            ->where('status_resign', '=', 0)
+        $resign = DB::table('resign')
+            ->whereBetween('status_resign', [0, 4])
             ->join('mahasiswa', 'resign.id_mhs', '=', 'mahasiswa.id_mhs')
             ->select('resign.*', 'mahasiswa.nama_mhs')
             ->get();
-        }
-        else if($role == 3){
-            $resign = DB::table('resign')
-            ->where('status_resign', '=', 0)
-            ->orWhere('status_resign', '=', 1)
-            ->join('mahasiswa', 'resign.id_mhs', '=', 'mahasiswa.id_mhs')
-            ->select('resign.*', 'mahasiswa.nama_mhs')
-            ->get();
-        }
         if($resign){
             return response()->json([
                 'status' => 'success',
