@@ -9,6 +9,12 @@ import PageHeading from '../../components/PageHeading';
 
 import api from '../../service/api';
 
+function loadingAnimation() {
+    return new Promise(function(resolve) {
+      setTimeout(() => resolve([1, 2, 3]), 1000);
+    });
+}
+
 class TambahMahasiswa extends Component {
     constructor(){
         super();
@@ -17,6 +23,10 @@ class TambahMahasiswa extends Component {
             dataProdi: [],
             dataKamar: [],
             errList: [],
+
+            //loading
+            isLoading:false,
+            list: [],
         };
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleFieldChange = this.handleFieldChange.bind(this);
@@ -31,6 +41,8 @@ class TambahMahasiswa extends Component {
     }
 
     async handleSubmit(e){
+        this.setState({ isLoading: true });
+
         e.preventDefault();
         await api().post('api/mahasiswa/store', ({
             email: this.state.email,
@@ -58,6 +70,14 @@ class TambahMahasiswa extends Component {
                 })
             }
         })
+
+        // Set status animasi loading
+        loadingAnimation().then(list => {
+            this.setState({
+              isLoading: false,
+              list,
+            });
+        });
     }
 
     componentDidMount(){
@@ -324,8 +344,8 @@ class TambahMahasiswa extends Component {
                                             
                                             <div className="form-group row">
                                                 <div className="col-md-8 offset-md-3 mb-2">
-                                                    <button type="submit" className="btn btn-success" onClick={this.handleSubmit}>
-                                                        Submit
+                                                    <button type="submit" className="btn btn-success" onClick={this.handleSubmit} disabled={this.state.isLoading}>
+                                                        {this.state.isLoading ? <i className="fas fa-spinner fa-pulse"></i> : <i className="fas fa-sign-in-alt"></i>} Submit
                                                     </button>
                                                 </div>
                                             </div>

@@ -19,12 +19,11 @@ class AuthController extends Controller
             'email'               => 'email tidak valid. ',
             'ends_with'           => 'gunakan email polban. ',
             'alpha_num'               => ':attribute tidak valid. ',
-            'min'               => ':attribute harus diisi minimal :min. ',
         ];
 
         $validate = \Validator::make($request->all(), [
             'email' => 'required|email|ends_with:polban.ac.id',
-            'password' => 'required|alpha_num|min:6',
+            'password' => 'required|alpha_num',
         ],$messages);
 
         if($validate->fails()) {
@@ -70,9 +69,16 @@ class AuthController extends Controller
     }
 
     public function forgotPassword(Request $request){
+        
+        $messages = [
+            'required'            => ':attribute harus diisi. ',
+            'email'               => 'email tidak valid. ',
+            'ends_with'           => 'gunakan email polban. ',
+        ];
+
         $request->validate([
             'email' => 'required|email|ends_with:polban.ac.id',
-        ]);
+        ], $messages);
 
         $status = Password::sendResetLink(
             $request->only('email')
@@ -91,10 +97,17 @@ class AuthController extends Controller
     }
 
     public function resetPassword(Request $request){
+
+        $messages = [
+            'required'                => ':attribute harus diisi. ',
+            'alpha_num'               => ':attribute tidak valid. ',
+            'min'                     => ':attribute harus minimal :min. ',
+        ];
+
         $request->validate([
             'token' => 'required',
-            'password' => 'required|alpha_num|min:6'
-        ]);
+            'password' => 'required|alpha_num|min:8'
+        ], $messages);
 
         $status = Password::reset(
             $request->only('password', 'password_confirmation', 'token'),
