@@ -124,8 +124,8 @@ class DataPresensi extends Component {
                                             <table className="table table-hover">
                                                 <thead>
                                                     <tr>
-                                                    <th scope="col">NIM</th>
                                                     <th scope="col">Nama</th>
+                                                    <th scope="col">NIM</th>
                                                     <th scope="col">Gedung</th>
                                                     <th scope="col">Jenis</th>
                                                     <th scope="col">Waktu</th>

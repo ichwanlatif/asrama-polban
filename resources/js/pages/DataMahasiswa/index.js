@@ -26,6 +26,8 @@ class DataMahasiswa extends Component {
             // search
             searchData: [],
             searchValue :"",
+
+            // delete
             checkedBoxes: [],
         };
         this.handleSearchChange = this.handleSearchChange.bind(this);
@@ -87,7 +89,8 @@ class DataMahasiswa extends Component {
                 checkedBoxes: items
             }
         }		
-        console.log(this.state.checkedBoxes);
+        console.log(this.state.checkedBoxes);		
+        console.log("Delete count: "+this.state.checkedBoxes.length);
     }
 
     async handleDelete(e){
