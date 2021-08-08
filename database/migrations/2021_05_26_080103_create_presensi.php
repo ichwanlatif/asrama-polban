@@ -23,7 +23,7 @@ class CreatePresensi extends Migration
             $table->string('kondisi_kesehatan', 50);
             $table->timestamps();
 
-            $table->foreign('id_mhs')->references('id_mhs')->on('Mahasiswa')->onDelete('cascade');
+            $table->foreign('id_mhs')->references('id_mhs')->on('mahasiswa')->onDelete('cascade');
         });
     }
 

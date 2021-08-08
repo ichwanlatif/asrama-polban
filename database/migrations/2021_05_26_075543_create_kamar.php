@@ -19,7 +19,7 @@ class CreateKamar extends Migration
             $table->integer('no_kamar');
             $table->timestamps();
 
-            $table->foreign('id_gedung')->references('id_gedung')->on('Gedung')->onDelete('cascade');
+            $table->foreign('id_gedung')->references('id_gedung')->on('gedung')->onDelete('cascade');
         });
     }
 

@@ -30,7 +30,7 @@ class CreatePerizinan extends Migration
             $table->string('jenis_kendaraan', 10);
             $table->timestamps();
 
-            $table->foreign('id_mhs')->references('id_mhs')->on('Mahasiswa')->onDelete('cascade');
+            $table->foreign('id_mhs')->references('id_mhs')->on('mahasiswa')->onDelete('cascade');
         });
     }
 

@@ -32,9 +32,9 @@ class CreateMahasiswa extends Migration
             $table->string('role_mhs', 12);
             $table->timestamps();
 
-            $table->foreign('id_users')->references('id_users')->on('Users')->onDelete('cascade');
-            $table->foreign('id_prodi')->references('id_prodi')->on('Prodi')->onDelete('cascade');
-            $table->foreign('id_kamar')->references('id_kamar')->on('Kamar')->onDelete('cascade');
+            $table->foreign('id_users')->references('id_users')->on('users')->onDelete('cascade');
+            $table->foreign('id_prodi')->references('id_prodi')->on('prodi')->onDelete('cascade');
+            $table->foreign('id_kamar')->references('id_kamar')->on('kamar')->onDelete('cascade');
         });
     }
 

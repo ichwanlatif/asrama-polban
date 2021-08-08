@@ -19,7 +19,7 @@ class CreateProdi extends Migration
             $table->string('nama_prodi', 50);
             $table->timestamps();
 
-            $table->foreign('id_jurusan')->references('id_jurusan')->on('Jurusan')->onDelete('cascade');
+            $table->foreign('id_jurusan')->references('id_jurusan')->on('jurusan')->onDelete('cascade');
         });
     }
 

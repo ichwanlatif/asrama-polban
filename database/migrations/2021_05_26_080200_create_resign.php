@@ -25,7 +25,7 @@ class CreateResign extends Migration
             $table->tinyInteger('status_resign');
             $table->timestamps();
 
-            $table->foreign('id_mhs')->references('id_mhs')->on('Mahasiswa')->onDelete('cascade');
+            $table->foreign('id_mhs')->references('id_mhs')->on('mahasiswa')->onDelete('cascade');
         });
     }
 
