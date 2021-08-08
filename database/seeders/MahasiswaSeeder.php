@@ -16,7 +16,7 @@ class MahasiswaSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker::create('id_ID');
+        // $faker = Faker::create('id_ID');
 
         $user = User::create([
             'email' => "ichwan.latif.tif18@polban.ac.id",
