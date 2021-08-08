@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Perizinan;
 use App\Models\Mahasiswa;
 use App\Models\User;
-use App\Models\RekapPerizinan;
-
 use App\Mail\PengajuanPerizinanMail;
 use App\Mail\ApprovalMail;
 use App\Mail\PengajuanPerizinanKembaliMail;
@@ -460,80 +458,107 @@ class PerizinanController extends Controller
     }
 
     public function dashboard(){
-        $mengajukanA = RekapPerizinan::where([
+        $mengajukanA = Mahasiswa::join('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
+        ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
+        ->join('perizinan', 'mahasiswa.id_mhs', '=', 'perizinan.id_mhs')
+        ->where([
             ['status_izin', '=', 0],
             ['nama_gedung', '=', 'A']
         ])
-        ->whereMonth('created_at', date('n'))
-            ->whereYear('created_at', date('Y'))
+        ->whereMonth('perizinan.created_at', date('n'))
+            ->whereYear('perizinan.created_at', date('Y'))
             ->count();
 
-        $mengajukanB = RekapPerizinan::where([
+        $mengajukanB = Mahasiswa::join('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
+        ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
+        ->join('perizinan', 'mahasiswa.id_mhs', '=', 'perizinan.id_mhs')
+        ->where([
                 ['status_izin', '=', 0],
                 ['nama_gedung', '=', 'B']
         ])
-        ->whereMonth('created_at', date('n'))
-                ->whereYear('created_at', date('Y'))
+        ->whereMonth('perizinan.created_at', date('n'))
+                ->whereYear('perizinan.created_at', date('Y'))
                 ->count();
 
 
-        $mengajukanC = RekapPerizinan::where([
+        $mengajukanC = Mahasiswa::join('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
+        ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
+        ->join('perizinan', 'mahasiswa.id_mhs', '=', 'perizinan.id_mhs')
+        ->where([
             ['status_izin', '=', 0],
             ['nama_gedung', '=', 'C']
         ])
-        ->whereMonth('created_at', date('n'))
-        ->whereYear('created_at', date('Y'))
+        ->whereMonth('perizinan.created_at', date('n'))
+        ->whereYear('perizinan.created_at', date('Y'))
         ->count();
 
-        $disetujuiA = RekapPerizinan::where([
+        $disetujuiA = Mahasiswa::join('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
+        ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
+        ->join('perizinan', 'mahasiswa.id_mhs', '=', 'perizinan.id_mhs')
+        ->where([
             ['status_izin', '=', 3],
             ['nama_gedung', '=', 'A']
         ])
-        ->whereMonth('created_at', date('n'))
-        ->whereYear('created_at', date('Y'))
+        ->whereMonth('perizinan.created_at', date('n'))
+        ->whereYear('perizinan.created_at', date('Y'))
         ->count();
 
-        $disetujuiB = RekapPerizinan::where([
+        $disetujuiB = Mahasiswa::join('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
+        ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
+        ->join('perizinan', 'mahasiswa.id_mhs', '=', 'perizinan.id_mhs')
+        ->where([
             ['status_izin', '=', 3],
             ['nama_gedung', '=', 'B']
         ])
-        ->whereMonth('created_at', date('n'))
-        ->whereYear('created_at', date('Y'))
+        ->whereMonth('perizinan.created_at', date('n'))
+        ->whereYear('perizinan.created_at', date('Y'))
         ->count();
 
-        $disetujuiC = RekapPerizinan::where([
+        $disetujuiC = Mahasiswa::join('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
+        ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
+        ->join('perizinan', 'mahasiswa.id_mhs', '=', 'perizinan.id_mhs')
+        ->where([
             ['status_izin', '=', 3],
             ['nama_gedung', '=', 'C']
         ])
-        ->whereMonth('created_at', date('n'))
-        ->whereYear('created_at', date('Y'))
+        ->whereMonth('perizinan.created_at', date('n'))
+        ->whereYear('perizinan.created_at', date('Y'))
         ->count();
 
-        $ditolakA = RekapPerizinan::where([
+        $ditolakA = Mahasiswa::join('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
+        ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
+        ->join('perizinan', 'mahasiswa.id_mhs', '=', 'perizinan.id_mhs')
+        ->where([
             ['status_izin', '=', 2],
             ['status_izin', '=', 4],
             ['nama_gedung', '=', 'A']
         ])
-        ->whereMonth('created_at', date('n'))
-        ->whereYear('created_at', date('Y'))
+        ->whereMonth('perizinan.created_at', date('n'))
+        ->whereYear('perizinan.created_at', date('Y'))
         ->count();
 
-        $ditolakB = RekapPerizinan::where([
+        $ditolakB = Mahasiswa::join('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
+        ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
+        ->join('perizinan', 'mahasiswa.id_mhs', '=', 'perizinan.id_mhs')
+        ->where([
             ['status_izin', '=', 2],
             ['status_izin', '=', 4],
             ['nama_gedung', '=', 'B']
         ])
-        ->whereMonth('created_at', date('n'))
-        ->whereYear('created_at', date('Y'))
+        ->whereMonth('perizinan.created_at', date('n'))
+        ->whereYear('perizinan.created_at', date('Y'))
         ->count();
 
-        $ditolakC = RekapPerizinan::where([
+        $ditolakC = Mahasiswa::join('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
+        ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
+        ->join('perizinan', 'mahasiswa.id_mhs', '=', 'perizinan.id_mhs')
+        ->where([
             ['status_izin', '=', 2],
             ['status_izin', '=', 4],
             ['nama_gedung', '=', 'C']
         ])
-        ->whereMonth('created_at', date('n'))
-        ->whereYear('created_at', date('Y'))
+        ->whereMonth('perizinan.created_at', date('n'))
+        ->whereYear('perizinan.created_at', date('Y'))
         ->count();
 
         return response()->json([
