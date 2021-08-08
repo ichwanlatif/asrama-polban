@@ -13,7 +13,7 @@ class CreateResign extends Migration
      */
     public function up()
     {
-        Schema::create('Resign', function (Blueprint $table) {
+        Schema::create('resign', function (Blueprint $table) {
             $table->bigIncrements('id_resign');
             $table->unsignedBigInteger('id_mhs');
             $table->date('tanggal_resign');

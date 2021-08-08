@@ -13,7 +13,7 @@ class CreatePerizinan extends Migration
      */
     public function up()
     {
-        Schema::create('Perizinan', function (Blueprint $table) {
+        Schema::create('perizinan', function (Blueprint $table) {
             $table->bigIncrements('id_perizinan');
             $table->unsignedBigInteger('id_mhs');
             $table->date('tanggal_pergi');

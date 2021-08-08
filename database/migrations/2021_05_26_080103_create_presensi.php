@@ -13,7 +13,7 @@ class CreatePresensi extends Migration
      */
     public function up()
     {
-        Schema::create('Presensi', function (Blueprint $table) {
+        Schema::create('presensi', function (Blueprint $table) {
             $table->bigIncrements('id_presensi');
             $table->unsignedBigInteger('id_mhs');
             $table->tinyInteger('status_presensi');

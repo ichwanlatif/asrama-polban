@@ -13,7 +13,7 @@ class CreateKamar extends Migration
      */
     public function up()
     {
-        Schema::create('Kamar', function (Blueprint $table) {
+        Schema::create('kamar', function (Blueprint $table) {
             $table->bigIncrements('id_kamar');
             $table->unsignedBigInteger('id_gedung');
             $table->integer('no_kamar');
