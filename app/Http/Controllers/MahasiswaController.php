@@ -291,7 +291,12 @@ class MahasiswaController extends Controller
             $delete = Mahasiswa::where([
                 ['id_mhs', '=', $listMahasiswa[$i]],
             ])
+            ->first();
+            User::where([
+                ['id_users', '=', $delete->id_users],
+            ])
             ->delete();
+            $delete->delete();
         }
         if($delete){
             return response()->json([

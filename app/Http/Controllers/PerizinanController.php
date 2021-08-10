@@ -224,6 +224,7 @@ class PerizinanController extends Controller
         $mahasiswa = Mahasiswa::where('id_mhs', $request->id_mhs)->first();
 
         $details = [
+            'id' => $request->id_perizinan,
             'from' => $mahasiswa->nama_mhs,
             'tanggal_pergi' => $detail->tanggal_pergi,
             'pengajuan_tanggal_pulang' => $detail->pengajuan_tanggal_pulang,
