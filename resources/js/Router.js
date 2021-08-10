@@ -48,7 +48,7 @@ const Main = props =>(
 
         
         <PrivateRoute exact path="/dashboard" component={Dashboard} />
-        <PrivateRoute exact path="/profile" component={Profile} />
+        <PrivateRoute exact path="/data-diri" component={Profile} />
         
         <PrivateRoute exact path="/form-presensi" component={FormPresensi} />
         <PrivateRoute exact path="/form-izin-pulang" component={FormIzinPulang} />

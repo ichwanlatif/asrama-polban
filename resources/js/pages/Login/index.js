@@ -51,10 +51,10 @@ class Login extends Component {
             })).then(response => {
                 if(response.data.status !== 'success'){
                     if(response.data.message === 'incorrect'){
-                        alert("Incorrect Email or Password!")
+                        alert("Email atau password salah!")
                     }
                     else if(response.data.message === 'unregist'){
-                        alert("Account not registered");
+                        alert("Akun tidak terdaftar!");
                     }
                     else{
                         this.setState({
@@ -74,6 +74,7 @@ class Login extends Component {
                             }
                             else{
                                 localStorage.setItem('user_id', User.data.data.id_mhs);
+                                localStorage.setItem('nama_mhs', User.data.data.nama_mhs);
                                 logIn(response.data.token);
                                 window.location.assign('/#/Dashboard')
                             }

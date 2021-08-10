@@ -62,7 +62,7 @@ class MahasiswaSeeder extends Seeder
             'status_keaktifan' => 1,
             'tanggal_lahir' => "2000-01-11",
             'agama' => "Islam",
-            'keterangan_asal' => "BIDIKMISI",
+            'keterangan_asal' => "ADIK",
             'role_mhs' => "Pengurus",
         ]);
 
@@ -86,7 +86,7 @@ class MahasiswaSeeder extends Seeder
             'status_keaktifan' => 1,
             'tanggal_lahir' => "2000-02-22",
             'agama' => "Islam",
-            'keterangan_asal' => "BIDIKMISI",
+            'keterangan_asal' => "ADIK",
             'role_mhs' => "Pengurus",
         ]);
         
@@ -112,7 +112,7 @@ class MahasiswaSeeder extends Seeder
         //         'status_keaktifan' => 1,
         //         'tanggal_lahir' => $faker->date($format = 'Y-m-d', $max = 'now'),
         //         'agama' => "Islam",
-        //         'keterangan_asal' => "BIDIKMISI",
+        //         'keterangan_asal' => "ADIK",
         //         'role_mhs' => "Mahasiswa",
         //     ]);
         // }

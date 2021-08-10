@@ -47,19 +47,6 @@ class DetailMahasiswa extends Component {
                     keterangan_asal: responseMahasiswa.data.data.keterangan_asal,
                     role_mhs: responseMahasiswa.data.data.role_mhs
                 });
-                if(responseMahasiswa.data.data.jenis_kelamin == 0){
-                    document.getElementById('perempuan').checked = true;
-                }
-                else{
-                    document.getElementById('laki-laki').checked = true;
-                }
-
-                if(responseMahasiswa.data.data.status_keaktifan == 0){
-                    document.getElementById('keluar').checked = true;
-                }
-                else{
-                    document.getElementById('aktif').checked = true;
-                }
                 console.log(this.state.responseMahasiswa)
             }
             else{
@@ -97,6 +84,16 @@ class DetailMahasiswa extends Component {
                         {/* <!-- End of Topbar --> */}
                         <div className="container-fluid">
                             <PageHeading title="Detail Mahasiswa" />
+
+                            {/* Path */}
+                            <nav aria-label="breadcrumb">
+                                <ol className="breadcrumb">
+                                    <li className="breadcrumb-item"><Link to="#">Home</Link></li>
+                                    <li className="breadcrumb-item"><Link to="/data-mahasiswa">Data Mahasiswa</Link></li>
+                                    <li className="breadcrumb-item active" aria-current="page">Detail Mahasiswa</li>
+                                </ol>
+                            </nav>
+
                             <div className="col-lg-12 col-md-12">
                                 <div className="card my-5">
                                     <div className="card-body">
@@ -219,6 +216,16 @@ class DetailMahasiswa extends Component {
                                                     type="text" 
                                                     className="form-control-plaintext"
                                                     value={this.state.gedung +" - "+ this.state.kamar}
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="form-group row">
+                                            <label className="col-md-3 col-form-label text-md-right">Peran</label>
+                                            <div className="col-md-8">
+                                                <input 
+                                                    type="text" 
+                                                    className="form-control-plaintext"
+                                                    value={this.state.role_mhs}
                                                 />
                                             </div>
                                         </div>

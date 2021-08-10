@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import api from '../../service/api';
 import HaversineGeolocation from 'haversine-geolocation';
 //Navigation
@@ -49,26 +50,26 @@ class FormPresensi extends Component {
                 role: localStorage.getItem("user_role")
             })
         }, 1000)
-        // if(new Date().toLocaleTimeString() < "15.59.00" || new Date().toLocaleTimeString() > "20.01.00"){
-        //     alert("Tidak Dalam Waktu Presensi")
-        //     window.location.assign('/#/dashboard')
-        // }
-        // else{
-        //     api().get('api/perizinan/checkPerizinan/' + localStorage.getItem('user_id')).then(response =>{
-        //         if(response.data.status === 'success'){
-        //             alert('Anda Sedang Izin')
-        //             window.location.assign('/#/dashboard')
-        //         }
-        //         else{
-        //             api().get('api/presensi/kehadiranToday/' + localStorage.getItem('user_id')).then(today =>{
-        //                 if(today.data.status === 'success'){
-        //                     alert('Anda Telah Melakukan Presensi');
-        //                     window.location.assign('/#/dashboard')
-        //                 }
-        //             })
-        //         }
-        //     })
-        // }
+        if(new Date().toLocaleTimeString() < "15.59.00" || new Date().toLocaleTimeString() > "20.01.00"){
+            alert("Tidak Dalam Waktu Presensi")
+            window.location.assign('/#/dashboard')
+        }
+        else{
+            api().get('api/perizinan/checkPerizinan/' + localStorage.getItem('user_id')).then(response =>{
+                if(response.data.status === 'success'){
+                    alert('Anda Sedang Izin')
+                    window.location.assign('/#/dashboard')
+                }
+                else{
+                    api().get('api/presensi/kehadiranToday/' + localStorage.getItem('user_id')).then(today =>{
+                        if(today.data.status === 'success'){
+                            alert('Anda Telah Melakukan Presensi');
+                            window.location.assign('/#/dashboard')
+                        }
+                    })
+                }
+            })
+        }
     }
 
     onClickGetLocation() {
@@ -181,6 +182,15 @@ class FormPresensi extends Component {
                         {/* <!-- End of Topbar --> */}
                         <div className="container-fluid">
                             <PageHeading title="Absensi Penghuni Asrama Polban" />
+
+                            {/* Path */}
+                            <nav aria-label="breadcrumb">
+                                <ol className="breadcrumb">
+                                    <li className="breadcrumb-item"><Link to="#">Home</Link></li>
+                                    <li className="breadcrumb-item active" aria-current="page">Formulir Presensi</li>
+                                </ol>
+                            </nav>
+
                             <div className="col-lg-12 col-md-12">
                                 <div className="card my-5">
                                     <div className="card-body">
