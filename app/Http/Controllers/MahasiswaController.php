@@ -172,7 +172,7 @@ class MahasiswaController extends Controller
                 'status' => 'success',
                 'message' => 'Mahasiswa berhasil diinput',
                 'data' => $insert
-            ], 201);
+            ]);
         }
         else{
             return response()->json([
