@@ -148,7 +148,6 @@ class MahasiswaController extends Controller
             'password' => \Hash::make($request->nim),
             'role' => 1,
         ]);
-        dd($request->id);
         $insert = Mahasiswa::create([
             'id_users' => $user->id_users,
             'id_prodi' => $request->id_prodi,
