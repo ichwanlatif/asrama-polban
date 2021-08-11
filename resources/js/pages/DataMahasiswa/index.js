@@ -31,7 +31,7 @@ class DataMahasiswa extends Component {
             checkedBoxes: [],
         };
         this.handleSearchChange = this.handleSearchChange.bind(this);
-        this.handleDelete = this.handleDelete.bind(this)
+        this.handleDelete = this.handleDelete.bind(this);
     }
 
     componentDidMount(){
@@ -110,9 +110,8 @@ class DataMahasiswa extends Component {
     }
 
     render() {
-
         const data = this.state.datas;
-
+        
         //search
         const searchData =
             this.state.datas.filter(mhs => {
@@ -144,6 +143,15 @@ class DataMahasiswa extends Component {
                         {/* <!-- End of Topbar --> */}
                         <div className="container-fluid">
                             <PageHeading title="Data Mahasiswa Asrama" />
+
+                            {/* Path */}
+                            <nav aria-label="breadcrumb">
+                                <ol className="breadcrumb">
+                                    <li className="breadcrumb-item"><Link to="#">Home</Link></li>
+                                    <li className="breadcrumb-item active" aria-current="page">Data Mahasiswa</li>
+                                </ol>
+                            </nav>
+
                             <div className="col-lg-12 col-md-12">
                                 <div className="card my-5">
                                     <div className="card-header">
@@ -159,7 +167,7 @@ class DataMahasiswa extends Component {
                                             </div>
                                         </div>
 
-                                        <div className="d-flex justify-content-end">
+                                        <div className="row">
                                             {/* Hapus mahasiswa */}
                                             <button onClick={this.handleDelete} className="btn btn-danger btn-icon-split mx-2 mb-2">
                                                 <span className="icon text-white-50">

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 //Navigation
 import Sidebar from '../../components/Navigation/Sidebar';
@@ -176,6 +177,16 @@ class EditMahasiswa extends Component {
                         {/* <!-- End of Topbar --> */}
                         <div className="container-fluid">
                             <PageHeading title="Sunting Mahasiswa" />
+
+                            {/* Path */}
+                            <nav aria-label="breadcrumb">
+                                <ol className="breadcrumb">
+                                    <li className="breadcrumb-item"><Link to="#">Home</Link></li>
+                                    <li className="breadcrumb-item"><Link to="/data-mahasiswa">Data Mahasiswa</Link></li>
+                                    <li className="breadcrumb-item active" aria-current="page">Edit Mahasiswa</li>
+                                </ol>
+                            </nav>
+
                             <div className="col-lg-12 col-md-12">
                                 <div className="card my-5">
                                     <div className="card-body">
@@ -382,7 +393,8 @@ class EditMahasiswa extends Component {
                                                 <div className="col-md-8">
                                                     <select className="custom-select mr-sm-2" id="keterangan_asal" name="keterangan_asal" onChange={this.handleFieldChange}>
                                                         <option value="ADIK">ADIK</option>
-                                                        <option value="Bidikmisi">Bidikmisi</option>
+                                                        <option value="Bidikmisi">KIP Kuliah</option>
+                                                        <option value="Kerja sama">Program Kerja sama</option>
                                                     </select>
                                                     <br></br>
                                                     <span className="text-danger">{this.state.errList.keterangan_asal}</span>
@@ -415,7 +427,7 @@ class EditMahasiswa extends Component {
                                                 </div>
                                             </div>
                                             <div className="form-group row">
-                                                <label for="role_mhs" className="col-md-3 col-form-label text-md-right">Jabatan</label>
+                                                <label for="role_mhs" className="col-md-3 col-form-label text-md-right">Peran</label>
                                                 <div className="col-md-8">
                                                     <select className="custom-select mr-sm-2" id="role_mhs" name="role_mhs" onChange={this.handleFieldChange}>
                                                         <option value="Mahasiswa">Mahasiswa</option>

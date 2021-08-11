@@ -13,7 +13,7 @@ class SidebarWadir extends Component {
                 {/* Form Approval */}
                 <li className="nav-item">
                     <Link className="nav-link collapsed" data-toggle="collapse" data-target="#collapsePresensi" aria-expanded="true" aria-controls="collapsePresensi">
-                        <i class="fas fa-clipboard-check"></i>
+                        <i className="fas fa-clipboard-check"></i>
                         <span>Form Approval</span>
                     </Link>
                     <div id="collapsePresensi" className="collapse" aria-labelledby="headingPresensi" data-parent="#accordionSidebar">
@@ -37,7 +37,7 @@ class SidebarWadir extends Component {
                 {/* Presensi Harian*/}
                 <li className="nav-item">
                     <Link className="nav-link" to="/data-presensi">
-                        <i class="fas fa-clipboard-list"></i>
+                        <i className="fas fa-clipboard-list"></i>
                         <span>Data Presensi Asrama</span>
                     </Link>
                 </li>
@@ -45,7 +45,7 @@ class SidebarWadir extends Component {
                 {/* Data Mahasiswa */}
                 <li className="nav-item">
                     <Link className="nav-link collapsed" data-toggle="collapse" data-target="#collapseDataMahasiswa" aria-expanded="true" aria-controls="collapseDataMahasiswa">
-                        <i class="fas fa-id-card"></i>
+                        <i className="fas fa-id-card"></i>
                         <span>Data Mahasiswa Asrama</span>
                     </Link>
                     <div id="collapseDataMahasiswa" className="collapse" aria-labelledby="headingDataMahasiswa" data-parent="#accordionSidebar">
@@ -60,7 +60,7 @@ class SidebarWadir extends Component {
                 {/* Rekap presensi dan perizinan */}
                 <li className="nav-item">
                     <Link className="nav-link" to="/rekapitulasi">
-                        <i class="fas fa-clipboard-list"></i>
+                        <i className="fas fa-clipboard-list"></i>
                         <span>Rekap Data Mahasiswa</span>
                     </Link>
                 </li>

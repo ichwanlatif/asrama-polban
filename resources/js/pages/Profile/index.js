@@ -8,6 +8,8 @@ import Footer from '../../components/Navigation/Footer';
 
 import PageHeading from '../../components/PageHeading';
 
+import api from '../../service/api';
+
 class Profile extends Component {
     constructor(){
         super();
@@ -19,10 +21,48 @@ class Profile extends Component {
     componentDidMount(){
         this.setState({
             role: localStorage.getItem("user_role")
-        });
+        })
+        
+        const {id} = this.props.match.params
+        api().get('api/mahasiswa/' + localStorage.getItem("user_id")).then(responseMahasiswa =>{
+            if(responseMahasiswa.data.status === 'success'){
+                this.setState({
+                    id_mhs:responseMahasiswa.data.data.id_mhs,
+                    email: responseMahasiswa.data.data.email,
+                    nama_mhs: responseMahasiswa.data.data.nama_mhs,
+                    nim: responseMahasiswa.data.data.nim,
+                    alamat: responseMahasiswa.data.data.alamat,
+                    no_hp_mhs: responseMahasiswa.data.data.no_hp_mhs,
+                    nama_ortu: responseMahasiswa.data.data.nama_ortu,
+                    no_hp_ortu: responseMahasiswa.data.data.no_hp_ortu,
+                    jenis_kelamin: responseMahasiswa.data.data.jenis_kelamin,
+                    status_keaktifan: responseMahasiswa.data.data.status_keaktifan,
+                    tanggal_lahir: responseMahasiswa.data.data.tanggal_lahir,
+                    agama: responseMahasiswa.data.data.agama,
+                    prodi: responseMahasiswa.data.data.nama_prodi,
+                    jurusan: responseMahasiswa.data.data.nama_jurusan,
+                    gedung: responseMahasiswa.data.data.nama_gedung,
+                    kamar: responseMahasiswa.data.data.no_kamar,
+                    keterangan_asal: responseMahasiswa.data.data.keterangan_asal,
+                    role_mhs: responseMahasiswa.data.data.role_mhs
+                });
+                console.log(this.state.responseMahasiswa)
+            }
+            else{
+                alert(responseMahasiswa.data.message);
+            }
+        })
+        ;
     }
 
     render() {
+        let jenis_kelamin;
+        if(this.state.jenis_kelamin == 0) {
+            jenis_kelamin = "Perempuan"
+        }else{
+            jenis_kelamin = "Laki-laki"
+        }
+
         return (
             <div>
                 <div id="wrapper">
@@ -35,179 +75,148 @@ class Profile extends Component {
                         <Topbar />
                         {/* <!-- End of Topbar --> */}
                         <div className="container-fluid">
-                            <PageHeading title="Profile" />
+                            <PageHeading title="Data Diri" />
+                            
+                            {/* Path */}
+                            <nav aria-label="breadcrumb">
+                                <ol className="breadcrumb">
+                                    <li className="breadcrumb-item"><Link to="#">Home</Link></li>
+                                    <li className="breadcrumb-item active" aria-current="page">Data Diri</li>
+                                </ol>
+                            </nav>
+
                             <div className="col-lg-12 col-md-12">
                                 <div className="card my-5">
                                     <div className="card-body">
 
                                         {/* Data mahasiswa*/}
                                         <div className="form-group row">
-                                            <label for="email" className="col-md-3 col-form-label text-md-right">Email</label>
+                                            <label className="col-md-3 col-form-label text-md-right">Email</label>
                                             <div className="col-md-8">
                                                 <input 
                                                     type="text" 
                                                     className="form-control-plaintext"
-                                                    value="ichwan.latif.tif18@polban.ac.id"
+                                                    value={this.state.email}
                                                 />
                                             </div>
                                         </div>
                                         <div className="form-group row">
-                                            <label for="password" className="col-md-3 col-form-label text-md-right">Password</label>
-                                            <div className="col-md-8">
-                                                <input 
-                                                    type="password" 
-                                                    className="form-control-plaintext"
-                                                    value="123456"
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="form-group row">
-                                            <label for="name" className="col-md-3 col-form-label text-md-right">Nama</label>
+                                            <label className="col-md-3 col-form-label text-md-right">Nama lengkap</label>
                                             <div className="col-md-8">
                                                 <input 
                                                     type="text" 
                                                     className="form-control-plaintext"
-                                                    value="Ichwan Latif"
+                                                    value={this.state.nama_mhs}
                                                 />
                                             </div>
                                         </div>
                                         <div className="form-group row">
-                                            <label for="nim" className="col-md-3 col-form-label text-md-right">NIM</label>
+                                            <label className="col-md-3 col-form-label text-md-right">Alamat</label>
                                             <div className="col-md-8">
                                                 <input 
                                                     type="text" 
                                                     className="form-control-plaintext"
-                                                    value="181511046"
+                                                    value={this.state.alamat}
                                                 />
                                             </div>
                                         </div>
                                         <div className="form-group row">
-                                            <label for="prodi" className="col-md-3 col-form-label text-md-right">Prodi</label>
+                                            <label className="col-md-3 col-form-label text-md-right">Jenis kelamin</label>
                                             <div className="col-md-8">
                                                 <input 
                                                     type="text" 
                                                     className="form-control-plaintext"
-                                                    value="D-3 Teknik Informatika"
+                                                    value={jenis_kelamin}
                                                 />
                                             </div>
                                         </div>
                                         <div className="form-group row">
-                                            <label for="jurusan" className="col-md-3 col-form-label text-md-right">Jurusan</label>
+                                            <label className="col-md-3 col-form-label text-md-right">Agama</label>
                                             <div className="col-md-8">
                                                 <input 
                                                     type="text" 
                                                     className="form-control-plaintext"
-                                                    value="Teknik Komputer dan Informatika"
+                                                    value={this.state.agama}
                                                 />
                                             </div>
                                         </div>
                                         <div className="form-group row">
-                                            <label for="gender" className="col-md-3 col-form-label text-md-right">Jenis kelamin</label>
+                                            <label className="col-md-3 col-form-label text-md-right">Tanggal lahir</label>
                                             <div className="col-md-8">
                                                 <input 
                                                     type="text" 
                                                     className="form-control-plaintext"
-                                                    value="Laki-laki"
+                                                    value={this.state.tanggal_lahir}
                                                 />
                                             </div>
                                         </div>
                                         <div className="form-group row">
-                                            <label for="birth" className="col-md-3 col-form-label text-md-right">Tanggal lahir</label>
+                                            <label className="col-md-3 col-form-label text-md-right">Nomor hp</label>
                                             <div className="col-md-8">
                                                 <input 
                                                     type="text" 
                                                     className="form-control-plaintext"
-                                                    value="1 Januari 2000"
+                                                    value={this.state.no_hp_mhs}
                                                 />
                                             </div>
                                         </div>
                                         <div className="form-group row">
-                                            <label for="region" className="col-md-3 col-form-label text-md-right">Agama</label>
+                                            <label className="col-md-3 col-form-label text-md-right">Nama orangtua / wali</label>
                                             <div className="col-md-8">
                                                 <input 
                                                     type="text" 
                                                     className="form-control-plaintext"
-                                                    value="Islam"
+                                                    value={this.state.nama_ortu}
                                                 />
                                             </div>
                                         </div>
                                         <div className="form-group row">
-                                            <label for="address" className="col-md-3 col-form-label text-md-right">Alamat</label>
+                                            <label className="col-md-3 col-form-label text-md-right">Nomor hp orangtua / wali</label>
                                             <div className="col-md-8">
                                                 <input 
                                                     type="text" 
                                                     className="form-control-plaintext"
-                                                    value="Jl.Carijodoh no.125, Tasikmalaya"
+                                                    value={this.state.no_hp_ortu}
                                                 />
                                             </div>
                                         </div>
                                         <div className="form-group row">
-                                            <label for="hp" className="col-md-3 col-form-label text-md-right">Nomor hp</label>
+                                            <label className="col-md-3 col-form-label text-md-right">Jurusan / Program studi</label>
                                             <div className="col-md-8">
                                                 <input 
                                                     type="text" 
                                                     className="form-control-plaintext"
-                                                    value="08991276549"
+                                                    value={this.state.jurusan +" / "+ this.state.prodi}
                                                 />
                                             </div>
                                         </div>
                                         <div className="form-group row">
-                                            <label for="namaortu" className="col-md-3 col-form-label text-md-right">Nama orangtua</label>
+                                            <label className="col-md-3 col-form-label text-md-right">Keterangan asal</label>
                                             <div className="col-md-8">
                                                 <input 
                                                     type="text" 
                                                     className="form-control-plaintext"
-                                                    value="Bu Rizqa"
+                                                    value={this.state.keterangan_asal}
                                                 />
                                             </div>
                                         </div>
                                         <div className="form-group row">
-                                            <label for="hportu" className="col-md-3 col-form-label text-md-right">Nomor hp orangtua</label>
+                                            <label className="col-md-3 col-form-label text-md-right">Kamar asrama</label>
                                             <div className="col-md-8">
                                                 <input 
                                                     type="text" 
                                                     className="form-control-plaintext"
-                                                    value="08991276549"
+                                                    value={this.state.gedung +" - "+ this.state.kamar}
                                                 />
                                             </div>
                                         </div>
                                         <div className="form-group row">
-                                            <label for="ukt" className="col-md-3 col-form-label text-md-right">Golongan UKT</label>
+                                            <label className="col-md-3 col-form-label text-md-right">Peran</label>
                                             <div className="col-md-8">
                                                 <input 
                                                     type="text" 
                                                     className="form-control-plaintext"
-                                                    value="1"
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="form-group row">
-                                            <label for="kamar" className="col-md-3 col-form-label text-md-right">Kamar</label>
-                                            <div className="col-md-8">
-                                                <input 
-                                                    type="text" 
-                                                    className="form-control-plaintext"
-                                                    value="A1"
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="form-group row">
-                                            <label for="jabatan" className="col-md-3 col-form-label text-md-right">Jabatan</label>
-                                            <div className="col-md-8">
-                                                <input 
-                                                    type="text" 
-                                                    className="form-control-plaintext"
-                                                    value="Mahasiswa"
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="form-group row">
-                                            <label for="active" className="col-md-3 col-form-label text-md-right">Status keaktifan</label>
-                                            <div className="col-md-8">
-                                                <input 
-                                                    type="text" 
-                                                    className="form-control-plaintext"
-                                                    value="Aktif"
+                                                    value={this.state.role_mhs}
                                                 />
                                             </div>
                                         </div>

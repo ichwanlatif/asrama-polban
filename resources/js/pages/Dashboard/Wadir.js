@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import CardInfo from '../../components/Cards/Info';
 import CardBasic from '../../components/Cards/Basic';
@@ -96,7 +97,15 @@ class DashboardWadir extends Component {
     render() {
         return (
             <div className="container-fluid">
-                <PageHeading title="Dashboard Wakil Direktur" />
+                <PageHeading title="Dashboard Wakil Direktur 3" />
+
+                {/* Path */}
+                <nav aria-label="breadcrumb">
+                    <ol className="breadcrumb">
+                        <li className="breadcrumb-item"><Link to="#">Home</Link></li>
+                        <li className="breadcrumb-item active" aria-current="page">Dashboard</li>
+                    </ol>
+                </nav>
                 
                 {/* ASRAMA A */}
                 <div className="row">
