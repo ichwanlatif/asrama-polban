@@ -149,7 +149,7 @@ class MahasiswaController extends Controller
             'role' => 1,
         ]);
         $insert = Mahasiswa::create([
-            'id_users' => $user->id_users,
+            'id_users' => $user->id,
             'id_prodi' => $request->id_prodi,
             'id_kamar' => $request->id_kamar,
             'nama_mhs' => $request->nama_mhs, 

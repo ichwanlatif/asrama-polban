@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie';
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import api from '../../service/api';
 import { logIn, notLoggedIn } from '../../service/token';
 
@@ -28,6 +28,20 @@ class Login extends Component {
 
     componentDidMount() {
         document.body.classList.add('bg-gradient-primary');
+        if(Cookies.get('cake')){
+            window.location.assign("/#/Dashboard")
+        }
+        if(typeof this.props.location.state != 'undefined'){
+            this.setState({
+                next: this.props.location.state.from.pathname
+            })
+            console.log(this.props.location.state.from.pathname);
+        }
+        else{
+            this.setState({
+                next: "/dashboard"
+            })
+        }
     }
 
     handleFieldChange(e){
@@ -76,13 +90,13 @@ class Login extends Component {
                                 localStorage.setItem('user_id', User.data.data.id_mhs);
                                 localStorage.setItem('nama_mhs', User.data.data.nama_mhs);
                                 logIn(response.data.token);
-                                window.location.assign('/#/Dashboard')
+                                window.location.assign('/#' + this.state.next)
                             }
                         })
                     }
                     else{
                         logIn(response.data.token);
-                        window.location.assign('/#/Dashboard')
+                        window.location.assign('/#' + this.state.next)
                     }
                 }
             })
@@ -98,9 +112,6 @@ class Login extends Component {
     }
 
     render() {
-        if(Cookies.get('cake')){
-            window.location.assign("/#/Dashboard")
-        }
 
         return (
             <div className="container">
