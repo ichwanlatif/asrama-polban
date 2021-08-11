@@ -140,11 +140,21 @@ class RiwayatPerizinan extends Component {
                         {/* <!-- End of Topbar --> */}
                         <div className="container-fluid">
                             <PageHeading title="Riwayat Perizinan" />
+
+                            {/* Path */}
+                            <nav aria-label="breadcrumb">
+                                <ol className="breadcrumb">
+                                    <li className="breadcrumb-item"><Link to="#">Home</Link></li>
+                                    <li className="breadcrumb-item active" aria-current="page">Riwayat Perizinan</li>
+                                </ol>
+                            </nav>
+                            
                             <div className="col-lg-12 col-md-12">
                                 <div className="card my-5">
                                     <div className="card-header">
                                         <h6 className="text-primary">Riwayat Perizinan</h6>
                                     </div>
+
                                     <div className="card-body">
 
                                         {/* Tabel Perizinan */}

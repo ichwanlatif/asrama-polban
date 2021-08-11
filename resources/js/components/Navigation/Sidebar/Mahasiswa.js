@@ -13,7 +13,7 @@ class SidebarMahasiswa extends Component {
                 {/* Form Presensi */}
                 <li className="nav-item">
                     <Link className="nav-link collapsed" data-toggle="collapse" data-target="#collapsePresensi" aria-expanded="true" aria-controls="collapsePresensi">
-                        <i class="fas fa-calendar-check"></i>
+                        <i className="fas fa-calendar-check"></i>
                         <span>Formulir Presensi</span>
                     </Link>
                     <div id="collapsePresensi" className="collapse" aria-labelledby="headingPresensi" data-parent="#accordionSidebar">
@@ -27,7 +27,7 @@ class SidebarMahasiswa extends Component {
                 {/* Riwayat Presensi */}
                 <li className="nav-item">
                     <Link className="nav-link" to="/riwayat-presensi">
-                        <i class="fas fa-clipboard-list"></i>
+                        <i className="fas fa-clipboard-list"></i>
                         <span>Riwayat Presensi</span>
                     </Link>
                 </li>
@@ -43,7 +43,7 @@ class SidebarMahasiswa extends Component {
                 {/* Forn Perizinan */}
                 <li className="nav-item">
                     <Link className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePerizinan" aria-expanded="true" aria-controls="collapsePerizinan">
-                        <i class="fas fa-portrait"></i>
+                        <i className="fas fa-portrait"></i>
                         <span>Buat Perizinan</span>
                     </Link>
                     <div id="collapsePerizinan" className="collapse" aria-labelledby="headingPerizinan" data-parent="#accordionSidebar">
@@ -58,7 +58,7 @@ class SidebarMahasiswa extends Component {
                 {/* Riwayat Perizinan */}
                 <li className="nav-item">
                     <Link className="nav-link" to="/riwayat-perizinan">
-                        <i class="fas fa-clipboard-list"></i>
+                        <i className="fas fa-clipboard-list"></i>
                         <span>Riwayat perizinan</span>
                     </Link>
                 </li>

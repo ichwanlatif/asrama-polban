@@ -13,7 +13,7 @@ class CreateGedung extends Migration
      */
     public function up()
     {
-        Schema::create('Gedung', function (Blueprint $table) {
+        Schema::create('gedung', function (Blueprint $table) {
             $table->bigIncrements('id_gedung');
             $table->char('nama_gedung', 1);
             $table->timestamps();

@@ -13,13 +13,13 @@ class CreateProdi extends Migration
      */
     public function up()
     {
-        Schema::create('Prodi', function (Blueprint $table) {
+        Schema::create('prodi', function (Blueprint $table) {
             $table->bigIncrements('id_prodi');
             $table->unsignedBigInteger('id_jurusan');
             $table->string('nama_prodi', 50);
             $table->timestamps();
 
-            $table->foreign('id_jurusan')->references('id_jurusan')->on('Jurusan')->onDelete('cascade');
+            $table->foreign('id_jurusan')->references('id_jurusan')->on('jurusan')->onDelete('cascade');
         });
     }
 

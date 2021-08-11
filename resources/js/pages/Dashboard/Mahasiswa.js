@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import CardInfo from '../../components/Cards/Info';
 import PageHeading from '../../components/PageHeading';
@@ -12,6 +13,7 @@ class DashboardMahasiswa extends Component {
             alfa: "",
             hadir: "",
             izin: "",
+            kamar:"",
             gedung: ""
         };
     }
@@ -23,6 +25,7 @@ class DashboardMahasiswa extends Component {
                     alfa: response.data.alfa,
                     hadir: response.data.hadir,
                     izin: response.data.izin,
+                    kamar: response.data.mahasiswa.no_kamar,
                     gedung: response.data.mahasiswa.nama_gedung
                 })
                 console.log(this.state)
@@ -38,11 +41,21 @@ class DashboardMahasiswa extends Component {
         return (
             <div className="container-fluid">
                 <PageHeading title="Dashboard Mahasiswa" />
+
+                {/* Path */}
+                <nav aria-label="breadcrumb">
+                    <ol className="breadcrumb">
+                        <li className="breadcrumb-item"><Link to="#">Home</Link></li>
+                        <li className="breadcrumb-item active" aria-current="page">Dashboard</li>
+                    </ol>
+                </nav>
+
+                {/* Content */}
                 <div className="row">
-                    <CardInfo title="Gedung Asrama"
+                    <CardInfo title="Gedung-Kamar Asrama"
                         icon="house-user"
                         color="primary"
-                        value={this.state.gedung} />
+                        value={this.state.gedung+" - "+this.state.kamar} />
 
                     <CardInfo title="Jumlah Hadir"
                         icon="calendar-check"

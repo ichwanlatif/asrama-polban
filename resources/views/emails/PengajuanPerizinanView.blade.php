@@ -17,7 +17,7 @@
     <p>Kendaraan digunakan: {{$details['jenis_kendaraan']}}</p>
 
     <br>
-    <p>Segera Approve dengan mengklik <a href="#">link ini.</a></p>
+    <p>Segera Approve dengan mengklik <a href=<?php echo "https://asrama-polban.herokuapp.com/#/form-approval-izin-pulang/" + $details['id'] ?>>link ini.</a></p>
 
 </body>
 </html>

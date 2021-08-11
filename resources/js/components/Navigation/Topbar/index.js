@@ -7,14 +7,53 @@ import { clickMenuOpen } from '../../../redux/actions';
 import { logoutAuth } from '../../../service/auth';
 
 class Topbar extends Component {
+      constructor(){
+        super();
+        this.state = {
+            nama_mhs: ""
+        };
+    }
+
+    componentDidMount(){
+      let nama_mhs;
+      
+      if(localStorage.getItem("nama_mhs")){
+        nama_mhs = localStorage.getItem("nama_mhs")
+      }else{
+        switch(localStorage.getItem("user_role")) {
+          case "2":
+            nama_mhs ="Pengelola Asrama";
+            break;
+          case "3":
+            nama_mhs ="Wakil Direktur 3";
+            break;
+        }
+      }
+      this.setState({
+        nama_mhs
+      });
+
+      console.log(localStorage.getItem("user_role"))
+    }
     
     render() {
         const signOut = e => {
             e.preventDefault()
             logoutAuth();
         };
-        
+
+        const nama_mhs = this.state.nama_mhs;
         const { clickMenuOpen } = this.props;
+
+        let data_diri;
+        if(localStorage.getItem("user_role")==="1"){
+          data_diri = <Link className="dropdown-item" to="/data-diri">
+                        <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Data diri
+                      </Link>
+        }else{
+          data_diri=<div></div>
+        }
 
         return (
           <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
@@ -32,17 +71,14 @@ class Topbar extends Component {
             {/* <!-- Nav Item - User Information --> */}
             <li className="nav-item dropdown no-arrow">
             <Link className="nav-link dropdown-toggle" to="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span className="mr-2 d-none d-lg-inline text-gray-600 small">Ichwan</span>
+                <span className="mr-2 d-none d-lg-inline text-gray-600 small">{nama_mhs}</span>
+                <img className="img-profile rounded-circle" src="/images/profile/polban.jpg" />
               </Link>
               {/* <!-- Dropdown - User Information --> */}
               <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <Link className="dropdown-item" to="/profile">
-                  <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Profile
-                </Link>
-                <div className="dropdown-divider"></div>
+                {data_diri}
                 <button className="dropdown-item" onClick={signOut} data-toggle="modal" data-target="#logoutModal">
-                  <i class="fas fa-sign-out-alt fa-fw mr-2 text-gray-400"></i>
+                  <i className="fas fa-sign-out-alt fa-fw mr-2 text-gray-400"></i>
                   Keluar
                 </button>
               </div>

@@ -13,7 +13,7 @@ class CreatePerizinan extends Migration
      */
     public function up()
     {
-        Schema::create('Perizinan', function (Blueprint $table) {
+        Schema::create('perizinan', function (Blueprint $table) {
             $table->bigIncrements('id_perizinan');
             $table->unsignedBigInteger('id_mhs');
             $table->date('tanggal_pergi');
@@ -30,7 +30,7 @@ class CreatePerizinan extends Migration
             $table->string('jenis_kendaraan', 10);
             $table->timestamps();
 
-            $table->foreign('id_mhs')->references('id_mhs')->on('Mahasiswa')->onDelete('cascade');
+            $table->foreign('id_mhs')->references('id_mhs')->on('mahasiswa')->onDelete('cascade');
         });
     }
 

@@ -9,7 +9,7 @@ export default function api(){
     if(cekLog){
         const token = Cookies.get('cake');
         const api = axios.create({
-            baseURL: 'http://127.0.0.1:8000/',
+            baseURL: 'https://asrama-polban.herokuapp.com/',
             withCredentials: true,
             headers:{'Authorization':'Bearer '+token}
         });
@@ -17,7 +17,7 @@ export default function api(){
     }
     else{
         const api = axios.create({
-            baseURL: 'http://127.0.0.1:8000/',
+            baseURL: 'https://asrama-polban.herokuapp.com/',
             withCredentials: true,
         });
         return api

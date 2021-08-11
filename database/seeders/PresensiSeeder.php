@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Presensi;
-use Faker\Factory as Faker;
+// use Faker\Factory as Faker;
 
 class PresensiSeeder extends Seeder
 {

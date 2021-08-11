@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 //Navigation
 import Sidebar from '../../components/Navigation/Sidebar';
@@ -104,6 +105,15 @@ class DataPresensi extends Component {
                         {/* <!-- End of Topbar --> */}
                         <div className="container-fluid">
                             <PageHeading title="Data Presensi Asrama" />
+
+                            {/* Path */}
+                            <nav aria-label="breadcrumb">
+                                <ol className="breadcrumb">
+                                    <li className="breadcrumb-item"><Link to="#">Home</Link></li>
+                                    <li className="breadcrumb-item active" aria-current="page">Data Presensi</li>
+                                </ol>
+                            </nav>
+
                             <div className="col-lg-12 col-md-12">
                                 <div className="card my-5">
                                     <div className="card-header">

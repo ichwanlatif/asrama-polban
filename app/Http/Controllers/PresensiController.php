@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Presensi;
 use App\Models\Mahasiswa;
-use App\Models\RekapPresensi;
-use App\Models\MahasiswaGedung;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Collection;
@@ -146,106 +144,145 @@ class PresensiController extends Controller
 
     public function dashboard(){
         
-        $alfaA = RekapPresensi::where([
+        $alfaA = Mahasiswa::join('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
+        ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
+        ->join('presensi', 'mahasiswa.id_mhs', '=', 'presensi.id_mhs')
+        ->where([
             ['status_presensi', '=', 0],
             ['nama_gedung', '=', 'A']
         ])
-        ->whereMonth('created_at', date('n'))
-            ->whereYear('created_at', date('Y'))
+        ->whereMonth('presensi.created_at', date('n'))
+            ->whereYear('presensi.created_at', date('Y'))
             ->count();
 
-        $alfaB = RekapPresensi::where([
+        $alfaB = Mahasiswa::join('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
+        ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
+        ->join('presensi', 'mahasiswa.id_mhs', '=', 'presensi.id_mhs')
+        ->where([
             ['status_presensi', '=', 0],
             ['nama_gedung', '=', 'B']
         ])
-        ->whereMonth('created_at', date('n'))
-            ->whereYear('created_at', date('Y'))
+        ->whereMonth('presensi.created_at', date('n'))
+            ->whereYear('presensi.created_at', date('Y'))
             ->count();
 
-        $alfaC = RekapPresensi::where([
+        $alfaC = Mahasiswa::join('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
+        ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
+        ->join('presensi', 'mahasiswa.id_mhs', '=', 'presensi.id_mhs')
+        ->where([
             ['status_presensi', '=', 0],
             ['nama_gedung', '=', 'C']
         ])
-        ->whereMonth('created_at', date('n'))
-            ->whereYear('created_at', date('Y'))
+        ->whereMonth('presensi.created_at', date('n'))
+            ->whereYear('presensi.created_at', date('Y'))
             ->count();
 
-        $hadirA = RekapPresensi::where([
+        $hadirA = Mahasiswa::join('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
+        ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
+        ->join('presensi', 'mahasiswa.id_mhs', '=', 'presensi.id_mhs')
+        ->where([
             ['status_presensi', '=', 1],
             ['nama_gedung', '=', 'A']
         ])
-        ->whereMonth('created_at', date('n'))
-            ->whereYear('created_at', date('Y'))
+        ->whereMonth('presensi.created_at', date('n'))
+            ->whereYear('presensi.created_at', date('Y'))
             ->count();
 
-        $hadirB = RekapPresensi::where([
+        $hadirB = Mahasiswa::join('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
+        ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
+        ->join('presensi', 'mahasiswa.id_mhs', '=', 'presensi.id_mhs')
+        ->where([
             ['status_presensi', '=', 1],
             ['nama_gedung', '=', 'B']
         ])
-        ->whereMonth('created_at', date('n'))
-            ->whereYear('created_at', date('Y'))
+        ->whereMonth('presensi.created_at', date('n'))
+            ->whereYear('presensi.created_at', date('Y'))
             ->count();
 
-        $hadirC = RekapPresensi::where([
+        $hadirC = Mahasiswa::join('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
+        ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
+        ->join('presensi', 'mahasiswa.id_mhs', '=', 'presensi.id_mhs')
+        ->where([
             ['status_presensi', '=', 1],
             ['nama_gedung', '=', 'C']
         ])
-        ->whereMonth('created_at', date('n'))
-            ->whereYear('created_at', date('Y'))
+        ->whereMonth('presensi.created_at', date('n'))
+            ->whereYear('presensi.created_at', date('Y'))
             ->count();
 
-        $izinA = RekapPresensi::where([
+        $izinA = Mahasiswa::join('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
+        ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
+        ->join('presensi', 'mahasiswa.id_mhs', '=', 'presensi.id_mhs')
+        ->where([
             ['status_presensi', '=', 2],
             ['nama_gedung', '=', 'A']
         ])
-        ->whereMonth('created_at', date('n'))
-            ->whereYear('created_at', date('Y'))
+        ->whereMonth('presensi.created_at', date('n'))
+            ->whereYear('presensi.created_at', date('Y'))
             ->count();
 
-        $izinB = RekapPresensi::where([
+        $izinB = Mahasiswa::join('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
+        ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
+        ->join('presensi', 'mahasiswa.id_mhs', '=', 'presensi.id_mhs')
+        ->where([
             ['status_presensi', '=', 2],
             ['nama_gedung', '=', 'B']
         ])
-        ->whereMonth('created_at', date('n'))
-            ->whereYear('created_at', date('Y'))
+        ->whereMonth('presensi.created_at', date('n'))
+            ->whereYear('presensi.created_at', date('Y'))
             ->count();
 
-        $izinC = RekapPresensi::where([
+        $izinC = Mahasiswa::join('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
+        ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
+        ->join('presensi', 'mahasiswa.id_mhs', '=', 'presensi.id_mhs')
+        ->where([
             ['status_presensi', '=', 2],
             ['nama_gedung', '=', 'C']
         ])
-        ->whereMonth('created_at', date('n'))
-            ->whereYear('created_at', date('Y'))
+        ->whereMonth('presensi.created_at', date('n'))
+            ->whereYear('presensi.created_at', date('Y'))
             ->count();
 
-        $mhsA = MahasiswaGedung::where([
+        $mhsA = Mahasiswa::join('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
+        ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
+        ->where([
             ['nama_gedung', '=', 'A']
         ])
         ->count();
 
-        $pengurusA = MahasiswaGedung::where([
+        $pengurusA = Mahasiswa::join('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
+        ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
+        ->where([
             ['nama_gedung', '=', 'A'],
             ['role_mhs', '=', 'Pengurus'],
         ])
         ->count();
 
-        $mhsB = MahasiswaGedung::where([
+        $mhsB = Mahasiswa::join('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
+        ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
+        ->where([
             ['nama_gedung', '=', 'B']
         ])
         ->count();
 
-        $pengurusB = MahasiswaGedung::where([
+        $pengurusB = Mahasiswa::join('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
+        ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
+        ->where([
             ['nama_gedung', '=', 'B'],
             ['role_mhs', '=', 'Pengurus'],
         ])
         ->count();
 
-        $mhsC = MahasiswaGedung::where([
+        $mhsC = Mahasiswa::join('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
+        ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
+        ->where([
             ['nama_gedung', '=', 'C']
         ])
         ->count();
 
-        $pengurusC = MahasiswaGedung::where([
+        $pengurusC = Mahasiswa::join('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
+        ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
+        ->where([
             ['nama_gedung', '=', 'C'],
             ['role_mhs', '=', 'Pengurus'],
         ])

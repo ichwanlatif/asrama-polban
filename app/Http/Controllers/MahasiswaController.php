@@ -148,7 +148,6 @@ class MahasiswaController extends Controller
             'password' => \Hash::make($request->nim),
             'role' => 1,
         ]);
-
         $insert = Mahasiswa::create([
             'id_users' => $user->id_users,
             'id_prodi' => $request->id_prodi,
@@ -172,7 +171,7 @@ class MahasiswaController extends Controller
                 'status' => 'success',
                 'message' => 'Mahasiswa berhasil diinput',
                 'data' => $insert
-            ], 201);
+            ]);
         }
         else{
             return response()->json([
@@ -291,7 +290,12 @@ class MahasiswaController extends Controller
             $delete = Mahasiswa::where([
                 ['id_mhs', '=', $listMahasiswa[$i]],
             ])
+            ->first();
+            User::where([
+                ['id_users', '=', $delete->id_users],
+            ])
             ->delete();
+            $delete->delete();
         }
         if($delete){
             return response()->json([
