@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
 import api from '../../service/api';
 
-//Navigation
+function loadingAnimation() {
+    return new Promise(function(resolve) {
+      setTimeout(() => resolve([1, 2, 3]), 1000);
+    });
+}
 
 class ResetPassword extends Component {
     constructor(){
         super();
         this.state = {
             errList: [],
+
+            //loading
+            isLoading:false,
+            list: []
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -24,6 +32,8 @@ class ResetPassword extends Component {
     }
 
     async handleSubmit(e){
+        this.setState({ isLoading: true });
+
         e.preventDefault();
         const { token } = this.props.match.params;
 
@@ -43,6 +53,14 @@ class ResetPassword extends Component {
                 errList: error.response.data.errors
             });
         })
+
+        // Set status animasi loading
+        loadingAnimation().then(list => {
+            this.setState({
+              isLoading: false,
+              list,
+            });
+        });
 
     }
 
@@ -91,8 +109,8 @@ class ResetPassword extends Component {
                                     </div>
                                     <div className="form-group row">
                                         <div className="col-md-8 offset-md-3 mb-2">
-                                            <button type="submit" className="btn btn-success" onClick={this.handleSubmit}>
-                                                Submit
+                                            <button type="submit" className="btn btn-success" onClick={this.handleSubmit} disabled={this.state.isLoading}>
+                                            {this.state.isLoading ? <i className="fas fa-spinner fa-pulse"></i> : <i className="fas fa-check"></i>} Submit
                                             </button>
                                         </div>
                                     </div>

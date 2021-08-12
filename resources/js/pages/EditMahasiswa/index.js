@@ -271,12 +271,12 @@ class EditMahasiswa extends Component {
                                                 <label for="agama" className="col-md-3 col-form-label text-md-right">Agama</label>
                                                 <div className="col-md-8">
                                                     <select className="custom-select mr-sm-2" id="agama" name="agama" onChange={this.handleFieldChange}>
-                                                        <option value="Islam">Islam</option>
-                                                        <option value="Kristen">Kristen</option>
-                                                        <option value="Katolik">Katolik</option>
-                                                        <option value="Hindu">Hindu</option>
-                                                        <option value="Budha">Budha</option>
-                                                        <option value="Konghucu">Konghucu</option>
+                                                        {this.state.agama ==="Islam"?<option selected value="Islam">Islam</option>:<option value="Islam">Islam</option>}
+                                                        {this.state.agama ==="Kristen"?<option selected value="Kristen">Kristen</option>:<option value="Kristen">Kristen</option>}
+                                                        {this.state.agama ==="Katolik"?<option selected value="Katolik">Katolik</option>:<option value="Katolik">Katolik</option>}
+                                                        {this.state.agama ==="Hindu"?<option selected value="Hindu">Hindu</option>:<option value="Hindu">Hindu</option>}
+                                                        {this.state.agama ==="Budha"?<option selected value="Budha">Budha</option>:<option value="Budha">Budha</option>}
+                                                        {this.state.agama ==="Konghucu"?<option selected value="Konghucu">Konghucu</option>:<option value="Konghucu">Konghucu</option>}
                                                     </select>
                                                     <span className="text-danger">{this.state.errList.agama}</span>
                                                 </div>
@@ -392,9 +392,9 @@ class EditMahasiswa extends Component {
                                                 <label for="keterangan_asal" className="col-md-3 col-form-label text-md-right">Keterangan asal</label>
                                                 <div className="col-md-8">
                                                     <select className="custom-select mr-sm-2" id="keterangan_asal" name="keterangan_asal" onChange={this.handleFieldChange}>
-                                                        <option value="ADIK">ADIK</option>
-                                                        <option value="Bidikmisi">KIP Kuliah</option>
-                                                        <option value="Kerja sama">Program Kerja sama</option>
+                                                        {this.state.keterangan_asal ==="ADIK"?<option selected value="ADIK">ADIK</option>:<option value="ADIK">ADIK</option>}
+                                                        {this.state.keterangan_asal ==="KIP Kuliah"?<option selected value="KIP Kuliah">KIP Kuliah</option>:<option value="KIP Kuliah">KIP Kuliah</option>}
+                                                        {this.state.keterangan_asal ==="Program Kerja sama"?<option selected value="Program Kerja sama">Program Kerja sama</option>:<option value="Program Kerja sama">Program Kerja sama</option>}
                                                     </select>
                                                     <br></br>
                                                     <span className="text-danger">{this.state.errList.keterangan_asal}</span>
@@ -430,8 +430,8 @@ class EditMahasiswa extends Component {
                                                 <label for="role_mhs" className="col-md-3 col-form-label text-md-right">Peran</label>
                                                 <div className="col-md-8">
                                                     <select className="custom-select mr-sm-2" id="role_mhs" name="role_mhs" onChange={this.handleFieldChange}>
-                                                        <option value="Mahasiswa">Mahasiswa</option>
-                                                        <option value="Pengurus">Pengurus</option>
+                                                        {this.state.role_mhs ==="Mahasiswa"?<option selected value="Mahasiswa">Mahasiswa</option> : <option value="Mahasiswa">Mahasiswa</option>}
+                                                        {this.state.role_mhs ==="Pengurus"?<option selected value="Pengurus">Pengurus</option>:<option value="Pengurus">Pengurus</option>}
                                                     </select>
                                                     <br></br>
                                                     <span className="text-danger">{this.state.errList.role_mhs}</span>
