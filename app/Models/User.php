@@ -47,7 +47,7 @@ class User extends Authenticatable
     protected $primaryKey = 'id_users';
 
     public function sendPasswordResetNotification($token){
-        $url = 'https://asrama-polban.xyz/asrama-polban/public/#/reset-password/' . $token;
+        $url = 'https://asrama-polban.xyz/#/reset-password/' . $token;
 
         $this->notify(new ResetPasswordNotification($url));
     }
