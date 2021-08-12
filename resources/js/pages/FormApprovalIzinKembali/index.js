@@ -53,7 +53,7 @@ class FormApprovalIzinKembali extends Component {
         })).then(response => {
             if(response.data.status === 'success'){
                 console.log(response.data.message)
-                window.location.assign('/#/data-izin-kembali')
+                window.location.assign('asrama-polban/public/#/data-izin-kembali')
             }
             else{
                 this.setState({

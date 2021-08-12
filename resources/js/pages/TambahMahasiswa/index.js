@@ -63,7 +63,7 @@ class TambahMahasiswa extends Component {
             role_mhs: this.state.role_mhs
         })).then(response => {
             if(response.data.status === 'success'){
-                window.location.assign('/#/data-mahasiswa')
+                window.location.assign('asrama-polban/public/#/data-mahasiswa')
             }
             else{
                 this.setState({

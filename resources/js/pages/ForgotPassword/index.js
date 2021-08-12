@@ -28,7 +28,7 @@ class ForgotPassword extends Component {
         })).then(response => {
             if(response.data.status == 'success'){
                 alert(response.data.message);
-                window.location.assign('/#/');
+                window.location.assign('asrama-polban/public/#/');
             }
         }).catch(error => {
             alert(error.response.data.message)

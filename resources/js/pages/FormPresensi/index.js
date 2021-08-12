@@ -52,19 +52,19 @@ class FormPresensi extends Component {
         }, 1000)
         if(new Date().toLocaleTimeString() < "15.59.00" || new Date().toLocaleTimeString() > "20.01.00"){
             alert("Tidak Dalam Waktu Presensi")
-            window.location.assign('/#/dashboard')
+            window.location.assign('asrama-polban/publicasrama-polban/public/#/dashboard')
         }
         else{
             api().get('api/perizinan/checkPerizinan/' + localStorage.getItem('user_id')).then(response =>{
                 if(response.data.status === 'success'){
                     alert('Anda Sedang Izin')
-                    window.location.assign('/#/dashboard')
+                    window.location.assign('asrama-polban/publicasrama-polban/public/#/dashboard')
                 }
                 else{
                     api().get('api/presensi/kehadiranToday/' + localStorage.getItem('user_id')).then(today =>{
                         if(today.data.status === 'success'){
                             alert('Anda Telah Melakukan Presensi');
-                            window.location.assign('/#/dashboard')
+                            window.location.assign('asrama-polban/publicasrama-polban/public/#/dashboard')
                         }
                     })
                 }
@@ -148,7 +148,7 @@ class FormPresensi extends Component {
                 id_mhs: localStorage.getItem('user_id')
             })).then(response => {
                 if(response.data.status === 'success'){
-                    window.location.assign('/#/riwayat-presensi')
+                    window.location.assign('asrama-polban/publicasrama-polban/public/#/riwayat-presensi')
                 }
                 else{
                     this.setState({
