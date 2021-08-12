@@ -123,6 +123,7 @@ class MahasiswaController extends Controller
             'required'          => ':attribute harus diisi. ',
             'email'             => ':attribute tidak valid. ',
             'ends_with'         => 'harus menggunakan :attribute polban. ',
+            'numeric'           => ':attribute harus diisi angka. ',
             'max'               => ':attribute harus diisi maksimal :max. ',
             'min'               => ':attribute harus diisi minimal :min. ',
         ];
@@ -130,14 +131,19 @@ class MahasiswaController extends Controller
         $validasi = \Validator::make($request->all(), [
             'email' => 'required|email|ends_with:polban.ac.id',
             'nama_mhs' => 'required|max:50', 
-            'nim' => 'required|max:10',
             'alamat' => 'required|max:125',
-            'no_hp_mhs' => 'required|max:13',
-            'nama_ortu' => 'required|max:50',
-            'no_hp_ortu' => 'required|max:13',
             'jenis_kelamin' => 'required',
+            'agama' => 'required',
+            'tanggal_lahir' => 'required',
+            'no_hp_mhs' => 'required|numeric',
+            'nama_ortu' => 'required|max:50',
+            'no_hp_ortu' => 'required|numeric',
+            'nim' => 'required|numeric',
+            'id_prodi' => 'required',
+            'keterangan_asal' => 'required',
+            'id_kamar' => 'required',
+            'role_mhs' => 'required',
             'status_keaktifan' => 'required',
-            'tanggal_lahir' => 'required'
         ], $messages);
 
         if($validasi->fails()){
@@ -190,6 +196,7 @@ class MahasiswaController extends Controller
             'required'          => ':attribute harus diisi. ',
             'email'             => ':attribute tidak valid. ',
             'ends_with'         => 'harus menggunakan :attribute polban. ',
+            'numeric'           => ':attribute harus diisi angka. ',
             'max'               => ':attribute harus diisi maksimal :max. ',
             'min'               => ':attribute harus diisi minimal :min. ',
         ];
@@ -198,16 +205,16 @@ class MahasiswaController extends Controller
             $validasi = \Validator::make($request->all(), [
                 'email' => 'required|email|ends_with:polban.ac.id',
                 'nama_mhs' => 'required|max:50', 
-                'nim' => 'required|max:10',
+                'nim' => 'required|numeric',
                 'alamat' => 'required|max:125',
-                'no_hp_mhs' => 'required|max:13',
+                'no_hp_mhs' => 'required|numeric',
                 'nama_ortu' => 'required|max:50',
-                'no_hp_ortu' => 'required|max:13',
+                'no_hp_ortu' => 'required|numeric',
                 'jenis_kelamin' => 'required',
                 'status_keaktifan' => 'required',
                 'tanggal_lahir' => 'required',
-                'agama' => 'required|max:10',
-                'keterangan_asal' => 'required|max:10',
+                'agama' => 'required',
+                'keterangan_asal' => 'required',
                 'role_mhs' => 'required'
             ], $messages);
         }

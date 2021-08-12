@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Perizinan;
-// use Faker\Factory as Faker;
+use Faker\Factory as Faker;
 
 class IzinPulangSeeder extends Seeder
 {
