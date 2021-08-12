@@ -14,10 +14,10 @@ class ManajemenSeeder extends Seeder
      */
     public function run()
     {
-        $user = User::create([
-            'email' => "manajemen@polban.ac.id",
-            'password' => \Hash::make(12345678),
-            'role' => 3
-        ]);
+        // $user = User::create([
+        //     'email' => "manajemen@polban.ac.id",
+        //     'password' => \Hash::make(12345678),
+        //     'role' => 3
+        // ]);
     }
 }

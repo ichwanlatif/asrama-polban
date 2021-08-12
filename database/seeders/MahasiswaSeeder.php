@@ -45,50 +45,50 @@ class MahasiswaSeeder extends Seeder
         $user = User::create([
             'email' => "irfan.siswara.tif18@polban.ac.id",
             'password' => \Hash::make(181511048),
-            'role' => 1
+            'role' => 3
         ]);
         
-        $mahasiswa = Mahasiswa::create([
-            'id_users' => 2,
-            'id_prodi' => 23,
-            'id_kamar' => 25,
-            'nama_mhs' => "Irfan Siswara",
-            'nim' => "181511048",
-            'alamat' => "Karawang",
-            'no_hp_mhs' => "0812345678",
-            'nama_ortu' => "Pak Opa",
-            'no_hp_ortu' => "0812345678",
-            'jenis_kelamin' => 1,
-            'status_keaktifan' => 1,
-            'tanggal_lahir' => "2000-01-11",
-            'agama' => "Islam",
-            'keterangan_asal' => "ADIK",
-            'role_mhs' => "Pengurus",
-        ]);
+        // $mahasiswa = Mahasiswa::create([
+        //     'id_users' => 2,
+        //     'id_prodi' => 23,
+        //     'id_kamar' => 25,
+        //     'nama_mhs' => "Irfan Siswara",
+        //     'nim' => "181511048",
+        //     'alamat' => "Karawang",
+        //     'no_hp_mhs' => "0812345678",
+        //     'nama_ortu' => "Pak Opa",
+        //     'no_hp_ortu' => "0812345678",
+        //     'jenis_kelamin' => 1,
+        //     'status_keaktifan' => 1,
+        //     'tanggal_lahir' => "2000-01-11",
+        //     'agama' => "Islam",
+        //     'keterangan_asal' => "ADIK",
+        //     'role_mhs' => "Pengurus",
+        // ]);
 
         $user = User::create([
             'email' => "rizqa.fauzziyah.tif18@polban.ac.id",
-            'password' => \Hash::make(123456),
-            'role' => 1
+            'password' => \Hash::make(181511065),
+            'role' => 2
         ]);
         
-        $mahasiswa = Mahasiswa::create([
-            'id_users' => 3,
-            'id_prodi' => 23,
-            'id_kamar' => 5,
-            'nama_mhs' => "Rizqa Fauziyyah",
-            'nim' => "181511065",
-            'alamat' => "Tasik",
-            'no_hp_mhs' => "0812345678",
-            'nama_ortu' => "Bu koko",
-            'no_hp_ortu' => "0812345678",
-            'jenis_kelamin' => 2,
-            'status_keaktifan' => 1,
-            'tanggal_lahir' => "2000-02-22",
-            'agama' => "Islam",
-            'keterangan_asal' => "ADIK",
-            'role_mhs' => "Pengurus",
-        ]);
+        // $mahasiswa = Mahasiswa::create([
+        //     'id_users' => 3,
+        //     'id_prodi' => 23,
+        //     'id_kamar' => 5,
+        //     'nama_mhs' => "Rizqa Fauziyyah",
+        //     'nim' => "181511065",
+        //     'alamat' => "Tasik",
+        //     'no_hp_mhs' => "0812345678",
+        //     'nama_ortu' => "Bu koko",
+        //     'no_hp_ortu' => "0812345678",
+        //     'jenis_kelamin' => 2,
+        //     'status_keaktifan' => 1,
+        //     'tanggal_lahir' => "2000-02-22",
+        //     'agama' => "Islam",
+        //     'keterangan_asal' => "ADIK",
+        //     'role_mhs' => "Pengurus",
+        // ]);
         
 
         //Mahasiswa random

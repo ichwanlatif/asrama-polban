@@ -21,8 +21,8 @@ class DatabaseSeeder extends Seeder
             
             //Dummy
             MahasiswaSeeder::class,
-            ManajemenSeeder::class,
-            PengelolaSeeder::class,
+            // ManajemenSeeder::class,
+            // PengelolaSeeder::class,
             // IzinPulangSeeder::class,
             // IzinKembaliSeeder::class,
             // ResignSeeder::class,
