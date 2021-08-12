@@ -1,11 +1,21 @@
 import React, { Component } from 'react';
 import api from '../../service/api';
 
+function loadingAnimation() {
+    return new Promise(function(resolve) {
+      setTimeout(() => resolve([1, 2, 3]), 1000);
+    });
+}
+
 class ForgotPassword extends Component {
     constructor(){
         super();
         this.state = {
             errList: [],
+
+            //loading
+            isLoading:false,
+            list: []
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,6 +32,8 @@ class ForgotPassword extends Component {
     }
 
     async handleSubmit(e){
+        this.setState({ isLoading: true });
+
         e.preventDefault();
         await api().post('api/forgot-password', ({
             email: this.state.email,
@@ -36,6 +48,14 @@ class ForgotPassword extends Component {
                 errList: error.response.data.errors
             });
         })
+
+        // Set status animasi loading
+        loadingAnimation().then(list => {
+            this.setState({
+              isLoading: false,
+              list,
+            });
+        });
     }
 
     render() {
@@ -63,13 +83,13 @@ class ForgotPassword extends Component {
                                                 required
                                                 onChange={this.handleFieldChange}
                                             />
-                                            <span className="text-danger">*{this.state.errList.email}</span>
+                                            <span className="text-danger">{this.state.errList.email}</span>
                                         </div>
                                     </div>
                                     <div className="form-group row">
                                         <div className="col-md-8 offset-md-3 mb-2">
-                                            <button type="submit" className="btn btn-success" onClick={this.handleSubmit}>
-                                                Submit
+                                            <button type="submit" className="btn btn-success" onClick={this.handleSubmit} disabled={this.state.isLoading}>
+                                            {this.state.isLoading ? <i className="fas fa-spinner fa-pulse"></i> : <i className="fas fa-check"></i>} Submit
                                             </button>
                                         </div>
                                     </div>

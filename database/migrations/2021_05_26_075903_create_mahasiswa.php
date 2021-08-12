@@ -28,7 +28,7 @@ class CreateMahasiswa extends Migration
             $table->tinyInteger('status_keaktifan')->default(1);
             $table->date('tanggal_lahir');
             $table->string('agama', 10);
-            $table->string('keterangan_asal', 10);
+            $table->string('keterangan_asal', 50);
             $table->string('role_mhs', 12);
             $table->timestamps();
 

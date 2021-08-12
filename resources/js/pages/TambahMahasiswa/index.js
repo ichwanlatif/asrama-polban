@@ -28,6 +28,13 @@ class TambahMahasiswa extends Component {
             //loading
             isLoading:false,
             list: [],
+
+            //form
+            agama:"Islam",
+            id_prodi: 1,
+            keterangan_asal:"ADIK",
+            id_kamar:1,
+            role_mhs:"Mahasiswa",
         };
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleFieldChange = this.handleFieldChange.bind(this);
@@ -316,8 +323,8 @@ class TambahMahasiswa extends Component {
                                                 <div className="col-md-8">
                                                     <select className="custom-select mr-sm-2" id="keterangan_asal" name="keterangan_asal" onChange={this.handleFieldChange}>
                                                         <option value="ADIK">ADIK</option>
-                                                        <option value="Bidikmisi">KIP Kuliah</option>
-                                                        <option value="Kerja sama">Program Kerja sama</option>
+                                                        <option value="KIP Kuliah">KIP Kuliah</option>
+                                                        <option value="Program Kerja sama">Program Kerja sama</option>
                                                     </select>
                                                     <br></br>
                                                     <span className="text-danger">{this.state.errList.keterangan_asal}</span>
