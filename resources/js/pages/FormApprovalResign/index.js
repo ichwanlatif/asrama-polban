@@ -55,7 +55,7 @@ class FormApprovalResign extends Component {
         })).then(response => {
             if(response.data.status === 'success'){
                 console.log(response.data.message)
-                window.location.assign('asrama-polban/public/#/data-resign')
+                window.location.assign('/#/data-resign')
             }
             else{
                 this.setState({

@@ -99,7 +99,7 @@ class FormIzinPulang extends Component {
             await api().post('api/perizinan/create', data).then(response => {
                 if(response.data.status === 'success'){
                     console.log(response.data.msg)
-                    window.location.assign('asrama-polban/public/#/riwayat-perizinan')
+                    window.location.assign('/#/riwayat-perizinan')
                 }
                 else{
                     if(response.data.status == 'invalid'){

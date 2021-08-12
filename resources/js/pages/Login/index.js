@@ -90,13 +90,13 @@ class Login extends Component {
                                 localStorage.setItem('user_id', User.data.data.id_mhs);
                                 localStorage.setItem('nama_mhs', User.data.data.nama_mhs);
                                 logIn(response.data.token);
-                                window.location.assign('asrama-polban/public/#' + this.state.next)
+                                window.location.assign('/#' + this.state.next)
                             }
                         })
                     }
                     else{
                         logIn(response.data.token);
-                        window.location.assign('asrama-polban/public/#' + this.state.next)
+                        window.location.assign('/#' + this.state.next)
                     }
                 }
             })

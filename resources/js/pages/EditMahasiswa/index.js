@@ -9,7 +9,6 @@ import Footer from '../../components/Navigation/Footer';
 import PageHeading from '../../components/PageHeading';
 
 import api from '../../service/api';
-import { stubString } from 'lodash';
 
 function loadingAnimation() {
     return new Promise(function(resolve) {
@@ -70,7 +69,7 @@ class EditMahasiswa extends Component {
             role_mhs: this.state.role_mhs
         })).then(response => {
             if(response.data.status === 'success'){
-                window.location.assign('asrama-polban/public/#/data-mahasiswa')
+                window.location.assign('/#/data-mahasiswa')
             }
             else{
                 this.setState({

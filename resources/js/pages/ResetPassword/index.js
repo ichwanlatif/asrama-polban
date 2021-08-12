@@ -45,7 +45,7 @@ class ResetPassword extends Component {
         })).then(response => {
             if(response.data.status == 'success'){
                 alert(response.data.message);
-                window.location.assign('asrama-polban/public/#/');
+                window.location.assign('/#/');
             }
         }).catch(error => {
             alert(error.response.data.message)

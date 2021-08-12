@@ -18,7 +18,7 @@
     <h4>TELAH DI APPROVAL</h4>
 
 
-    <p>Segera lihat hasil approval dengan mengklik <a href="https://asrama-polban.herokuapp.com/#/riwayat-perizinan">link ini.</a></p>
+    <p>Segera lihat hasil approval dengan mengklik <a href="https://asrama-polban.xyz/#/riwayat-perizinan">link ini.</a></p>
 
 </body>
 </html>

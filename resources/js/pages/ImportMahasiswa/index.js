@@ -50,7 +50,7 @@ class ImportMahasiswa extends Component {
         await api().post('api/mahasiswa/import', data).then(response => {
             if(response.data.status === 'success'){
                 console.log(response.data.msg)
-                window.location.assign('asrama-polban/public/#/dashboard')
+                window.location.assign('/#/dashboard')
             }
             else{
                 this.setState({

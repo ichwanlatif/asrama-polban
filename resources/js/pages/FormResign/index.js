@@ -93,7 +93,7 @@ class FormResign extends Component {
         await api().post('api/resign/create', data).then(response => {
             if(response.data.status === 'success'){
                 console.log(response.data.message)
-                window.location.assign('asrama-polban/public/#/riwayat-perizinan')
+                window.location.assign('/#/riwayat-perizinan')
             }
             else{
                 if(response.data.status == 'invalid'){
