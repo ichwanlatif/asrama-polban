@@ -74,7 +74,10 @@ class PerizinanController extends Controller
                 $mahasiswa = Mahasiswa::where('id_mhs', $request->id_mhs)->first();
                 $pengelola = User::where('role', 2)->first();
 
+                // dd($insert->id);
+
                 $details = [
+                    'link' => 'http://127.0.0.1:8000/#/form-approval-izin-pulang/' . $insert->id,
                     'from' => $mahasiswa->nama_mhs,
                     'tanggal_pergi' => $request->tanggal_pergi,
                     'tanggal_pulang' => $request->tanggal_pulang,
@@ -224,7 +227,7 @@ class PerizinanController extends Controller
         $mahasiswa = Mahasiswa::where('id_mhs', $request->id_mhs)->first();
 
         $details = [
-            'id' => $request->id_perizinan,
+            'link' => 'http://127.0.0.1:8000/#/form-approval-izin-kembali/' . $request->id_perizinan,
             'from' => $mahasiswa->nama_mhs,
             'tanggal_pergi' => $detail->tanggal_pergi,
             'pengajuan_tanggal_pulang' => $detail->pengajuan_tanggal_pulang,
@@ -432,6 +435,7 @@ class PerizinanController extends Controller
             $pengelola = User::where('role', 2)->first();
 
             $details = [
+                'link' => 'http://127.0.0.1:8000/#/form-approval-izin-kembali/' . $request->id_perizinan,
                 'from' => $mahasiswa->nama_mhs,
                 'tanggal_pergi' => $request->tanggal_pergi,
                 'pengajuan_tanggal_pulang' => $request->pengajuan_tanggal_pulang,

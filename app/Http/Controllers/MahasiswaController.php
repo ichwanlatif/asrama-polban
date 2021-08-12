@@ -148,6 +148,9 @@ class MahasiswaController extends Controller
             'password' => \Hash::make($request->nim),
             'role' => 1,
         ]);
+
+        // dd($user);
+
         $insert = Mahasiswa::create([
             'id_users' => $user->id_users,
             'id_prodi' => $request->id_prodi,
@@ -155,9 +158,9 @@ class MahasiswaController extends Controller
             'nama_mhs' => $request->nama_mhs, 
             'nim' => $request->nim,
             'alamat' => $request->alamat,
-            'no_hp_mhs' => '0' + $request->no_hp_mhs,
+            'no_hp_mhs' => '0' . $request->no_hp_mhs,
             'nama_ortu' => $request->nama_ortu,
-            'no_hp_ortu' => '0' + $request->no_hp_ortu,
+            'no_hp_ortu' => '0' . $request->no_hp_ortu,
             'jenis_kelamin' => $request->jenis_kelamin,
             'status_keaktifan' => $request->status_keaktifan,
             'tanggal_lahir' => $request->tanggal_lahir,
@@ -257,9 +260,9 @@ class MahasiswaController extends Controller
             'nama_mhs' => $request->nama_mhs, 
             'nim' => $request->nim,
             'alamat' => $request->alamat,
-            'no_hp_mhs' => '0' + $request->no_hp_mhs,
+            'no_hp_mhs' => '0' . $request->no_hp_mhs,
             'nama_ortu' => $request->nama_ortu,
-            'no_hp_ortu' => '0' + $request->no_hp_ortu,
+            'no_hp_ortu' => '0' . $request->no_hp_ortu,
             'jenis_kelamin' => $request->jenis_kelamin,
             'status_keaktifan' => $request->status_keaktifan,
             'tanggal_lahir' => $request->tanggal_lahir,
