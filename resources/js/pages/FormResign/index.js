@@ -23,7 +23,6 @@ class FormResign extends Component {
             id_mhs: localStorage.getItem('user_id'),
             suhu_badan: 36,
             jenis_kendaraan: "Sepeda",
-            file: "",
 
             //loading
             isLoading:false,

@@ -15,7 +15,7 @@ class PengelolaSeeder extends Seeder
     public function run()
     {
         $user = User::create([
-            'email' => "pengelola@polban.ac.id",
+            'email' => "rizqa.fauziyyah.tif18@polban.ac.id",
             'password' => \Hash::make(12345678),
             'role' => 2
         ]);

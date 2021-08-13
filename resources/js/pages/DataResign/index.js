@@ -118,7 +118,7 @@ class DataResign extends Component {
                             <div className="col-lg-12 col-md-12">
                                 <div className="card my-5">
                                     <div className="card-header">
-                                        <h6 className="text-primary">Data Resign Asrama Yang Belum Diproses</h6>
+                                        <h6 className="text-primary">Data Resign Asrama</h6>
                                     </div>
                                     <div className="card-body">
 
@@ -137,6 +137,7 @@ class DataResign extends Component {
                                                     <tr>
                                                     <th scope="col">Nama</th>
                                                     <th scope="col">Mulai</th>
+                                                    <th scope="col">Status</th>
                                                     <th scope="col">Proses</th>
                                                     </tr>
                                                 </thead>
@@ -148,11 +149,41 @@ class DataResign extends Component {
                                                             taggal_resign,
                                                             status_resign
                                                         } = resign;
+                                                        let statusResign;
+                                                        switch (resign.status_resign) {
+                                                            case 0:
+                                                                statusResign = "Mengajukan"
+                                                                break;
+                                                            case 1:
+                                                                statusResign = "Disetujui Pengelola"
+                                                                break;
+                                                            case 2:
+                                                                statusResign = "Ditolak Pengelola"
+                                                                break;
+                                                            case 3:
+                                                                statusResign = "Disetujui Wadir 3"
+                                                                break;
+                                                            case 4:
+                                                                statusResign = "Ditolak Wadir 3"
+                                                                break;
+                                                            default:
+                                                                statusResign = "Error"
+                                                                break;
+                                                        }
+                                                        let approve;
+                                                        let btnPengelola = this.state.role == 2 && resign.status_resign == 0;
+                                                        let btnWadir = (this.state.role == 3 && (resign.status_resign == 0 || resign.status_resign ==1));
+                                                        if ( btnPengelola || btnWadir){
+                                                            approve=<td><Link to={"/form-approval-resign/" + resign.id_resign} className="btn btn-outline-primary btn-sm">Approve</Link></td>;
+                                                        }else{
+                                                            approve=<td></td>;
+                                                        }
                                                         return (
                                                             <tr>
                                                                 <td>{resign.nama_mhs}</td>
                                                                 <td>{resign.tanggal_resign}</td>
-                                                                <td><Link to={"/form-approval-resign/" + resign.id_resign} className="btn btn-outline-primary btn-sm">Approve</Link></td>
+                                                                <td>{statusResign}</td>
+                                                                {approve}
                                                             </tr>
                                                         )
                                                     })}

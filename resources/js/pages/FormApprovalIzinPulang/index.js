@@ -109,6 +109,7 @@ class FormApprovalIzinPulang extends Component {
                     jenis_kendaraan: response.data.data.jenis_kendaraan,
                     keterangan_izin: response.data.data.keterangan_izin,
                     tanggal_pergi: response.data.data.tanggal_pergi,
+                    tanggal_pulang: response.data.data.tanggal_pulang,
                     surat_pendukung: response.data.data.surat_pendukung,
                 })
             }
@@ -261,13 +262,24 @@ class FormApprovalIzinPulang extends Component {
                                                 </div>
                                             </div>
                                             <div className="form-group row">
-                                                <label for="startdate" className="col-md-3 col-form-label text-md-right">Mulai pergi</label>
+                                                <label for="tanggal_pergi" className="col-md-3 col-form-label text-md-right">Mulai izin</label>
                                                 <div className="col-md-8">
                                                     <input 
                                                         type="text" 
                                                         className="form-control-plaintext"
                                                         disabled 
                                                         value={this.state.tanggal_pergi}
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className="form-group row">
+                                                <label for="tanggal_pulang" className="col-md-3 col-form-label text-md-right">Berakhir pada</label>
+                                                <div className="col-md-8">
+                                                    <input 
+                                                        type="text" 
+                                                        className="form-control-plaintext"
+                                                        disabled 
+                                                        value={this.state.tanggal_pulang}
                                                     />
                                                 </div>
                                             </div>
@@ -306,6 +318,7 @@ class FormApprovalIzinPulang extends Component {
                                                 <div className="col-md-8">
                                                     <textarea 
                                                         className="form-control"
+                                                        placeholder="Beri penjelasan mengenai alasan dari status izin"
                                                         rows="3"
                                                         name="catatan_approval"
                                                         onChange={this.handleFieldChange}

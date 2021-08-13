@@ -66,7 +66,7 @@ class DetailMahasiswa extends Component {
 
         let status_keaktifan;
         if(this.state.status_keaktifan == 0) {
-            status_keaktifan = "Resign"
+            status_keaktifan = "Tidak aktif"
         }else{
             status_keaktifan = "Aktif"
         }
