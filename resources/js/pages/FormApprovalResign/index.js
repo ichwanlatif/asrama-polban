@@ -338,19 +338,7 @@ class FormApprovalResign extends Component {
                                                     <span className="text-danger">{this.state.errList.status_resign}</span>
                                                 </div>
                                             </div>
-                                            <div className="form-group row">
-                                                <label for="note" className="col-md-3 col-form-label text-md-right">Catatan persetujuan (opsional)</label>
-                                                <div className="col-md-8">
-                                                    <textarea 
-                                                        className="form-control"
-                                                        rows="3"
-                                                        name="catatan_pengurus"
-                                                        onChange={this.handleFieldChange}
-                                                        value={this.state.catatan_pengurus}
-                                                    >
-                                                    </textarea>
-                                                </div>
-                                            </div>
+                                            
                                             <div className="form-group row">
                                                 <div className="col-md-8 offset-md-3 mb-2">
                                                     <button type="submit" onClick={this.handleSubmit} className="btn btn-success" disabled={this.state.isLoading}>

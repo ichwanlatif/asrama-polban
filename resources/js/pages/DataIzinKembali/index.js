@@ -119,7 +119,7 @@ class DataIzinKembali extends Component {
                             <div className="col-lg-12 col-md-12">
                                 <div className="card my-5">
                                     <div className="card-header">
-                                        <h6 className="text-primary">Data Izin Kembali Asrama Yang Belum Diproses</h6>
+                                        <h6 className="text-primary">Data Izin Kembali Asrama</h6>
                                     </div>
                                     <div className="card-body">
 
@@ -138,7 +138,9 @@ class DataIzinKembali extends Component {
                                                     <tr>
                                                     <th scope="col">Nama</th>
                                                     <th scope="col">Mulai</th>
-                                                    <th scope="col">Pengajuan Kembali</th>
+                                                    <th scope="col">Berakhir</th>
+                                                    <th scope="col">Ke asrama</th>
+                                                    <th scope="col">Status</th>
                                                     <th scope="col">Proses</th>
                                                     </tr>
                                                 </thead>
@@ -148,15 +150,50 @@ class DataIzinKembali extends Component {
                                                             id_perizinan,
                                                             nama_mhs,
                                                             tanggal_pergi,
+                                                            tanggal_pulang,
                                                             pengajuan_tanggal_pulang,
                                                             status_izin
                                                         } = perizinan;
+                                                        let status;
+                                                        switch (perizinan.status_izin) {
+                                                            case 5:
+                                                                status = "Mengajukan Kembali Asrama"
+                                                                break;
+                                                            case 6:
+                                                                status = "Disetujui Kembali oleh Pengelola"
+                                                                break;
+                                                            case 7:
+                                                                status = "Ditolak Kembali oleh Pengelola"
+                                                                break;
+                                                            case 8:
+                                                                status = "Disetujui Kembali oleh Wadir 3"
+                                                                break;
+                                                            case 9:
+                                                                status = "Ditolak Kembali oleh Wadir 3"
+                                                                break;
+                                                            case 10:
+                                                                status = "Terkonfirmasi di Asrama"
+                                                                break;
+                                                            default:
+                                                                status = "Error"
+                                                                break;
+                                                        }
+                                                        let approve;
+                                                        let btnPengelola = this.state.role == 2 && perizinan.status_izin == 5;
+                                                        let btnWadir = (this.state.role == 3 && (perizinan.status_izin == 5 || perizinan.status_izin ==6));
+                                                        if ( btnPengelola || btnWadir){
+                                                            approve=<td><Link to={"/form-approval-izin-kembali/" + perizinan.id_perizinan} className="btn btn-outline-primary btn-sm">Approve</Link></td>;
+                                                        }else{
+                                                            approve=<td></td>;
+                                                        }
                                                         return (
                                                             <tr>
                                                                 <td>{perizinan.nama_mhs}</td>
                                                                 <td>{perizinan.tanggal_pergi}</td>
+                                                                <td>{perizinan.tanggal_pulang}</td>
                                                                 <td>{perizinan.pengajuan_tanggal_pulang}</td>
-                                                                <td><Link to={"/form-approval-izin-kembali/" + perizinan.id_perizinan} className="btn btn-outline-primary btn-sm">Approve</Link></td>
+                                                                <td>{status}</td>
+                                                                {approve}
                                                             </tr>
                                                         )
                                                     })}

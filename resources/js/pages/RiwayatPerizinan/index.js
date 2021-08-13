@@ -242,7 +242,7 @@ class RiwayatPerizinan extends Component {
                                                                 hiddenKembali = false;
                                                                 break;
                                                             case 10:
-                                                                status = "Terkonfirmasi Kembali"
+                                                                status = "Terkonfirmasi di asrama"
                                                                 break;
                                                             default:
                                                                 status = ""
@@ -262,8 +262,8 @@ class RiwayatPerizinan extends Component {
                                                                 <td>{jenis}</td>
                                                                 <td>{statusResign}{status}</td>
                                                                 <td>
-                                                                    <Link hidden={hiddenKembali} to={"/form-izin-kembali/" + perizinan.id_perizinan} className="btn btn-outline-primary btn-sm">Ajukan Perizinan Kembali</Link>
-                                                                    <button hidden={hiddenKonfirmasi} onClick={() => this.kembali(perizinan.id_perizinan)} className="btn btn-outline-primary btn-sm">Konfirmasi Kembali</button>
+                                                                    <Link hidden={hiddenKembali} to={"/form-izin-kembali/" + perizinan.id_perizinan} className="btn btn-outline-primary btn-sm">Ajukan Perizinan Kembali Asrama</Link>
+                                                                    <button hidden={hiddenKonfirmasi} onClick={() => this.kembali(perizinan.id_perizinan)} className="btn btn-outline-primary btn-sm">Konfirmasi Kembali Asrama</button>
                                                                 </td>
                                                             </tr>
                                                         )

@@ -27,7 +27,7 @@ class CreatePerizinan extends Migration
             $table->tinyInteger('status_izin');
             $table->float('suhu_badan', 8, 2);
             $table->string('kondisi_kesehatan', 50);
-            $table->string('jenis_kendaraan', 10);
+            $table->string('jenis_kendaraan', 50);
             $table->timestamps();
 
             $table->foreign('id_mhs')->references('id_mhs')->on('mahasiswa')->onDelete('cascade');
