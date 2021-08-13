@@ -297,28 +297,33 @@ class MahasiswaController extends Controller
         $listMahasiswa = $request->listMhs;
         // dd(count($listMahasiswa));
         for($i=0; $i < count($listMahasiswa); $i++){
+            $id_user = Mahasiswa::where([
+                ['id_mhs', '=', $listMahasiswa[$i]],
+            ])
+            ->first()->id_users;
+
             $delete = Mahasiswa::where([
                 ['id_mhs', '=', $listMahasiswa[$i]],
             ])
-            ->first();
+            ->delete();
+
             User::where([
-                ['id_users', '=', $delete->id_users],
+                ['id_users', '=', $id_user],
             ])
             ->delete();
-            $delete->delete();
         }
-        if($delete){
+        // if($delete){
             return response()->json([
                 'status' => 'success',
                 'message' => 'Mahasiswa berhasil dihapus',
                 'data' => $delete
             ], 201);
-        }
-        else{
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Mahasiswa gagal dihapus',
-            ]);
-        }
+        // }
+        // else{
+        //     return response()->json([
+        //         'status' => 'error',
+        //         'message' => 'Mahasiswa gagal dihapus',
+        //     ]);
+        // }
     }
 }

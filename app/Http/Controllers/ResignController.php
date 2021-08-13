@@ -199,10 +199,16 @@ class ResignController extends Controller
                 'jenis_kendaraan' => $detail->jenis_kendaraan,
             ];
     
-            $mahasiswa = Mahasiswa::where('id_mhs', $detail->id_mhs)->first();
-            $akun = User::where('id_users', $mahasiswa->id_users)->first();
+            if($request->status_resign == 1){
+                $akun = User::where('role', 3)->first();
+                Mail::to($akun->email)->send(new PengajuanResignMail($details));
+            }
+            else{
+                $mahasiswa = Mahasiswa::where('id_mhs', $detail->id_mhs)->first();
+                $akun = User::where('id_users', $mahasiswa->id_users)->first();
     
-            Mail::to($akun->email)->send(new ApprovalResignMail($details));
+                Mail::to($akun->email)->send(new ApprovalResignMail($details));
+            }
             return response()->json([
                 'status' => 'success',
                 'message' => 'Success approve',

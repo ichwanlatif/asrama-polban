@@ -18,7 +18,7 @@
     <h4>TELAH DI TERKONFIRMASI BERADA DI ASRAMA</h4>
 
 
-    <p>Segera lihat hasil konfirmasi dengan mengklik <a href="https://asrama-polban.herokuapp.com/#/riwayat-perizinan">link ini.</a></p>
+    <p>Segera lihat hasil konfirmasi dengan mengklik <a href="http://127.0.0.1:8000/#/riwayat-perizinan">link ini.</a></p>
 
 </body>
 </html>

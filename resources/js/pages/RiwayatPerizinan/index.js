@@ -61,11 +61,11 @@ class RiwayatPerizinan extends Component {
         if(navigator.geolocation){
             navigator.geolocation.getCurrentPosition((position => {
                 this.setState({
-                    lat: -6.872161,
-                    long: 107.570858
+                    // lat: -6.872161,
+                    // long: 107.570858
 
-                    // lat: position.coords.latitude,
-                    // long: position.coords.longitude,
+                    lat: position.coords.latitude,
+                    long: position.coords.longitude,
                 })
                 console.log("Lat: " + this.state.lat)
                 console.log("Long: " + this.state.long)
