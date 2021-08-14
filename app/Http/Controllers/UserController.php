@@ -160,7 +160,7 @@ class UserController extends Controller
     public function importUser(Request $request){
 
         $validasi = \Validator::make($request->all(), [
-            'file' => 'file|mimes:xls,xlsx',
+            'file' => 'required|file|mimes:xls,xlsx',
         ]);
 
         if($validasi->fails()){

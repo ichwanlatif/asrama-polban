@@ -21,6 +21,7 @@ class ImportMahasiswa extends Component {
         this.state = {
             role: "",
             isLoading: false,
+            errList: []
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -117,6 +118,8 @@ class ImportMahasiswa extends Component {
                                                         onChange={this.handleFileChange}
                                                     />
                                                     <small className="text-muted">Format yang didukung: *.xls, *.xlsx</small>
+                                                    <br></br>
+                                                    <span className="text-danger">{this.state.errList.file}</span>
                                                 </div>
                                             </div>
                                             <div className="form-group row">
