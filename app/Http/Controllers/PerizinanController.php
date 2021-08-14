@@ -155,6 +155,7 @@ class PerizinanController extends Controller
         $mahasiswa = Mahasiswa::where('id_mhs', $request->id_mhs)->first();
 
         $details = [
+            'link' => 'http://127.0.0.1:8000/#/form-approval-izin-pulang/' . $request->id_perizinan,
             'from' => $mahasiswa->nama_mhs,
             'tanggal_pergi' => $detail->tanggal_pergi,
             'tanggal_pulang' => $detail->tanggal_pulang,
@@ -467,9 +468,9 @@ class PerizinanController extends Controller
         ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
         ->join('perizinan', 'mahasiswa.id_mhs', '=', 'perizinan.id_mhs')
         ->where([
-            ['status_izin', '=', 0],
             ['nama_gedung', '=', 'A']
         ])
+        ->whereIn('status_izin', [0, 5])
         ->whereMonth('perizinan.created_at', date('n'))
             ->whereYear('perizinan.created_at', date('Y'))
             ->count();
@@ -478,9 +479,9 @@ class PerizinanController extends Controller
         ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
         ->join('perizinan', 'mahasiswa.id_mhs', '=', 'perizinan.id_mhs')
         ->where([
-                ['status_izin', '=', 0],
                 ['nama_gedung', '=', 'B']
         ])
+        ->whereIn('status_izin', [0, 5])
         ->whereMonth('perizinan.created_at', date('n'))
                 ->whereYear('perizinan.created_at', date('Y'))
                 ->count();
@@ -490,9 +491,9 @@ class PerizinanController extends Controller
         ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
         ->join('perizinan', 'mahasiswa.id_mhs', '=', 'perizinan.id_mhs')
         ->where([
-            ['status_izin', '=', 0],
             ['nama_gedung', '=', 'C']
         ])
+        ->whereIn('status_izin', [0, 5])
         ->whereMonth('perizinan.created_at', date('n'))
         ->whereYear('perizinan.created_at', date('Y'))
         ->count();
@@ -501,9 +502,9 @@ class PerizinanController extends Controller
         ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
         ->join('perizinan', 'mahasiswa.id_mhs', '=', 'perizinan.id_mhs')
         ->where([
-            ['status_izin', '=', 3],
             ['nama_gedung', '=', 'A']
         ])
+        ->whereIn('status_izin', [1, 6])
         ->whereMonth('perizinan.created_at', date('n'))
         ->whereYear('perizinan.created_at', date('Y'))
         ->count();
@@ -512,9 +513,9 @@ class PerizinanController extends Controller
         ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
         ->join('perizinan', 'mahasiswa.id_mhs', '=', 'perizinan.id_mhs')
         ->where([
-            ['status_izin', '=', 3],
             ['nama_gedung', '=', 'B']
         ])
+        ->whereIn('status_izin', [1, 6])
         ->whereMonth('perizinan.created_at', date('n'))
         ->whereYear('perizinan.created_at', date('Y'))
         ->count();
@@ -523,9 +524,9 @@ class PerizinanController extends Controller
         ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
         ->join('perizinan', 'mahasiswa.id_mhs', '=', 'perizinan.id_mhs')
         ->where([
-            ['status_izin', '=', 3],
             ['nama_gedung', '=', 'C']
         ])
+        ->whereIn('status_izin', [1, 6])
         ->whereMonth('perizinan.created_at', date('n'))
         ->whereYear('perizinan.created_at', date('Y'))
         ->count();
@@ -534,10 +535,9 @@ class PerizinanController extends Controller
         ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
         ->join('perizinan', 'mahasiswa.id_mhs', '=', 'perizinan.id_mhs')
         ->where([
-            ['status_izin', '=', 2],
-            ['status_izin', '=', 4],
             ['nama_gedung', '=', 'A']
         ])
+        ->whereIn('status_izin', [2, 7])
         ->whereMonth('perizinan.created_at', date('n'))
         ->whereYear('perizinan.created_at', date('Y'))
         ->count();
@@ -546,10 +546,9 @@ class PerizinanController extends Controller
         ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
         ->join('perizinan', 'mahasiswa.id_mhs', '=', 'perizinan.id_mhs')
         ->where([
-            ['status_izin', '=', 2],
-            ['status_izin', '=', 4],
             ['nama_gedung', '=', 'B']
         ])
+        ->whereIn('status_izin', [2, 7])
         ->whereMonth('perizinan.created_at', date('n'))
         ->whereYear('perizinan.created_at', date('Y'))
         ->count();
@@ -558,10 +557,9 @@ class PerizinanController extends Controller
         ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
         ->join('perizinan', 'mahasiswa.id_mhs', '=', 'perizinan.id_mhs')
         ->where([
-            ['status_izin', '=', 2],
-            ['status_izin', '=', 4],
             ['nama_gedung', '=', 'C']
         ])
+        ->whereIn('status_izin', [2, 7])
         ->whereMonth('perizinan.created_at', date('n'))
         ->whereYear('perizinan.created_at', date('Y'))
         ->count();

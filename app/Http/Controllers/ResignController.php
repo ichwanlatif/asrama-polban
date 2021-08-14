@@ -176,7 +176,6 @@ class ResignController extends Controller
         
         $resign = Resign::where([
             ['id_resign', '=', $request->id_resign],
-            ['status_resign', '=', 0],
         ])->update([
             'status_resign' => $request->status_resign
         ]);
@@ -184,14 +183,20 @@ class ResignController extends Controller
         $detail = Resign::where([
             ['id_resign', '=', $request->id_resign],
         ])->first();
+        
+        $mahasiswa = Mahasiswa::where('id_mhs', $detail->id_mhs)->first()->nama_mhs;
 
-        Mahasiswa::where('id_mhs', $detail->id_mhs)
-        ->update([
-            'status_keaktifan' => 0
-        ]);
+        if($request->status_resign == 3){
+            Mahasiswa::where('id_mhs', $detail->id_mhs)
+            ->update([
+                'status_keaktifan' => 0
+            ]);
+        }
 
         if($resign){
             $details = [
+                'link' => 'http://127.0.0.1:8000/#/form-approval-resign/' . $request->id_resign,
+                'from' => $mahasiswa,
                 'tanggal_resign' => $detail->tanggal_resign,
                 'keterangan_resign' => $detail->keterangan_resign,
                 'suhu_badan' => $detail->suhu_badan,

@@ -60,6 +60,8 @@ class MahasiswaController extends Controller
         ->join('users', 'mahasiswa.id_users', '=', 'users.id_users')
         ->join('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
         ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
+        ->orderBy('gedung.nama_gedung', 'asc')
+        ->orderBy('mahasiswa.nama_mhs', 'asc')
         ->get();
 
         if($mahasiswa){
