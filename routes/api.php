@@ -54,7 +54,6 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::get('/presensi/getRekapitulasi/{date_from}/{date_to}', [PresensiController::class, 'getRekapitulasi']);
 
     //Perizinan
-    Route::get('/perizinan/dashboard', [PerizinanController::class, 'dashboard']);
     Route::post('/perizinan/create', [PerizinanController::class, 'store']);
     Route::put('/perizinan/izinKembali', [PerizinanController::class, 'izinKembali']);
     Route::get('/perizinan/checkPerizinan/{id}', [PerizinanController::class, 'checkPerizinanToPresensi']);
@@ -64,6 +63,7 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::get('/perizinan/riwayatperizinan/{id}', [PerizinanController::class, 'getRiwayatPerizinan']);
     Route::get('/perizinan/detail/{id}', [PerizinanController::class, 'getDetailPerizinan']);
     Route::get('/perizinan/kembali/{role}', [PerizinanController::class, 'getAllPengajuanPerizinanKembali']);
+    Route::get('/perizinan/dashboard/{role}', [PerizinanController::class, 'dashboard']);
     Route::put('/kembali', [PerizinanController::class, 'kembali']);
 
     //Resign

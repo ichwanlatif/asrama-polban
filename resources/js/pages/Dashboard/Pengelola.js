@@ -71,7 +71,7 @@ class DashboardPengelola extends Component {
             }
         })
 
-        api().get('api/perizinan/dashboard').then(response =>{
+        api().get('api/perizinan/dashboard/2').then(response =>{
             if(response.data.status === 'success'){
                 this.setState({
                     mengajukanA: response.data.gedungA[0],
