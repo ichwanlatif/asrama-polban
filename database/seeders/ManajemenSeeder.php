@@ -16,7 +16,7 @@ class ManajemenSeeder extends Seeder
     {
         $user = User::create([
             'email' => "irfan.siswara.tif18@polban.ac.id",
-            'password' => \Hash::make(12345678),
+            'password' => \Hash::make(181511048),
             'role' => 3
         ]);
     }

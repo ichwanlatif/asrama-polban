@@ -89,6 +89,7 @@ class Login extends Component {
                             else{
                                 localStorage.setItem('user_id', User.data.data.id_mhs);
                                 localStorage.setItem('nama_mhs', User.data.data.nama_mhs);
+                                localStorage.setItem('nim', User.data.data.nim);
                                 logIn(response.data.token);
                                 window.location.assign('/#' + this.state.next)
                             }

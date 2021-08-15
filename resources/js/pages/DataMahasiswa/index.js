@@ -167,9 +167,9 @@ class DataMahasiswa extends Component {
                                             </div>
                                         </div>
 
-                                        <div className="row">
+                                        <div className="row mb-2">
                                             {/* Hapus mahasiswa */}
-                                            <button onClick={this.handleDelete} className="btn btn-danger btn-icon-split mx-2 mb-2">
+                                            <button onClick={this.handleDelete} className="btn btn-danger btn-icon-split mx-2">
                                                 <span className="icon text-white-50">
                                                     <i className="fas fa-trash-alt"></i>
                                                 </span>
@@ -177,7 +177,7 @@ class DataMahasiswa extends Component {
                                             </button>
 
                                             {/* Tambah mahasiswa */}
-                                            <Link to="/tambah-mahasiswa" className="btn btn-primary btn-icon-split mx-2 mb-2">
+                                            <Link to="/tambah-mahasiswa" className="btn btn-primary btn-icon-split mx-2">
                                                 <span className="icon text-white-50">
                                                     <i className="fas fa-user-plus"></i>
                                                 </span>

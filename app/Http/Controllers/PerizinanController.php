@@ -269,6 +269,7 @@ class PerizinanController extends Controller
             ->whereBetween('status_izin', [0, 4])
             ->join('mahasiswa', 'perizinan.id_mhs', '=', 'mahasiswa.id_mhs')
             ->select('perizinan.*', 'mahasiswa.nama_mhs')
+            ->orderBy('status_izin', 'asc')
             ->get();
         
         if($perizinan){
@@ -293,6 +294,7 @@ class PerizinanController extends Controller
             ->whereBetween('status_izin', [5, 9])
             ->join('mahasiswa', 'perizinan.id_mhs', '=', 'mahasiswa.id_mhs')
             ->select('perizinan.*', 'mahasiswa.nama_mhs')
+            ->orderBy('status_izin', 'asc')
             ->get();
         
         if($perizinan){

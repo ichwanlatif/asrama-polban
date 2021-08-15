@@ -166,9 +166,9 @@ class Rekapitulasi extends Component {
                                     </div>
                                     <div className="card-body">
 
-                                        <div className="d-flex justify-content-end">
+                                        <div className="row mb-2">
                                             {/* Unduh file */}
-                                            <button onClick={this.unduhRekapitulasi} className="btn btn-light btn-icon-split mb-2 justify-content-end">
+                                            <button onClick={this.unduhRekapitulasi} className="btn btn-light btn-icon-split mx-2">
                                                 <span className="icon text-gray-600">
                                                     <i className="fas fa-file-download"></i>
                                                 </span>

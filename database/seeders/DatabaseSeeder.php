@@ -23,10 +23,10 @@ class DatabaseSeeder extends Seeder
             MahasiswaSeeder::class,
             ManajemenSeeder::class,
             PengelolaSeeder::class,
-            // IzinPulangSeeder::class,
-            // IzinKembaliSeeder::class,
-            // ResignSeeder::class,
-            // PresensiSeeder::class,
+            IzinPulangSeeder::class,
+            IzinKembaliSeeder::class,
+            ResignSeeder::class,
+            PresensiSeeder::class,
         ]);
     }
 }
