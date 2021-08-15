@@ -76,20 +76,15 @@ class DataMahasiswa extends Component {
         this.setState({ currentData });
     }
 
-    toggleCheckbox(e, item){		
+    toggleCheckbox(e, item){
+        let arr = this.state.checkedBoxes;		
         if(e.target.checked) {
-            let arr = this.state.checkedBoxes;
             arr.push(item.id_mhs);
-            
-            this.setState = { checkedBoxes: arr};
+            this.setState({ checkedBoxes : arr });
         } else {			
-            let items = this.state.checkedBoxes.splice(this.state.checkedBoxes.indexOf(item.id_mhs), 1);
-            
-            this.setState = {
-                checkedBoxes: items
-            }
-        }		
-        console.log(this.state.checkedBoxes);		
+            arr.splice(this.state.checkedBoxes.indexOf(item.id_mhs), 1);
+            this.setState({ checkedBoxes: arr });
+        }	
         console.log("Delete count: "+this.state.checkedBoxes.length);
     }
 
@@ -167,9 +162,9 @@ class DataMahasiswa extends Component {
                                             </div>
                                         </div>
 
-                                        <div className="row mb-2">
+                                        <div className="row">
                                             {/* Hapus mahasiswa */}
-                                            <button onClick={this.handleDelete} className="btn btn-danger btn-icon-split mx-2">
+                                            <button onClick={this.handleDelete} className="btn btn-danger btn-icon-split mb-2 mx-2">
                                                 <span className="icon text-white-50">
                                                     <i className="fas fa-trash-alt"></i>
                                                 </span>
@@ -177,7 +172,7 @@ class DataMahasiswa extends Component {
                                             </button>
 
                                             {/* Tambah mahasiswa */}
-                                            <Link to="/tambah-mahasiswa" className="btn btn-primary btn-icon-split mx-2">
+                                            <Link to="/tambah-mahasiswa" className="btn btn-primary btn-icon-split mb-2 mx-2">
                                                 <span className="icon text-white-50">
                                                     <i className="fas fa-user-plus"></i>
                                                 </span>
@@ -190,15 +185,15 @@ class DataMahasiswa extends Component {
                                             <table className="table table-hover">
                                                 <thead>
                                                     <tr>
-                                                    <th></th>
-                                                    <th scope="col">Nama</th>
-                                                    <th scope="col">NIM</th>
-                                                    <th scope="col">Email</th>
-                                                    <th scope="col">Asal</th>
-                                                    <th scope="col">Kamar</th>
-                                                    <th scope="col">Jabatan</th>
-                                                    <th scope="col">Status</th>
-                                                    <th scope="col"></th>
+                                                        <th></th>
+                                                        <th scope="col">Nama</th>
+                                                        <th scope="col">NIM</th>
+                                                        <th scope="col">Email</th>
+                                                        <th scope="col">Asal</th>
+                                                        <th scope="col">Kamar</th>
+                                                        <th scope="col">Peran</th>
+                                                        <th scope="col">Status</th>
+                                                        <th scope="col"></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -213,7 +208,14 @@ class DataMahasiswa extends Component {
 
                                                         return (
                                                             <tr key={index}>
-                                                                <td><input type="checkbox" value={mahasiswa.id_mhs} checked={this.state.checkedBoxes.find((p) => p.id_mhs === mahasiswa.id_mhs)} onChange={(e) => this.toggleCheckbox(e, mahasiswa)}></input></td>
+                                                                <td>
+                                                                    <input 
+                                                                        type="checkbox" 
+                                                                        value={mahasiswa.id_mhs} 
+                                                                        checked={this.state.checkedBoxes.includes(mahasiswa.id_mhs)?"checked":""} 
+                                                                        onChange={(e) => this.toggleCheckbox(e, mahasiswa)}>
+                                                                    </input>
+                                                                </td>
                                                                 <td>{mahasiswa.nama_mhs}</td>
                                                                 <td>{mahasiswa.nim}</td>
                                                                 <td>{mahasiswa.email}</td>

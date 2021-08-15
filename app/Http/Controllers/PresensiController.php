@@ -363,6 +363,8 @@ class PresensiController extends Controller
         ->join('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
         ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
         ->whereDate('presensi.created_at', date("Y-m-d"))
+        ->orderBy('kamar.id_kamar', 'asc')
+        ->orderBy('mahasiswa.nama_mhs', 'asc')
         ->get();
 
         if($presensis){

@@ -32,8 +32,6 @@ class Topbar extends Component {
       this.setState({
         nama_mhs
       });
-
-      console.log(localStorage.getItem("user_role"))
     }
     
     render() {
