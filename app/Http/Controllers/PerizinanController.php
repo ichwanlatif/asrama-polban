@@ -37,7 +37,7 @@ class PerizinanController extends Controller
             'suhu_badan' => 'required|numeric|between:30,50',
             'kondisi_kesehatan' => 'required|max:50',
             'alamat_izin' => 'required|max:125',
-            'file' => 'file|max:10000|mimes:pdf,png,jpg',
+            'file' => 'file|max:2000|mimes:pdf,png,jpg',
             'keterangan_izin' => 'required|max:125',
             'id_mhs' => 'required',
         ], $messages);
@@ -111,13 +111,13 @@ class PerizinanController extends Controller
         $perizinan = Perizinan::where([
             ['id_mhs', '=', $id],
             ['tanggal_pergi', '<=', Carbon::now()],
-            ['tanggal_pulang', '>=', Carbon::now()],
+            ['tanggal_pulang', '>=', Carbon::now()->subDay(1)],
         ])
-        ->whereNotIn('status_izin', [0, 1, 2, 4, 10])
+        ->whereIn('status_izin', [3, 5, 6, 7, 8, 9])
         ->first();
-
         if($perizinan){
             return response()->json([
+                'data' => $perizinan,
                 'status' => 'success',
                 'message' => 'Sedang Izin'
             ]);

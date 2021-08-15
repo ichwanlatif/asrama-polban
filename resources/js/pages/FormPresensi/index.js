@@ -57,7 +57,12 @@ class FormPresensi extends Component {
         else{
             api().get('api/perizinan/checkPerizinan/' + localStorage.getItem('user_id')).then(response =>{
                 if(response.data.status === 'success'){
-                    alert('Anda Sedang Izin')
+                    if(response.data.data.status_izin == 8){
+                        alert('Silahkan Konfirmasi Kepulangan Terlebih Dahulu');
+                    }
+                    else{
+                        alert('Anda Sedang Izin')
+                    }
                     window.location.assign('/#/dashboard')
                 }
                 else{

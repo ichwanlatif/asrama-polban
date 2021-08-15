@@ -85,9 +85,9 @@ class Rekapitulasi extends Component {
 
         doc.text("REKAPITULASI PRESENSI MAHASISWA", 10.5, 1, {align: 'center'});
         doc.text("POLITEKNIK NEGERI BANDUNG", 10.5, 2, {align: 'center'});
-        doc.autoTable(content)
         doc.setFontSize(12)
         doc.text("PERIODE: " + this.state.date_from + " s.d " + this.state.date_to, 1.5, 4.7, {align: 'left'})
+        doc.autoTable(content)
         doc.save("Rekapitulasi Mahasiswa.pdf")
 
     }
