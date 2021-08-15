@@ -110,8 +110,8 @@ class PerizinanController extends Controller
     public function checkPerizinanToPresensi($id){
         $perizinan = Perizinan::where([
             ['id_mhs', '=', $id],
-            ['tanggal_pergi', '<=', Carbon::now()],
-            ['tanggal_pulang', '>=', Carbon::now()->subDay(1)],
+            // ['tanggal_pergi', '<=', Carbon::now()],
+            // ['tanggal_pulang', '>=', Carbon::now()->subDay(1)],
         ])
         ->whereIn('status_izin', [3, 5, 6, 7, 8, 9])
         ->first();
