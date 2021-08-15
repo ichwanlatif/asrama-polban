@@ -71,7 +71,7 @@ class DashboardWadir extends Component {
             }
         })
 
-        api().get('api/perizinan/dashboard').then(response =>{
+        api().get('api/perizinan/dashboard/3').then(response =>{
             if(response.data.status === 'success'){
                 this.setState({
                     mengajukanA: response.data.gedungA[0],

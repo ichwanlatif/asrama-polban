@@ -57,8 +57,13 @@ class FormPresensi extends Component {
         else{
             api().get('api/perizinan/checkPerizinan/' + localStorage.getItem('user_id')).then(response =>{
                 if(response.data.status === 'success'){
-                    alert('Anda Sedang Izin')
-                    window.location.assign('asrama-polban/public/#/dashboard')
+                    if(response.data.data.status_izin == 8){
+                        alert('Silahkan Konfirmasi Kepulangan Terlebih Dahulu');
+                    }
+                    else{
+                        alert('Anda Sedang Izin')
+                    }
+                    window.location.assign('/#/dashboard')
                 }
                 else{
                     api().get('api/presensi/kehadiranToday/' + localStorage.getItem('user_id')).then(today =>{

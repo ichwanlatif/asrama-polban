@@ -37,7 +37,7 @@ class PerizinanController extends Controller
             'suhu_badan' => 'required|numeric|between:30,50',
             'kondisi_kesehatan' => 'required|max:50',
             'alamat_izin' => 'required|max:125',
-            'file' => 'file|max:10000|mimes:pdf,png,jpg',
+            'file' => 'file|max:2000|mimes:pdf,png,jpg',
             'keterangan_izin' => 'required|max:125',
             'id_mhs' => 'required',
         ], $messages);
@@ -111,13 +111,13 @@ class PerizinanController extends Controller
         $perizinan = Perizinan::where([
             ['id_mhs', '=', $id],
             ['tanggal_pergi', '<=', Carbon::now()],
-            ['tanggal_pulang', '>=', Carbon::now()],
+            ['tanggal_pulang', '>=', Carbon::now()->subDay(1)],
         ])
-        ->whereNotIn('status_izin', [0, 1, 2, 4, 10])
+        ->whereIn('status_izin', [3, 5, 6, 7, 8, 9])
         ->first();
-
         if($perizinan){
             return response()->json([
+                'data' => $perizinan,
                 'status' => 'success',
                 'message' => 'Sedang Izin'
             ]);
@@ -155,6 +155,7 @@ class PerizinanController extends Controller
         $mahasiswa = Mahasiswa::where('id_mhs', $request->id_mhs)->first();
 
         $details = [
+            'link' => 'http://127.0.0.1:8000/#/form-approval-izin-pulang/' . $request->id_perizinan,
             'from' => $mahasiswa->nama_mhs,
             'tanggal_pergi' => $detail->tanggal_pergi,
             'tanggal_pulang' => $detail->tanggal_pulang,
@@ -462,109 +463,104 @@ class PerizinanController extends Controller
         }
     }
 
-    public function dashboard(){
-        $mengajukanA = Mahasiswa::join('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
-        ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
-        ->join('perizinan', 'mahasiswa.id_mhs', '=', 'perizinan.id_mhs')
+    public function dashboard($role){
+
+        $perizinanGedungA = DB::table('mahasiswa')
+        ->crossJoin('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
+        ->crossJoin('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
+        ->crossJoin('perizinan', 'mahasiswa.id_mhs', '=', 'perizinan.id_mhs')
         ->where([
-            ['status_izin', '=', 0],
-            ['nama_gedung', '=', 'A']
+            ['gedung.nama_gedung', '=', 'A']
         ])
         ->whereMonth('perizinan.created_at', date('n'))
-            ->whereYear('perizinan.created_at', date('Y'))
-            ->count();
+        ->whereYear('perizinan.created_at', date('Y'))->get();
 
-        $mengajukanB = Mahasiswa::join('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
-        ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
-        ->join('perizinan', 'mahasiswa.id_mhs', '=', 'perizinan.id_mhs')
+        $perizinanGedungB = DB::table('mahasiswa')
+        ->crossJoin('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
+        ->crossJoin('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
+        ->crossJoin('perizinan', 'mahasiswa.id_mhs', '=', 'perizinan.id_mhs')
         ->where([
-                ['status_izin', '=', 0],
-                ['nama_gedung', '=', 'B']
+            ['gedung.nama_gedung', '=', 'B']
         ])
         ->whereMonth('perizinan.created_at', date('n'))
-                ->whereYear('perizinan.created_at', date('Y'))
-                ->count();
+        ->whereYear('perizinan.created_at', date('Y'))->get();
 
-
-        $mengajukanC = Mahasiswa::join('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
-        ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
-        ->join('perizinan', 'mahasiswa.id_mhs', '=', 'perizinan.id_mhs')
+        $perizinanGedungC = DB::table('mahasiswa')
+        ->crossJoin('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
+        ->crossJoin('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
+        ->crossJoin('perizinan', 'mahasiswa.id_mhs', '=', 'perizinan.id_mhs')
         ->where([
-            ['status_izin', '=', 0],
-            ['nama_gedung', '=', 'C']
+            ['gedung.nama_gedung', '=', 'C']
         ])
         ->whereMonth('perizinan.created_at', date('n'))
-        ->whereYear('perizinan.created_at', date('Y'))
-        ->count();
+        ->whereYear('perizinan.created_at', date('Y'))->get();
 
-        $disetujuiA = Mahasiswa::join('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
-        ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
-        ->join('perizinan', 'mahasiswa.id_mhs', '=', 'perizinan.id_mhs')
+        $resignGedungA = DB::table('mahasiswa')
+        ->crossJoin('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
+        ->crossJoin('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
+        ->crossJoin('resign', 'mahasiswa.id_mhs', '=', 'resign.id_mhs')
         ->where([
-            ['status_izin', '=', 3],
-            ['nama_gedung', '=', 'A']
+            ['gedung.nama_gedung', '=', 'A']
         ])
-        ->whereMonth('perizinan.created_at', date('n'))
-        ->whereYear('perizinan.created_at', date('Y'))
-        ->count();
+        ->whereMonth('resign.created_at', date('n'))
+        ->whereYear('resign.created_at', date('Y'))->get();
 
-        $disetujuiB = Mahasiswa::join('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
-        ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
-        ->join('perizinan', 'mahasiswa.id_mhs', '=', 'perizinan.id_mhs')
+        $resignGedungB = DB::table('mahasiswa')
+        ->crossJoin('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
+        ->crossJoin('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
+        ->crossJoin('resign', 'mahasiswa.id_mhs', '=', 'resign.id_mhs')
         ->where([
-            ['status_izin', '=', 3],
-            ['nama_gedung', '=', 'B']
+            ['gedung.nama_gedung', '=', 'B']
         ])
-        ->whereMonth('perizinan.created_at', date('n'))
-        ->whereYear('perizinan.created_at', date('Y'))
-        ->count();
+        ->whereMonth('resign.created_at', date('n'))
+        ->whereYear('resign.created_at', date('Y'))->get();
 
-        $disetujuiC = Mahasiswa::join('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
-        ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
-        ->join('perizinan', 'mahasiswa.id_mhs', '=', 'perizinan.id_mhs')
+        $resignGedungC = DB::table('mahasiswa')
+        ->crossJoin('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
+        ->crossJoin('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
+        ->crossJoin('resign', 'mahasiswa.id_mhs', '=', 'resign.id_mhs')
         ->where([
-            ['status_izin', '=', 3],
-            ['nama_gedung', '=', 'C']
+            ['gedung.nama_gedung', '=', 'C']
         ])
-        ->whereMonth('perizinan.created_at', date('n'))
-        ->whereYear('perizinan.created_at', date('Y'))
-        ->count();
+        ->whereMonth('resign.created_at', date('n'))
+        ->whereYear('resign.created_at', date('Y'))->get();
 
-        $ditolakA = Mahasiswa::join('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
-        ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
-        ->join('perizinan', 'mahasiswa.id_mhs', '=', 'perizinan.id_mhs')
-        ->where([
-            ['status_izin', '=', 2],
-            ['status_izin', '=', 4],
-            ['nama_gedung', '=', 'A']
-        ])
-        ->whereMonth('perizinan.created_at', date('n'))
-        ->whereYear('perizinan.created_at', date('Y'))
-        ->count();
+        $mengajukanA = clone $perizinanGedungA;
+        $disetujuiA = clone $perizinanGedungA;
+        $ditolakA = clone $perizinanGedungA;
+        $mengajukanB = clone $perizinanGedungB;
+        $disetujuiB = clone $perizinanGedungB;
+        $ditolakB = clone $perizinanGedungB;
+        $mengajukanC = clone $perizinanGedungC;
+        $disetujuiC = clone $perizinanGedungC;
+        $ditolakC = clone $perizinanGedungC;
 
-        $ditolakB = Mahasiswa::join('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
-        ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
-        ->join('perizinan', 'mahasiswa.id_mhs', '=', 'perizinan.id_mhs')
-        ->where([
-            ['status_izin', '=', 2],
-            ['status_izin', '=', 4],
-            ['nama_gedung', '=', 'B']
-        ])
-        ->whereMonth('perizinan.created_at', date('n'))
-        ->whereYear('perizinan.created_at', date('Y'))
-        ->count();
+        if($role == 2){
+            $mengajukanA = $mengajukanA->whereIn('status_izin', [0, 5])->count() + $resignGedungA->where('status_resign', '=', 0)->count();
+            $mengajukanB = $mengajukanB->whereIn('status_izin', [0, 5])->count() + $resignGedungB->where('status_resign', '=', 0)->count();
+            $mengajukanC = $mengajukanC->whereIn('status_izin', [0, 5])->count() + $resignGedungC->where('status_resign', '=', 0)->count();
 
-        $ditolakC = Mahasiswa::join('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
-        ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
-        ->join('perizinan', 'mahasiswa.id_mhs', '=', 'perizinan.id_mhs')
-        ->where([
-            ['status_izin', '=', 2],
-            ['status_izin', '=', 4],
-            ['nama_gedung', '=', 'C']
-        ])
-        ->whereMonth('perizinan.created_at', date('n'))
-        ->whereYear('perizinan.created_at', date('Y'))
-        ->count();
+            $disetujuiA = $disetujuiA->whereIn('status_izin', [1, 6])->count() + $resignGedungA->where('status_resign', '=', 1)->count();
+            $disetujuiB = $disetujuiB->whereIn('status_izin', [1, 6])->count() + $resignGedungB->where('status_resign', '=', 1)->count();
+            $disetujuiC = $disetujuiC->whereIn('status_izin', [1, 6])->count() + $resignGedungC->where('status_resign', '=', 1)->count();
+
+            $ditolakA = $ditolakA->whereIn('status_izin', [2, 7])->count() + $resignGedungA->where('status_resign', '=', 2)->count();
+            $ditolakB = $ditolakB->whereIn('status_izin', [2, 7])->count() + $resignGedungB->where('status_resign', '=', 2)->count();
+            $ditolakC = $ditolakC->whereIn('status_izin', [2, 7])->count() + $resignGedungC->where('status_resign', '=', 2)->count();
+        }
+        else{
+            $mengajukanA = $mengajukanA->whereIn('status_izin', [0, 1, 5])->count() + $resignGedungA->whereIn('status_resign', [0, 1])->count();
+            $mengajukanB = $mengajukanB->whereIn('status_izin', [0, 1, 5])->count() + $resignGedungB->whereIn('status_resign', [0, 1])->count();
+            $mengajukanC = $mengajukanC->whereIn('status_izin', [0, 1, 5])->count() + $resignGedungC->whereIn('status_resign', [0, 1])->count();
+
+            $disetujuiA = $disetujuiA->whereIn('status_izin', [3, 8, 10])->count() + $resignGedungA->where('status_resign', '=', 3)->count();
+            $disetujuiB = $disetujuiB->whereIn('status_izin', [3, 8, 10])->count() + $resignGedungB->where('status_resign', '=', 3)->count();
+            $disetujuiC = $disetujuiC->whereIn('status_izin', [3, 8, 10])->count() + $resignGedungC->where('status_resign', '=', 3)->count();
+
+            $ditolakA = $ditolakA->whereIn('status_izin', [4, 9])->count() + $resignGedungA->where('status_resign', '=', 4)->count();
+            $ditolakB = $ditolakB->whereIn('status_izin', [4, 9])->count() + $resignGedungB->where('status_resign', '=', 4)->count();
+            $ditolakC = $ditolakC->whereIn('status_izin', [4, 9])->count() + $resignGedungC->where('status_resign', '=', 4)->count();
+        }
 
         return response()->json([
             'status' => 'success',

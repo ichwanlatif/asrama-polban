@@ -33,7 +33,7 @@ class ResignController extends Controller
             'suhu_badan' => 'required|numeric|between:30,50',
             'kondisi_kesehatan' => 'required|max:50',
             'id_mhs' => 'required',
-            'file' => 'file|max:10000|mimes:pdf,png,jpg',
+            'file' => 'file|max:2000|mimes:pdf,png,jpg',
         ], $messages);
         if($validasi->fails()){
             return response()->json(["status" => 'error', "message" => $validasi->errors()]);
@@ -176,7 +176,6 @@ class ResignController extends Controller
         
         $resign = Resign::where([
             ['id_resign', '=', $request->id_resign],
-            ['status_resign', '=', 0],
         ])->update([
             'status_resign' => $request->status_resign
         ]);
@@ -184,14 +183,20 @@ class ResignController extends Controller
         $detail = Resign::where([
             ['id_resign', '=', $request->id_resign],
         ])->first();
+        
+        $mahasiswa = Mahasiswa::where('id_mhs', $detail->id_mhs)->first()->nama_mhs;
 
-        Mahasiswa::where('id_mhs', $detail->id_mhs)
-        ->update([
-            'status_keaktifan' => 0
-        ]);
+        if($request->status_resign == 3){
+            Mahasiswa::where('id_mhs', $detail->id_mhs)
+            ->update([
+                'status_keaktifan' => 0
+            ]);
+        }
 
         if($resign){
             $details = [
+                'link' => 'http://127.0.0.1:8000/#/form-approval-resign/' . $request->id_resign,
+                'from' => $mahasiswa,
                 'tanggal_resign' => $detail->tanggal_resign,
                 'keterangan_resign' => $detail->keterangan_resign,
                 'suhu_badan' => $detail->suhu_badan,
@@ -199,10 +204,16 @@ class ResignController extends Controller
                 'jenis_kendaraan' => $detail->jenis_kendaraan,
             ];
     
-            $mahasiswa = Mahasiswa::where('id_mhs', $detail->id_mhs)->first();
-            $akun = User::where('id_users', $mahasiswa->id_users)->first();
+            if($request->status_resign == 1){
+                $akun = User::where('role', 3)->first();
+                Mail::to($akun->email)->send(new PengajuanResignMail($details));
+            }
+            else{
+                $mahasiswa = Mahasiswa::where('id_mhs', $detail->id_mhs)->first();
+                $akun = User::where('id_users', $mahasiswa->id_users)->first();
     
-            Mail::to($akun->email)->send(new ApprovalResignMail($details));
+                Mail::to($akun->email)->send(new ApprovalResignMail($details));
+            }
             return response()->json([
                 'status' => 'success',
                 'message' => 'Success approve',

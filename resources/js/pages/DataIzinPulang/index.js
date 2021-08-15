@@ -119,7 +119,7 @@ class DataIzinPulang extends Component {
                             <div className="col-lg-12 col-md-12">
                                 <div className="card my-5">
                                     <div className="card-header">
-                                        <h6 className="text-primary">Data Izin Pulang Asrama Yang Belum Diproses</h6>
+                                        <h6 className="text-primary">Data Izin Pulang Asrama</h6>
                                     </div>
                                     <div className="card-body">
 
@@ -173,13 +173,21 @@ class DataIzinPulang extends Component {
                                                                 status = "Error"
                                                                 break;
                                                         }
+                                                        let approve;
+                                                        let btnPengelola = this.state.role == 2 && perizinan.status_izin == 0;
+                                                        let btnWadir = (this.state.role == 3 && (perizinan.status_izin == 0 || perizinan.status_izin ==1));
+                                                        if ( btnPengelola || btnWadir){
+                                                            approve=<td><Link to={"/form-approval-izin-pulang/" + perizinan.id_perizinan} className="btn btn-outline-primary btn-sm">Approve</Link></td>;
+                                                        }else{
+                                                            approve=<td></td>;
+                                                        }
                                                         return (
                                                             <tr>
                                                                 <td>{perizinan.nama_mhs}</td>
                                                                 <td>{perizinan.tanggal_pergi}</td>
                                                                 <td>{perizinan.tanggal_pulang}</td>
                                                                 <td>{status}</td>
-                                                                <td><Link to={"/form-approval-izin-pulang/" + perizinan.id_perizinan} className="btn btn-outline-primary btn-sm">Approve</Link></td>
+                                                                {approve}
                                                             </tr>
                                                         )
                                                     })}

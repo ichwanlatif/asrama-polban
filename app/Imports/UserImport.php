@@ -5,11 +5,11 @@ namespace App\Imports;
 use App\Models\User;
 use App\Models\Mahasiswa;
 use Illuminate\Support\Facades\Hash;
-use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\WithStartRow;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 
-class UserImport implements ToCollection
+class UserImport implements ToCollection, WithStartRow
 {
     /**
     * @param array $row
@@ -29,7 +29,7 @@ class UserImport implements ToCollection
             // dd(date(\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[7])->format('Y-m-d')));
 
             $mahasiswa = Mahasiswa::create([
-                'id_users' => $user->id,
+                'id_users' => $user->id_users,
                 'id_prodi' => $row[1],
                 'id_kamar' => $row[2],
                 'nama_mhs' => $row[3],
@@ -40,11 +40,16 @@ class UserImport implements ToCollection
                 'no_hp_ortu' => $row[8],
                 'jenis_kelamin' => $row[9],
                 'status_keaktifan' => 1,
-                'tanggal_lahir' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[11])->format('Y-m-d'),
-                'agama' => $row[10],
-                'keterangan_asal' => $row[11],
-                'role_mhs' => $row[12],
+                'tanggal_lahir' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[10])->format('Y-m-d'),
+                'agama' => $row[11],
+                'keterangan_asal' => $row[12],
+                'role_mhs' => $row[13],
             ]);
         }
+    }
+
+    public function startRow(): int
+    {
+        return 2;
     }
 }

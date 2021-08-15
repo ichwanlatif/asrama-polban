@@ -47,6 +47,7 @@ class FormIzinKembali extends Component {
                 this.setState({
                     id_perizinan: id,
                     tanggal_pergi: response.data.data.tanggal_pergi,
+                    tanggal_pulang: response.data.data.tanggal_pulang,
                 })
             }
             else{
@@ -158,17 +159,28 @@ class FormIzinKembali extends Component {
                                                 <label for="tanggal_pergi" className="col-md-3 col-form-label text-md-right">Mulai Izin</label>
                                                 <div className="col-md-8">
                                                     <input 
-                                                        type="date" 
-                                                        className="form-control"
-                                                        name="tanggal_pergi"
+                                                        type="text" 
+                                                        className="form-control-plaintext"
+                                                        disabled 
                                                         value={this.state.tanggal_pergi}
-                                                        readOnly="true"
                                                     />
                                                 </div>
                                             </div>
 
                                             <div className="form-group row">
-                                                <label for="tanggal_pulang" className="col-md-3 col-form-label text-md-right">Mulai kembali</label>
+                                                <label for="tanggal_pulang" className="col-md-3 col-form-label text-md-right">Berakhir pada</label>
+                                                <div className="col-md-8">
+                                                    <input 
+                                                        type="text" 
+                                                        className="form-control-plaintext"
+                                                        disabled 
+                                                        value={this.state.tanggal_pulang}
+                                                    />
+                                                </div>
+                                            </div>
+
+                                            <div className="form-group row">
+                                                <label for="tanggal_pulang" className="col-md-3 col-form-label text-md-right">Mulai ke asrama</label>
                                                 <div className="col-md-8">
                                                     <input 
                                                         type="date" 

@@ -300,6 +300,7 @@ class PresensiController extends Controller
         $rekap_mahasiswas = new Collection;
         $rekap_mahasiswa = new Collection;
         $mahasiswas = DB::table('mahasiswa')
+        ->where([['status_keaktifan', '=', 1]])
         ->join('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
         ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
         ->get();
@@ -322,27 +323,28 @@ class PresensiController extends Controller
             ->where('status_resign', '=', 1)
             ->first();
 
-            switch ($mahasiswa->status_keaktifan) {
-                case 1:
-                    $status = "Aktif";
-                    break;
+            // switch ($mahasiswa->status_keaktifan) {
+            //     case 1:
+            //         $status = "Aktif";
+            //         break;
                 
-                case 0:
-                    $status = "Tidak Aktif";
-                    break;
-            }
+            //     case 0:
+            //         $status = "Tidak Aktif";
+            //         break;
+            // }
 
             $rekap_mahasiswa = collect([
                 'nama_mhs' => $mahasiswa->nama_mhs, 
                 'nim' => $mahasiswa->nim, 
+                'no_kamar' => $mahasiswa->no_kamar, 
                 'nama_gedung' => $mahasiswa->nama_gedung,
                 'keterangan_asal' => $mahasiswa->keterangan_asal,
                 'role_mhs' => $mahasiswa->role_mhs, 
                 'alfa' => $alfa, 
                 'hadir' => $hadir, 
                 'izin' => $izin, 
-                'status_keaktifan' => $status,
-                'tanggal_resign' => $resign
+                // 'status_keaktifan' => $status,
+                // 'tanggal_resign' => $resign
             ]);
             $rekap_mahasiswas->push($rekap_mahasiswa);
         }

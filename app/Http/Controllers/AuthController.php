@@ -106,7 +106,7 @@ class AuthController extends Controller
 
         $request->validate([
             'token' => 'required',
-            'password' => 'required|alpha_num|min:8'
+            'password' => 'required|alpha_num|min:8|confirmed'
         ], $messages);
 
         $status = Password::reset(

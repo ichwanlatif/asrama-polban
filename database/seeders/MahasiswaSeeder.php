@@ -42,11 +42,11 @@ class MahasiswaSeeder extends Seeder
             'role_mhs' => "Mahasiswa",
         ]);
 
-        $user = User::create([
-            'email' => "irfan.siswara.tif18@polban.ac.id",
-            'password' => \Hash::make(181511048),
-            'role' => 3
-        ]);
+        // $user = User::create([
+        //     'email' => "irfan.siswara.tif18@polban.ac.id",
+        //     'password' => \Hash::make(181511048),
+        //     'role' => 1
+        // ]);
         
         // $mahasiswa = Mahasiswa::create([
         //     'id_users' => 2,
@@ -66,11 +66,11 @@ class MahasiswaSeeder extends Seeder
         //     'role_mhs' => "Pengurus",
         // ]);
 
-        $user = User::create([
-            'email' => "rizqa.fauzziyah.tif18@polban.ac.id",
-            'password' => \Hash::make(181511065),
-            'role' => 2
-        ]);
+        // $user = User::create([
+        //     'email' => "rizqa.fauziyyah.tif18@polban.ac.id",
+        //     'password' => \Hash::make(123456),
+        //     'role' => 1
+        // ]);
         
         // $mahasiswa = Mahasiswa::create([
         //     'id_users' => 3,

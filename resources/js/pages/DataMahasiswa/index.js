@@ -195,7 +195,7 @@ class DataMahasiswa extends Component {
                                                     <th scope="col">NIM</th>
                                                     <th scope="col">Email</th>
                                                     <th scope="col">Asal</th>
-                                                    <th scope="col">Gedung</th>
+                                                    <th scope="col">Kamar</th>
                                                     <th scope="col">Jabatan</th>
                                                     <th scope="col">Status</th>
                                                     <th scope="col"></th>
@@ -218,7 +218,7 @@ class DataMahasiswa extends Component {
                                                                 <td>{mahasiswa.nim}</td>
                                                                 <td>{mahasiswa.email}</td>
                                                                 <td>{mahasiswa.keterangan_asal}</td>
-                                                                <td>{mahasiswa.nama_gedung}</td>
+                                                                <td>{mahasiswa.nama_gedung}-{mahasiswa.no_kamar}</td>
                                                                 <td>{mahasiswa.role_mhs}</td>
                                                                 <td>{status}</td>
                                                                 <td>

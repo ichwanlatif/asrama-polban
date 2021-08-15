@@ -27,6 +27,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
         $schedule->command('Day:AutoPresensi')->dailyAt('20:00');
+        $schedule->command('Day:AutoIzin')->dailyAt('08:00');
 
     }
 

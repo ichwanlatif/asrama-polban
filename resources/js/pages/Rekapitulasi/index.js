@@ -74,8 +74,8 @@ class Rekapitulasi extends Component {
 
     unduhRekapitulasi(){
         const doc = new jsPDF('portrait', 'cm', 'a4')
-        const headers = [["NAMA", "NIM", "GEDUNG", "JENIS", "JABATAN", "ALFA", "IZIN", "HADIR", "STATUS", "TANGGAL RESIGN"]];
-        const data = this.state.datas.map(rekap=> [rekap.nama_mhs, rekap.nim, rekap.nama_gedung, rekap.keterangan_asal, rekap.role_mhs, rekap.alfa, rekap.izin, rekap.hadir, rekap.status_keaktifan, rekap.tanggal_resign ? moment(rekap.tanggal_resign).format("YYYY-MM-DD") : "-"]);
+        const headers = [["NAMA", "NIM", "GEDUNG", "JENIS", "JABATAN", "ALFA", "IZIN", "HADIR"]];
+        const data = this.state.datas.map(rekap=> [rekap.nama_mhs, rekap.nim, rekap.nama_gedung, rekap.keterangan_asal, rekap.role_mhs, rekap.alfa, rekap.izin, rekap.hadir]);
 
         let content = {
             startY: 5,
@@ -85,9 +85,9 @@ class Rekapitulasi extends Component {
 
         doc.text("REKAPITULASI PRESENSI MAHASISWA", 10.5, 1, {align: 'center'});
         doc.text("POLITEKNIK NEGERI BANDUNG", 10.5, 2, {align: 'center'});
-        doc.autoTable(content)
         doc.setFontSize(12)
         doc.text("PERIODE: " + this.state.date_from + " s.d " + this.state.date_to, 1.5, 4.7, {align: 'left'})
+        doc.autoTable(content)
         doc.save("Rekapitulasi Mahasiswa.pdf")
 
     }
@@ -213,14 +213,12 @@ class Rekapitulasi extends Component {
                                                     <tr>
                                                     <th scope="col">Nama</th>
                                                     <th scope="col">NIM</th>
-                                                    <th scope="col">Gedung</th>
+                                                    <th scope="col">Kamar</th>
                                                     <th scope="col">Jenis</th>
                                                     <th scope="col">Jabatan</th>
                                                     <th scope="col">Alfa</th>
                                                     <th scope="col">Izin</th>
                                                     <th scope="col">Hadir</th>
-                                                    <th scope="col">Status</th>
-                                                    <th scope="col">Tangal resign</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -228,31 +226,25 @@ class Rekapitulasi extends Component {
                                                         const {
                                                             nama_mhs,
                                                             nim,
+                                                            no_kamar,
                                                             nama_gedung,
                                                             keterangan_asal,
                                                             role_mhs,
                                                             alfa,
                                                             hadir,
                                                             izin,
-                                                            status_keaktifan,
-                                                            tanggal_resign
                                                         } = rekap;
-                                                        let resign = "-"
-                                                        if(rekap.tanggal_resign !== null){
-                                                            resign = rekap.tanggal_resign.tanggal_resign
-                                                        }
+                                                        
                                                         return (
                                                             <tr>
                                                                 <td>{rekap.nama_mhs}</td>
                                                                 <td>{rekap.nim}</td>
-                                                                <td>{rekap.nama_gedung}</td>
+                                                                <td>{rekap.nama_gedung}-{rekap.no_kamar}</td>
                                                                 <td>{rekap.keterangan_asal}</td>
                                                                 <td>{rekap.role_mhs}</td>
                                                                 <td>{rekap.alfa}</td>
                                                                 <td>{rekap.izin}</td>
                                                                 <td>{rekap.hadir}</td>
-                                                                <td>{rekap.status_keaktifan}</td>
-                                                                <td>{resign}</td>
                                                             </tr>
                                                         )
                                                     })}

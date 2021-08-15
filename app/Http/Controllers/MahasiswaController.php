@@ -60,6 +60,8 @@ class MahasiswaController extends Controller
         ->join('users', 'mahasiswa.id_users', '=', 'users.id_users')
         ->join('kamar', 'mahasiswa.id_kamar', '=', 'kamar.id_kamar')
         ->join('gedung', 'kamar.id_gedung', '=', 'gedung.id_gedung')
+        ->orderBy('gedung.nama_gedung', 'asc')
+        ->orderBy('mahasiswa.nama_mhs', 'asc')
         ->get();
 
         if($mahasiswa){
@@ -297,28 +299,33 @@ class MahasiswaController extends Controller
         $listMahasiswa = $request->listMhs;
         // dd(count($listMahasiswa));
         for($i=0; $i < count($listMahasiswa); $i++){
+            $id_user = Mahasiswa::where([
+                ['id_mhs', '=', $listMahasiswa[$i]],
+            ])
+            ->first()->id_users;
+
             $delete = Mahasiswa::where([
                 ['id_mhs', '=', $listMahasiswa[$i]],
             ])
-            ->first();
+            ->delete();
+
             User::where([
-                ['id_users', '=', $delete->id_users],
+                ['id_users', '=', $id_user],
             ])
             ->delete();
-            $delete->delete();
         }
-        if($delete){
+        // if($delete){
             return response()->json([
                 'status' => 'success',
                 'message' => 'Mahasiswa berhasil dihapus',
                 'data' => $delete
             ], 201);
-        }
-        else{
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Mahasiswa gagal dihapus',
-            ]);
-        }
+        // }
+        // else{
+        //     return response()->json([
+        //         'status' => 'error',
+        //         'message' => 'Mahasiswa gagal dihapus',
+        //     ]);
+        // }
     }
 }

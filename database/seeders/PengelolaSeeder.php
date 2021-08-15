@@ -14,10 +14,10 @@ class PengelolaSeeder extends Seeder
      */
     public function run()
     {
-        // $user = User::create([
-        //     'email' => "pengelola@polban.ac.id",
-        //     'password' => \Hash::make(12345678),
-        //     'role' => 2
-        // ]);
+        $user = User::create([
+            'email' => "rizqa.fauziyyah.tif18@polban.ac.id",
+            'password' => \Hash::make(181511065),
+            'role' => 2
+        ]);
     }
 }

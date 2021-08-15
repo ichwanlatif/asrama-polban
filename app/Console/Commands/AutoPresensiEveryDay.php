@@ -10,6 +10,8 @@ use App\Models\Presensi;
 use App\Models\Mahasiswa;
 use App\Models\Perizinan;
 
+
+
 class AutoPresensiEveryDay extends Command
 {
     /**
@@ -54,31 +56,14 @@ class AutoPresensiEveryDay extends Command
             ->first();
 
             if($kehadiran == null || $kehadiran == ''){
-                $perizinan = Perizinan::where('id_mhs', '=', $mahasiswa->id_mhs)
-                ->whereIn('status_izin', [3, 5, 6, 7, 8])
-                ->whereDate('tanggal_pulang', '>=', date("Y-m-d"))
-                ->first();
-
-                if($perizinan == null || $perizinan == ''){
-                    Presensi::create([
-                        'status_presensi' => 0,
-                        'latitude' => "-",
-                        'longitude' => "-",
-                        'id_mhs' => $mahasiswa->id_mhs,
-                        'suhu_badan' => 0,
-                        'kondisi_kesehatan' => "-"
-                    ]);
-                }
-                else{
-                    Presensi::create([
-                        'status_presensi' => 2,
-                        'latitude' => "-",
-                        'longitude' => "-",
-                        'id_mhs' => $mahasiswa->id_mhs,
-                        'suhu_badan' => 0,
-                        'kondisi_kesehatan' => "-"
-                    ]);
-                }
+                Presensi::create([
+                    'status_presensi' => 0,
+                    'latitude' => 0,
+                    'longitude' => 0,
+                    'id_mhs' => $mahasiswa->id_mhs,
+                    'suhu_badan' => 36.2,
+                    'kondisi_kesehatan' => "Tidak Ada Keterangan"
+                ]);
             }
         }
         return "Semua Presensi Berhasil Diisi";
