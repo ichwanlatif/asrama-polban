@@ -286,7 +286,7 @@ class FormApprovalIzinPulang extends Component {
                                             <div className="form-group row">
                                                 <label for="formfile" className="col-md-3 col-form-label text-md-right">Surat pendukung</label>
                                                 <div className="col-md-8">
-                                                    <a href={'storage/file_perizinan/' + this.state.surat_pendukung} download={this.state.surat_pendukung} class="btn btn-light btn-icon-split" hidden={hidden}>
+                                                    <a href={'https://asrama-polban.xyz/asrama-polban/storage/app/public/file_perizinan/' + this.state.surat_pendukung} download={this.state.surat_pendukung} class="btn btn-light btn-icon-split" hidden={hidden}>
                                                         <span class="icon text-gray-600">
                                                             <i class="fas fa-file-download"></i>
                                                         </span>

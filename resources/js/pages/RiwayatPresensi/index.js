@@ -122,7 +122,7 @@ class RiwayatPresensi extends Component {
                                                             created_at,
                                                         } = presensi;
                                                         let status, color;
-                                                        if(presensi.status_presensi === 0){
+                                                        if(presensi.status_presensi == 0){
                                                             status = "Tidak hadir"
                                                             color = "badge badge-pill badge-danger"
                                                         }
