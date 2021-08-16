@@ -45,7 +45,6 @@ class Rekapitulasi extends Component {
         let data = {};
         data[name] = value;
         this.setState(data);
-        console.log(name, value);
     }
 
     handleGetDataByRange(e){
@@ -166,9 +165,9 @@ class Rekapitulasi extends Component {
                                     </div>
                                     <div className="card-body">
 
-                                        <div className="d-flex justify-content-end">
+                                        <div className="row">
                                             {/* Unduh file */}
-                                            <button onClick={this.unduhRekapitulasi} className="btn btn-light btn-icon-split mb-2 justify-content-end">
+                                            <button onClick={this.unduhRekapitulasi} className="btn btn-light btn-icon-split mb-2 mx-2">
                                                 <span className="icon text-gray-600">
                                                     <i className="fas fa-file-download"></i>
                                                 </span>
@@ -215,7 +214,7 @@ class Rekapitulasi extends Component {
                                                     <th scope="col">NIM</th>
                                                     <th scope="col">Kamar</th>
                                                     <th scope="col">Jenis</th>
-                                                    <th scope="col">Jabatan</th>
+                                                    <th scope="col">Peran</th>
                                                     <th scope="col">Alfa</th>
                                                     <th scope="col">Izin</th>
                                                     <th scope="col">Hadir</th>

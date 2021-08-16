@@ -135,10 +135,10 @@ class DataResign extends Component {
                                             <table className="table table-hover">
                                                 <thead>
                                                     <tr>
-                                                    <th scope="col">Nama</th>
-                                                    <th scope="col">Mulai</th>
-                                                    <th scope="col">Status</th>
-                                                    <th scope="col">Proses</th>
+                                                        <th scope="col">Nama</th>
+                                                        <th scope="col">Mulai</th>
+                                                        <th scope="col">Status</th>
+                                                        <th scope="col">Proses</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>

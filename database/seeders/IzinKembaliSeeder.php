@@ -28,7 +28,7 @@ class IzinKembaliSeeder extends Seeder
                 'keterangan_kembali' => "Kuliah",
                 'surat_pendukung' => null,
                 'catatan_approval' => null,
-                'status_izin' => 5,
+                'status_izin' => $faker->numberBetween(5,9),
                 'suhu_badan' => $faker->randomFloat($nbMaxDecimals = 1, $min = 36.5, $max = 37.5),
                 'kondisi_kesehatan' => "Sehat",
                 'jenis_kendaraan' => "Mobil",
@@ -37,7 +37,7 @@ class IzinKembaliSeeder extends Seeder
 
         for($i = 1; $i <= 5; $i++){
             $perizinan = Perizinan::create([
-                'id_mhs' => 2,
+                'id_mhs' => 1,
                 'tanggal_pergi' => "2021-07-07",
                 'tanggal_pulang' => "2021-12-12",
                 'pengajuan_tanggal_pulang' => "2021-12-10",
@@ -46,7 +46,7 @@ class IzinKembaliSeeder extends Seeder
                 'keterangan_kembali' => "Test pagination",
                 'surat_pendukung' => null,
                 'catatan_approval' => null,
-                'status_izin' => 9,
+                'status_izin' => $faker->numberBetween(5,9),
                 'suhu_badan' => $faker->randomFloat($nbMaxDecimals = 1, $min = 36.5, $max = 37.5),
                 'kondisi_kesehatan' => "Sehat",
                 'jenis_kendaraan' => "Mobil",

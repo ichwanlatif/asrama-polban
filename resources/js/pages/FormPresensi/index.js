@@ -104,14 +104,14 @@ class FormPresensi extends Component {
                 if(hasil > 50){
                     this.setState({
                         status: 0,
-                        status_location: "Berada di Luar Asrama",
+                        status_location: "Diluar radius Asrama Polban",
                         text_color : "text-danger",
                     })
                 }
                 else{
                     this.setState({
                         status: 1,
-                        status_location: "Berada di Asrama",
+                        status_location: "Dalam radius Asrama Polban",
                         text_color : "text-success",
                     })
                 }
@@ -130,20 +130,17 @@ class FormPresensi extends Component {
         let data = {};
         data[name] = value;
         this.setState(data);
-        console.log(name, value);
     }
 
     async submitPresensi(e){
         
         e.preventDefault()
-        console.log(this.state.lat)
         if(this.state.status === 10){
             alert('Silahkan Get Location Terlebih Dahulu')
         }
         else{
             this.setState({ isLoading: true });
             
-            // console.log(this.state)
             await api().post('api/presensi/create', ({
                 status: this.state.status,
                 latitude: this.state.lat,

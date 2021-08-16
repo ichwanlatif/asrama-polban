@@ -32,8 +32,6 @@ class Topbar extends Component {
       this.setState({
         nama_mhs
       });
-
-      console.log(localStorage.getItem("user_role"))
     }
     
     render() {
@@ -45,13 +43,16 @@ class Topbar extends Component {
         const nama_mhs = this.state.nama_mhs;
         const { clickMenuOpen } = this.props;
 
+        let photo_profile;
         let data_diri;
         if(localStorage.getItem("user_role")==="1"){
+          photo_profile = <img className="img-profile rounded-circle" src={"https://akademik.polban.ac.id/fotomhsrekap/"+localStorage.getItem("nim")+".jpg"} />
           data_diri = <Link className="dropdown-item" to="/data-diri">
                         <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                         Data diri
                       </Link>
         }else{
+          photo_profile = <img className="img-profile rounded-circle" src="/images/profile/polban.jpg" />
           data_diri=<div></div>
         }
 
@@ -72,7 +73,7 @@ class Topbar extends Component {
             <li className="nav-item dropdown no-arrow">
             <Link className="nav-link dropdown-toggle" to="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span className="mr-2 d-none d-lg-inline text-gray-600 small">{nama_mhs}</span>
-                <img className="img-profile rounded-circle" src="/images/profile/polban.jpg" />
+                {photo_profile}
               </Link>
               {/* <!-- Dropdown - User Information --> */}
               <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">

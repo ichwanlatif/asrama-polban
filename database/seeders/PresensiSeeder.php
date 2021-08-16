@@ -17,10 +17,10 @@ class PresensiSeeder extends Seeder
     {
         $faker = Faker::create('id_ID');
 
-        for($i = 1; $i <= 50; $i++){
+        for($i = 2; $i <= 50; $i++){
             $presensi = Presensi::create([
                 'id_mhs' => $i,
-                'status_presensi' => 0,
+                'status_presensi' => $faker->numberBetween(0,2),
                 'latitude' => $faker->latitude($min = -90, $max = 90),
                 'longitude' => $faker->longitude($min = -180, $max = 180),
                 'suhu_badan' => $faker->randomFloat($nbMaxDecimals = 1, $min = 36.5, $max = 37.5),
@@ -30,8 +30,8 @@ class PresensiSeeder extends Seeder
 
         for($i = 1; $i <= 15; $i++){
             $presensi = Presensi::create([
-                'id_mhs' => 2,
-                'status_presensi' => 0,
+                'id_mhs' => 1,
+                'status_presensi' => $faker->numberBetween(0,2),
                 'latitude' => $faker->latitude($min = -90, $max = 90),
                 'longitude' => $faker->longitude($min = -180, $max = 180),
                 'suhu_badan' => $faker->randomFloat($nbMaxDecimals = 1, $min = 36.5, $max = 37.5),

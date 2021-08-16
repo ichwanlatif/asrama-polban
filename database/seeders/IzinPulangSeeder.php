@@ -17,7 +17,7 @@ class IzinPulangSeeder extends Seeder
     {
         $faker = Faker::create('id_ID');
 
-        for($i = 1; $i <= 15; $i++){
+        for($i = 2; $i <= 15; $i++){
             $perizinan = Perizinan::create([
                 'id_mhs' => $i,
                 'tanggal_pergi' => "2021-10-10",
@@ -28,7 +28,7 @@ class IzinPulangSeeder extends Seeder
                 'keterangan_kembali' => null,
                 'surat_pendukung' => null,
                 'catatan_approval' => null,
-                'status_izin' => 0,
+                'status_izin' => $faker->numberBetween(0,4),
                 'suhu_badan' => $faker->randomFloat($nbMaxDecimals = 1, $min = 36.5, $max = 37.5),
                 'kondisi_kesehatan' => "Sehat",
                 'jenis_kendaraan' => "Mobil",
@@ -37,7 +37,7 @@ class IzinPulangSeeder extends Seeder
 
         for($i = 1; $i <= 5; $i++){
             $perizinan = Perizinan::create([
-                'id_mhs' => 2,
+                'id_mhs' => 1,
                 'tanggal_pergi' => "2021-10-10",
                 'tanggal_pulang' => "2021-12-12",
                 'pengajuan_tanggal_pulang' => null,
@@ -46,7 +46,7 @@ class IzinPulangSeeder extends Seeder
                 'keterangan_kembali' => null,
                 'surat_pendukung' => null,
                 'catatan_approval' => null,
-                'status_izin' => 4,
+                'status_izin' => $faker->numberBetween(0,4),
                 'suhu_badan' => $faker->randomFloat($nbMaxDecimals = 1, $min = 36.5, $max = 37.5),
                 'kondisi_kesehatan' => "Sehat",
                 'jenis_kendaraan' => "Mobil",
