@@ -196,7 +196,7 @@ class ResignController extends Controller
 
         if($resign){
             $details = [
-                'link' => 'http://127.0.0.1:8000/#/form-approval-resign/' . $request->id_resign,
+                'link' => 'https://asrama-polban.xyz/#/form-approval-resign/' . $request->id_resign,
                 'from' => $mahasiswa,
                 'tanggal_resign' => $detail->tanggal_resign,
                 'keterangan_resign' => $detail->keterangan_resign,
