@@ -62,7 +62,7 @@ class DashboardMahasiswa extends Component {
                         color="success"
                         value={this.state.hadir} />
 
-                    <CardInfo title="Jumlah Alfa"
+                    <CardInfo title="Jumlah Alpa"
                         icon="calendar-times"
                         color="danger"
                         value={this.state.alfa} />

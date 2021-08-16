@@ -160,7 +160,7 @@ class DataPresensi extends Component {
                                                         } = presensi;
                                                         let status, color;
                                                         if(presensi.status_presensi === 0){
-                                                            status = "Tidak hadir"
+                                                            status = "Alpa"
                                                             color = "badge badge-pill badge-danger"
                                                         }
                                                         else if(presensi.status_presensi === 1){
