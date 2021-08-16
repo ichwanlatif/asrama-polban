@@ -50,7 +50,7 @@ class ImportMahasiswa extends Component {
         console.log(this.state);
 
         await api().post('api/mahasiswa/import', data).then(response => {
-            if(response.data.status === 'success'){
+            if(response.data.status == 'success'){
                 console.log(response.data.msg)
                 window.location.assign('/#/dashboard')
             }

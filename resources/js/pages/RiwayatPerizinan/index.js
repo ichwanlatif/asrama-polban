@@ -34,7 +34,7 @@ class RiwayatPerizinan extends Component {
             role: localStorage.getItem("user_role")
         });
         api().get('api/perizinan/riwayatperizinan/' + localStorage.getItem('user_id')).then(response =>{
-            if(response.data.status === 'success'){
+            if(response.data.status == 'success'){
                 this.setState({
                     datasIzin: response.data.data
                 })
@@ -45,7 +45,7 @@ class RiwayatPerizinan extends Component {
         })
 
         api().get('api/resign/riwayatresign/' + localStorage.getItem('user_id')).then(resign => {
-            if(resign.data.status === 'success'){
+            if(resign.data.status == 'success'){
                 this.setState({
                     datasResign: resign.data.data
                 })

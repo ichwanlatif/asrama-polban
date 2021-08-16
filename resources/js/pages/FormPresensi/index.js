@@ -52,11 +52,11 @@ class FormPresensi extends Component {
         }, 1000)
         if(new Date().toLocaleTimeString() < "07.59.00" || new Date().toLocaleTimeString() > "20.01.00"){
             alert("Tidak Dalam Waktu Presensi")
-            window.location.assign('asrama-polban/public/#/dashboard')
+            window.location.assign('/#/dashboard')
         }
         else{
             api().get('api/perizinan/checkPerizinan/' + localStorage.getItem('user_id')).then(response =>{
-                if(response.data.status === 'success'){
+                if(response.data.status == 'success'){
                     if(response.data.data.status_izin == 8){
                         alert('Silahkan Konfirmasi Kepulangan Terlebih Dahulu');
                     }
@@ -67,9 +67,9 @@ class FormPresensi extends Component {
                 }
                 else{
                     api().get('api/presensi/kehadiranToday/' + localStorage.getItem('user_id')).then(today =>{
-                        if(today.data.status === 'success'){
+                        if(today.data.status == 'success'){
                             alert('Anda Telah Melakukan Presensi');
-                            window.location.assign('asrama-polban/public/#/dashboard')
+                            window.location.assign('/#/dashboard')
                         }
                     })
                 }
@@ -137,7 +137,7 @@ class FormPresensi extends Component {
         
         e.preventDefault()
         console.log(this.state.lat)
-        if(this.state.status === 10){
+        if(this.state.status == 10){
             alert('Silahkan Get Location Terlebih Dahulu')
         }
         else{
@@ -152,8 +152,8 @@ class FormPresensi extends Component {
                 kondisi_kesehatan: this.state.kondisi_kesehatan,
                 id_mhs: localStorage.getItem('user_id')
             })).then(response => {
-                if(response.data.status === 'success'){
-                    window.location.assign('asrama-polban/public/#/riwayat-presensi')
+                if(response.data.status == 'success'){
+                    window.location.assign('/#/riwayat-presensi')
                 }
                 else{
                     this.setState({

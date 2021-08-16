@@ -90,7 +90,7 @@ class FormResign extends Component {
         }
 
         await api().post('api/resign/create', data).then(response => {
-            if(response.data.status === 'success'){
+            if(response.data.status == 'success'){
                 console.log(response.data.message)
                 window.location.assign('/#/riwayat-perizinan')
             }

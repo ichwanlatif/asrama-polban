@@ -40,7 +40,7 @@ class DataMahasiswa extends Component {
         });
 
         api().get('api/mahasiswa').then(response =>{
-            if(response.data.status === 'success'){
+            if(response.data.status == 'success'){
                 this.setState({
                     datas: response.data.data
                 })
@@ -213,7 +213,7 @@ class DataMahasiswa extends Component {
 
                                                         return (
                                                             <tr key={index}>
-                                                                <td><input type="checkbox" value={mahasiswa.id_mhs} checked={this.state.checkedBoxes.find((p) => p.id_mhs === mahasiswa.id_mhs)} onChange={(e) => this.toggleCheckbox(e, mahasiswa)}></input></td>
+                                                                <td><input type="checkbox" value={mahasiswa.id_mhs} checked={this.state.checkedBoxes.find((p) => p.id_mhs == mahasiswa.id_mhs)} onChange={(e) => this.toggleCheckbox(e, mahasiswa)}></input></td>
                                                                 <td>{mahasiswa.nama_mhs}</td>
                                                                 <td>{mahasiswa.nim}</td>
                                                                 <td>{mahasiswa.email}</td>

@@ -32,7 +32,7 @@ class DashboardWadir extends Component {
 
     async componentDidMount(){
         await api().get('api/presensi/dashboard').then(response =>{
-            if(response.data.status === 'success'){
+            if(response.data.status == 'success'){
                 this.setState({
                     alfaA: response.data.gedungA[0],
                     hadirA: response.data.gedungA[1],
@@ -72,7 +72,7 @@ class DashboardWadir extends Component {
         })
 
         api().get('api/perizinan/dashboard/3').then(response =>{
-            if(response.data.status === 'success'){
+            if(response.data.status == 'success'){
                 this.setState({
                     mengajukanA: response.data.gedungA[0],
                     disetujuiA: response.data.gedungA[1],

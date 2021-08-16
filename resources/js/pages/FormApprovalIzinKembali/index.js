@@ -51,7 +51,7 @@ class FormApprovalIzinKembali extends Component {
             pengajuan_tanggal_pulang: this.state.pengajuan_tanggal_pulang,
             catatan_approval: this.state.catatan_approval
         })).then(response => {
-            if(response.data.status === 'success'){
+            if(response.data.status == 'success'){
                 console.log(response.data.message)
                 window.location.assign('/#/data-izin-kembali')
             }
@@ -92,7 +92,7 @@ class FormApprovalIzinKembali extends Component {
         }
 
         api().get('api/perizinan/detail/' + id).then(response => {
-            if(response.data.status === 'success'){
+            if(response.data.status == 'success'){
                 this.setState({
                     id_perizinan: id,
                     id_mhs: response.data.data.id_mhs,

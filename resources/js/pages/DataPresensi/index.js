@@ -35,7 +35,7 @@ class DataPresensi extends Component {
             role: localStorage.getItem("user_role")
         });
         api().get('api/presensi/kehadiranToday').then(response =>{
-            if(response.data.status === 'success'){
+            if(response.data.status == 'success'){
                 this.setState({
                     datas: response.data.data
                 })
@@ -158,11 +158,11 @@ class DataPresensi extends Component {
                                                             keterangan_asal
                                                         } = presensi;
                                                         let status, color;
-                                                        if(presensi.status_presensi === 0){
+                                                        if(presensi.status_presensi == 0){
                                                             status = "Alfa"
                                                             color = "badge badge-pill badge-danger"
                                                         }
-                                                        else if(presensi.status_presensi === 1){
+                                                        else if(presensi.status_presensi == 1){
                                                             status = "Hadir"
                                                             color = "badge badge-pill badge-success"
                                                         }

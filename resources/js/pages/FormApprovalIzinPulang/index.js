@@ -53,7 +53,7 @@ class FormApprovalIzinPulang extends Component {
             status_izin: this.state.status_izin,
             catatan_approval: this.state.catatan_approval
         })).then(response => {
-            if(response.data.status === 'success'){
+            if(response.data.status == 'success'){
                 console.log(response.data.message)
                 window.location.assign('/#/data-izin-pulang')
             }
@@ -94,7 +94,7 @@ class FormApprovalIzinPulang extends Component {
         const { id } = this.props.match.params
 
         api().get('api/perizinan/detail/' + id).then(response => {
-            if(response.data.status === 'success'){
+            if(response.data.status == 'success'){
                 console.log(response.data.data)
                 this.setState({
                     id_perizinan: id,

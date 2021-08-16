@@ -26,7 +26,7 @@ class DetailMahasiswa extends Component {
 
         const {id} = this.props.match.params
         api().get('api/mahasiswa/' + id).then(responseMahasiswa =>{
-            if(responseMahasiswa.data.status === 'success'){
+            if(responseMahasiswa.data.status == 'success'){
                 this.setState({
                     id_mhs:responseMahasiswa.data.data.id_mhs,
                     email: responseMahasiswa.data.data.email,

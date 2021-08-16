@@ -42,7 +42,7 @@ class FormIzinKembali extends Component {
         });
 
         api().get('api/perizinan/detail/' + id).then(response => {
-            if(response.data.status === 'success'){
+            if(response.data.status == 'success'){
                 console.log(response.data.data)
                 this.setState({
                     id_perizinan: id,
@@ -83,7 +83,7 @@ class FormIzinKembali extends Component {
                 kondisi_kesehatan: this.state.kondisi_kesehatan,
                 jenis_kendaraan: this.state.jenis_kendaraan
             })).then(response => {
-                if(response.data.status === 'success'){
+                if(response.data.status == 'success'){
                     console.log(response.data.message)
                     window.location.assign('/#/riwayat-perizinan')
                 }

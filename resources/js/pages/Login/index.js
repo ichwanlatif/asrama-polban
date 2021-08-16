@@ -64,10 +64,10 @@ class Login extends Component {
                 password: this.state.password
             })).then(response => {
                 if(response.data.status !== 'success'){
-                    if(response.data.message === 'incorrect'){
+                    if(response.data.message == 'incorrect'){
                         alert("Email atau password salah!")
                     }
-                    else if(response.data.message === 'unregist'){
+                    else if(response.data.message == 'unregist'){
                         alert("Akun tidak terdaftar!");
                     }
                     else{

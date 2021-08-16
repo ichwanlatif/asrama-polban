@@ -69,7 +69,7 @@ class TambahMahasiswa extends Component {
             keterangan_asal: this.state.keterangan_asal,
             role_mhs: this.state.role_mhs
         })).then(response => {
-            if(response.data.status === 'success'){
+            if(response.data.status == 'success'){
                 window.location.assign('/#/data-mahasiswa')
             }
             else{
@@ -94,7 +94,7 @@ class TambahMahasiswa extends Component {
         });
 
         api().get('api/prodi').then(responseProdi =>{
-            if(responseProdi.data.status === 'success'){
+            if(responseProdi.data.status == 'success'){
                 this.setState({
                     dataProdi: responseProdi.data.data
                 })
@@ -106,7 +106,7 @@ class TambahMahasiswa extends Component {
         })
 
         api().get('api/kamar').then(responseKamar =>{
-            if(responseKamar.data.status === 'success'){
+            if(responseKamar.data.status == 'success'){
                 this.setState({
                     dataKamar: responseKamar.data.data
                 })

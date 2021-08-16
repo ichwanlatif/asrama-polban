@@ -20,7 +20,7 @@ class DashboardMahasiswa extends Component {
 
     async componentDidMount(){
         await api().get('api/presensi/getRekapitulasiById/' + this.state.id_mhs).then(response =>{
-            if(response.data.status === 'success'){
+            if(response.data.status == 'success'){
                 this.setState({
                     alfa: response.data.alfa,
                     hadir: response.data.hadir,

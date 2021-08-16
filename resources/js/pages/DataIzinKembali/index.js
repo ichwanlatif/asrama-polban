@@ -36,7 +36,7 @@ class DataIzinKembali extends Component {
         });
 
         api().get('api/perizinan/kembali/' + role).then(response =>{
-            if(response.data.status === 'success'){
+            if(response.data.status == 'success'){
                 this.setState({
                     datas: response.data.data
                 })

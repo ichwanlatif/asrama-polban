@@ -60,7 +60,7 @@ class Rekapitulasi extends Component {
 
     getDataRekap(){
         api().get('api/presensi/getRekapitulasi/'+this.state.date_from+'/'+this.state.date_to).then(response =>{
-            if(response.data.status === 'success'){
+            if(response.data.status == 'success'){
                 this.setState({
                     datas: response.data.data
                 })

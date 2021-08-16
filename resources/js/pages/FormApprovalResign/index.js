@@ -53,7 +53,7 @@ class FormApprovalResign extends Component {
             id_resign: this.state.id,
             status_resign: this.state.status_resign
         })).then(response => {
-            if(response.data.status === 'success'){
+            if(response.data.status == 'success'){
                 console.log(response.data.message)
                 window.location.assign('/#/data-resign')
             }
@@ -95,7 +95,7 @@ class FormApprovalResign extends Component {
         const { id } = this.props.match.params
 
         api().get('api/resign/detail/' + id).then(response => {
-            if(response.data.status === 'success'){
+            if(response.data.status == 'success'){
                 this.setState({
                     id: id,
                     id_mhs: response.data.data.id_mhs,
