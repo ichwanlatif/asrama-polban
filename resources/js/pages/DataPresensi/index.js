@@ -134,14 +134,14 @@ class DataPresensi extends Component {
                                             <table className="table table-hover">
                                                 <thead>
                                                     <tr>
-                                                    <th scope="col">Nama</th>
-                                                    <th scope="col">NIM</th>
-                                                    <th scope="col">Gedung</th>
-                                                    <th scope="col">Jenis</th>
-                                                    <th scope="col">Waktu</th>
-                                                    <th scope="col">Status</th>
-                                                    <th scope="col">Kondisi</th>
-                                                    <th scope="col">Suhu badan</th>
+                                                        <th scope="col">Nama</th>
+                                                        <th scope="col">NIM</th>
+                                                        <th scope="col">Kamar</th>
+                                                        <th scope="col">Jenis</th>
+                                                        <th scope="col">Waktu</th>
+                                                        <th scope="col">Status</th>
+                                                        <th scope="col">Kondisi</th>
+                                                        <th scope="col">Suhu badan</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -154,12 +154,13 @@ class DataPresensi extends Component {
                                                             created_at,
                                                             nama_mhs,
                                                             nim,
+                                                            no_kamar,
                                                             nama_gedung,
                                                             keterangan_asal
                                                         } = presensi;
                                                         let status, color;
                                                         if(presensi.status_presensi == 0){
-                                                            status = "Alfa"
+                                                            status = "Tidak hadir"
                                                             color = "badge badge-pill badge-danger"
                                                         }
                                                         else if(presensi.status_presensi == 1){
@@ -168,13 +169,13 @@ class DataPresensi extends Component {
                                                         }
                                                         else{
                                                             status = "Izin"
-                                                            color = "badge badge-pill badge-info"
+                                                            color = "badge badge-pill badge-warning"
                                                         }
                                                         return (
                                                             <tr>
                                                                 <td>{presensi.nama_mhs}</td>
                                                                 <td>{presensi.nim}</td>
-                                                                <td>{presensi.nama_gedung}</td>
+                                                                <td>{presensi.nama_gedung}-{presensi.no_kamar}</td>
                                                                 <td>{presensi.keterangan_asal}</td>
                                                                 <td>{new Date(presensi.created_at).toTimeString()}</td>
                                                                 <td>

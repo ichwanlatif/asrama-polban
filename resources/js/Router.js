@@ -1,6 +1,9 @@
 import React from "react";
 import {  Switch, Route } from 'react-router-dom';
 import { PrivateRoute } from './PrivateRoute';
+import { WadirRoute } from './WadirRoute';
+import { PengelolaRoute } from './PengelolaRoute';
+import { MahasiswaRoute } from './MahasiswaRoute';
 
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
@@ -43,38 +46,37 @@ import TambahMahasiswa from './pages/TambahMahasiswa';
 const Main = props =>(
     <Switch>
         <Route exact path="/" component={Login} />
-        <Route path="/forgot-password" component={ForgotPassword} />
-        <Route path="/reset-password/:token" component={ResetPassword} />
+        <Route exact path="/forgot-password" component={ForgotPassword} />
+        <Route exact path="/reset-password/:token" component={ResetPassword} />
 
-        
         <PrivateRoute exact path="/dashboard" component={Dashboard} />
-        <PrivateRoute exact path="/data-diri" component={Profile} />
+        <MahasiswaRoute exact path="/data-diri" component={Profile} />
         
-        <PrivateRoute exact path="/form-presensi" component={FormPresensi} />
-        <PrivateRoute exact path="/form-izin-pulang" component={FormIzinPulang} />
-        <PrivateRoute exact path="/form-resign" component={FormResign} />
-        <PrivateRoute exact path="/form-izin-kembali/:id" component={FormIzinKembali} />
-        <PrivateRoute exact path="/riwayat-presensi" component={RiwayatPresensi} />
-        <PrivateRoute exact path="/riwayat-perizinan" component={RiwayatPerizinan} />
+        <MahasiswaRoute exact path="/form-presensi" component={FormPresensi} />
+        <MahasiswaRoute exact path="/form-izin-pulang" component={FormIzinPulang} />
+        <MahasiswaRoute exact path="/form-resign" component={FormResign} />
+        <MahasiswaRoute exact path="/form-izin-kembali/:id" component={FormIzinKembali} />
+        <MahasiswaRoute exact path="/riwayat-presensi" component={RiwayatPresensi} />
+        <MahasiswaRoute exact path="/riwayat-perizinan" component={RiwayatPerizinan} />
 
-        <PrivateRoute exact path="/data-izin-pulang" component={DataIzinPulang} />
-        <PrivateRoute exact path="/form-approval-izin-pulang/:id" component={FormApprovalIzinPulang} />
+        <PengelolaRoute exact path="/data-izin-pulang" component={DataIzinPulang} />
+        <PengelolaRoute exact path="/form-approval-izin-pulang/:id" component={FormApprovalIzinPulang} />
 
-        <PrivateRoute exact path="/data-izin-kembali" component={DataIzinKembali} />
-        <PrivateRoute exact path="/form-approval-izin-kembali/:id" component={FormApprovalIzinKembali} />
+        <PengelolaRoute exact path="/data-izin-kembali" component={DataIzinKembali} />
+        <PengelolaRoute exact path="/form-approval-izin-kembali/:id" component={FormApprovalIzinKembali} />
 
-        <PrivateRoute exact path="/data-resign" component={DataResign} />
-        <PrivateRoute exact path="/form-approval-resign/:id" component={FormApprovalResign} />
+        <PengelolaRoute exact path="/data-resign" component={DataResign} />
+        <PengelolaRoute exact path="/form-approval-resign/:id" component={FormApprovalResign} />
         
-        <PrivateRoute exact path="/data-presensi" component={DataPresensi} />
+        <PengelolaRoute exact path="/data-presensi" component={DataPresensi} />
 
-        <PrivateRoute exact path="/rekapitulasi" component={Rekapitulasi} />
+        <PengelolaRoute exact path="/rekapitulasi" component={Rekapitulasi} />
 
-        <PrivateRoute exact path="/import-mahasiswa" component={ImportMahasiswa} />
-        <PrivateRoute exact path="/data-mahasiswa" component={DataMahasiswa} />
-        <PrivateRoute exact path="/detail-mahasiswa/:id" component={DetailMahasiswa} />
-        <PrivateRoute exact path="/edit-mahasiswa/:id" component={EditMahasiswa} />
-        <PrivateRoute exact path="/tambah-mahasiswa" component={TambahMahasiswa} />
+        <WadirRoute exact path="/import-mahasiswa" component={ImportMahasiswa} />
+        <WadirRoute exact path="/data-mahasiswa" component={DataMahasiswa} />
+        <WadirRoute exact path="/detail-mahasiswa/:id" component={DetailMahasiswa} />
+        <WadirRoute exact path="/edit-mahasiswa/:id" component={EditMahasiswa} />
+        <WadirRoute exact path="/tambah-mahasiswa" component={TambahMahasiswa} />
         
         <Route path="*" component={NotFound} />
     </Switch>

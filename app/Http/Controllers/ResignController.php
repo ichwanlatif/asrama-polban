@@ -117,6 +117,7 @@ class ResignController extends Controller
             ->whereBetween('status_resign', [0, 4])
             ->join('mahasiswa', 'resign.id_mhs', '=', 'mahasiswa.id_mhs')
             ->select('resign.*', 'mahasiswa.nama_mhs')
+            ->orderBy('status_resign', 'asc')
             ->get();
         if($resign){
             return response()->json([

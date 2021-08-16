@@ -17,6 +17,7 @@ class ResignSeeder extends Seeder
     {
     //     $faker = Faker::create('id_ID');
 
+<<<<<<< HEAD
     //     for($i = 1; $i <= 15; $i++){
     //         $resign = Resign::create([
     //             'id_mhs' => $i+30,
@@ -42,5 +43,32 @@ class ResignSeeder extends Seeder
     //             'status_resign' => 3,
     //         ]);
     //     }
+=======
+        for($i = 1; $i <= 15; $i++){
+            $resign = Resign::create([
+                'id_mhs' => $i+30,
+                'tanggal_resign' => "2021-12-21",
+                'keterangan_resign' => "Masa tinggal habis",
+                'suhu_badan' => $faker->randomFloat($nbMaxDecimals = 1, $min = 36.5, $max = 37.5),
+                'kondisi_kesehatan' => "Sehat",
+                'jenis_kendaraan' => "Sepeda",
+                'keterangan_stnk' => null,
+                'status_resign' => $faker->numberBetween(0,4),
+            ]);
+        }
+
+        for($i = 1; $i <= 5; $i++){
+            $resign = Resign::create([
+                'id_mhs' => 1,
+                'tanggal_resign' => "2021-12-21",
+                'keterangan_resign' => "Test pagination",
+                'suhu_badan' => $faker->randomFloat($nbMaxDecimals = 1, $min = 36.5, $max = 37.5),
+                'kondisi_kesehatan' => "Sehat",
+                'jenis_kendaraan' => "Sepeda",
+                'keterangan_stnk' => null,
+                'status_resign' => $faker->numberBetween(0,4),
+            ]);
+        }
+>>>>>>> dev
     }
 }
