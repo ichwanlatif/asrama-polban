@@ -66,7 +66,7 @@ class ResignController extends Controller
                 $pengelola = User::where('role', 2)->first();
 
                 $details = [
-                    'link' => 'https://asrama-polban.xyz/#/form-approval-resign/' . $insert->id,
+                    'link' => 'https://asrama-polban.herokuapp.com/#/form-approval-resign/' . $insert->id,
                     'from' => $mahasiswa->nama_mhs,
                     'tanggal_resign' => $request->tanggal_resign,
                     'keterangan_resign' => $request->keterangan_resign,
