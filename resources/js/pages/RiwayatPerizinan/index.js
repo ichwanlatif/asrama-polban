@@ -186,66 +186,66 @@ class RiwayatPerizinan extends Component {
                                                         } = perizinan;
                                                         let statusResign;
                                                         switch (perizinan.status_resign) {
-                                                            case 0:
+                                                            case '0':
                                                                 statusResign = "Mengajukan"
                                                                 break;
-                                                            case 1:
+                                                            case '1':
                                                                 statusResign = "Disetujui Pengelola"
                                                                 break;
-                                                            case 2:
+                                                            case '2':
                                                                 statusResign = "Ditolak Pengelola"
                                                                 break;
-                                                            case 3:
+                                                            case '3':
                                                                 statusResign = "Disetujui Wadir 3"
                                                                 break;
-                                                            case 4:
+                                                            case '4':
                                                                 statusResign = "Ditolak Wadir 3"
                                                                 break;
                                                             default:
-                                                                statusResign = ""
+                                                                statusResign = "Error"
                                                                 break;
                                                         }
                                                         let status, hiddenKembali = true, hiddenKonfirmasi = true;
                                                         switch (perizinan.status_izin) {
-                                                            case 0:
+                                                            case '0':
                                                                 status = "Mengajukan"
                                                                 break;
-                                                            case 1:
+                                                            case '1':
                                                                 status = "Disetujui Pengelola"
                                                                 break;
-                                                            case 2:
+                                                            case '2':
                                                                 status = "Ditolak Pengelola"
                                                                 break;
-                                                            case 3:
+                                                            case '3':
                                                                 status = "Disetujui Wadir 3"
                                                                 hiddenKembali = false;
                                                                 break;
-                                                            case 4:
+                                                            case '4':
                                                                 status = "Ditolak Wadir 3"
                                                                 break;
-                                                            case 5:
+                                                            case '5':
                                                                 status = "Mengajukan Kembali"
                                                                 break;
-                                                            case 6:
+                                                            case '6':
                                                                 status = "Disetujui Kembali oleh Pengelola"
                                                                 break;
-                                                            case 7:
+                                                            case '7':
                                                                 status = "Ditolak Kembali oleh Pengelola"
                                                                 hiddenKembali = false;
                                                                 break;
-                                                            case 8:
+                                                            case '8':
                                                                 status = "Disetujui Kembali oleh Wadir 3"
                                                                 hiddenKonfirmasi = false;
                                                                 break;
-                                                            case 9:
+                                                            case '9':
                                                                 status = "Ditolak Kembali oleh Wadir 3"
                                                                 hiddenKembali = false;
                                                                 break;
-                                                            case 10:
+                                                            case '10':
                                                                 status = "Terkonfirmasi di asrama"
                                                                 break;
                                                             default:
-                                                                status = ""
+                                                                status = "Error"
                                                                 break;
                                                         }
                                                         let jenis;

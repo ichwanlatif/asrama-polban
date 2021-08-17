@@ -156,22 +156,22 @@ class DataIzinKembali extends Component {
                                                         } = perizinan;
                                                         let status;
                                                         switch (perizinan.status_izin) {
-                                                            case 5:
+                                                            case '5':
                                                                 status = "Mengajukan Kembali Asrama"
                                                                 break;
-                                                            case 6:
+                                                            case '6':
                                                                 status = "Disetujui Kembali oleh Pengelola"
                                                                 break;
-                                                            case 7:
+                                                            case '7':
                                                                 status = "Ditolak Kembali oleh Pengelola"
                                                                 break;
-                                                            case 8:
+                                                            case '8':
                                                                 status = "Disetujui Kembali oleh Wadir 3"
                                                                 break;
-                                                            case 9:
+                                                            case '9':
                                                                 status = "Ditolak Kembali oleh Wadir 3"
                                                                 break;
-                                                            case 10:
+                                                            case '10':
                                                                 status = "Terkonfirmasi di Asrama"
                                                                 break;
                                                             default:

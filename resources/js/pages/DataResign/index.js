@@ -151,19 +151,19 @@ class DataResign extends Component {
                                                         } = resign;
                                                         let statusResign;
                                                         switch (resign.status_resign) {
-                                                            case 0:
+                                                            case '0':
                                                                 statusResign = "Mengajukan"
                                                                 break;
-                                                            case 1:
+                                                            case '1':
                                                                 statusResign = "Disetujui Pengelola"
                                                                 break;
-                                                            case 2:
+                                                            case '2':
                                                                 statusResign = "Ditolak Pengelola"
                                                                 break;
-                                                            case 3:
+                                                            case '3':
                                                                 statusResign = "Disetujui Wadir 3"
                                                                 break;
-                                                            case 4:
+                                                            case '4':
                                                                 statusResign = "Ditolak Wadir 3"
                                                                 break;
                                                             default:

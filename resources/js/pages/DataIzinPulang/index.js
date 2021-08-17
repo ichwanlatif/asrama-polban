@@ -154,19 +154,19 @@ class DataIzinPulang extends Component {
                                                         } = perizinan;
                                                         let status;
                                                         switch (perizinan.status_izin) {
-                                                            case 0:
+                                                            case '0':
                                                                 status = "Mengajukan"
                                                                 break;
-                                                            case 1:
+                                                            case '1':
                                                                 status = "Disetujui Pengelola"
                                                                 break;
-                                                            case 2:
+                                                            case '2':
                                                                 status = "Ditolak Pengelola"
                                                                 break;
-                                                            case 3:
+                                                            case '3':
                                                                 status = "Disetujui Wadir 3"
                                                                 break;
-                                                            case 4:
+                                                            case '4':
                                                                 status = "Ditolak Wadir 3"
                                                                 break;
                                                             default:
