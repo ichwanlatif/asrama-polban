@@ -170,7 +170,7 @@ class DataIzinPulang extends Component {
                                                                 status = "Ditolak Wadir 3"
                                                                 break;
                                                             default:
-                                                                status = "Error"
+                                                                status = ""
                                                                 break;
                                                         }
                                                         let approve;

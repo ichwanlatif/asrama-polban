@@ -175,7 +175,7 @@ class DataIzinKembali extends Component {
                                                                 status = "Terkonfirmasi di Asrama"
                                                                 break;
                                                             default:
-                                                                status = "Error"
+                                                                status = ""
                                                                 break;
                                                         }
                                                         let approve;

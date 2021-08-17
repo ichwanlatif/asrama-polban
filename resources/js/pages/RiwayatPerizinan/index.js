@@ -245,7 +245,7 @@ class RiwayatPerizinan extends Component {
                                                                 status = "Terkonfirmasi di asrama"
                                                                 break;
                                                             default:
-                                                                status = "Error"
+                                                                status = ""
                                                                 break;
                                                         }
                                                         let jenis;

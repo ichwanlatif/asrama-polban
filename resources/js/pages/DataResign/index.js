@@ -167,7 +167,7 @@ class DataResign extends Component {
                                                                 statusResign = "Ditolak Wadir 3"
                                                                 break;
                                                             default:
-                                                                statusResign = "Error"
+                                                                statusResign = ""
                                                                 break;
                                                         }
                                                         let approve;
