@@ -79,7 +79,7 @@ class RiwayatPresensi extends Component {
                         <Topbar />
                         {/* <!-- End of Topbar --> */}
                         <div className="container-fluid">
-                            <PageHeading title="Riwayat Presensi Kehadiran" />
+                            <PageHeading title="Riwayat Presensi" />
                             
                             {/* Path */}
                             <nav aria-label="breadcrumb">
@@ -92,7 +92,7 @@ class RiwayatPresensi extends Component {
                             <div className="col-lg-12 col-md-12">
                                 <div className="card my-5">
                                     <div className="card-header">
-                                        <h6 className="text-primary">Riwayat Presensi Kehadiran</h6>
+                                        <h6 className="text-primary">Riwayat Presensi</h6>
                                     </div>
 
                                     <div className="card-body">

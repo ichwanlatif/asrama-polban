@@ -190,6 +190,16 @@ class DetailMahasiswa extends Component {
                                             </div>
                                         </div>
                                         <div className="form-group row">
+                                            <label className="col-md-3 col-form-label text-md-right">NIM</label>
+                                            <div className="col-md-8">
+                                                <input 
+                                                    type="text" 
+                                                    className="form-control-plaintext"
+                                                    value={this.state.nim}
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="form-group row">
                                             <label className="col-md-3 col-form-label text-md-right">Jurusan / Program studi</label>
                                             <div className="col-md-8">
                                                 <input 

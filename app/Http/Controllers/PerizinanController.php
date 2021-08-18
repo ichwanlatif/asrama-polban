@@ -28,13 +28,14 @@ class PerizinanController extends Controller
             'numeric'            => ':attribute harus diisi angka. ',
             'max'               => ':attribute harus diisi maksimal :max. ',
             'mimes'               => 'format :attribute tidak didukung. ',
+            'between'               => ':attribute harus diisi antara :min - :max. ',
         ];
 
         $validasi = \Validator::make($request->all(), [
             'tanggal_pergi' => 'required',
             'tanggal_pulang' => 'required',
             'jenis_kendaraan' => 'required',
-            'suhu_badan' => 'required|numeric|between:30,50',
+            'suhu_badan' => 'required|numeric|between:35,40',
             'kondisi_kesehatan' => 'required|max:50',
             'alamat_izin' => 'required|max:125',
             'file' => 'file|max:2000|mimes:pdf,png,jpg',
@@ -400,16 +401,17 @@ class PerizinanController extends Controller
     public function izinKembali(Request $request){
         
         $messages = [
-            'required'            => ':attribute harus diisi. ',
-            'numeric'            => ':attribute harus diisi angka. ',
+            'required'          => ':attribute harus diisi. ',
+            'numeric'           => ':attribute harus diisi angka. ',
             'max'               => ':attribute harus diisi maksimal :max. ',
+            'between'           => ':attribute harus diisi antara :min - :max. ',
         ];
 
         $validasi = \Validator::make($request->all(), [
             'id_perizinan' => 'required',
             'keterangan_kembali' => 'required|max:125',
             'pengajuan_tanggal_pulang' => 'required',
-            'suhu_badan' => 'required|numeric|between:30,50',
+            'suhu_badan' => 'required|numeric|between:35,40',
             'kondisi_kesehatan' => 'required|max:50',
             'jenis_kendaraan' => 'required',
         ], $messages);
