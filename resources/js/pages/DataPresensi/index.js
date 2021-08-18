@@ -9,6 +9,7 @@ import Pagination from "react-js-pagination";
 
 import PageHeading from '../../components/PageHeading';
 import api from '../../service/api';
+import moment from 'moment';
 // import { getRiwayatPresensi } from '../../service/presensi';
 
 class DataPresensi extends Component {
@@ -177,7 +178,7 @@ class DataPresensi extends Component {
                                                                 <td>{presensi.nim}</td>
                                                                 <td>{presensi.nama_gedung}-{presensi.no_kamar}</td>
                                                                 <td>{presensi.keterangan_asal}</td>
-                                                                <td>{new Date(presensi.created_at).toTimeString()}</td>
+                                                                <td>{moment(presensi.created_at).format('LTS')}</td>
                                                                 <td>
                                                                     <span className={color}>{status}
                                                                     </span>

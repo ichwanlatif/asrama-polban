@@ -137,7 +137,7 @@ class RiwayatPresensi extends Component {
                                                         return (
                                                             <tr>
                                                                 <td>{new Date(presensi.created_at).toDateString()}</td>
-                                                                <td>{new Date(presensi.created_at).toTimeString()}</td>
+                                                                <td>{moment(presensi.created_at).format('LTS')}</td>
                                                                 <td>{presensi.latitude + ', ' + presensi.longitude}</td>
                                                                 <td>
                                                                     <span className={color}>{status}
