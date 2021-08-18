@@ -155,7 +155,7 @@ class PerizinanController extends Controller
         $mahasiswa = Mahasiswa::where('id_mhs', $request->id_mhs)->first();
 
         $details = [
-            'link' => 'https://asrama-polban.xyz/#/form-approval-izin-pulang/' . $request->id_perizinan,
+            'link' => 'https://asrama-polban.herokuapp.com/#/form-approval-izin-pulang/' . $request->id_perizinan,
             'from' => $mahasiswa->nama_mhs,
             'tanggal_pergi' => $detail->tanggal_pergi,
             'tanggal_pulang' => $detail->tanggal_pulang,

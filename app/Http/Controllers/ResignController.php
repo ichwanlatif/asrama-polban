@@ -196,7 +196,7 @@ class ResignController extends Controller
 
         if($resign){
             $details = [
-                'link' => 'https://asrama-polban.xyz/#/form-approval-resign/' . $request->id_resign,
+                'link' => 'https://asrama-polban.herokuapp.com/#/form-approval-resign/' . $request->id_resign,
                 'from' => $mahasiswa,
                 'tanggal_resign' => $detail->tanggal_resign,
                 'keterangan_resign' => $detail->keterangan_resign,
