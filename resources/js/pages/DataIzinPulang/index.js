@@ -169,9 +169,6 @@ class DataIzinPulang extends Component {
                                                             case '4':
                                                                 status = "Ditolak Wadir 3"
                                                                 break;
-                                                            default:
-                                                                status = ""
-                                                                break;
                                                         }
                                                         let approve;
                                                         let btnPengelola = this.state.role == 2 && perizinan.status_izin == 0;

@@ -166,9 +166,6 @@ class DataResign extends Component {
                                                             case '4':
                                                                 statusResign = "Ditolak Wadir 3"
                                                                 break;
-                                                            default:
-                                                                statusResign = ""
-                                                                break;
                                                         }
                                                         let approve;
                                                         let btnPengelola = this.state.role == 2 && resign.status_resign == 0;

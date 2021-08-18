@@ -174,9 +174,6 @@ class DataIzinKembali extends Component {
                                                             case '10':
                                                                 status = "Terkonfirmasi di Asrama"
                                                                 break;
-                                                            default:
-                                                                status = ""
-                                                                break;
                                                         }
                                                         let approve;
                                                         let btnPengelola = this.state.role == 2 && perizinan.status_izin == 5;

@@ -201,9 +201,6 @@ class RiwayatPerizinan extends Component {
                                                             case '4':
                                                                 statusResign = "Ditolak Wadir 3"
                                                                 break;
-                                                            default:
-                                                                statusResign = ""
-                                                                break;
                                                         }
                                                         let status, hiddenKembali = true, hiddenKonfirmasi = true;
                                                         switch (perizinan.status_izin) {
@@ -243,9 +240,6 @@ class RiwayatPerizinan extends Component {
                                                                 break;
                                                             case '10':
                                                                 status = "Terkonfirmasi di asrama"
-                                                                break;
-                                                            default:
-                                                                status = ""
                                                                 break;
                                                         }
                                                         let jenis;
