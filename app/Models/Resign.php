@@ -17,7 +17,7 @@ class Resign extends Model
         'suhu_badan',
         'kondisi_kesehatan',
         'jenis_kendaraan',
-        'keterangan_stnk',
+        'file_stnk',
         'status_resign'
     ];
 }

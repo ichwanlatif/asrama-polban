@@ -215,7 +215,7 @@ class Rekapitulasi extends Component {
                                                     <th scope="col">Kamar</th>
                                                     <th scope="col">Jenis</th>
                                                     <th scope="col">Peran</th>
-                                                    <th scope="col">Alfa</th>
+                                                    <th scope="col">Alpa</th>
                                                     <th scope="col">Izin</th>
                                                     <th scope="col">Hadir</th>
                                                     </tr>

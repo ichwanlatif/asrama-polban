@@ -21,7 +21,7 @@ class CreateResign extends Migration
             $table->float('suhu_badan', 8, 2);
             $table->string('kondisi_kesehatan', 50);
             $table->string('jenis_kendaraan', 10);
-            $table->string('keterangan_stnk')->nullable();
+            $table->string('file_stnk')->nullable();
             $table->tinyInteger('status_resign');
             $table->timestamps();
 

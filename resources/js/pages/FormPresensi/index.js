@@ -183,7 +183,7 @@ class FormPresensi extends Component {
                         <Topbar />
                         {/* <!-- End of Topbar --> */}
                         <div className="container-fluid">
-                            <PageHeading title="Absensi Penghuni Asrama Polban" />
+                            <PageHeading title="Presensi Penghuni Asrama Polban" />
 
                             {/* Path */}
                             <nav aria-label="breadcrumb">
@@ -205,7 +205,7 @@ class FormPresensi extends Component {
                                         {/* Form presensi*/}
                                         <form>
                                             <div className="form-group row">
-                                                <label for="time" className="col-md-3 col-form-label text-md-right">Waktu absensi</label>
+                                                <label for="time" className="col-md-3 col-form-label text-md-right">Waktu presensi</label>
                                                 <div className="col-md-8">
                                                     <input 
                                                         type="text" 

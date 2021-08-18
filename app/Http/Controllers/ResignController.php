@@ -24,13 +24,14 @@ class ResignController extends Controller
             'numeric'           => ':attribute harus diisi angka. ',
             'max'               => ':attribute harus diisi maksimal :max. ',
             'mimes'             => 'format :attribute tidak didukung. ',
+            'between'           => ':attribute harus diisi antara :min - :max. ',
         ];
 
         $validasi = \Validator::make($request->all(), [
             'tanggal_resign' => 'required',
             'keterangan_resign' => 'required',
             'jenis_kendaraan' => 'required',
-            'suhu_badan' => 'required|numeric|between:30,50',
+            'suhu_badan' => 'required|numeric|between:35,40',
             'kondisi_kesehatan' => 'required|max:50',
             'id_mhs' => 'required',
             'file' => 'file|max:2000|mimes:pdf,png,jpg',
@@ -57,7 +58,7 @@ class ResignController extends Controller
                 'suhu_badan' => $request->suhu_badan,
                 'kondisi_kesehatan' => $request->kondisi_kesehatan,
                 'jenis_kendaraan' => $request->jenis_kendaraan,
-                'keterangan_stnk' => $fileName,
+                'file_stnk' => $fileName,
                 'status_resign' => 0,
             ]);
 

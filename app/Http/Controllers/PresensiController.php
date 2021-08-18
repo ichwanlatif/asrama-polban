@@ -20,13 +20,14 @@ class PresensiController extends Controller
             'required'            => ':attribute harus diisi. ',
             'numeric'            => ':attribute harus diisi angka. ',
             'max'               => ':attribute harus diisi maksimal :max. ',
+            'between'               => ':attribute harus diisi antara :min - :max. ',
         ];
 
         $validasi = \Validator::make($request->all(), [
             'latitude' => 'required',
             'longitude' => 'required',
             'id_mhs' => 'required',
-            'suhu_badan' => 'required|numeric|between:30,50',
+            'suhu_badan' => 'required|numeric|between:35,40',
             'kondisi_kesehatan' => 'required|max:50',
             'status' => 'required'
         ], $messages);

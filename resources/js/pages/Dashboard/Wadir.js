@@ -145,7 +145,7 @@ class DashboardWadir extends Component {
                                             <td className="text-right">{this.state.izinA}</td>
                                         </tr>
                                         <tr>
-                                            <td>Alfa</td>
+                                            <td>Alpa</td>
                                             <td className="text-right">{this.state.alfaA}</td>
                                         </tr>
                                     </tbody>
@@ -222,7 +222,7 @@ class DashboardWadir extends Component {
                                             <td className="text-right">{this.state.izinB}</td>
                                         </tr>
                                         <tr>
-                                            <td>Alfa</td>
+                                            <td>Alpa</td>
                                             <td className="text-right">{this.state.alfaB}</td>
                                         </tr>
                                     </tbody>
@@ -299,7 +299,7 @@ class DashboardWadir extends Component {
                                             <td className="text-right">{this.state.izinC}</td>
                                         </tr>
                                         <tr>
-                                            <td>Alfa</td>
+                                            <td>Alpa</td>
                                             <td className="text-right">{this.state.alfaC}</td>
                                         </tr>
                                     </tbody>

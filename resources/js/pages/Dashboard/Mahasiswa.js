@@ -55,14 +55,14 @@ class DashboardMahasiswa extends Component {
                     <CardInfo title="Gedung-Kamar Asrama"
                         icon="house-user"
                         color="primary"
-                        value={this.state.gedung+"-"+this.state.kamar} />
+                        value={this.state.gedung+" - "+this.state.kamar} />
 
                     <CardInfo title="Jumlah Hadir"
                         icon="calendar-check"
                         color="success"
                         value={this.state.hadir} />
 
-                    <CardInfo title="Jumlah Alfa"
+                    <CardInfo title="Jumlah Alpa"
                         icon="calendar-times"
                         color="danger"
                         value={this.state.alfa} />

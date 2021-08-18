@@ -112,7 +112,7 @@ class FormApprovalResign extends Component {
                     jenis_kendaraan: response.data.data.jenis_kendaraan,
                     keterangan_resign: response.data.data.keterangan_resign,
                     tanggal_resign: response.data.data.tanggal_resign,
-                    keterangan_stnk: response.data.data.keterangan_stnk
+                    file_stnk: response.data.data.file_stnk
                 })
             }
             else{
@@ -125,7 +125,7 @@ class FormApprovalResign extends Component {
 
     render() {
         let hidden;
-        if(this.state.keterangan_stnk == null){
+        if(this.state.file_stnk == null){
             hidden = true;
         }
         else{
@@ -289,7 +289,7 @@ class FormApprovalResign extends Component {
                                             <div className="form-group row">
                                                 <label for="formfile" className="col-md-3 col-form-label text-md-right">STNK</label>
                                                 <div className="col-md-8">
-                                                    <a href={'https://asrama-polban.xyz/asrama-polban/storage/app/public/stnk_kendaraan/' + this.state.keterangan_stnk} download={this.state.surat_pendukung} class="btn btn-light btn-icon-split" hidden={hidden} >
+                                                    <a href={'https://asrama-polban.xyz/asrama-polban/storage/app/public/stnk_kendaraan/' + this.state.file_stnk} download={this.state.surat_pendukung} class="btn btn-light btn-icon-split" hidden={hidden} >
                                                         <span class="icon text-gray-600">
                                                             <i class="fas fa-file-download"></i>
                                                         </span>
